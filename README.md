@@ -1,4 +1,4 @@
-# SIVeL 2 para el SJR LAC [![Esado Construcción](https://api.travis-ci.org/pasosdeJesus/sivel2_sjr.svg?branch=master)](https://travis-ci.org/pasosdeJesus/sivel2_sjr) [![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sivel2_sjr/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_sjr) [![Cobertura de Pruebas](https://codeclimate.com/github/pasosdeJesus/sivel2_sjr/badges/coverage.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_sjr)
+# Motor SIVeL 2 para el SJR LAC [![Esado Construcción](https://api.travis-ci.org/pasosdeJesus/sivel2_sjr.svg?branch=master)](https://travis-ci.org/pasosdeJesus/sivel2_sjr) [![Clima del Código](https://codeclimate.com/github/pasosdeJesus/sivel2_sjr/badges/gpa.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_sjr) [![Cobertura de Pruebas](https://codeclimate.com/github/pasosdeJesus/sivel2_sjr/badges/coverage.svg)](https://codeclimate.com/github/pasosdeJesus/sivel2_sjr)
 
 ## Tabla de Contenido
 * [Diseño](#diseño)
@@ -32,7 +32,7 @@ Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
 ``` sh
   cd spec/dummy
   RAILS_ENV=test rake db:setup
-  RAILS_ENV=test rake sivel:indices
+  RAILS_ENV=test rake sivel2gen:indices
 ```
 * Ejecute las pruebas desde el directorio del motor con:
 ```sh
