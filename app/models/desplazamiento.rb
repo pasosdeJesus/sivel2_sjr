@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Desplazamiento < ActiveRecord::Base
 
-	has_many :actosjr, foreign_key: "id_caso", validate: true
+	has_many :actosjr, validate: true
 
 	belongs_to :expulsion, class_name: "Ubicacion", foreign_key: "id_expulsion", validate: true
 	belongs_to :llegada, class_name: "Ubicacion", foreign_key: "id_llegada", validate: true
@@ -15,8 +15,6 @@ class Desplazamiento < ActiveRecord::Base
 	belongs_to :departamento, foreign_key: "departamentodecl", validate: true
 	belongs_to :municipio, foreign_key: "municipiodecl", validate: true
 	belongs_to :caso, foreign_key: "id_caso", validate: true
-
-  self.primary_key = nil
 
   validates_presence_of :fechaexpulsion, :expulsion, :fechallegada, :llegada
   validate :fechaexpulsion, uniqueness: { scope: :id_caso,

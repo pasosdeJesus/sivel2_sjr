@@ -238,7 +238,6 @@ class CasosController < ApplicationController
   end
 
   def elimina_dep
-    @caso.desplazamiento.clear
     @caso.respuesta.each { |r| 
       r.ayudasjr.clear 
       r.emprendimiento.clear
@@ -349,7 +348,7 @@ class CasosController < ApplicationController
         :acto_attributes => [
           :id, :id_presponsable, :id_categoria, :id_persona, :_destroy,
           :actosjr_attributes => [
-            :id, :id_acto, :fecha, :fechaexpulsion, :_destroy
+            :id_acto, :fecha, :desplazamiento_id, :_destroy
           ]
         ],
         :respuesta_attributes => [
