@@ -63,14 +63,15 @@
 		include_blank: false,
 		label: "Actividad/Oficio actual",
 		label_method: :nombre, 
-		value_method: :id 
+    value_method: :id,
+    wrapper_html: { style: "padding-bottom: 18px;" }
 	%>
 	<%= s.association :escolaridad,
 		collection: Escolaridad.all.order(:nombre),
 		include_blank: false,
 		label: "Nivel Escolar",
 		label_method: :nombre, 
-		value_method: :id 
+		value_method: :id
 	%>
 	<%= s.input :id_victima, as: :hidden %>
 <% end %>

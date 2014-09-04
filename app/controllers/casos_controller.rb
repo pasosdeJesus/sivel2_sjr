@@ -338,7 +338,7 @@ class CasosController < ApplicationController
           :_destroy
         ],
         :desplazamiento_attributes => [
-          :fechaexpulsion, :id_expulsion, 
+          :id, :fechaexpulsion, :id_expulsion, 
           :fechallegada, :id_llegada, :descripcion, :_destroy
         ],
           
