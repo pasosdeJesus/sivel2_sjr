@@ -229,8 +229,8 @@
           </div>
           <div id="antecedentes" class="accordion-body collapse">
             <div class="accordion-inner">
-              <%= f.simple_fields_for :actosjr do |actosjr| %>
-                <%= render 'actosjr_fields', :f => actosjr%>
+              <%= f.simple_fields_for :acto do |acto| %>
+                <%= render 'acto_fields', :f => acto %>
               <% end %>
               <div class="links">
                 <%= link_to_add_association 'Añadir Causa/Antecedente', f, :actosjr, :class => 'btn-primary' %>

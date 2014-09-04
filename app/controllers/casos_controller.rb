@@ -98,6 +98,7 @@ class CasosController < ApplicationController
       @presponsable = CasoPresponsable.new
       @presponsable.id_caso = params[:caso_id]
       @presponsable.id_presponsable = 35
+      @presponsable.tipo = 0
       if @presponsable.save
         respond_to do |format|
           format.js { render text: @presponsable.id.to_s }
@@ -237,10 +238,7 @@ class CasosController < ApplicationController
   end
 
   def elimina_dep
-    @caso.caso_etiqueta.clear
     @caso.desplazamiento.clear
-    @caso.actosjr.clear
-    @caso.acto.clear
     @caso.respuesta.each { |r| 
       r.ayudasjr.clear 
       r.emprendimiento.clear
@@ -254,18 +252,6 @@ class CasosController < ApplicationController
   def update
     respond_to do |format|
       elimina_dep
-      if (!params[:caso][:actosjr_attributes].nil?) 
-        params[:caso][:actosjr_attributes].each {|k,v| 
-          if (v[:_destroy].nil? || v[:_destroy] != 1)
-            acto = Acto.new
-            acto.id_presponsable = v[:id_presponsable]
-            acto.id_persona = v[:id_persona]
-            acto.id_categoria = v[:id_categoria]
-            acto.id_caso = @caso.id
-            acto.save
-          end
-        }
-      end
       if (!params[:caso][:caso_etiqueta_attributes].nil?)
         params[:caso][:caso_etiqueta_attributes].each {|k,v|
           if (v[:id_usuario].nil? || v[:id_usuario] == "") 
@@ -360,9 +346,11 @@ class CasosController < ApplicationController
           :id_presponsable, :id, :tipo, 
           :bloque, :frente, :brigada, :batallon, :division, :otro, :_destroy
         ],
-        :actosjr_attributes => [
-          :id_presponsable, :id_categoria, 
-          :id_persona, :fecha, :fechaexpulsion, :_destroy
+        :acto_attributes => [
+          :id, :id_presponsable, :id_categoria, :id_persona, :_destroy,
+          :actosjr_attributes => [
+            :id, :id_acto, :fecha, :fechaexpulsion, :_destroy
+          ]
         ],
         :respuesta_attributes => [
           :id, :fechaatencion, :fechaexpulsion,
@@ -385,7 +373,7 @@ class CasosController < ApplicationController
 					:id, :fecha, :descripcion, :archivo, :adjunto, :_destroy
 				],
         :caso_etiqueta_attributes => [
-          :id_usuario, :fecha, :id_etiqueta, :observaciones, :_destroy
+          :id, :id_usuario, :fecha, :id_etiqueta, :observaciones, :_destroy
         ]
       )
     end
