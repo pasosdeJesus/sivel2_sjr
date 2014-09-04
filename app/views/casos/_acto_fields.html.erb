@@ -1,9 +1,8 @@
 <div class='control-group nested-fields'>
   <div class="controls">
     <% 
-      debugger;
       if f.object.actosjr.nil?
-        f.object.actosjr = Actosjr.new
+        f.object.actosjr = Actosjr.new(fecha: Date.today)
       end 
     %>
   

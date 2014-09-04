@@ -1,7 +1,8 @@
 # encoding: UTF-8
 class Acto < ActiveRecord::Base
-  has_one :actosjr, foreign_key: "id_acto", inverse_of: acto, 
-    validate: true, dependent: :destroy
+  has_one :actosjr, foreign_key: "id_acto", validate: true, 
+    dependent: :destroy, inverse_of: :acto
+  accepts_nested_attributes_for :actosjr
 
   belongs_to :presponsable, foreign_key: "id_presponsable", validate: true
   accepts_nested_attributes_for :presponsable
