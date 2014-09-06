@@ -77,19 +77,17 @@ class CasosController < ApplicationController
 
 
   def descarga_anexo
-    if !params[:id].nil?
-      @anexo = Anexo.find(params[:id])
-      ruta = @anexo.adjunto_file_name
-      if !ruta.nil?
-        n=sprintf("%s/public/system/anexos/adjuntos/000/000/%03d/original/%s", 
-                 Rails.root, @anexo.id, ruta)
-        n=sprintf("/var/www/resbase/anexos-sjrven/%d_%s", @anexo.id, ruta)
-        puts n
-        send_file n, x_sendfile: true
-      else
-        redirect_to casos_url
-      end
-    end
+  #  return
+  #  debugger
+  #  if !params[:id].nil?
+  #    @anexo = Anexo.find(params[:id])
+  #    ruta = @anexo.adjunto_file_name
+  #    if !ruta.nil?
+  #      n=sprintf(Sivel2Gen.ruta_anexos + "/%d_%s", @anexo.id, ruta)
+  #      puts n
+  #      send_file n, x_sendfile: true
+  #      end
+  #  end
   end
 
 
@@ -237,20 +235,10 @@ class CasosController < ApplicationController
     end
   end
 
-  def elimina_dep
-    @caso.respuesta.each { |r| 
-      r.ayudasjr.clear 
-      r.emprendimiento.clear
-      r.aspsicosocial.clear
-      r.aslegal.clear
-    }
-  end
-
   # PATCH/PUT /casos/1
   # PATCH/PUT /casos/1.json
   def update
     respond_to do |format|
-      elimina_dep
       if (!params[:caso][:caso_etiqueta_attributes].nil?)
         params[:caso][:caso_etiqueta_attributes].each {|k,v|
           if (v[:id_usuario].nil? || v[:id_usuario] == "") 
@@ -280,7 +268,6 @@ class CasosController < ApplicationController
   # DELETE /casos/1
   # DELETE /casos/1.json
   def destroy
-    elimina_dep
     @caso.casosjr.destroy if !@caso.casosjr.nil?
     @caso.destroy
     respond_to do |format|
@@ -355,18 +342,22 @@ class CasosController < ApplicationController
           :id, :fechaatencion, :fechaexpulsion,
           :descamp, :observaciones, :orientaciones, :compromisos,
           :gestionessjr, :_destroy, 
-          :ayudasjr_respuesta_attributes => [
-            :id_ayudasjr, :detallear, :montoar, :_destroy
-          ],
-          :emprendimiento_respuesta_attributes => [
-            :id_emprendimiento, :detalleem, :montoem, :_destroy
-          ],
-          :aspsicosocial_respuesta_attributes => [
-            :id_aspsicosocial, :detalleap, :montoap, :_destroy
-          ],
-          :aslegal_respuesta_attributes => [
-            :id_aslegal, :detalleal, :montoal, :_destroy
-          ]
+          :detalleal, :montoal,
+          :detalleap, :montoap,
+          :institucionayes, :cantidadayes,
+          :detallear, :montoar,
+          :informacionder, :accionesder,
+          :detalleem, :montoem,
+          :detallemotivo, 
+          :difobsprog,
+          :aslegal_ids => [],
+          :aspsicosocial_ids => [],
+          :ayudaestado_ids => [],
+          :ayudasjr_ids => [],
+          :derecho_ids => [],
+          :emprendimiento_ids => [],
+          :motivosjr_ids => [],
+          :progestado_ids => []
         ],
         :anexo_attributes => [
 					:id, :fecha, :descripcion, :archivo, :adjunto, :_destroy

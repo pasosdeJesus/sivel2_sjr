@@ -14,13 +14,18 @@ class Ability
     ["Analista", ROLANALI], ["Sistematizador", ROLSIST]]
 
   @@tablasbasicas = [
-    'actividadarea', 'actividadoficio', 'aslegal', 'aspsicosocial', 'ayudasjr', 
+    'actividadarea', 'actividadoficio', 'aslegal', 'aspsicosocial', 
+    # 'ayudaestado',  
+    'ayudasjr', 
     'categoria', 'clase', 'comosupo',
-    'departamento', 
+    'departamento', 'derecho',
     'emprendimiento', 'escolaridad', 'estadocivil', 'etiqueta', 'etnia', 
     'idioma', 'iglesia', 
     'maternidad', 'municipio', 
-    'pais', 'presponsable', 'profesion', 'proteccion', 
+    # 'motivosjr',
+    'pais', 'presponsable', 'profesion', 
+    # 'progestado',
+    'proteccion', 
     'rangoedad', 'rangoedadac', 'regionsjr', 'rolfamilia', 
     'statusmigratorio', 'supracategoria',
     'tclase', 'tsitio', 'tviolencia'
