@@ -28,7 +28,7 @@ $(document).on 'ready page:load',  ->
   )
 
   # En actos, lista de presuntos responsables se calcula
-  $(document).on('focusin', 'select[id^=caso_actosjr_attributes_][id$=id_presponsable]', (e) ->
+  $(document).on('focusin', 'select[id^=caso_acto_attributes_][id$=id_presponsable]', (e) ->
     #debugger
     sel = $(this).val()
     nh = ''
@@ -44,16 +44,12 @@ $(document).on 'ready page:load',  ->
   )
 
   # En actos, lista de víctimas se cálcula
-  $(document).on('focusin', 'select[id^=caso_actosjr_attributes_][id$=id_persona]', (e) ->
+  $(document).on('focusin', 'select[id^=caso_acto_attributes_][id$=id_persona]', (e) ->
     sel = $(this).val()
     nh = ''
     c = $('#contacto')
     lcg = c.add('#victima .control-group[style!="display: none;"]')
     lcg.each((k, v) ->
-      # id: persona
-      # Nos gustaría 
-      # id = $(v).find('.caso_victima_persona_id input').val()
-      # pero como nombre de clase genera caso_victima_279_persona_id
       id = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)).find('input').val()
       nh = nh + "<option value='" + id + "'"
       if id == sel 
@@ -67,7 +63,7 @@ $(document).on 'ready page:load',  ->
   )
 
   # En actos, lista de desplazamientos se cálcula
-  $(document).on('focusin', 'select[id^=caso_actosjr_attributes_][id$=fechaexpulsion]', (e) ->
+  $(document).on('focusin', 'select[id^=caso_acto_attributes_][id$=desplazamiento_id]', (e) ->
     sel = $(this).val()
     nh = '<option value=""></option>'
     lcg = $('#desplazamiento .control-group[style!="display: none;"]')
@@ -214,7 +210,7 @@ $(document).on 'ready page:load',  ->
         return
       nomelempe = "causas/antecedentes"
       nomesteelem = "este presunto responsable"
-      $('#antecedentes .control-group[style!="display: none;"] .caso_actosjr_presponsable select').each((v, e) ->
+      $('#antecedentes .control-group[style!="display: none;"] .caso_acto_presponsable select').each((v, e) ->
         if ($(e).val() == idp) 
           root.elempe.push($(e).parent().parent());
       )
@@ -246,7 +242,7 @@ $(document).on 'ready page:load',  ->
       idv = vsel.val()
       nomelempe = "causas/antecedentes"
       nomesteelem = "esta víctima"
-      $('#antecedentes .control-group[style!="display: none;"] .caso_actosjr_persona select').each((v, e) ->
+      $('#antecedentes .control-group[style!="display: none;"] .caso_acto_persona select').each((v, e) ->
         if ($(e).val() == idv) 
           root.elempe.push($(e).parent().parent());
       )
@@ -336,7 +332,7 @@ $(document).on 'ready page:load',  ->
       id = usel.val()
       nomelempe = "causas/antecedentes"
       nomesteelem = "este desplazamiento"
-      $('#antecedentes .control-group[style!="display: none;"] .caso_actosjr_desplazamiento select').each((v, e) ->
+      $('#antecedentes .control-group[style!="display: none;"] .caso_acto_desplazamiento select').each((v, e) ->
         if ($(e).val() == id) 
           root.elempe.push($(e).parent().parent());
       )
