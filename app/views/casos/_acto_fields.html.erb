@@ -16,7 +16,6 @@
 
       <%= s.association :desplazamiento,
         collection: ([] + Desplazamiento.where(:id_caso => @caso.id)),
-        #selected: :fechaexpulsion,
         label: "Causó desplazamiento",
         label_method: :fechaexpulsion,
         value_method: :id

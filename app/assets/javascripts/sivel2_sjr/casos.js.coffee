@@ -69,12 +69,13 @@ $(document).on 'ready page:load',  ->
     lcg = $('#desplazamiento .control-group[style!="display: none;"]')
     lcg.each((k, v) ->
       # id: fechaexpulsion
-      id = $(v).find('.caso_desplazamiento_fechaexpulsion input').val()
+      tx = $(v).find('.caso_desplazamiento_id input').val()
+      id = $(v).find('input[id^=caso_desplazamiento_attributes_][id$=_id]').val()
       nh = nh + "<option value='" + id + "'"
       if id == sel 
         nh = nh + ' selected'
       # texto: fechaexpulsion
-      tx = id
+      tx = $(v).find('.caso_desplazamiento_fechaexpulsion input').val()
       nh = nh + ">" + tx + "</option>" )
     $(this).html(nh)
   )

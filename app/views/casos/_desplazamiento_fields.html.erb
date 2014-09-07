@@ -1,5 +1,6 @@
 <div class='control-group nested-fields'>
   <div class="controls">
+    <%= f.input :id, as: :hidden %>
     <%= f.input :fechaexpulsion, 
         :input_html => { "data-behaviour" => "datepicker",
           value: f.object.fechaexpulsion || @caso.fecha },

@@ -339,7 +339,7 @@ class CasosController < ApplicationController
           ]
         ],
         :respuesta_attributes => [
-          :id, :fechaatencion, :fechaexpulsion,
+          :id, :fechaatencion, 
           :descamp, :observaciones, :orientaciones, :compromisos,
           :gestionessjr, :_destroy, 
           :detalleal, :montoal,
