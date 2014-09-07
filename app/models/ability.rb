@@ -35,6 +35,13 @@ class Ability
     @@tablasbasicas
   end
 
+  # Tablas basicas cuya secuencia es de la forma tabla_id_seq 
+  @@basicas_seq_con_id = [ "actividadarea", "comosupo", "pais", "rangoedadac" ]
+
+  def self.basicas_seq_con_id
+    @@basicas_seq_con_id
+  end
+
   def initialize(usuario)
     can :contar, Caso
     can :buscar, Caso
