@@ -28,6 +28,7 @@
 	      value_method: :id %>
     <%= f.input :descripcion, label: 'Descripción' %>
     <%= link_to_remove_association "Eliminar Desplazamiento", f, 
-        :class => 'btn-danger' %> 
+      {:class => 'btn-danger', :'data-existing' => 'true'} 
+    %>
   </div>
 </div>

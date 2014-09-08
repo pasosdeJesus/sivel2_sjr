@@ -367,12 +367,22 @@ $(document).on 'ready page:load',  ->
     root.elempe = []
   )
  
-  # Tras añadir desplazamiento poner como fecha por defecto la del hecho
-  $('#desplazamiento').on('cocoon:after-insert', (e, papa) ->
-    usel=papa.find('.caso_desplazamiento_fechaexpulsion input')
-    usel.val($('#caso_fecha').val()) 
+  # Antes de añadir desplazamiento verificar que haya al menos 2 ubicaciones
+  $('#desplazamiento').on('click', '.add_fields', (e) ->
+    lcg = $('#ubicacion .control-group[style!="display: none;"]')
+    if (lcg.size() < 2)
+      alert('Debe haber antes por lo menos dos sitios geograficos')
+      e.preventDefault()
     return
   )
+
+
+  # Tras añadir desplazamiento poner como fecha por defecto la del hecho
+  #$('#desplazamiento').on('cocoon:after-insert', (e, papa) ->
+  #  usel=papa.find('.caso_desplazamiento_fechaexpulsion input')
+  #  usel.val($('#caso_fecha').val()) 
+  #  return
+  #)
 
   # Al cambiar fecha del hecho cambiar fecha de salida si no se ha 
   # llenado refugio

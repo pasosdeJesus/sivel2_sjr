@@ -15,7 +15,9 @@
       label_method: :nombre, 
       value_method: :id 
     %>
-    <%= f.input :detallear, label: "Detalle A. Humanitaria" %>
+    <%= f.input :detallear, label: "Detalle A. Humanitaria",
+        wrapper_html: { style: "padding-bottom: 18px;" }
+    %>
     <%= f.input :montoar, label: "Monto A. Humanitaria" %>
 
     <%= f.association :emprendimiento, 

@@ -180,7 +180,6 @@ class CasosController < ApplicationController
     end
   end
 
-
 	def lista
     if !params[:tabla].nil?
 			r = nil
