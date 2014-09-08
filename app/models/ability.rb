@@ -45,15 +45,21 @@ class Ability
   def initialize(usuario)
     can :contar, Caso
     can :buscar, Caso
+    can :nueva_victima, Caso
+    can :nuevo_presponsable, Caso
+    can :nueva_ubicacion, Caso
+    can :lista, Caso
+    can :descarga_anexo, Anexo
+    can :nuevo, Desplazamiento
     if !usuario.nil? && !usuario.rol.nil? then
       case usuario.rol 
       when Ability::ROLSIST
         can :read, Caso, casosjr: { id_regionsjr: usuario.regionsjr_id }
-        can :new, Caso
         can [:update, :create, :destroy], Caso, 
           casosjr: { asesor: usuario.id, id_regionsjr:usuario.regionsjr_id }
         can :read, Actividad
         can :new, Actividad
+        can :new, Caso 
         can [:update, :create, :destroy], Actividad, 
           oficina: { id: usuario.regionsjr_id}
       when Ability::ROLANALI

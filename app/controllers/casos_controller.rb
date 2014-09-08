@@ -76,21 +76,6 @@ class CasosController < ApplicationController
   end
 
 
-  def descarga_anexo
-  #  return
-  #  debugger
-  #  if !params[:id].nil?
-  #    @anexo = Anexo.find(params[:id])
-  #    ruta = @anexo.adjunto_file_name
-  #    if !ruta.nil?
-  #      n=sprintf(Sivel2Gen.ruta_anexos + "/%d_%s", @anexo.id, ruta)
-  #      puts n
-  #      send_file n, x_sendfile: true
-  #      end
-  #  end
-  end
-
-
   def nuevo_presponsable
     if !params[:caso_id].nil?
       @presponsable = CasoPresponsable.new
