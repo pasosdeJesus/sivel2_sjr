@@ -1,5 +1,6 @@
 <div class='control-group nested-fields'>
   <div class="controls">
+    <%= f.input :id, as: :hidden %>
     <%= f.input :fechaatencion, 
       :input_html => { "data-behaviour" => "datepicker" },
       :as => :string, :label => "Fecha de Atención" %>
@@ -53,5 +54,8 @@
     <%= f.input :detalleal, label: "Detalle A. Legal" %>
     <%= f.input :montoal, label: "Monto A. Legal" %>
 
+    <%= link_to_remove_association "Eliminar Sesión de Atención", f, 
+      {:class => 'btn-danger', :'data-existing' => 'true'} 
+    %>
   </div>
 </div>

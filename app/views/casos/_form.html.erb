@@ -268,8 +268,10 @@
               <% end %>
               <div class="links">
                 <%= link_to_add_association 'Añadir Sesión de Atención', f, 
-                  :respuesta, :class => 'btn-primary' %>
-              </div>
+                  :respuesta, {:class => 'btn-primary',
+                    "data-ajax" => "/respuesta/nuevo", 
+                    "data-ajaxdata" => "caso_id" }
+                %>
             </div>
           </div>
         </div> <! -- accordion-group -->
