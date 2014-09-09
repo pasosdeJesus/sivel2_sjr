@@ -24,7 +24,7 @@ class Respuesta < ActiveRecord::Base
   has_many :ayudasjr, :through => :ayudasjr_respuesta
   has_many :ayudasjr_respuesta,  foreign_key: "id_respuesta", 
     dependent: :destroy
-  #accepts_nested_attributes_for :ayudasjr_respuesta, reject_if: :all_blank, update_only: true
+  # didn't work either: accepts_nested_attributes_for :ayudasjr_respuesta, reject_if: :all_blank, update_only: true
 
   has_many :derecho, :through => :derecho_respuesta
   has_many :derecho_respuesta,  foreign_key: "id_respuesta", 
