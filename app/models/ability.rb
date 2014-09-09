@@ -45,13 +45,13 @@ class Ability
   def initialize(usuario)
     can :contar, Caso
     can :buscar, Caso
-    can :nueva_victima, Caso
-    can :nuevo_presponsable, Caso
-    can :nueva_ubicacion, Caso
     can :lista, Caso
     can :descarga_anexo, Anexo
     can :nuevo, Desplazamiento
     can :nuevo, Respuesta
+    can :nuevo, Ubicacion
+    can :nuevo, Presponsable
+    can :nuevo, Victima
     if !usuario.nil? && !usuario.rol.nil? then
       case usuario.rol 
       when Ability::ROLSIST

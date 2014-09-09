@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 95ced7b6e54f886bcf447bfb80f6ddaada4e7e71
+  revision: d5d67dfddb469f4c67ee7ce121e6eb2cb06ab3c8
   specs:
     sivel2_gen (2.0.a1)
       capybara
