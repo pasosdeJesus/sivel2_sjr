@@ -38,12 +38,12 @@ class Usuario < ActiveRecord::Base
   
   validate :rol_usuario
   def rol_usuario
-    if !regionsjr.nil? && (rol == Ability::ROLADMIN ||
+    if regionsjr && (rol == Ability::ROLADMIN ||
       rol == Ability::ROLINV || 
       rol == Ability::ROLDIR)
       errors.add(:regionsjr, "Oficina debe estar en blanco para el rol elegido")
     end
-    if regionsjr.nil? && rol != Ability::ROLADMIN && rol != Ability::ROLINV && 
+    if !regionsjr && rol != Ability::ROLADMIN && rol != Ability::ROLINV && 
       rol != Ability::ROLDIR
       errors.add(:regionsjr, "El rol elegido debe tener oficina")
     end
@@ -60,7 +60,5 @@ class Usuario < ActiveRecord::Base
         end
     end
   end
-
-  #validates :regionsjr, presence: true, unless: Proc.new { |u| u.rol == Ability::ROLADMIN || u.rol == Ability::ROLINV || u.rol == Ability::ROLDIR }
 
 end

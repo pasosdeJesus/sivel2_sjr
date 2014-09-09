@@ -43,12 +43,14 @@ class Casosjr < ActiveRecord::Base
 
   validate :rol_usuario
   def rol_usuario
-		if (caso.current_usuario.rol != Ability::ROLADMIN &&
+		if (caso && caso.current_usuario &&
+        caso.current_usuario.rol != Ability::ROLADMIN &&
         caso.current_usuario.rol != Ability::ROLDIR && 
         usuario.regionsjr_id != regionsjr.id && regionsjr.id != 1)
 			errors.add(:usuario, "Asesor debe ser de oficina")
 		end
-    if (caso.current_usuario.rol == Ability::ROLSIST || 
+    if (caso && caso.current_usuario &&
+        caso.current_usuario.rol == Ability::ROLSIST || 
          caso.current_usuario.rol == Ability::ROLCOOR || 
          caso.current_usuario.rol == Ability::ROLANALI)
         if (regionsjr.id != caso.current_usuario.regionsjr_id)

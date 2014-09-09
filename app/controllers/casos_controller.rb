@@ -222,6 +222,7 @@ class CasosController < ApplicationController
   # PATCH/PUT /casos/1
   # PATCH/PUT /casos/1.json
   def update
+    # No deben venir validaciones en controlador
     respond_to do |format|
       if (!params[:caso][:caso_etiqueta_attributes].nil?)
         params[:caso][:caso_etiqueta_attributes].each {|k,v|
@@ -237,6 +238,7 @@ class CasosController < ApplicationController
           end
         }
       end
+      @caso.current_usuario = current_usuario
       if @caso.update(caso_params)
         format.html { redirect_to @caso, notice: 'Caso actualizado.' }
         format.json { head :no_content }

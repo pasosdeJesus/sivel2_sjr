@@ -12,6 +12,7 @@ class Acto < ActiveRecord::Base
 
   validates_presence_of :presponsable
   validates_presence_of :persona
+  # Al validar caso se crea una instancia donde current_usuario de caso es nil
   validates_presence_of :caso
   validates_presence_of :categoria
 end
