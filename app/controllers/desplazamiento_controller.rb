@@ -19,7 +19,7 @@ class DesplazamientoController < ApplicationController
       cid = params[:caso_id].to_i
       @desplazamiento.id_caso = cid
       fex = Caso.find(cid).fecha
-      while (Desplazamiento.where(fechaexpulsion: fex.to_s).count > 0) do
+      while (Desplazamiento.where(id_caso: cid, fechaexpulsion: fex.to_s).count > 0) do
         fex += 1
       end
       @desplazamiento.fechaexpulsion = fex
