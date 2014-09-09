@@ -51,27 +51,27 @@ class CasosController < ApplicationController
     @caso.casosjr.id_regionsjr = current_usuario.regionsjr_id.nil? ?  
       1 : current_usuario.regionsjr_id
     per = Persona.new
-    per.nombres = 'N'
-    per.apellidos = 'N'
+    per.nombres = ''
+    per.apellidos = ''
     per.sexo = 'S'
-    per.save!
+    per.save!(validate: false)
     vic = Victima.new
     vic.persona = per
     @caso.victima<<vic
     @caso.casosjr.contacto = per
-    @caso.save!
+    @caso.save!(validate: false)
     vic.id_caso = @caso.id
     #debugger
-    vic.save!
+    vic.save!(validate: false)
     vs = Victimasjr.new
     vs.id_victima = vic.id
     vic.victimasjr = vs
-    vs.save!
+    vs.save!(validate: false)
     cu = CasoUsuario.new
     cu.id_usuario = current_usuario.id
     cu.id_caso = @caso.id
     cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
-    cu.save!
+    cu.save!(validate: false)
     render action: 'edit'
   end
 
@@ -323,9 +323,10 @@ class CasosController < ApplicationController
           ]
         ],
         :respuesta_attributes => [
-          :id, :fechaatencion, 
+          :id,
+          :fechaatencion, 
           :descamp, :observaciones, :orientaciones, :compromisos,
-          :gestionessjr, :_destroy, 
+          :gestionessjr, 
           :detalleal, :montoal,
           :detalleap, :montoap,
           :institucionayes, :cantidadayes,
@@ -334,6 +335,7 @@ class CasosController < ApplicationController
           :detalleem, :montoem,
           :detallemotivo, 
           :difobsprog,
+          :_destroy, 
           :aslegal_ids => [],
           :aspsicosocial_ids => [],
           :ayudaestado_ids => [],
@@ -341,7 +343,7 @@ class CasosController < ApplicationController
           :derecho_ids => [],
           :emprendimiento_ids => [],
           :motivosjr_ids => [],
-          :progestado_ids => []
+          :progestado_ids => [],
         ],
         :anexo_attributes => [
 					:id, :fecha, :descripcion, :archivo, :adjunto, :_destroy
