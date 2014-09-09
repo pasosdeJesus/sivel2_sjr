@@ -3,4 +3,7 @@ class Ayudasjr < ActiveRecord::Base
 	has_many :ayudasjr_respuesta, foreign_key: "id_ayudasjr", 
     validate: true, dependent: :destroy
   has_many :respuesta, :through => :ayudasjr_respuesta
+
+  validates_presence_of :nombre
+  validates_presence_of :fechacreacion
 end

@@ -4,4 +4,7 @@ class Derecho < ActiveRecord::Base
     validate: true, dependent: :destroy
   has_many :respuesta, :through => :derecho_respuesta
 	has_many :derecho_procesosjr, foreign_key: "id_derecho", validate: true
+
+  validates_presence_of :nombre
+  validates_presence_of :fechacreacion
 end

@@ -51,6 +51,7 @@ class Ability
     can :lista, Caso
     can :descarga_anexo, Anexo
     can :nuevo, Desplazamiento
+    can :nuevo, Respuesta
     if !usuario.nil? && !usuario.rol.nil? then
       case usuario.rol 
       when Ability::ROLSIST
