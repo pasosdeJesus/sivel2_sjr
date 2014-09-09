@@ -2087,10 +2087,10 @@ CREATE TABLE organizacion (
 
 
 --
--- Name: pais_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: pais_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pais_seq
+CREATE SEQUENCE pais_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2103,7 +2103,7 @@ CREATE SEQUENCE pais_seq
 --
 
 CREATE TABLE pais (
-    id integer DEFAULT nextval('pais_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('pais_id_seq'::regclass) NOT NULL,
     nombre character varying(200) NOT NULL,
     nombreiso character varying(200) NOT NULL,
     latitud double precision,
@@ -2542,7 +2542,7 @@ CREATE SEQUENCE respuesta_seq
 
 CREATE TABLE respuesta (
     id integer DEFAULT nextval('respuesta_seq'::regclass) NOT NULL,
-    id_caso integer,
+    id_caso integer NOT NULL,
     fechaatencion date NOT NULL,
     prorrogas boolean,
     numprorrogas integer,
@@ -3021,14 +3021,6 @@ ALTER TABLE ONLY actividadoficio
 
 ALTER TABLE ONLY acto
     ADD CONSTRAINT acto_id_key UNIQUE (id);
-
-
---
--- Name: acto_id_presponsable_id_categoria_id_persona_id_caso_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY acto
-    ADD CONSTRAINT acto_id_presponsable_id_categoria_id_persona_id_caso_key UNIQUE (id_presponsable, id_categoria, id_persona, id_caso);
 
 
 --
@@ -5371,4 +5363,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140904211823');
 INSERT INTO schema_migrations (version) VALUES ('20140904213327');
 
 INSERT INTO schema_migrations (version) VALUES ('20140905121420');
+
+INSERT INTO schema_migrations (version) VALUES ('20140909141336');
 
