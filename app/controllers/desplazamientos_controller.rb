@@ -1,6 +1,6 @@
 require 'date'
 
-class DesplazamientoController < ApplicationController
+class DesplazamientosController < ApplicationController
   load_and_authorize_resource
 
   # Crea un nuevo desplazamiento para el caso que recibe por parametro params[:caso_id]
