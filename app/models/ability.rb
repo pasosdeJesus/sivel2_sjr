@@ -42,6 +42,38 @@ class Ability
     @@basicas_seq_con_id
   end
 
+  # Tablas básicas cuyo id no es autoincremental
+  @@basicas_id_noauto = [ 
+    "categoria", "clase", "departamento", "municipio", 
+    "supracategoria", "tclase", "tviolencia" 
+  ]
+
+  def self.basicas_id_noauto
+    @@basicas_id_noauto
+  end
+  
+  # Tablas no básicas pero que tienen índice
+  @@nobasicas_indice = ['caso', 'persona', 'ubicacion', 'usuario']
+
+  def self.nobasicas_indice
+    @@nobasicas_indice
+  end
+
+  # Tablas básicas que deben volcarse primero --por ser requeridas por otras básicas
+  @@tablasbasicas_prio = [
+			"pconsolidado", "tviolencia", "supracategoria",
+			"tclase", "pais", "departamento", "municipio", "clase",
+			"intervalo", "filiacion", "organizacion", "sectorsocial",
+			"vinculoestado", "regimensalud", 
+      "acreditacion", "clasifdesp", "declaroante", "inclusion", "modalidadtierra",
+			"tipodesp", "personadesea", "ayudaestado", "derecho", "progestado",
+      "motivosjr"
+  ];
+
+  def self.tablasbasicas_prio
+    @@tablasbasicas_prio
+  end
+
   def initialize(usuario)
     can :contar, Caso
     can :buscar, Caso
