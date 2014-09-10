@@ -80,14 +80,14 @@
 											value_method: :id 
 										%>
                     <%= render 'contacto_fields', :f => victima %>
-								  	<%= s.input :concentimientosjr, 
-								  		label: "Concentimiento Informado compartir SJR",
-											wrapper_html: { class: "span11 offset1" }  
-										%>
-								  	<%= s.input :concentimientobd, 
-								  		label: "Concentimiento Informado compartir BD",
-											wrapper_html: { class: "span11 offset1" }  
-										%>
+                    <%= s.input :concentimientosjr, 
+                      label: "Consentimiento Informado compartir SJR",
+                      wrapper_html: { class: "span11 offset1" }  
+                    %>
+                    <%= s.input :concentimientobd, 
+                      label: "Consentimiento Informado compartir BD CINEP",
+                      wrapper_html: { class: "span11 offset1" }  
+                    %>
                   <% end %>
                 <% end %>
               </div>
@@ -109,7 +109,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Víctima', f, :victima, 
                   { :class => 'btn-primary',
-                    "data-ajax" => "/casos/nuevavictima", 
+                    "data-ajax" => "/victima/nuevo", 
                     "data-ajaxdata" => "caso_id" }
                 %>
               </div>
@@ -132,7 +132,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Sitio Geográfico', f, 
                   :ubicacion, { :class => 'btn-primary',
-                    "data-ajax" => "/casos/nuevaubicacion", 
+                    "data-ajax" => "/ubicacion/nuevo", 
                     "data-ajaxdata" => "caso_id" }
                 %>
               </div>
@@ -229,7 +229,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Agente de Persecución', f, 
                   :caso_presponsable, {:class => 'btn-primary', 
-                    "data-ajax" => "/casos/nuevopresponsable", 
+                    "data-ajax" => "/presponsable/nuevo", 
                     "data-ajaxdata" => "caso_id"}
                 %>
               </div>
