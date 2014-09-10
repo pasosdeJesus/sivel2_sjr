@@ -109,7 +109,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Víctima', f, :victima, 
                   { :class => 'btn-primary',
-                    "data-ajax" => "/victima/nuevo", 
+                    "data-ajax" => "/victimas/nuevo", 
                     "data-ajaxdata" => "caso_id" }
                 %>
               </div>
@@ -132,7 +132,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Sitio Geográfico', f, 
                   :ubicacion, { :class => 'btn-primary',
-                    "data-ajax" => "/ubicacion/nuevo", 
+                    "data-ajax" => "/ubicaciones/nuevo", 
                     "data-ajaxdata" => "caso_id" }
                 %>
               </div>
@@ -207,7 +207,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Desplazamiento', f, 
                   :desplazamiento, {:class => 'btn-primary',
-                    "data-ajax" => "/desplazamiento/nuevo", 
+                    "data-ajax" => "/desplazamientos/nuevo", 
                     "data-ajaxdata" => "caso_id" }
                 %>
               </div>
@@ -229,7 +229,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Agente de Persecución', f, 
                   :caso_presponsable, {:class => 'btn-primary', 
-                    "data-ajax" => "/presponsable/nuevo", 
+                    "data-ajax" => "/presponsables/nuevo", 
                     "data-ajaxdata" => "caso_id"}
                 %>
               </div>
@@ -269,7 +269,7 @@
               <div class="links">
                 <%= link_to_add_association 'Añadir Sesión de Atención', f, 
                   :respuesta, {:class => 'btn-primary',
-                    "data-ajax" => "/respuesta/nuevo", 
+                    "data-ajax" => "/respuestas/nuevo", 
                     "data-ajaxdata" => "caso_id" }
                 %>
             </div>
