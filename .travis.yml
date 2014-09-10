@@ -4,7 +4,7 @@ rvm:
         - rbx
 notifications:
         email: false
-script: CODECLIMATE_REPO_TOKEN=1486a4589ae9326a7a567e9599edd0ecd306c65e5f359cc724855c2a34efe67b xvfb-run rspec
+script: CODECLIMATE_REPO_TOKEN=35c5d6dbc0bc5001d536ec62ca501a9d3d6428682f21225c0eedf863a089eb71 xvfb-run rspec
 env:
         global:
                 - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
@@ -23,6 +23,6 @@ before_install:
         - sed -e "s/SET lock_timeout = 0;//g" db/datos-basicas.sql.conlock >db/datos-basicas.sql
         - cp config/database.travis.yml config/database.yml
         - rake db:setup
-        - rake sivel2gen:indices
+        - rake sivel2:indices
         - cd ../..
 
