@@ -55,7 +55,6 @@ INSERT INTO etiqueta (id, nombre, observaciones, fechacreacion, fechadeshabilita
 INSERT INTO etiqueta (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (12, 'COMPARTIR CON SJR LATINOAMÉRICA', '', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO etiqueta (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'COMPARTIR CON BANCO DE DATOS CINEP COLOMBIA', '', '2001-01-01', NULL, NULL, NULL);
 
-INSERT INTO regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (1, 'SIN INFORMACIÓN', '2013-05-13', NULL, NULL, NULL);
 INSERT INTO regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (100, 'ALTO APURE', '2014-01-21', NULL, NULL, NULL);
 INSERT INTO regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (101, 'ZULIA', '2014-01-21', NULL, NULL, NULL);
 INSERT INTO regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (102, 'TÁCHIRA', '2014-01-21', NULL, NULL, NULL); --
