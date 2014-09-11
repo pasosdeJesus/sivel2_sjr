@@ -1,6 +1,6 @@
 require 'date'
 
-class RespuestaController < ApplicationController
+class RespuestasController < ApplicationController
   load_and_authorize_resource
 
   # Crea un nuevo registro para el caso que recibe por parametro 
