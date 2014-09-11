@@ -2,6 +2,6 @@
 class Comosupo < ActiveRecord::Base
 	has_many :casosjr
 
-	validates_presence_of :nombre
-	validates_presence_of :fechacreacion
+  validates :nombre, presence: true, allow_blank: false
+  validates :fechacreacion, presence: true, allow_blank: false
 end

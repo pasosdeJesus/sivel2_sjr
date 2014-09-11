@@ -2,7 +2,7 @@
 begin
   require 'bundler/setup'
 rescue LoadError
-  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
+  puts 'Debe instalar `gem install bundler` y `bundle install` para correr tareas rake'
 end
 
 require 'rdoc/task'
@@ -20,14 +20,9 @@ load 'rails/tasks/engine.rake'
 
 Bundler::GemHelper.install_tasks
 
-=begin
+Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each {|f| load f }
+require 'rspec/core'
+require 'rspec/core/rake_task'
 require 'rake/testtask'
 
-Rake::TestTask.new(:spec => 'app:db:test:prepare') do |t|
-  t.libs << 'spec'
-  t.pattern = 'spec/**/*_spec.rb'
-  t.verbose = false
-end
-
-task default: :spec
-=end
+task default: 'app:spec'

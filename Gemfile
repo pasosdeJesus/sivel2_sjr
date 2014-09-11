@@ -1,80 +1,105 @@
 source 'https://rubygems.org'
 
-
-# Bundle edge Rails instead: gem "rails", github: 'rails/rails'
+# Rails (internacionalización)
 gem "rails", '~> 4.1.5'
+gem "rails-i18n"
 
+# Postgresql
 gem "pg"
 
-# Use SCSS for stylesheets
-gem "sass-rails", '~> 4.0.0.rc1'
+# Maneja variables de ambiente (como claves y secretos) en .env
+gem "foreman"
 
-# Use Uglifier as compressor for JavaScript assets
-gem "uglifier", '>= 1.3.0'
 
-# Use CoffeeScript for .js.coffee assets and views
-gem "coffee-rails", '~> 4.0.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem "therubyracer",  platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem "jquery-rails"
-#gem "jquery-migrate-rails"
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem "turbolinks"
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
 
-# bundle exec rake doc:rails generates the API under doc/api.
-gem "sdoc",          group: :doc, require: false
+# SCSS para hojas de estilo
+gem "sass-rails", '~> 4.0.0.rc1'
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
-gem "spring",        group: :development
+# Uglifier comprime recursos Javascript
+gem "uglifier", '>= 1.3.0'
 
-# Use ActiveModel has_secure_password
-gem "bcrypt"
+# CoffeeScript para recuersos .js.coffee y vistas
+gem "coffee-rails", '~> 4.0.0'
 
-# Use unicorn as the app server
-# gem "unicorn"
+# jquery como librería JavaScript
+gem "jquery-rails"
+gem "jquery-ui-rails"
+gem "jquery-ui-bootstrap-rails", git: "https://github.com/kristianmandrup/jquery-ui-bootstrap-rails"
 
-# Use Capistrano for deployment
-# gem "capistrano-rails", group: :development
+# Seguir enlaces más rápido. Ver: https://github.com/rails/turbolinks
+gem "turbolinks"
 
-# Use debugger
-# gem "debugger", group: [:development, :test]
-
-gem "tzinfo"
-gem "tzinfo-data"
-
-gem "unicorn", group: [:production]
-
-gem "rspec", group: [:development, :test]
-gem "rspec-rails", group: [:development, :test]
-gem "rspec-activemodel-mocks", group: [:development, :test]
-gem "cucumber-rails", group: "test", :require => false
-gem "capybara", group: [:development, :test]
-gem "capybara-webkit", '1.2.0', group: [:development, :test]
-gem "launchy", group: [:development, :test]
-gem "factory_girl_rails", "~> 4.0", group: [:development, :test]
-gem "rails-i18n"
-gem "simple_form"
+# Ambiente de CSS
 gem "twitter-bootstrap-rails"
 gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass"
-#gem "jquery-ui-rails"
-#gem "jquery-ui-bootstrap-rails", git: "https://github.com/kristianmandrup/jquery-ui-bootstrap-rails"
+
+# Formularios simples 
+gem "simple_form"
+
+# Formularios anidados (algunos con ajax)
+gem "cocoon", github: "vtamara/cocoon"
+
+# Autenticación y roles
 gem "devise"
 gem "devise-i18n"
 gem "cancan"
-gem "cocoon", github: "vtamara/cocoon"
+gem "bcrypt"
 
+# Pagina listados
 gem "will_paginate"
 
+# Maneja adjuntos
 gem "paperclip", "~> 4.1"
 
-gem "codeclimate-test-reporter", group: :test, require: nil
+# Zonas horarias
+gem "tzinfo"
+gem "tzinfo-data"
 
-gem 'sivel2_gen', github: 'pasosdeJesus/sivel2_gen'
+# Motor de SIVeL 2
+#gem 'sivel2_gen', github: 'pasosdeJesus/sivel2_gen'
+gem 'sivel2_gen', path: '../sivel2_gen'
+
+group :doc do
+  # Genera documentación en doc/api con bundle exec rake doc:rails
+  gem "sdoc", require: false
+end
+
+# Los siguientes son para desarrollo o para pruebas con generadores
+group :development, :test do
+  # Requerido por rake
+  gem "thor"
+
+  # Acelera desarrollo ejecutando en fondo. https://github.com/jonleighton/spring
+  gem "spring"
+  
+  # Pruebas con rspec
+  gem 'spring-commands-rspec'
+  gem 'rspec-rails'
+
+  # Monitor para lanzar pruebas automáticamente
+  gem "guard-rspec", group: [:development, :test]
+
+  # Un proceso para cada prueba -- acelera
+  gem 'spork', '~> 1.0rc'
+  gem 'guard-spork'
+
+  # Maneja datos de prueba
+  gem "factory_girl_rails", "~> 4.0", group: [:development, :test]
+
+  # https://www.relishapp.com/womply/rails-style-guide/docs/developing-rails-applications/bundler
+  # Lanza programas para examinar resultados
+  gem "launchy"
+
+  # Depurar
+  #gem 'debugger'
+end
+
+# Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
+group :test do
+  # Envia resultados de pruebas desde travis a codeclimate
+  gem "codeclimate-test-reporter", require: nil
+end
+

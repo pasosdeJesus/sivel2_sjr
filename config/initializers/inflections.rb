@@ -21,4 +21,12 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'regionsjr', 'regionessjr'
 	inflect.irregular 'respuesta', 'respuesta'
 	inflect.irregular 'actosjr', 'actosjr'
+	inflect.irregular 'progestadorespuesta', 'progestadorespuesta'
+	inflect.irregular 'aslegalrespuesta', 'aslegalrespuesta'
+	inflect.irregular 'aspsicosocialrespuesta', 'aspsicosocialrespuesta'
+	inflect.irregular 'emprendimientorespuesta', 'emprendimientorespuesta'
+	inflect.irregular 'motivosjrrespuesta', 'motivosjrrespuesta'
+	inflect.irregular 'derechorespuesta', 'derechorespuesta'
+	inflect.irregular 'ayudaestadorespuesta', 'ayudaestadorespuesta'
+	inflect.irregular 'ayudasjrrespuesta', 'ayudasjrrespuesta'
 end
