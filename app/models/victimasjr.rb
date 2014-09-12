@@ -2,7 +2,8 @@
 class Victimasjr < ActiveRecord::Base
 
 	# Orden de esquema en base
-	belongs_to :actividadoficio, foreign_key: "id_actividadoficio", validate: true
+	belongs_to :actividadoficio, foreign_key: "id_actividadoficio", 
+    validate: true
 	belongs_to :departamento, foreign_key: "id_departamento", validate: true
 	belongs_to :escolaridad, foreign_key: "id_escolaridad", validate: true
 	belongs_to :estadocivil, foreign_key: "id_estadocivil", validate: true
@@ -11,5 +12,7 @@ class Victimasjr < ActiveRecord::Base
 	belongs_to :pais, foreign_key: "id_pais", validate: true
 	belongs_to :regimensalud, foreign_key: "id_regimensalud", validate: true
 	belongs_to :rolfamilia, foreign_key: "id_rolfamilia", validate: true
-	belongs_to :victima, foreign_key: "id_victima", validate: true
+  # no validamos :victima porque el controlador crea nuevos 
+  # (con persona en nombre vacio y victima no es valido)
+	belongs_to :victima, foreign_key: "id_victima", inverse_of: :victimasjr
 end

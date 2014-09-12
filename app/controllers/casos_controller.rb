@@ -61,12 +61,12 @@ class CasosController < ApplicationController
     @caso.casosjr.contacto = per
     @caso.save!(validate: false)
     vic.id_caso = @caso.id
-    #debugger
     vic.save!(validate: false)
-    vs = Victimasjr.new
-    vs.id_victima = vic.id
-    vic.victimasjr = vs
-    vs.save!(validate: false)
+    logger.debug "Victima salvada: #{vic.inspect}"
+    #debugger
+    vic.victimasjr = Victimasjr.new
+    vic.victimasjr.id_victima = vic.id
+    vic.victimasjr.save!(validate: false)
     cu = CasoUsuario.new
     cu.id_usuario = current_usuario.id
     cu.id_caso = @caso.id
@@ -186,7 +186,7 @@ class CasosController < ApplicationController
         :grconfiabilidad, :gresclarecimiento, :grimpunidad, :grinformacion, 
         :bienes, :id_intervalo, :memo, 
         :casosjr_attributes => [
-          :fecharec, :asesor, :id_regionsjr, :direccion, 
+          :id, :fecharec, :asesor, :id_regionsjr, :direccion, 
           :telefono, :comosupo_id, :contacto,
           :dependen, :sustento, :leerescribir, 
           :ingresomensual, :gastos, :estrato, :id_statusmigratorio,
@@ -200,18 +200,18 @@ class CasosController < ApplicationController
         ], 
         :victima_attributes => [
           :id, :id_persona, :id_profesion, :id_rangoedad, :id_etnia, 
-          :id_iglesia, :orientacionsexual, :_destroy, 
+          :id_iglesia, :orientacionsexual, 
+          :_destroy, 
           :persona_attributes => [
             :id, :nombres, :apellidos, :anionac, :mesnac, :dianac, 
             :id_pais, :id_departamento, :id_municipio, :id_clase, 
             :nacionalde, :numerodocumento, :sexo, :tipodocumento
           ],
           :victimasjr_attributes => [
-            :id_rolfamilia,
+            :id, :id_victima, :id_rolfamilia,
             :id_actividadoficio, :id_estadocivil, 
-            :id_maternidad, :ndiscapacidad, :id_escolaridad, 
-            :enfermedad,
-					  :id_victima
+            :id_maternidad, :ndiscapacidad, :enfermedad, 
+            :id_escolaridad
           ]
         ], 
         :ubicacion_attributes => [
@@ -223,15 +223,15 @@ class CasosController < ApplicationController
           :id, :fechaexpulsion, :id_expulsion, 
           :fechallegada, :id_llegada, :descripcion, :_destroy
         ],
-          
         :caso_presponsable_attributes => [
-          :id_presponsable, :id, :tipo, 
-          :bloque, :frente, :brigada, :batallon, :division, :otro, :_destroy
+          :id, :id_presponsable, :tipo, 
+          :bloque, :frente, :brigada, :batallon, :division, :otro, 
+          :_destroy
         ],
         :acto_attributes => [
           :id, :id_presponsable, :id_categoria, :id_persona, :_destroy,
           :actosjr_attributes => [
-            :id_acto, :fecha, :desplazamiento_id, :_destroy
+            :id, :id_acto, :fecha, :desplazamiento_id, :_destroy
           ]
         ],
         :respuesta_attributes => [

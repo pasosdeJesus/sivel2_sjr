@@ -57,7 +57,15 @@
 		label: "Maternidad",
 		label_method: :nombre, 
 		value_method: :id 
-	%>
+  %>	
+  <%= s.input(:ndiscapacidad, collection: [
+              ['FÍSICA', 'FÍSICA'], 
+              ['PSÍQUICA', 'PSÍQUICA'], 
+              ['SENSORIAL', 'SENSORIAL'] 
+    ], 
+    label: "Discapacidad") 
+  %>
+  <%= s.input :enfermedad %>
 	<%= s.association :actividadoficio,
 		collection: Actividadoficio.all.order(:nombre),
 		include_blank: false,
