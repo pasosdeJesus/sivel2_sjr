@@ -15,9 +15,16 @@ class RespuestasController < ApplicationController
       cid = params[:caso_id].to_i
       @respuesta.id_caso = cid
       @respuesta.detallear = ''
-      @respuesta.detalleal = ''
-      @respuesta.detalleap = ''
-      @respuesta.detalleem = ''
+      # Los siguientes están en col pero no en ven
+      if @respuesta.respond_to? :detalleal
+        @respuesta.detalleal = ''
+      end
+      if @respuesta.respond_to? :detalleap
+        @respuesta.detalleap = ''
+      end
+      if @respuesta.respond_to? :detalleem
+        @respuesta.detalleem = ''
+      end
       @respuesta.institucionayes = ''
       @respuesta.accionesder = ''
       @respuesta.detallemotivo = ''
