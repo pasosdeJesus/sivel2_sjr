@@ -15,7 +15,10 @@ class RespuestasController < ApplicationController
       cid = params[:caso_id].to_i
       @respuesta.id_caso = cid
       @respuesta.detallear = ''
-      # Los siguientes están en col pero no en ven
+      if @respuesta.respond_to? :montoar
+        @respuesta.montoar = 0
+      end
+      # Los siguientes están en sjrven pero no en sjrcol
       if @respuesta.respond_to? :detalleal
         @respuesta.detalleal = ''
       end
@@ -25,7 +28,11 @@ class RespuestasController < ApplicationController
       if @respuesta.respond_to? :detalleem
         @respuesta.detalleem = ''
       end
+      # Los siguientes en sjrcol pero no  en sjrven
       @respuesta.institucionayes = ''
+      if @respuesta.respond_to? :cantidadayes
+        @respuesta.cantidadayes = 0
+      end
       @respuesta.accionesder = ''
       @respuesta.detallemotivo = ''
       @respuesta.difobsprog = ''
