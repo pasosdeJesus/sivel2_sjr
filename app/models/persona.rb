@@ -26,7 +26,7 @@ class Persona < ActiveRecord::Base
 
   validate :vformatonumdoc
   def vformatonumdoc
-    if (tdocumento.formatoregex != '' && 
+    if (tdocumento && tdocumento.formatoregex != '' && 
         !(numerodocumento =~ Regexp.new("^" + tdocumento.formatoregex + "$")))
       errors.add(:numerodocumento, "No cumple expresion regular: " +
                 tdocumento.formatoregex)
