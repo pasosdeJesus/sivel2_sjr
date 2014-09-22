@@ -200,18 +200,21 @@ class CasosController < ApplicationController
         ], 
         :victima_attributes => [
           :id, :id_persona, :id_profesion, :id_rangoedad, :id_etnia, 
+          :id_filiacion, :id_organizacion, :id_vinculoestado, :anotaciones,
           :id_iglesia, :orientacionsexual, 
           :_destroy, 
           :persona_attributes => [
             :id, :nombres, :apellidos, :anionac, :mesnac, :dianac, 
             :id_pais, :id_departamento, :id_municipio, :id_clase, 
-            :nacionalde, :numerodocumento, :sexo, :tipodocumento
+            :nacionalde, :numerodocumento, :sexo, :tdocumento_id
           ],
           :victimasjr_attributes => [
             :id, :id_victima, :id_rolfamilia,
             :id_actividadoficio, :id_estadocivil, 
             :id_maternidad, :ndiscapacidad, :enfermedad, 
-            :id_escolaridad
+            :id_escolaridad,
+            :sindocumento, :cabezafamilia, :asisteescuela, 
+            :id_regimensalud, :eps, :tienesisben
           ]
         ], 
         :ubicacion_attributes => [
