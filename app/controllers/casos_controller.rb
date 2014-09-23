@@ -187,7 +187,7 @@ class CasosController < ApplicationController
         :bienes, :id_intervalo, :memo, 
         :casosjr_attributes => [
           :id, :fecharec, :asesor, :id_regionsjr, :direccion, 
-          :telefono, :comosupo_id, :contacto,
+          :telefono, :comosupo_id, :contacto, :detcomosupo,
           :dependen, :sustento, :leerescribir, 
           :ingresomensual, :gastos, :estrato, :id_statusmigratorio,
           :id_proteccion, :id_idioma,
@@ -224,7 +224,17 @@ class CasosController < ApplicationController
         ],
         :desplazamiento_attributes => [
           :id, :fechaexpulsion, :id_expulsion, 
-          :fechallegada, :id_llegada, :descripcion, :_destroy
+          :fechallegada, :id_llegada, :descripcion, 
+          :id_clasifdesp, :id_tipodesp, :otrosdatos,
+          :declaro, :hechosdeclarados, :fechadeclaracion,
+          :id_declaroante, :id_inclusion,
+          :id_acreditacion, :retornado,
+          :reubicado, :connacionalretorno,
+          :acompestado, :connacionaldeportado,
+          :oficioantes, :id_modalidadtierra,
+          :materialesperdidos, :inmaterialesperdidos,
+          :protegiorupta, :documentostierra,
+          :_destroy
         ],
         :caso_presponsable_attributes => [
           :id, :id_presponsable, :tipo, 
