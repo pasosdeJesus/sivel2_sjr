@@ -3,7 +3,8 @@
   <%= render 'usuario', :f => f %>
 
   <%= f.association :etiqueta, 
-    collection: Etiqueta.where("nombre LIKE 'COMPARTIR%'").order(:nombre),
+    collection: Etiqueta.habilitados.where(
+      "nombre LIKE 'COMPARTIR%'"),
 	  label: "Etiquetas Compartir",
 	  label_method: :nombre, 
     value_method: :id 

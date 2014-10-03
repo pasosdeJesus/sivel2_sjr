@@ -2,7 +2,7 @@
 	<%= render 'persona_fields', :f => p %>
 <% end %>
 <%= f.association :profesion,
-	collection: Profesion.all.order(:nombre),
+	collection: Profesion.habilitados,
 	include_blank: false,
 	label: "Profesión",
 	label_method: :nombre, 
@@ -15,14 +15,14 @@
 	value_method: :id 
 %>
 <%= f.association :etnia,
-	collection: Etnia.all.order(:nombre),
+	collection: Etnia.habilitados,
 	include_blank: false,
 	label: "Etnia",
 	label_method: :nombre, 
 	value_method: :id 
 %>
 <%= f.association :iglesia,
-	collection: Iglesia.all.order(:nombre),
+	collection: Iglesia.habilitados,
 	include_blank: false,
 	label: "Religión/Iglesia",
 	label_method: :nombre, 
@@ -39,21 +39,21 @@
 
 <%= f.simple_fields_for :victimasjr do |s| %>
 	<%= s.association :estadocivil,
-		collection: Estadocivil.all.order(:nombre),
+		collection: Estadocivil.habilitados,
 		include_blank: false,
 		label: "Estado Civil",
 		label_method: :nombre, 
 		value_method: :id 
 	%>
 	<%= s.association :rolfamilia,
-		collection: Rolfamilia.all.order(:nombre),
+		collection: Rolfamilia.habilitados,
 		include_blank: false,
 		label: "Rol en Familia",
 		label_method: :nombre, 
 		value_method: :id 
 	%>
 	<%= s.association :maternidad,
-		collection: Maternidad.all.order(:nombre),
+		collection: Maternidad.habilitados,
 		label: "Maternidad",
 		label_method: :nombre, 
 		value_method: :id 
@@ -67,7 +67,7 @@
   %>
   <%= s.input :enfermedad %>
 	<%= s.association :actividadoficio,
-		collection: Actividadoficio.all.order(:nombre),
+		collection: Actividadoficio.habilitados,
 		include_blank: false,
 		label: "Actividad/Oficio actual",
 		label_method: :nombre, 
@@ -75,7 +75,7 @@
     wrapper_html: { style: "padding-bottom: 18px;" }
 	%>
 	<%= s.association :escolaridad,
-		collection: Escolaridad.all.order(:nombre),
+		collection: Escolaridad.habilitados,
 		include_blank: false,
 		label: "Nivel Escolar",
 		label_method: :nombre, 

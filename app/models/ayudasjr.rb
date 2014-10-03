@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class Ayudasjr < ActiveRecord::Base
+  extend Basica
+
 	has_many :ayudasjr_respuesta, class_name: 'AyudasjrRespuesta',  
     foreign_key: "id_ayudasjr", 
     validate: true, dependent: :destroy

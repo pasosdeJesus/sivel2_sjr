@@ -20,20 +20,17 @@ class Ability
 
   @@tablasbasicas = [
     'actividadarea', 'actividadoficio', 'aslegal', 'aspsicosocial', 
-    # 'ayudaestado',  
     'ayudasjr', 
     'categoria', 'clase', 'comosupo',
     'departamento', 'derecho',
     'emprendimiento', 'escolaridad', 'estadocivil', 'etiqueta', 'etnia', 
     'idioma', 'iglesia', 
     'maternidad', 'municipio', 
-    # 'motivosjr',
     'pais', 'presponsable', 'profesion', 
-    # 'progestado',
-    'proteccion', 
-    'rangoedad', 'rangoedadac', 'regionsjr', 'rolfamilia', 
     'statusmigratorio', 'supracategoria',
-    'tclase', 'tsitio', 'tviolencia'
+    'proteccion',
+    'rangoedad', 'rangoedadac', 'regionsjr', 'rolfamilia', 
+    'tclase', 'tdocumento', 'tsitio', 'tviolencia'
   ]
 
   def self.tablasbasicas
@@ -41,7 +38,7 @@ class Ability
   end
 
   # Tablas basicas cuya secuencia es de la forma tabla_id_seq 
-  @@basicas_seq_con_id = [ "actividadarea", "comosupo", "pais", "rangoedadac" ]
+  @@basicas_seq_con_id = [ "actividadarea", "comosupo", "pais", "rangoedadac", "tdocumento" ]
 
   def self.basicas_seq_con_id
     @@basicas_seq_con_id
@@ -85,6 +82,7 @@ class Ability
     can :buscar, Caso
     can :lista, Caso
     can :descarga_anexo, Anexo
+    can :descarga_anexoactividad, Anexoactividad
     can :nuevo, Desplazamiento
     can :nuevo, Respuesta
     can :nuevo, Ubicacion

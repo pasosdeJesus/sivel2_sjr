@@ -46,7 +46,7 @@
 									value_method: :id 
 								%>
                 <%= s.association :regionsjr,
-                  collection: Regionsjr.all.order(:nombre),
+                  collection: Regionsjr.habilitados,
 									include_blank: false,
                   label: "Oficina",
                   label_method: :nombre, 
@@ -73,7 +73,7 @@
                     <%= s.input :direccion, label: "Dirección actual" %>
 										<%= s.input :telefono, label: 'Teléfono' %>
                     <%= s.association :comosupo,
-                  	  collection: Comosupo.all.order(:nombre),
+                  	  collection: Comosupo.habilitados,
 											include_blank: false,
                       label: "Como supo del SJR",
                       label_method: :nombre, 
@@ -178,7 +178,7 @@
 								value_method: :id 
 							%>
 							<%= s.association :categoria,
-								collection: Categoria.from('categoria').where(
+								collection: Categoria.where(
 									"fechadeshabilitacion IS NULL 
 									 AND id_tviolencia='R'").order(:id_tviolencia, :id),
 								label: "Causa del Refugio",

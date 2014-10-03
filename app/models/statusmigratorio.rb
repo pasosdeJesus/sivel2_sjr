@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class Statusmigratorio < ActiveRecord::Base
+  extend Basica
+
 	has_many :casosjr, foreign_key: "id_statusmigratorio", validate: true
 
   validates :nombre, presence: true, allow_blank: false
