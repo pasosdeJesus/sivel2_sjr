@@ -22,7 +22,7 @@ class Ability
     'actividadarea', 'actividadoficio', 'aslegal', 'aspsicosocial', 
     'ayudasjr', 
     'categoria', 'clase', 'comosupo',
-    'departamento', 'derecho',
+    'departamento', 
     'emprendimiento', 'escolaridad', 'estadocivil', 'etiqueta', 'etnia', 
     'idioma', 'iglesia', 
     'maternidad', 'municipio', 
