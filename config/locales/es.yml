@@ -8,3 +8,7 @@ es:
         regionsjr: Oficina
         contacto: Solicitante Principal
         statusmigratorio: Estatus Migratorio
+      statusmigratorio:
+        Statusmigratorio: Estatus Migratorio
+        Statusmigratorios: Estatus Migratorio
+

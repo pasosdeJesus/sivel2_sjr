@@ -80,6 +80,12 @@
 											value_method: :id 
 										%>
                     <%= render 'contacto_fields', :f => victima %>
+                    <%= s.association :statusmigratorio,
+                      collection: Statusmigratorio.habilitados,
+											include_blank: false,
+                      label_method: :nombre, 
+                      value_method: :id 
+                    %>
                     <%= s.input :concentimientosjr, 
                       label: "Consentimiento Informado compartir SJR",
                       wrapper_html: { class: "span11 offset1" }  
