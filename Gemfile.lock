@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 7be3f4c3e4a71c521b35e7dc8a07a6a2b998d1fa
+  revision: 72c9d91b7b2cc6efda1b4b2b9ce89a45437ae9b4
   specs:
     sivel2_gen (2.0.a1)
       devise
@@ -117,7 +117,7 @@ GEM
     hike (1.2.3)
     hitimes (1.2.2)
     i18n (0.6.11)
-    jbuilder (2.2.0)
+    jbuilder (2.2.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.2)
