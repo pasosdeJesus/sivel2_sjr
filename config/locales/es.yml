@@ -1,0 +1,10 @@
+
+es:
+  attributes:
+  activerecord:
+    attributes:
+      casosjr:
+        fecharec: F. Recepción
+        regionsjr: Oficina
+        contacto: Solicitante Principal
+        statusmigratorio: Estatus Migratorio

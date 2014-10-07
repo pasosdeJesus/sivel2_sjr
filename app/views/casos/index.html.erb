@@ -6,25 +6,29 @@
   <thead>
     <tr>
       <th><%= Caso.human_attribute_name(:id) %></th>
+      <th><%= Casosjr.human_attribute_name(:contacto) %></th>
       <th><%= Casosjr.human_attribute_name(:fecharec) %></th>
       <th><%= Casosjr.human_attribute_name(:regionsjr) %></th>
       <th><%= Casosjr.human_attribute_name(:asesor) %></th>
       <th><%= Caso.human_attribute_name(:fecha) %></th>
+      <th><%= Casosjr.human_attribute_name(:statusmigratorio) %></th>
+      <th><%= "Ult. Atencion" %></th>
       <th><%= Caso.human_attribute_name(:memo) %></th>
-      <th><%= Caso.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @casossjr.try(:each) do |casosjr| %>
       <tr>
-        <td><%= link_to casosjr.caso.id, caso_path(casosjr.caso) %></td>
-        <td><%= casosjr.fecharec if !casosjr.fecharec.nil? %></td>
-        <td><%= casosjr.regionsjr.nombre if !casosjr.nil? && !casosjr.regionsjr.nil? %></td>
-        <td><%= casosjr.usuario.nusuario if !casosjr.nil? && !casosjr.usuario.nil? %></td>
-        <td><%= casosjr.caso.fecha %></td>
+        <td><%= link_to casosjr.caso.id, caso_path(casosjr.caso)  %></td>
+        <td><%= casosjr.contacto.nombres + " " + casosjr.contacto.apellidos if casosjr.contacto %></td>
+        <td><%= casosjr.fecharec if casosjr.fecharec %></td>
+        <td><%= casosjr.regionsjr.nombre if casosjr.regionsjr %></td>
+        <td><%= casosjr.usuario.nusuario if casosjr.usuario %></td>
+        <td><%= casosjr.caso.fecha if casosjr.caso.fecha %></td>
+        <td><%= casosjr.statusmigratorio.nombre if casosjr.statusmigratorio %></td>
+	      <td><%= casosjr.respuesta.order(:fechaatencion).last.fechaatencion if casosjr.respuesta  && casosjr.respuesta.last %></td>
         <td><%= casosjr.caso.memo %></td>
-	      <td><%= casosjr.created_at.to_date if !casosjr.created_at.nil?%></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_caso_path(casosjr.caso), :class => 'btn btn-xs' %>
