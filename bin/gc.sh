@@ -1,6 +1,8 @@
 #!/bin/sh
 # Hace pruebas, pruebas de regresión y envia a github
 
+bundle update
+bundle install
 
 grep "^ *gem *.sivel2_gen. *, *path:" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {

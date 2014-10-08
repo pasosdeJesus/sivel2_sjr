@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 72c9d91b7b2cc6efda1b4b2b9ce89a45437ae9b4
+  revision: da36839d4cd3d0f05aa2b44b4be741a2558e5739
   specs:
     sivel2_gen (2.0.a1)
       devise
@@ -136,7 +136,7 @@ GEM
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.3)
+    mime-types (2.4.1)
     minitest (5.4.2)
     multi_json (1.10.1)
     orm_adapter (0.5.0)
