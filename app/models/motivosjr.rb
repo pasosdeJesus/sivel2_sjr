@@ -2,6 +2,7 @@
 class Motivosjr < ActiveRecord::Base
   extend Basica
 
+  belongs_to :derecho
   has_many :motivosjr_respuesta, class_name: 'MotivosjrRespuesta',  
     foreign_key: "id_motivosjr", validate: true, dependent: :destroy
   has_many :respuesta, through: :motivosjr_respuesta
