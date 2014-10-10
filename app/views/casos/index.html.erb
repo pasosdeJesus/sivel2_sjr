@@ -8,12 +8,6 @@
     :class => 'btn btn-primary' 
   %>
 <% end %>
-<% form_tag hogar_buscacaso_path, :method => 'get' do %>
-  <p>
-  <%= text_field_tag :busca, params[:busca] %>
-  <%= submit_tag "Buscar", :name => nil %>
-  </p>
-<% end %>
 <table class="table table-striped">
   <thead>
     <tr>

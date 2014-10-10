@@ -17,7 +17,7 @@ class Desplazamiento < ActiveRecord::Base
 	belongs_to :caso, foreign_key: "id_caso", validate: true
 
   validates_presence_of :fechaexpulsion, :expulsion, :fechallegada, :llegada
-  validate :fechaexpulsion, uniqueness: { scope: :id_caso,
+  validates :fechaexpulsion, uniqueness: { scope: :id_caso,
     message: " ya existe otro desplazamiento con la misma fecha de expulsión"
   }
 
