@@ -6,23 +6,21 @@ class CasosController < ApplicationController
   # GET /casos
   # GET /casos.json
   def index
-    #if (current_usuario.rol == Ability::ROLSIST) 
-    #    @casos = Caso.where(
-    #      "id IN (SELECT id_caso FROM casosjr WHERE id_regionsjr='" + 
-    #      current_usuario.regionsjr_id.to_s + "')").paginate(
-    #      :page => params[:pagina], per_page: 20)
-    #else
-    @casossjr = Casosjr.order(fecharec: :desc)
+    Caso.refresca_conscaso
+    q=params[:q]
+    if (q && q.strip.length>0)
+      @conscaso = Conscaso.where("q @@ plainto_tsquery('spanish', ?)", q)
+    else
+      @conscaso = Conscaso.all
+    end
     if (current_usuario.rol == Ability::ROLINV) 
-        @casossjr = @casossjr.where(
-          "id_caso IN (SELECT id_caso FROM caso_etiqueta, etiqueta_usuario 
+        @conscaso= @conscaso.where(
+          "caso_id IN (SELECT id_caso FROM caso_etiqueta, etiqueta_usuario 
           WHERE caso_etiqueta.id_etiqueta=etiqueta_usuario.etiqueta_id
           AND etiqueta_usuario.usuario_id ='" + 
-          current_usuario.id.to_s + "')").paginate(
-          :page => params[:pagina], per_page: 20)
-    else
-        @casossjr = @casossjr.paginate(:page => params[:pagina], per_page: 20)
+          current_usuario.id.to_s + "')")
     end
+    @conscaso = @conscaso.order(fecharec: :desc).paginate(:page => params[:pagina], per_page: 20)
   end
 
   # GET /casos/1

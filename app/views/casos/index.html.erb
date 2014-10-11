@@ -2,12 +2,29 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<% if @casossjr.size > 1 %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
-    new_caso_path,
-    :class => 'btn btn-primary' 
-  %>
-<% end %>
+
+<table width="100%">
+  <tr>
+    <td width="33%">
+      <% if @conscaso.size > 0 %>
+        <%= link_to t('.new', :default => t("helpers.links.new")),
+          new_caso_path,
+          :class => 'btn btn-primary' 
+        %>
+      <% end %>
+    </td>
+    <td style="width=33%;text-align: center">
+      Casos: <%= @conscaso.size %>
+    </td>
+    <td style="text-align: right">
+      <%= form_tag(casos_path, method: "get") do %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Filtrar") %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -24,20 +41,20 @@
     </tr>
   </thead>
   <tbody>
-    <% @casossjr.try(:each) do |casosjr| %>
+    <% @conscaso.try(:each) do |casosjr| %>
       <tr>
-        <td><%= link_to casosjr.caso.id, caso_path(casosjr.caso)  %></td>
-        <td><%= casosjr.contacto.nombres + " " + casosjr.contacto.apellidos if casosjr.contacto %></td>
-        <td><%= casosjr.fecharec if casosjr.fecharec %></td>
-        <td><%= casosjr.regionsjr.nombre if casosjr.regionsjr %></td>
-        <td><%= casosjr.usuario.nusuario if casosjr.usuario %></td>
-        <td><%= casosjr.caso.fecha if casosjr.caso.fecha %></td>
-        <td><%= casosjr.statusmigratorio.nombre if casosjr.statusmigratorio %></td>
-	      <td><%= casosjr.respuesta.order(:fechaatencion).last.fechaatencion if casosjr.respuesta  && casosjr.respuesta.last %></td>
-        <td><%= casosjr.caso.memo %></td>
+        <td><%= link_to casosjr.caso_id, caso_path(casosjr.caso_id)  %></td>
+        <td><%= casosjr.contacto_nombre %></td>
+        <td><%= casosjr.fecharec %></td>
+        <td><%= casosjr.regionsjr_nombre %></td>
+        <td><%= casosjr.nusuario %></td>
+        <td><%= casosjr.caso_fecha %></td>
+        <td><%= casosjr.statusmigratorio_nombre %></td>
+	      <td><%= casosjr.respuesta_ultimafechaatencion %></td>
+        <td><%= casosjr.caso_memo %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-            edit_caso_path(casosjr.caso), :class => 'btn btn-xs' 
+            edit_caso_path(casosjr.caso_id), :class => 'btn btn-xs' 
           %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
             caso_path(casosjr.caso),
@@ -50,7 +67,7 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @casossjr, { param_name: :pagina }  %>
+<%= will_paginate @conscaso, { param_name: :pagina }  %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
   new_caso_path,
   :class => 'btn btn-primary' 
