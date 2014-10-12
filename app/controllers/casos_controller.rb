@@ -20,6 +20,7 @@ class CasosController < ApplicationController
           AND etiqueta_usuario.usuario_id ='" + 
           current_usuario.id.to_s + "')")
     end
+    @numconscaso = @conscaso.size
     @conscaso = @conscaso.order(fecharec: :desc).paginate(:page => params[:pagina], per_page: 20)
   end
 
