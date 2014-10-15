@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 237517a6bd939c390268f4676cc02862fdfb243c
+  revision: d76cede9e9b311c70a8c45e87153ccba017abe83
   specs:
     sivel2_gen (2.0.a2)
       devise
@@ -100,7 +100,7 @@ GEM
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
     erubis (2.7.0)
-    execjs (2.2.1)
+    execjs (2.2.2)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
