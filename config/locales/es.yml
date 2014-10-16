@@ -11,4 +11,6 @@ es:
       statusmigratorio:
         Statusmigratorio: Estatus Migratorio
         Statusmigratorios: Estatus Migratorio
+      ubicacion:
+        Ubicacion: Sitio Geográfico
 
