@@ -78,6 +78,9 @@ class Ability
 
   # Ver documentacion de este metodo en app/models/ability de sivel2_gen
   def initialize(usuario)
+    if !usuario || usuario.fechadeshabilitacion
+      return
+    end
     can :contar, Caso
     can :buscar, Caso
     can :lista, Caso

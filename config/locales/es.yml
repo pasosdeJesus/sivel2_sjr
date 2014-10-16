@@ -11,6 +11,9 @@ es:
       statusmigratorio:
         Statusmigratorio: Estatus Migratorio
         Statusmigratorios: Estatus Migratorio
+      presponsable:
+        Presponsable: Agente de Persecución
+        Presponsables: Agentes de Persecución
       ubicacion:
         Ubicacion: Sitio Geográfico
 
