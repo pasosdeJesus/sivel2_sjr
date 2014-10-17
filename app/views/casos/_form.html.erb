@@ -86,6 +86,12 @@
                       label_method: :nombre, 
                       value_method: :id 
                     %>
+                    <%= s.association :proteccion,
+                      collection: Proteccion.habilitados,
+											include_blank: false,
+                      label_method: :nombre, 
+                      value_method: :id 
+                    %>
                     <%= s.input :concentimientosjr, 
                       label: "Consentimiento Informado compartir SJR",
                       wrapper_html: { class: "span11 offset1" }  

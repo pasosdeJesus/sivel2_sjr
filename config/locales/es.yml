@@ -8,9 +8,13 @@ es:
         regionsjr: Oficina
         contacto: Solicitante Principal
         statusmigratorio: Estatus Migratorio
+        proteccion: Necesidad de Protección Internacional
       statusmigratorio:
         Statusmigratorio: Estatus Migratorio
         Statusmigratorios: Estatus Migratorio
+      proteccion:
+        Proteccion: Necesidad de Protección Internacional
+        Protecciones: Necesidades de Protección Internacional
       presponsable:
         Presponsable: Agente de Persecución
         Presponsables: Agentes de Persecución
