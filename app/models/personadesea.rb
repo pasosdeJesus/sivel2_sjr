@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Personadesea < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :respuesta, foreign_key: "id_personadesea", validate: true
 

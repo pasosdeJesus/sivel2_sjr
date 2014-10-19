@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Progestado < ActiveRecord::Base
-  extend Basica
+  include Basica
 
   belongs_to :derecho
 	has_many :progestado_respuesta, class_name: 'DerechoRespuesta',

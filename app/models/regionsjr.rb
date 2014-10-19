@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Regionsjr < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :casosjr, foreign_key: "id_regionsjr", validate: true
   has_many :usuario

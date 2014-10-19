@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Comosupo < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :casosjr
 

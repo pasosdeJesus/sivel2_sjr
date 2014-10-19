@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Maternidad < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :victimasjr, foreign_key: "id_maternidad", validate: true
   

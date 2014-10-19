@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Ayudasjr < ActiveRecord::Base
-  extend Basica
+  include Basica
 
   belongs_to :derecho
 	has_many :ayudasjr_respuesta, class_name: 'AyudasjrRespuesta',  

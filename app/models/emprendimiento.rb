@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Emprendimiento < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :emprendimiento_respuesta, class_name: 'EmprendimientoRespuesta', 
     foreign_key: "id_emprendimiento", validate: true, dependent: :destroy

@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Ayudaestado < ActiveRecord::Base
-  extend Basica
+  include Basica
 
   belongs_to :derecho
 

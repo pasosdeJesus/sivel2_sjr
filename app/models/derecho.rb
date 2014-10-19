@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Derecho < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :derecho_respuesta, class_name: 'DerechoRespuesta',  
     foreign_key: "id_derecho", validate: true, dependent: :destroy

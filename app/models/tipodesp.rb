@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Tipodesp < ActiveRecord::Base
-  extend Basica
+  include Basica
 
 	has_many :desplazamiento, foreign_key: "id_tipodesp", validate: true
 
