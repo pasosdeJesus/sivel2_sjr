@@ -1,5 +1,7 @@
 module Sivel2Sjr
   class Engine < ::Rails::Engine
+    isolate_namespace Sivel2Sjr
+
     config.generators do |g|
       g.test_framework      :rspec,        :fixture => false
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'

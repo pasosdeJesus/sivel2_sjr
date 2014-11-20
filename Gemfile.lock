@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 5f3e4761d62ffcf5213df5c1b6cd6050b5c7bbaa
-  specs:
-    sivel2_gen (2.0.a2)
-      devise
-      rails
-
-GIT
   remote: git://github.com/vtamara/cocoon.git
   revision: 836a331276ea1452d63325a6662483b9f1cb28be
   specs:
@@ -17,6 +9,13 @@ GIT
   revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
   specs:
     jquery-ui-bootstrap-rails (0.1.1)
+      rails
+
+PATH
+  remote: ../sivel2_gen_aislado
+  specs:
+    sivel2_gen (2.0.a2)
+      devise
       rails
 
 GEM
@@ -62,7 +61,7 @@ GEM
     bcrypt (3.1.9)
     bootstrap-datepicker-rails (1.3.0.2)
       railties (>= 3.0)
-    bootstrap-sass (3.3.0.1)
+    bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
     builder (3.2.2)
     camertron-eprun (1.1.0)
@@ -108,7 +107,7 @@ GEM
       activesupport (>= 4.1.0)
     hike (1.2.3)
     i18n (0.7.0.beta1)
-    jbuilder (2.2.4)
+    jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.2)
@@ -187,7 +186,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
-    sass (3.4.7)
+    sass (3.4.8)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -260,7 +259,7 @@ DEPENDENCIES
   launchy
   paperclip (~> 4.1)
   pg
-  rails (~> 4.2.0.beta2)
+  rails (~> 4.2.0.beta4)
   rails-i18n
   rspec-rails
   sdoc

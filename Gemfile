@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-gem "rails", '~> 4.2.0.beta2'
+gem "rails", '~> 4.2.0.beta4'
 gem "rails-i18n"
 
 # Postgresql
@@ -62,8 +62,8 @@ gem "tzinfo"
 gem "tzinfo-data"
 
 # Motor de SIVeL 2
-gem 'sivel2_gen', github: 'pasosdeJesus/sivel2_gen'
-#gem 'sivel2_gen', path: '../sivel2_gen'
+#gem 'sivel2_gen', github: 'pasosdeJesus/sivel2_gen'
+gem 'sivel2_gen', path: '../sivel2_gen_aislado'
 
 group :doc do
   # Genera documentación en doc/api con bundle exec rake doc:rails
