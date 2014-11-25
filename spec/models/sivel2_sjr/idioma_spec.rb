@@ -5,13 +5,13 @@ module Sivel2Sjr
   RSpec.describe Idioma, :type => :model do
 
     it "valido" do
-      idioma = FactoryGirl.build(:idioma)
+      idioma = FactoryGirl.build(:sivel2_sjr_idioma)
       expect(idioma).to be_valid
       idioma.destroy
     end
 
     it "no valido" do
-      idioma = FactoryGirl.build(:idioma, nombre: '')
+      idioma = FactoryGirl.build(:sivel2_sjr_idioma, nombre: '')
       expect(idioma).not_to be_valid
       idioma.destroy
     end

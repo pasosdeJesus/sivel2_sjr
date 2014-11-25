@@ -5,8 +5,6 @@ class RenombraAislasjr < ActiveRecord::Migration
     rename_table :actualizacionbase, :sivel2_sjr_actualizacionbase
     rename_table :aslegal, :sivel2_sjr_aslegal
     rename_table :aslegal_respuesta, :sivel2_sjr_aslegal_respuesta
-    rename_table :aspsicosocial, :sivel2_sjr_aspsicosocial
-    rename_table :aspsicosocial_respuesta, :sivel2_sjr_aspsicosocial_respuesta
     rename_table :ayudaestado, :sivel2_sjr_ayudaestado
     rename_table :ayudaestado_respuesta, :sivel2_sjr_ayudaestado_respuesta
     rename_table :ayudasjr, :sivel2_sjr_ayudasjr
@@ -18,12 +16,10 @@ class RenombraAislasjr < ActiveRecord::Migration
     rename_table :derecho, :sivel2_sjr_derecho
     rename_table :derecho_respuesta, :sivel2_sjr_derecho_respuesta
     rename_table :desplazamiento, :sivel2_sjr_desplazamiento
-    rename_table :emprendimiento, :sivel2_sjr_emprendimiento
-    rename_table :emprendimiento_respuesta, :sivel2_sjr_emprendimiento_respuesta
     rename_table :etiqueta_usuario, :sivel2_sjr_etiqueta_usuario
-    rename_table :idioma, :sivel2_sjr_idioma
     rename_table :inclusion, :sivel2_sjr_inclusion
     rename_table :instanciader, :sivel2_sjr_instanciader
+    rename_table :maternidad, :sivel2_sjr_maternidad
     rename_table :mecanismoder, :sivel2_sjr_mecanismoder
     rename_table :modalidadtierra, :sivel2_sjr_modalidadtierra
     rename_table :motivoconsulta, :sivel2_sjr_motivoconsulta
@@ -33,7 +29,6 @@ class RenombraAislasjr < ActiveRecord::Migration
     rename_table :progestado, :sivel2_sjr_progestado
     rename_table :progestado_respuesta, :sivel2_sjr_progestado_respuesta
     rename_table :proteccion, :sivel2_sjr_proteccion
-    rename_table :refugio, :sivel2_sjr_refugio
     rename_table :resagresion, :sivel2_sjr_resagresion
     rename_table :respuesta, :sivel2_sjr_respuesta
     rename_table :rolfamilia, :sivel2_sjr_rolfamilia

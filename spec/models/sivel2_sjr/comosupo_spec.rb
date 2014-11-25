@@ -5,13 +5,13 @@ module Sivel2Sjr
   RSpec.describe Comosupo, :type => :model do
 
     it "valido" do
-      comosupo = FactoryGirl.build(:comosupo)
+      comosupo = FactoryGirl.build(:sivel2_sjr_comosupo)
       expect(comosupo).to be_valid
       comosupo.destroy
     end
 
     it "no valido" do
-      comosupo = FactoryGirl.build(:comosupo, nombre: '')
+      comosupo = FactoryGirl.build(:sivel2_sjr_comosupo, nombre: '')
       expect(comosupo).not_to be_valid
       comosupo.destroy
     end

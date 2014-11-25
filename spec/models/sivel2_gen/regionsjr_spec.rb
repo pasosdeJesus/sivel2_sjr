@@ -4,13 +4,13 @@ require 'rails_helper'
 module Sivel2Gen
   RSpec.describe Regionsjr, :type => :model do
     it "valido" do
-      regionsjr = FactoryGirl.build(:regionsjr)
+      regionsjr = FactoryGirl.build(:sivel2_gen_regionsjr)
       expect(regionsjr).to be_valid
       regionsjr.destroy
     end
 
     it "no valido" do
-      regionsjr = FactoryGirl.build(:regionsjr, nombre: '')
+      regionsjr = FactoryGirl.build(:sivel2_gen_regionsjr, nombre: '')
       expect(regionsjr).not_to be_valid
       regionsjr.destroy
     end

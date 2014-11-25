@@ -7,18 +7,20 @@ module Sivel2Sjr
     # GET /casos
     # GET /casos.json
     def index
-      Caso.refresca_conscaso
+      Sivel2Gen::Caso.refresca_conscaso
       q=params[:q]
       if (q && q.strip.length>0)
-        @conscaso = Conscaso.where(
+        @conscaso = Sivel2Gen::Conscaso.where(
           "q @@ plainto_tsquery('spanish', unaccent(?))", q
         )
       else
-        @conscaso = Conscaso.all
+        @conscaso = Sivel2Gen::Conscaso.all
       end
       if (current_usuario.rol == Ability::ROLINV) 
         @conscaso= @conscaso.where(
-          "caso_id IN (SELECT id_caso FROM caso_etiqueta, etiqueta_usuario 
+          "caso_id IN (SELECT id_caso FROM 
+          sivel2_gen_caso_etiqueta AS caso_etiqueta, 
+          sivel2_sjr_etiqueta_usuario AS etiqueta_usuario 
           WHERE caso_etiqueta.id_etiqueta=etiqueta_usuario.etiqueta_id
           AND etiqueta_usuario.usuario_id ='" + 
           current_usuario.id.to_s + "')")
@@ -47,17 +49,17 @@ module Sivel2Sjr
       @caso.current_usuario = current_usuario
       @caso.fecha = DateTime.now.strftime('%Y-%m-%d')
       @caso.memo = ''
-      @caso.casosjr = Casosjr.new
+      @caso.casosjr = Sivel2Sjr::Casosjr.new
       @caso.casosjr.fecharec = DateTime.now.strftime('%Y-%m-%d')
       @caso.casosjr.asesor = current_usuario.id
       @caso.casosjr.id_regionsjr = current_usuario.regionsjr_id.nil? ?  
         1 : current_usuario.regionsjr_id
-      per = Persona.new
+      per = Sivel2Gen::Persona.new
       per.nombres = ''
       per.apellidos = ''
       per.sexo = 'S'
       per.save!(validate: false)
-      vic = Victima.new
+      vic = Sivel2Gen::Victima.new
       vic.persona = per
       @caso.victima<<vic
       @caso.casosjr.contacto = per
@@ -66,15 +68,14 @@ module Sivel2Sjr
       vic.save!(validate: false)
       logger.debug "Victima salvada: #{vic.inspect}"
       #debugger
-      vic.victimasjr = Victimasjr.new
+      vic.victimasjr = Sivel2Gen::Victimasjr.new
       vic.victimasjr.id_victima = vic.id
       vic.victimasjr.save!(validate: false)
-      cu = CasoUsuario.new
+      cu = Sivel2Gen::CasoUsuario.new
       cu.id_usuario = current_usuario.id
       cu.id_caso = @caso.id
       cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
       cu.save!(validate: false)
-      render action: 'edit'
     end
 
     def lista
@@ -82,17 +83,17 @@ module Sivel2Sjr
         r = nil
 
         if (params[:tabla] == "departamento" && params[:id_pais].to_i > 0)
-          r = Departamento.where(fechadeshabilitacion: nil,
+          r = Sivel2Gen::Departamento.where(fechadeshabilitacion: nil,
                                  id_pais: params[:id_pais].to_i).order(:nombre)
         elsif (params[:tabla] == "municipio" && params[:id_pais].to_i > 0 && 
                params[:id_departamento].to_i > 0 )
-          r = Municipio.where(id_pais: params[:id_pais].to_i, 
+          r = Sivel2Gen::Municipio.where(id_pais: params[:id_pais].to_i, 
                               id_departamento: params[:id_departamento].to_i,
                               fechadeshabilitacion: nil).order(:nombre)
         elsif (params[:tabla] == "clase" && params[:id_pais].to_i > 0 && 
                params[:id_departamento].to_i > 0 && 
                params[:id_municipio].to_i > 0)
-          r = Clase.where(id_pais: params[:id_pais].to_i, 
+          r = Sivel2Gen::Clase.where(id_pais: params[:id_pais].to_i, 
                           id_departamento: params[:id_departamento].to_i, 
                           id_municipio: params[:id_municipio].to_i,
                           fechadeshabilitacion: nil).order(:nombre)
@@ -177,7 +178,7 @@ module Sivel2Sjr
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_caso
-      @caso = Caso.find(params[:id])
+      @caso = Sivel2Gen::Caso.find(params[:id])
       @caso.current_usuario = current_usuario
     end
 

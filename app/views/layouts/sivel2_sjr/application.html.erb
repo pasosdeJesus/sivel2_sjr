@@ -38,7 +38,9 @@
   </head>
   <body>
 
-    <%= nav_bar :fixed => :top, :brand => "SIVeL 2 - SJR Venezuela: 2.0p0.9", :responsive => true do %>
+    <%= nav_bar :fixed => :top, :brand => "SIVeL 2 - SJR Venezuela: 2.0p0.9", 
+      brand_link: sivel2_gen.root_url, :responsive => true do 
+    %>
       <%= menu_group do %>
         <% if !current_usuario.nil? %>
           <%= menu_item "Casos", casos_path %>

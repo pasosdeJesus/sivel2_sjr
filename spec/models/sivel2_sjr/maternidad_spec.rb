@@ -5,13 +5,13 @@ module Sivel2Sjr
   RSpec.describe Maternidad, :type => :model do
 
     it "valido" do
-      maternidad = FactoryGirl.build(:maternidad)
+      maternidad = FactoryGirl.build(:sivel2_sjr_maternidad)
       expect(maternidad).to be_valid
       maternidad.destroy
     end
 
     it "no valido" do
-      maternidad = FactoryGirl.build(:maternidad, nombre: '')
+      maternidad = FactoryGirl.build(:sivel2_sjr_maternidad, nombre: '')
       expect(maternidad).not_to be_valid
       maternidad.destroy
     end

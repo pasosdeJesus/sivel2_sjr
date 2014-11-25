@@ -5,13 +5,13 @@ module Sivel2Sjr
   RSpec.describe Motivosjr, :type => :model do
 
     it "valido" do
-      motivosjr = FactoryGirl.build(:motivosjr)
+      motivosjr = FactoryGirl.build(:sivel2_sjr_motivosjr)
       expect(motivosjr).to be_valid
       motivosjr.destroy
     end
 
     it "no valido" do
-      motivosjr = FactoryGirl.build(:motivosjr, nombre: '')
+      motivosjr = FactoryGirl.build(:sivel2_sjr_motivosjr, nombre: '')
       expect(motivosjr).not_to be_valid
       motivosjr.destroy
     end

@@ -7,13 +7,19 @@ class Usuario < ActiveRecord::Base
   # :recoverable :registerable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :rememberable, :trackable, :lockable
 
-	has_many :caso_usuario, foreign_key: "id_usuario", validate: true
-	has_many :caso_etiqueta, foreign_key: "id_usuario", validate: true
-	has_many :casosjr, foreign_key: "asesor", validate: true
-	has_many :etiqueta_usuario, dependent: :delete_all
-	has_many :etiqueta, through: :etiqueta_usuario
+	has_many :caso_usuario, class_name: 'Sivel2Gen::CasoUsuario',
+    foreign_key: "id_usuario", validate: true
+	has_many :caso_etiqueta, class_name: 'Sivel2Gen::CasoEtiqueta',
+    foreign_key: "id_usuario", validate: true
+	has_many :casosjr, class_name: 'Sivel2Sjr::Casosjr',
+    foreign_key: "asesor", validate: true
+	has_many :etiqueta_usuario, class_name: 'Sivel2Sjr::EtiquetaUsuario',
+    dependent: :delete_all
+	has_many :etiqueta, class_name: 'Sivel2Gen::Etiqueta',
+    through: :etiqueta_usuario
 
-	belongs_to :regionsjr, foreign_key: "regionsjr_id", validate: true
+	belongs_to :regionsjr, class_name: 'Sivel2Gen::Regionsjr',
+    foreign_key: "regionsjr_id", validate: true
 
   #http://stackoverflow.com/questions/1200568/using-rails-how-can-i-set-my-primary-key-to-not-be-an-integer-typed-column
   self.primary_key=:id

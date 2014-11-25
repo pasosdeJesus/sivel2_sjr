@@ -13,14 +13,6 @@ module Sivel2Sjr
     accepts_nested_attributes_for :aslegal_respuesta, reject_if: :all_blank, 
       update_only: true
   
-    has_many :aspsicosocial, class_name: "Sivel2Sjr::Aspsicosocial", 
-      :through => :aspsicosocial_respuesta
-    has_many :aspsicosocial_respuesta, 
-      class_name: "Sivel2Sjr::AspsicosocialRespuesta",  
-      foreign_key: "id_respuesta", dependent: :destroy
-    accepts_nested_attributes_for :aspsicosocial_respuesta, 
-      reject_if: :all_blank, update_only: true
-  
     has_many :ayudaestado, class_name: "Sivel2Sjr::Ayudaestado", 
       :through => :ayudaestado_respuesta
     has_many :ayudaestado_respuesta, 
@@ -41,14 +33,6 @@ module Sivel2Sjr
       foreign_key: "id_respuesta", dependent: :destroy, validate: true
     accepts_nested_attributes_for :derecho_respuesta, reject_if: :all_blank, 
       update_only: true
-  
-    has_many :emprendimiento, class_name: "Sivel2Sjr::Emprendimiento", 
-      :through => :emprendimiento_respuesta
-    has_many :emprendimiento_respuesta, 
-      class_name: "Sivel2Sjr::EmprendimientoRespuesta",  
-      foreign_key: "id_respuesta", dependent: :destroy
-    accepts_nested_attributes_for :emprendimiento_respuesta, 
-      reject_if: :all_blank, update_only: true
   
     has_many :motivosjr, class_name: "Sivel2Sjr::Motivosjr", 
       :through => :motivosjr_respuesta

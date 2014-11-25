@@ -1,9 +1,8 @@
 #!/bin/sh
 # Hace pruebas, pruebas de regresión y envia a github
 
-bundle update
-bundle install
-
+NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle update
+NOKOGIRI_USE_SYSTEM_LIBRARIES=1 MAKE=gmake make=gmake QMAKE=qmake4 bundle install
 grep "^ *gem *.sivel2_gen. *, *path:" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
 	echo "Gemfile incluye un sivel2_gen cableado al sistema de archivos"

@@ -8,7 +8,7 @@
     <td width="33%">
       <% if @conscaso.size > 0 %>
         <%= link_to t('.new', :default => t("helpers.links.new")),
-          new_caso_path,
+          sivel2_sjr.new_caso_path,
           :class => 'btn btn-primary' 
         %>
       <% end %>
@@ -17,7 +17,7 @@
       Casos: <%= @numconscaso %>
     </td>
     <td style="text-align: right">
-      <%= form_tag(casos_path, method: "get") do %>
+      <%= form_tag(sivel2_sjr.casos_path, method: "get") do %>
         <%= text_field_tag(:q) %>
         <%= submit_tag("Filtrar") %>
       <% end %>
@@ -43,7 +43,7 @@
   <tbody>
     <% @conscaso.try(:each) do |casosjr| %>
       <tr>
-        <td><%= link_to casosjr.caso_id, caso_path(casosjr.caso_id)  %></td>
+        <td><%= link_to casosjr.caso_id, sivel2_sjr.caso_path(casosjr.caso_id)  %></td>
         <td><%= casosjr.contacto_nombre %></td>
         <td><%= casosjr.fecharec %></td>
         <td><%= casosjr.regionsjr_nombre %></td>
@@ -54,10 +54,10 @@
         <td><%= casosjr.caso_memo %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-            edit_caso_path(casosjr.caso_id), :class => 'btn btn-xs' 
+            sivel2_sjr.edit_caso_path(casosjr.caso_id), :class => 'btn btn-xs' 
           %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-            caso_path(casosjr.caso),
+            sivel2_sjr.caso_path(casosjr.caso),
             :method => :delete,
             :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
             :class => 'btn btn-xs btn-danger' 
@@ -69,6 +69,6 @@
 </table>
 <%= will_paginate @conscaso, { param_name: :pagina }  %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
-  new_caso_path,
+  sivel2_sjr.new_caso_path,
   :class => 'btn btn-primary' 
 %>

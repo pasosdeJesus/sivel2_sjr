@@ -5,13 +5,13 @@ module Sivel2Gen
   RSpec.describe Iglesia, :type => :model do
 
     it "valido" do
-      iglesia = FactoryGirl.build(:iglesia)
+      iglesia = FactoryGirl.build(:sivel2_gen_iglesia)
       expect(iglesia).to be_valid
       iglesia.destroy
     end
 
     it "no valido" do
-      iglesia = FactoryGirl.build(:iglesia, nombre: '')
+      iglesia = FactoryGirl.build(:sivel2_gen_iglesia, nombre: '')
       expect(iglesia).not_to be_valid
       iglesia.destroy
     end

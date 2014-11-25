@@ -3,7 +3,7 @@
   <%= render 'usuario', :f => f %>
 
   <%= f.association :etiqueta, 
-    collection: Etiqueta.habilitados.where(
+    collection: Sivel2Gen::Etiqueta.habilitados.where(
       "nombre LIKE 'COMPARTIR%'"),
 	  label: "Etiquetas Compartir",
 	  label_method: :nombre, 

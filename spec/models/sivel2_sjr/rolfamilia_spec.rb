@@ -5,13 +5,13 @@ module Sivel2Sjr
   RSpec.describe Rolfamilia, :type => :model do
 
     it "valido" do
-      rolfamilia = FactoryGirl.build(:rolfamilia)
+      rolfamilia = FactoryGirl.build(:sivel2_sjr_rolfamilia)
       expect(rolfamilia).to be_valid
       rolfamilia.destroy
     end
 
     it "no valido" do
-      rolfamilia = FactoryGirl.build(:rolfamilia, nombre: '')
+      rolfamilia = FactoryGirl.build(:sivel2_sjr_rolfamilia, nombre: '')
       expect(rolfamilia).not_to be_valid
       rolfamilia.destroy
     end

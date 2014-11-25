@@ -22,7 +22,7 @@
     <%= f.input :montoar, label: "Monto A. Humanitaria" %>
 
     <%= f.association :emprendimiento, 
-      collection: Sivel2Sjr::Emprendimiento.habilitados,
+      collection: Emprendimiento.habilitados,
       label: "Emprendimiento",
       label_method: :nombre, 
       value_method: :id 
@@ -37,7 +37,7 @@
     %>
 
     <%= f.association :aspsicosocial, 
-      collection: Sivel2Sjr::Aspsicosocial.habilitados,
+      collection: Aspsicosocial.habilitados,
       label: "Asistencia Psicosocial",
       label_method: :nombre, 
       value_method: :id 

@@ -1,5 +1,5 @@
 <%= f.simple_fields_for :persona do |p| %>
-	<%= render 'persona_fields', :f => p %>
+	<%= render 'sivel2_gen/casos/persona_fields', :f => p %>
 <% end %>
 <%= f.association :profesion,
 	collection: Sivel2Gen::Profesion.habilitados,
@@ -9,6 +9,7 @@
 	value_method: :id 
 %>
 <%= f.association :rangoedad,
+	collection: Sivel2Gen::Rangoedad.habilitados,
 	include_blank: false,
 	label: "Rango de Edad",
 	label_method: :rango, 

@@ -3,7 +3,7 @@ require 'date'
 
 module Sivel2Sjr
   class DesplazamientosController < ApplicationController
-    load_and_authorize_resource class: Sivel2Gen::Desplazamiento
+    load_and_authorize_resource class: Sivel2Sjr::Desplazamiento
 
     # Crea un nuevo desplazamiento para el caso que recibe por parametro params[:caso_id]
     # Pone valores simples en los campos requeridos
@@ -12,22 +12,24 @@ module Sivel2Sjr
         respond_to do |format|
           format.html { render inline: 'Falta identificacion del caso' }
         end
-      elsif Ubicacion.where(id_caso: params[:caso_id].to_i).count < 2
+      elsif Sivel2Gen::Ubicacion.where(id_caso: params[:caso_id].to_i).count < 2
         respond_to do |format|
           format.html { render inline: 'Debe tener al menos 2 ubicaciones' }
         end
       else
-        @desplazamiento = Desplazamiento.new
+        @desplazamiento = Sivel2Sjr::Desplazamiento.new
         cid = params[:caso_id].to_i
         @desplazamiento.id_caso = cid
-        fex = Caso.find(cid).fecha
-        while (Desplazamiento.where(id_caso: cid, fechaexpulsion: fex.to_s).count > 0) do
+        fex = Sivel2Gen::Caso.find(cid).fecha
+        while (Sivel2Sjr::Desplazamiento.where(id_caso: cid, 
+            fechaexpulsion: fex.to_s).count > 0) do
           fex += 1
         end
         @desplazamiento.fechaexpulsion = fex
         @desplazamiento.id_expulsion = Ubicacion.where(id_caso: cid).last.id
         @desplazamiento.fechallegada = fex+1
-        @desplazamiento.id_llegada = Ubicacion.where(id_caso: cid).first.id
+        @desplazamiento.id_llegada = Sivel2Gen::Ubicacion.where(
+          id_caso: cid).first.id
         @desplazamiento.descripcion = ''
         if @desplazamiento.save
           h=@desplazamiento.as_json

@@ -5,7 +5,7 @@ module Sivel2Sjr
       foreign_key: "id_caso", dependent: :destroy
   
   	# Ordenados por foreign_key para comparar con esquema en base
-  	belongs_to :usuario, class_name: "Sivel2Sjr::Usuario", 
+  	belongs_to :usuario, class_name: "Usuario", 
       foreign_key: "asesor", validate: true
   	belongs_to :comosupo, class_name: "Sivel2Sjr::Comosupo", 
       foreign_key: "comosupo_id", validate: true
@@ -13,17 +13,17 @@ module Sivel2Sjr
       foreign_key: "contacto", validate: true
   	belongs_to :caso, class_name: "Sivel2Gen::Caso", validate: true,
       foreign_key: "id_caso", inverse_of: :casosjr
-  	belongs_to :categoria, class_name: "Sivel2Sjr::Categoria", validate: true, 
+  	belongs_to :categoria, class_name: "Sivel2Gen::Categoria", validate: true, 
       foreign_key: "categoriaref"
   	belongs_to :idioma, class_name: "Sivel2Sjr::Idioma", 
       foreign_key: "id_idioma", validate: true
   	belongs_to :llegada, class_name: "Sivel2Gen::Ubicacion", validate: true,
-      class_name: "Ubicacion", foreign_key: "id_llegada"
+      foreign_key: "id_llegada"
   	belongs_to :proteccion, class_name: "Sivel2Sjr::Proteccion", 
       foreign_key: "id_proteccion", validate: true
-  	belongs_to :regionsjr, class_name: "Sivel2Sjr::Regionsjr", 
+  	belongs_to :regionsjr, class_name: "Sivel2Gen::Regionsjr", 
       foreign_key: "id_regionsjr", validate: true
-  	belongs_to :salida, class_name: "Sivel2Sjr::Ubicacion", validate: true,
+  	belongs_to :salida, class_name: "Sivel2Gen::Ubicacion", validate: true,
       foreign_key: "id_salida"
   	belongs_to :statusmigratorio, class_name: "Sivel2Sjr::Statusmigratorio", 
       foreign_key: "id_statusmigratorio", validate: true
@@ -43,7 +43,8 @@ module Sivel2Sjr
   
     validate :llegada_posterior_a_salida
     def llegada_posterior_a_salida
-      if fechallegada.present? && fechasalida.present? && fechallegada<fechasalida
+      if fechallegada.present? && fechasalida.present? && 
+        fechallegada < fechasalida
         errors.add(:fechallegada, " debe ser posterior a la fecha de salida")
       end
     end

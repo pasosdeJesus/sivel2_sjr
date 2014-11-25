@@ -5,13 +5,13 @@ module Sivel2Sjr
   RSpec.describe Estadocivil, :type => :model do
 
     it "valido" do
-      estadocivil = FactoryGirl.build(:estadocivil)
+      estadocivil = FactoryGirl.build(:sivel2_sjr_estadocivil)
       expect(estadocivil).to be_valid
       estadocivil.destroy
     end
 
     it "no valido" do
-      estadocivil = FactoryGirl.build(:estadocivil, nombre: '')
+      estadocivil = FactoryGirl.build(:sivel2_sjr_estadocivil, nombre: '')
       expect(estadocivil).not_to be_valid
       estadocivil.destroy
     end

@@ -4,9 +4,9 @@ require 'rails_helper'
 module Sivel2Gen
   RSpec.describe Ubicacion, :type => :model do
     context "valido" do
-      let(:caso) { FactoryGirl.build(:caso) }
+      let(:caso) { FactoryGirl.build(:sivel2_gen_caso) }
       let(:pais) { pais = Pais.find(862) }
-      let(:ubicacion) { FactoryGirl.build(:ubicacion, pais: pais, caso: caso) }
+      let(:ubicacion) { FactoryGirl.build(:sivel2_gen_ubicacion, pais: pais, caso: caso) }
       after(:each) do
         ubicacion.destroy
         caso.destroy
@@ -65,14 +65,14 @@ module Sivel2Gen
     end
 
     it "no valido 1" do
-      ubicacion = FactoryGirl.build(:ubicacion)
+      ubicacion = FactoryGirl.build(:sivel2_gen_ubicacion)
       expect(ubicacion).not_to be_valid
       ubicacion.destroy
     end
 
     it "no valido 2" do
-      caso = FactoryGirl.build(:caso)
-      ubicacion = FactoryGirl.build(:ubicacion, id_caso: caso.id, id_tsitio: nil) 
+      caso = FactoryGirl.build(:sivel2_gen_caso)
+      ubicacion = FactoryGirl.build(:sivel2_gen_ubicacion, id_caso: caso.id, id_tsitio: nil) 
       expect(ubicacion).not_to be_valid
       ubicacion.destroy
       caso.destroy
