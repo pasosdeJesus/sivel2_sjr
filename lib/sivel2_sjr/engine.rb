@@ -1,3 +1,7 @@
+# encoding: UTF-8
+
+require 'sivel2_gen/engine'
+
 module Sivel2Sjr
   class Engine < ::Rails::Engine
     isolate_namespace Sivel2Sjr
@@ -21,10 +25,12 @@ module Sivel2Sjr
 
     # Adaptado de http://guides.rubyonrails.org/engines.html
     config.to_prepare do |app|
-      Dir.glob(Engine.root.to_s + "/app/decorators/**/*_decorator*.rb").each do |c|
-        require_dependency(c)
-      end
+#      Dir.glob(Engine.root.to_s + "/app/decorators/**/*_decorator*.rb").each do |c|
+#        puts "engine decorator #{c}"
+#        require_dependency(c)
+#      end
       Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
+        puts "app decorator #{c}"
         require_dependency(c)
       end
     end

@@ -68,7 +68,7 @@ module Sivel2Sjr
       vic.save!(validate: false)
       logger.debug "Victima salvada: #{vic.inspect}"
       #debugger
-      vic.victimasjr = Sivel2Gen::Victimasjr.new
+      vic.victimasjr = Sivel2Sjr::Victimasjr.new
       vic.victimasjr.id_victima = vic.id
       vic.victimasjr.save!(validate: false)
       cu = Sivel2Gen::CasoUsuario.new

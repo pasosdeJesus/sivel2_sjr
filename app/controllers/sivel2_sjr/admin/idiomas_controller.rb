@@ -3,7 +3,7 @@ module Sivel2Sjr
   module Admin
     class IdiomasController < Sivel2Gen::Admin::BasicasController
       before_action :set_idioma, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Sjr::Idioma
 
       def clase 
         "Sivel2Sjr::Idioma"

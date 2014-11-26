@@ -29,27 +29,27 @@ module Sivel2Sjr
 
     # Tablas basicas cuya secuencia es de la forma tabla_id_seq 
     @@basicas_seq_con_id = [
-                               ['Sivel2Gen', 'actividadarea'], ['Sivel2Sjr', 'comosupo'], 
-                               ['Sivel2Gen', 'pais'], ['Sivel2Gen', 'rangoedadac'], 
-                               ['Sivel2Gen', 'tdocumento'] 
+      ['Sivel2Gen', 'actividadarea'], ['Sivel2Sjr', 'comosupo'], 
+      ['Sivel2Gen', 'pais'], ['Sivel2Gen', 'rangoedadac'], 
+      ['Sivel2Gen', 'tdocumento'] 
     ]
 
     # Tablas básicas que deben volcarse primero --por ser requeridas por otras básicas
     @@tablasbasicas_prio = [
-                               ['Sivel2Gen', 'pconsolidado'], ['Sivel2Gen', 'tviolencia'], 
-                               ['Sivel2Gen', 'supracategoria'],
-                               ['Sivel2Gen', 'tclase'], ['Sivel2Gen', 'pais'], 
-                               ['Sivel2Gen', 'departamento'], ['Sivel2Gen', 'municipio'], 
-                               ['Sivel2Gen', 'clase'],
-                               ['Sivel2Gen', 'intervalo'], ['Sivel2Gen', 'filiacion'], 
-                               ['Sivel2Gen', 'organizacion'], ['Sivel2Gen', 'sectorsocial'],
-                               ['Sivel2Gen', 'vinculoestado'], ['Sivel2Gen', 'regimensalud'],
-                               ['Sivel2Sjr', 'acreditacion'], ['Sivel2Sjr', 'clasifdesp'],
-                               ['Sivel2Sjr', 'declaroante'], ['Sivel2Sjr', 'inclusion'],
-                               ['Sivel2Sjr', 'modalidadtierra'], ['Sivel2Sjr', 'tipodesp'],
-                               ['Sivel2Sjr', 'personadesea'], ['Sivel2Sjr', 'ayudaestado'],
-                               ['Sivel2Sjr', 'derecho'], ['Sivel2Sjr', 'progestado'],
-                               ['Sivel2Sjr', 'motivosjr']
+      ['Sivel2Gen', 'pconsolidado'], ['Sivel2Gen', 'tviolencia'], 
+      ['Sivel2Gen', 'supracategoria'],
+      ['Sivel2Gen', 'tclase'], ['Sivel2Gen', 'pais'], 
+      ['Sivel2Gen', 'departamento'], ['Sivel2Gen', 'municipio'], 
+      ['Sivel2Gen', 'clase'],
+      ['Sivel2Gen', 'intervalo'], ['Sivel2Gen', 'filiacion'], 
+      ['Sivel2Gen', 'organizacion'], ['Sivel2Gen', 'sectorsocial'],
+      ['Sivel2Gen', 'vinculoestado'], ['Sivel2Gen', 'regimensalud'],
+      ['Sivel2Sjr', 'acreditacion'], ['Sivel2Sjr', 'clasifdesp'],
+      ['Sivel2Sjr', 'declaroante'], ['Sivel2Sjr', 'inclusion'],
+      ['Sivel2Sjr', 'modalidadtierra'], ['Sivel2Sjr', 'tipodesp'],
+      ['Sivel2Sjr', 'personadesea'], ['Sivel2Sjr', 'ayudaestado'],
+      ['Sivel2Sjr', 'derecho'], ['Sivel2Sjr', 'progestado'],
+      ['Sivel2Sjr', 'motivosjr']
     ]
 
 

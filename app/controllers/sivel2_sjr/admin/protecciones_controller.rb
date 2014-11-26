@@ -3,7 +3,7 @@ module Sivel2Sjr
   module Admin
     class ProteccionesController < Sivel2Gen::Admin::BasicasController
       before_action :set_proteccion, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Sjr::Proteccion
 
       def clase 
         "Sivel2Sjr::Proteccion"

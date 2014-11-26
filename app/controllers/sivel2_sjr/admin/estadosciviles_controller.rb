@@ -3,7 +3,7 @@ module Sivel2Sjr
   module Admin
     class EstadoscivilesController < Sivel2Gen::Admin::BasicasController
       before_action :set_estadocivil, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Sjr::Estadocivil
 
       def clase 
         "Sivel2Sjr::Estadocivil"

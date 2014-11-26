@@ -5,7 +5,7 @@ module Sivel2Gen
   RSpec.describe Ubicacion, :type => :model do
     context "valido" do
       let(:caso) { FactoryGirl.build(:sivel2_gen_caso) }
-      let(:pais) { pais = Pais.find(862) }
+      let(:pais) { Pais.find(862) }
       let(:ubicacion) { FactoryGirl.build(:sivel2_gen_ubicacion, pais: pais, caso: caso) }
       after(:each) do
         ubicacion.destroy

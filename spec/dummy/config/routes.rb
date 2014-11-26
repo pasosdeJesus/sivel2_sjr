@@ -14,5 +14,5 @@ Rails.application.routes.draw do
 
 
   mount Sivel2Gen::Engine, at: "sivel2_gen"
-  #mount Sivel2Sjr::Engine, at: "sivel2_sjr"
+  mount Sivel2Sjr::Engine, at: "sivel2_sjr"
 end

@@ -9,7 +9,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
-require "sivel2_gen"
+require "sivel2_sjr"
 
 module Dummy
   class Application < Rails::Application

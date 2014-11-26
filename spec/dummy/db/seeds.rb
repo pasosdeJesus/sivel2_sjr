@@ -10,7 +10,16 @@
 
 connection = ActiveRecord::Base.connection();
 
-connection.execute(IO.read("db/datos-basicas.sql"));
+# De motor SIVeL generico
+l = File.readlines(Gem.loaded_specs['sivel2_gen'].full_gem_path +
+                   "/db/datos-basicas.sql")
+connection.execute(l.join("\n"))
+
+# De motor SIVeL SJR
+l = File.readlines("../../db/datos-basicasn.sql")
+connection.execute(l.join("\n"));
+
+#connection.execute(IO.read("db/datos-basicas.sql"));
 
 connection.execute("INSERT INTO usuario 
 	(nusuario, email, encrypted_password, password, 

@@ -3,7 +3,7 @@ module Sivel2Sjr
   module Admin
     class CausasrefController < Sivel2Gen::Admin::BasicasController
       before_action :set_causaref, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Sjr::Causaref
 
       def clase 
         "Sivel2Sjr::Causaref"

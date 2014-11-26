@@ -3,7 +3,7 @@ module Sivel2Sjr
   module Admin
     class ComosuposController <  Sivel2Gen::Admin::BasicasController
       before_action :set_comosupo, only: [:show, :edit, :update, :destroy]
-      load_and_authorize_resource
+      load_and_authorize_resource class: Sivel2Sjr::Comosupo
 
       def clase 
         "Sivel2Sjr::Comosupo"

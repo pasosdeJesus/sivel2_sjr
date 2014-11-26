@@ -13,14 +13,6 @@ module Sivel2Sjr
     accepts_nested_attributes_for :aslegal_respuesta, reject_if: :all_blank, 
       update_only: true
   
-    has_many :ayudaestado, class_name: "Sivel2Sjr::Ayudaestado", 
-      :through => :ayudaestado_respuesta
-    has_many :ayudaestado_respuesta, 
-      class_name: "Sivel2Sjr::AyudaestadoRespuesta",  
-      foreign_key: "id_respuesta", dependent: :destroy, validate: true
-    accepts_nested_attributes_for :ayudaestado_respuesta, 
-      reject_if: :all_blank, update_only: true
-  
     has_many :ayudasjr, class_name: "Sivel2Sjr::Ayudasjr", 
       :through => :ayudasjr_respuesta
     has_many :ayudasjr_respuesta, class_name: "Sivel2Sjr::AyudasjrRespuesta",  
@@ -33,21 +25,6 @@ module Sivel2Sjr
       foreign_key: "id_respuesta", dependent: :destroy, validate: true
     accepts_nested_attributes_for :derecho_respuesta, reject_if: :all_blank, 
       update_only: true
-  
-    has_many :motivosjr, class_name: "Sivel2Sjr::Motivosjr", 
-      :through => :motivosjr_respuesta
-    has_many :motivosjr_respuesta, class_name: "Sivel2Sjr::MotivosjrRespuesta", 
-      foreign_key: "id_respuesta", dependent: :destroy
-    accepts_nested_attributes_for :motivosjr_respuesta, 
-      reject_if: :all_blank, update_only: true
-  
-    has_many :progestado, class_name: "Sivel2Sjr::Progestado", 
-      :through => :progestado_respuesta
-    has_many :progestado_respuesta, 
-      class_name: "Sivel2Sjr::ProgestadoRespuesta",  
-      foreign_key: "id_respuesta", dependent: :destroy, validate: true
-    accepts_nested_attributes_for :progestado_respuesta, 
-      reject_if: :all_blank, update_only: true
   
   end
 end
