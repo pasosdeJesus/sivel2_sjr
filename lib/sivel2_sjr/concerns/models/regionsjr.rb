@@ -10,11 +10,8 @@ module Sivel2Sjr
         include Sivel2Gen::Concerns::Models::Regionsjr
 
         included do
-          has_many :actividad, class_name: 'Sivel2Gen::Actividad'
-          has_many :usuario
-
-          validates_presence_of :nombre
-          validates_presence_of :fechacreacion
+          has_many :casosjr, class_name: 'Sivel2Sjr::Casosjr',
+            foreign_key: "id_regionsjr", validate: true
         end
 
         module ClassMethods

@@ -5,13 +5,13 @@ require 'sivel2_gen/concerns/models/estadocivil'
 module Sivel2Sjr
   module Concerns
     module Models
-      module Estadocivil
+      module Estadocivil 
         extend ActiveSupport::Concern
         include Sivel2Gen::Concerns::Models::Estadocivil
 
         included do
-          validates :nombre, presence: true, allow_blank: false
-          validates :fechacreacion, presence: true, allow_blank: false
+          has_many :victimasjr, class_name: "Sivel2Sjr::Victimasjr", 
+            foreign_key: "id_estadocivil", validate: true
         end
 
         module ClassMethods

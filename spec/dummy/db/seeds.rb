@@ -1,26 +1,22 @@
 # encoding: UTF-8
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 
 connection = ActiveRecord::Base.connection();
 
-# De motor SIVeL generico
-l = File.readlines(Gem.loaded_specs['sivel2_gen'].full_gem_path +
-                   "/db/datos-basicas.sql")
+# Básicas de motor SIVeL genérico
+l = File.readlines(
+  Gem.loaded_specs['sivel2_gen'].full_gem_path + "/db/datos-basicas.sql"
+)
 connection.execute(l.join("\n"))
 
-# De motor SIVeL SJR
+# Cambios a básicas de SIVel genérico
+l = File.readlines("../../db/cambios-basicas.sql")
+connection.execute(l.join("\n"))
+
+# Nuevas basicas de motor SIVeL SJR
 l = File.readlines("../../db/datos-basicasn.sql")
 connection.execute(l.join("\n"));
 
-#connection.execute(IO.read("db/datos-basicas.sql"));
-
+# Usuario para primer ingreso
 connection.execute("INSERT INTO usuario 
 	(nusuario, email, encrypted_password, password, 
   fechacreacion, created_at, updated_at, rol) 
