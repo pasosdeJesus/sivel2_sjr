@@ -17,9 +17,9 @@ class RenombraAislasjr < ActiveRecord::Migration
     rename_table :derecho_respuesta, :sivel2_sjr_derecho_respuesta
     rename_table :desplazamiento, :sivel2_sjr_desplazamiento
     rename_table :etiqueta_usuario, :sivel2_sjr_etiqueta_usuario
+    rename_table :idioma, :sivel2_sjr_idioma
     rename_table :inclusion, :sivel2_sjr_inclusion
     rename_table :instanciader, :sivel2_sjr_instanciader
-    rename_table :maternidad, :sivel2_sjr_maternidad
     rename_table :mecanismoder, :sivel2_sjr_mecanismoder
     rename_table :modalidadtierra, :sivel2_sjr_modalidadtierra
     rename_table :motivoconsulta, :sivel2_sjr_motivoconsulta
