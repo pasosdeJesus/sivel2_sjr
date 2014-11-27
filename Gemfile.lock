@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: d2899dbf8c57c5edd4bbd903502ec734e98c1dc2
+  revision: d757936ad1cba3223099f5d2a5f91926bb37a244
   branch: aislado
   specs:
     sivel2_gen (2.0.a3)
@@ -135,7 +135,7 @@ GEM
     mini_portile (0.6.1)
     minitest (5.4.3)
     multi_json (1.10.1)
-    nokogiri (1.6.4.1)
+    nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     paperclip (4.2.0)

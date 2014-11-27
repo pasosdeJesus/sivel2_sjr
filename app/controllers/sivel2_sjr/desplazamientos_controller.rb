@@ -26,7 +26,7 @@ module Sivel2Sjr
           fex += 1
         end
         @desplazamiento.fechaexpulsion = fex
-        @desplazamiento.id_expulsion = Ubicacion.where(id_caso: cid).last.id
+        @desplazamiento.id_expulsion = Sivel2Gen::Ubicacion.where(id_caso: cid).last.id
         @desplazamiento.fechallegada = fex+1
         @desplazamiento.id_llegada = Sivel2Gen::Ubicacion.where(
           id_caso: cid).first.id

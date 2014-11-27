@@ -123,7 +123,7 @@ module Sivel2Sjr
           can :manage, Usuario
           can :manage, :tablasbasicas
           @@tablasbasicas.each do |t|
-            c = t.capitalize.constantize
+            c = Ability.tb_clase(t)
             can :manage, c
           end
         when Ability::ROLINV
@@ -135,7 +135,7 @@ module Sivel2Sjr
           can :manage, Usuario
           can :manage, :tablasbasicas
           @@tablasbasicas.each do |t|
-            c = t.capitalize.constantize
+            c = Ability.tb_clase(t)
             can :manage, c
           end
         end
