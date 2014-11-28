@@ -72,7 +72,6 @@ module Sivel2Sjr
 
     # Ver documentacion de este metodo en app/models/ability de sivel2_gen
     def initialize(usuario)
-      puts "decorator Ability en sivel2_sjr_aislado"
       if !usuario || usuario.fechadeshabilitacion
         return
       end
