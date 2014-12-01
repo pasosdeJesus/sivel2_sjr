@@ -62,8 +62,8 @@ gem "tzinfo"
 gem "tzinfo-data"
 
 # Motor de SIVeL 2
-gem 'sivel2_gen', github: 'pasosdeJesus/sivel2_gen', branch: 'aislado'
-#gem 'sivel2_gen', path: '../sivel2_gen_aislado'
+gem 'sivel2_gen', github: 'pasosdeJesus/sivel2_gen'
+#gem 'sivel2_gen', path: '../sivel2_gen'
 
 group :doc do
   # Genera documentación en doc/api con bundle exec rake doc:rails
