@@ -29,6 +29,7 @@ class RenombraAislasjr < ActiveRecord::Migration
     rename_table :progestado, :sivel2_sjr_progestado
     rename_table :progestado_respuesta, :sivel2_sjr_progestado_respuesta
     rename_table :proteccion, :sivel2_sjr_proteccion
+    rename_table :regimensalud, :sivel2_sjr_regimensalud
     rename_table :resagresion, :sivel2_sjr_resagresion
     rename_table :respuesta, :sivel2_sjr_respuesta
     rename_table :rolfamilia, :sivel2_sjr_rolfamilia

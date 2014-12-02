@@ -1928,21 +1928,6 @@ ALTER SEQUENCE sivel2_gen_rangoedadac_id_seq OWNED BY sivel2_gen_rangoedadac.id;
 
 
 --
--- Name: sivel2_gen_regimensalud; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_gen_regimensalud (
-    id integer DEFAULT nextval('regimensalud_seq'::regclass) NOT NULL,
-    nombre character varying(50) NOT NULL,
-    fechacreacion date DEFAULT '2013-05-13'::date NOT NULL,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    CONSTRAINT regimensalud_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
 -- Name: sivel2_gen_region; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2685,6 +2670,21 @@ CREATE SEQUENCE sivel2_sjr_refugio_id_seq
 --
 
 ALTER SEQUENCE sivel2_sjr_refugio_id_seq OWNED BY sivel2_sjr_refugio.id;
+
+
+--
+-- Name: sivel2_sjr_regimensalud; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sivel2_sjr_regimensalud (
+    id integer DEFAULT nextval('regimensalud_seq'::regclass) NOT NULL,
+    nombre character varying(50) NOT NULL,
+    fechacreacion date DEFAULT '2013-05-13'::date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    CONSTRAINT regimensalud_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
 
 
 --
@@ -3723,7 +3723,7 @@ ALTER TABLE ONLY sivel2_sjr_refugio
 -- Name: regimensalud_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY sivel2_gen_regimensalud
+ALTER TABLE ONLY sivel2_sjr_regimensalud
     ADD CONSTRAINT regimensalud_pkey PRIMARY KEY (id);
 
 
@@ -5258,7 +5258,7 @@ ALTER TABLE ONLY sivel2_sjr_victimasjr
 --
 
 ALTER TABLE ONLY sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_regimensalud_fkey FOREIGN KEY (id_regimensalud) REFERENCES sivel2_gen_regimensalud(id);
+    ADD CONSTRAINT victimasjr_id_regimensalud_fkey FOREIGN KEY (id_regimensalud) REFERENCES sivel2_sjr_regimensalud(id);
 
 
 --
