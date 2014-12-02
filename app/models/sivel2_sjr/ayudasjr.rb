@@ -8,8 +8,5 @@ module Sivel2Sjr
       foreign_key: "id_ayudasjr", validate: true, dependent: :destroy
     has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
       :through => :ayudasjr_respuesta
-  
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
   end
 end

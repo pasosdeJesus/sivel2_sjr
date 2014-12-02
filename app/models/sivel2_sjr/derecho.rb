@@ -9,8 +9,5 @@ module Sivel2Sjr
       :through => :derecho_respuesta
   	has_many :derecho_procesosjr, class_name: "Sivel2Sjr::DerechoProcesosjr", 
       foreign_key: "id_derecho", validate: true
-  
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
   end
 end

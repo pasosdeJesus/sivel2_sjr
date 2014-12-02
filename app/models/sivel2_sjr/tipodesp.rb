@@ -5,8 +5,5 @@ module Sivel2Sjr
   
   	has_many :desplazamiento, class_name: "Sivel2Sjr::Desplazamiento", 
       foreign_key: "id_tipodesp", validate: true
-  
-    validates_presence_of :nombre
-    validates_presence_of :fechacreacion
   end
 end

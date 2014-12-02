@@ -5,8 +5,5 @@ module Sivel2Sjr
   
   	has_many :casosjr, class_name: "Sivel2Sjr::Casosjr", 
       foreign_key: "id_statusmigratorio", validate: true
-  
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
   end
 end

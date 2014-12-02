@@ -4,13 +4,11 @@ module Sivel2Sjr
     include Sivel2Gen::Basica
   
     belongs_to :derecho, class_name: "Sivel2Sjr::Derecho"
+
   	has_many :progestado_respuesta, 
       class_name: "Sivel2Sjr::ProgestadoRespuesta",
       foreign_key: "id_progestado", validate: true, dependent: :destroy
     has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
       :through => :progestado_respuesta
-  
-    validates :nombre, presence: true, allow_blank: false
-    validates :fechacreacion, presence: true, allow_blank: false
   end
 end
