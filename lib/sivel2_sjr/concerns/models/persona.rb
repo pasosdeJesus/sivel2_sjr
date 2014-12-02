@@ -15,11 +15,6 @@ module Sivel2Sjr
 
           belongs_to :nacional, class_name: "Sivel2Gen::Pais", 
             foreign_key: "nacionalde", validate: true
-
-          validates :anionac, numericality: {greater_than: 1900}
-          validates :mesnac, numericality: {greater_than: 0, less_than: 13}
-          validates :dianac, numericality: {greater_than: 0, less_than: 32}
-
         end
 
         module ClassMethods

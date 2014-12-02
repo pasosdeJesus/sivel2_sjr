@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 6b02ffc657e6f2d1a6e47b009fd9ff49e75c86c4
+  revision: d4dc5d903883a30b11ac7b4e35a6cc87c9f67a9d
   specs:
     sivel2_gen (2.0.a3)
       devise
@@ -68,7 +68,7 @@ GEM
       sass (~> 3.2)
     builder (3.2.2)
     camertron-eprun (1.1.0)
-    cancan (1.6.10)
+    cancancan (1.9.2)
     cldr-plurals-runtime-rb (1.0.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -262,7 +262,7 @@ DEPENDENCIES
   bcrypt
   bootstrap-datepicker-rails
   bootstrap-sass
-  cancan
+  cancancan
   cocoon!
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)

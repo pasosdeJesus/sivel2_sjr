@@ -30,7 +30,6 @@ module Sivel2Sjr
 #        require_dependency(c)
 #      end
       Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
-        puts "app decorator #{c}"
         require_dependency(c)
       end
     end
