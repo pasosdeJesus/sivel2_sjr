@@ -43,7 +43,7 @@ module Sivel2Sjr
       ['Sivel2Gen', 'clase'],
       ['Sivel2Gen', 'intervalo'], ['Sivel2Gen', 'filiacion'], 
       ['Sivel2Gen', 'organizacion'], ['Sivel2Gen', 'sectorsocial'],
-      ['Sivel2Gen', 'vinculoestado'], ['Sivel2Gen', 'regimensalud'],
+      ['Sivel2Gen', 'vinculoestado'], ['Sivel2Sjr', 'regimensalud'],
       ['Sivel2Sjr', 'acreditacion'], ['Sivel2Sjr', 'clasifdesp'],
       ['Sivel2Sjr', 'declaroante'], ['Sivel2Sjr', 'inclusion'],
       ['Sivel2Sjr', 'modalidadtierra'], ['Sivel2Sjr', 'tipodesp'],
