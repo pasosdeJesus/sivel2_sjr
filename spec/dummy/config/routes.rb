@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
   devise_scope :usuario do
