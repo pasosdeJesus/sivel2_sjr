@@ -27,6 +27,7 @@ module Sivel2Sjr
       end
       @numconscaso = @conscaso.size
       @conscaso = @conscaso.order(fecharec: :desc).paginate(:page => params[:pagina], per_page: 20)
+      render layout: 'application'
     end
 
     # GET /casos/1
@@ -42,6 +43,7 @@ module Sivel2Sjr
           raise CanCan::AccessDenied.new("Invitado no autorizado!", :read, Caso)
         end
       end
+      render layout: 'application'
     end
 
     # GET /casos/new
@@ -76,6 +78,7 @@ module Sivel2Sjr
       cu.id_caso = @caso.id
       cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
       cu.save!(validate: false)
+      render layout: 'application'
     end
 
     def lista
@@ -112,6 +115,7 @@ module Sivel2Sjr
 
     # GET /casos/1/edit
     def edit
+      render layout: 'application'
     end
 
     # POST /casos
@@ -124,10 +128,14 @@ module Sivel2Sjr
       respond_to do |format|
         if @caso.save
           format.html { redirect_to @caso, notice: 'Caso creado.' }
-          format.json { render action: 'show', status: :created, location: @caso }
+          format.json { 
+            render action: 'show', status: :created, location: @caso 
+          }
         else
-          format.html { render action: 'new' }
-          format.json { render json: @caso.errors, status: :unprocessable_entity }
+          format.html { render action: 'new', layout: 'application' }
+          format.json { 
+            render json: @caso.errors, status: :unprocessable_entity 
+          }
         end
       end
     end
@@ -157,7 +165,7 @@ module Sivel2Sjr
           format.json { head :no_content }
           format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
         else
-          format.html { render action: 'edit' }
+          format.html { render action: 'edit', layout: 'application' }
           format.json { render json: @caso.errors, status: :unprocessable_entity }
           format.js   { render action: 'edit' }
         end
