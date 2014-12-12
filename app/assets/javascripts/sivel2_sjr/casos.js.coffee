@@ -429,4 +429,19 @@ $(document).on 'ready page:load',  ->
   #$('body').on('click', 'a.disabled', (e) -> 
   #  e.preventDefault() )
  
+  # Envia formulario al presionar enlaces con clase fichacambia 
+  # con más de 5 segundos de diferencia entre un click y el siguiente
+  $(document).on('click', 'a.fichacambia[href^="#"]', (e) ->
+    tn = Date.now()
+    d = -1
+    if (root.tfichacambia) 
+      d = (tn - root.tfichacambia)/1000
+    if (d == -1 || d>5) 
+      f=$('form')
+      a=f.attr('action')
+      $.post(a, f.serialize())
+      root.tfichacambia = Date.now()
+    return
+  )
+ 
   return

@@ -78,7 +78,11 @@ module Sivel2Sjr
       cu.id_caso = @caso.id
       cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
       cu.save!(validate: false)
-      render layout: 'application'
+      if session[:capturacaso_acordeon] 
+        render 'newv', layout: 'application'
+      else
+        render 'new', layout: 'application'
+      end
     end
 
     def lista
@@ -115,7 +119,11 @@ module Sivel2Sjr
 
     # GET /casos/1/edit
     def edit
-      render layout: 'application'
+      if session[:capturacaso_acordeon] 
+        render 'editv', layout: 'application'
+      else
+        render 'edit', layout: 'application'
+      end
     end
 
     # POST /casos
