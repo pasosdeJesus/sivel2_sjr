@@ -9,6 +9,13 @@ module Sivel2Sjr
         "Sivel2Sjr::Ayudasjr"
       end
 
+      def atributos_index
+        [
+          "id",  "nombre", "derecho_id",
+          "fechacreacion", "fechadeshabilitacion"
+        ]
+      end
+
       # Use callbacks to share common setup or constraints between actions.
       def set_ayudasjr
         @basica = Sivel2Sjr::Ayudasjr.find(params[:id])
