@@ -36,12 +36,21 @@ es:
       "sivel2_sjr/maternidad":
         Maternidad: Estado Maternidad
         Maternidades: Estados Maternidad
+      "sivel2_sjr/motivosjr":
+        Motivosjr: Servicio/Asesoría del SJR
+        Motivossjr: Servicios y Asesorías del SJR
+      "sivel2_sjr/progestado":
+        Progestado: Programa del Estado
+        Progsestado: Programas del Estado
       "sivel2_sjr/proteccion":
         Proteccion: Necesidad de Protección Internacional
         Protecciones: Necesidades de Protección Internacional
       "sivel2_sjr/presponsable":
         Presponsable: Agente de Persecución
         Presponsables: Agentes de Persecución
+      "sivel2_sjr/regimensalud":
+        Regimensalud: Régimen Salud
+        Regimenessalud: Régimenes Salud
       "sivel2_sjr/rolfamilia":
         Rolfamilia: Rol en Familia
         Rolesfamilia: Roles en Familia
