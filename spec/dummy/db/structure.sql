@@ -2223,6 +2223,16 @@ CREATE TABLE sivel2_sjr_ayudaestado (
 
 
 --
+-- Name: sivel2_sjr_ayudaestado_derecho; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sivel2_sjr_ayudaestado_derecho (
+    sivel2_sjr_ayudaestado_id integer NOT NULL,
+    sivel2_sjr_derecho_id integer NOT NULL
+);
+
+
+--
 -- Name: sivel2_sjr_ayudaestado_respuesta; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2246,6 +2256,16 @@ CREATE TABLE sivel2_sjr_ayudasjr (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     CONSTRAINT ayudasjr_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
+-- Name: sivel2_sjr_ayudasjr_derecho; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sivel2_sjr_ayudasjr_derecho (
+    sivel2_sjr_ayudasjr_id integer NOT NULL,
+    sivel2_sjr_derecho_id integer NOT NULL
 );
 
 
@@ -2567,6 +2587,16 @@ CREATE TABLE sivel2_sjr_motivosjr (
 
 
 --
+-- Name: sivel2_sjr_motivosjr_derecho; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sivel2_sjr_motivosjr_derecho (
+    sivel2_sjr_motivosjr_id integer NOT NULL,
+    sivel2_sjr_derecho_id integer NOT NULL
+);
+
+
+--
 -- Name: sivel2_sjr_motivosjr_respuesta; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2605,6 +2635,16 @@ CREATE TABLE sivel2_sjr_progestado (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     CONSTRAINT progestado_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
+-- Name: sivel2_sjr_progestado_derecho; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sivel2_sjr_progestado_derecho (
+    sivel2_sjr_progestado_id integer NOT NULL,
+    sivel2_sjr_derecho_id integer NOT NULL
 );
 
 
@@ -5404,4 +5444,6 @@ INSERT INTO schema_migrations (version) VALUES ('20141111203313');
 INSERT INTO schema_migrations (version) VALUES ('20141112111129');
 
 INSERT INTO schema_migrations (version) VALUES ('20141126085907');
+
+INSERT INTO schema_migrations (version) VALUES ('20141222174237');
 
