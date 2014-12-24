@@ -15,7 +15,7 @@ sistema de información particular de cada país.
 Usar junto con sivel2_gen
 
 ### Requerimientos
-* Ruby version >= 1.9
+* Ruby version >= 2.1
 * PostgreSQL >= 9.3
 * Recomendado sobre adJ 5.5 (que incluye todos los componentes mencionados).  
   Las siguientes instrucciones suponen que opera en este ambiente.
@@ -23,7 +23,7 @@ Usar junto con sivel2_gen
 ## Pruebas
 Se han implementado algunas pruebas con RSpec a modelos y pruebas de regresión.
 
-* Instale gemas requeridas (como Rails 4.1) con:
+* Instale gemas requeridas (como Rails 4.2) con:
 ``` sh
   cd spec/dummy
   sudo bundle install
