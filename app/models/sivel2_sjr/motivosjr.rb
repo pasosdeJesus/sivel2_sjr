@@ -10,7 +10,7 @@ module Sivel2Sjr
 
     has_many :motivosjr_derecho, 
       class_name: "Sivel2Sjr::MotivosjrDerecho", 
-      foreign_key: "id_motivosjr", validate: true, dependent: :destroy
+      foreign_key: "motivosjr_id", validate: true, dependent: :destroy
     has_many :derecho, class_name: "Sivel2Sjr::Derecho", 
       :through => :motivosjr_derecho
     accepts_nested_attributes_for :motivosjr_derecho, reject_if: :all_blank, 

@@ -3,8 +3,6 @@ module Sivel2Sjr
   class Progestado < ActiveRecord::Base
     include Sivel2Gen::Basica
   
-    belongs_to :derecho, class_name: "Sivel2Sjr::Derecho"
-
   	has_many :progestado_respuesta, 
       class_name: "Sivel2Sjr::ProgestadoRespuesta",
       foreign_key: "id_progestado", validate: true, dependent: :destroy
@@ -13,7 +11,7 @@ module Sivel2Sjr
 
     has_many :progestado_derecho, 
       class_name: "Sivel2Sjr::ProgestadoDerecho", 
-      foreign_key: "id_progestado", validate: true, dependent: :destroy
+      foreign_key: "progestado_id", validate: true, dependent: :destroy
     has_many :derecho, class_name: "Sivel2Sjr::Derecho", 
       :through => :progestado_derecho
     accepts_nested_attributes_for :progestado_derecho, reject_if: :all_blank, 

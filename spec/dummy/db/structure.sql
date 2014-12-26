@@ -2264,8 +2264,8 @@ CREATE TABLE sivel2_sjr_ayudasjr (
 --
 
 CREATE TABLE sivel2_sjr_ayudasjr_derecho (
-    sivel2_sjr_ayudasjr_id integer NOT NULL,
-    sivel2_sjr_derecho_id integer NOT NULL
+    ayudasjr_id integer,
+    derecho_id integer
 );
 
 
@@ -2591,8 +2591,8 @@ CREATE TABLE sivel2_sjr_motivosjr (
 --
 
 CREATE TABLE sivel2_sjr_motivosjr_derecho (
-    sivel2_sjr_motivosjr_id integer NOT NULL,
-    sivel2_sjr_derecho_id integer NOT NULL
+    motivosjr_id integer,
+    derecho_id integer
 );
 
 
@@ -2643,8 +2643,8 @@ CREATE TABLE sivel2_sjr_progestado (
 --
 
 CREATE TABLE sivel2_sjr_progestado_derecho (
-    sivel2_sjr_progestado_id integer NOT NULL,
-    sivel2_sjr_derecho_id integer NOT NULL
+    progestado_id integer,
+    derecho_id integer
 );
 
 
@@ -4934,6 +4934,54 @@ ALTER TABLE ONLY sivel2_sjr_desplazamiento
 
 
 --
+-- Name: fk_rails_02f5fb9150; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_motivosjr_derecho
+    ADD CONSTRAINT fk_rails_02f5fb9150 FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
+
+
+--
+-- Name: fk_rails_74442b8f19; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_motivosjr_derecho
+    ADD CONSTRAINT fk_rails_74442b8f19 FOREIGN KEY (motivosjr_id) REFERENCES sivel2_sjr_motivosjr(id);
+
+
+--
+-- Name: fk_rails_93fdde2014; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_ayudasjr_derecho
+    ADD CONSTRAINT fk_rails_93fdde2014 FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
+
+
+--
+-- Name: fk_rails_cff2ad554d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_progestado_derecho
+    ADD CONSTRAINT fk_rails_cff2ad554d FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
+
+
+--
+-- Name: fk_rails_e645a3e73c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_ayudasjr_derecho
+    ADD CONSTRAINT fk_rails_e645a3e73c FOREIGN KEY (ayudasjr_id) REFERENCES sivel2_sjr_ayudasjr(id);
+
+
+--
+-- Name: fk_rails_e8743fd8f6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_progestado_derecho
+    ADD CONSTRAINT fk_rails_e8743fd8f6 FOREIGN KEY (progestado_id) REFERENCES sivel2_sjr_progestado(id);
+
+
+--
 -- Name: motivosjr_respuesta_id_motivosjr_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5446,4 +5494,12 @@ INSERT INTO schema_migrations (version) VALUES ('20141112111129');
 INSERT INTO schema_migrations (version) VALUES ('20141126085907');
 
 INSERT INTO schema_migrations (version) VALUES ('20141222174237');
+
+INSERT INTO schema_migrations (version) VALUES ('20141222174247');
+
+INSERT INTO schema_migrations (version) VALUES ('20141222174257');
+
+INSERT INTO schema_migrations (version) VALUES ('20141222174267');
+
+INSERT INTO schema_migrations (version) VALUES ('20141225174739');
 
