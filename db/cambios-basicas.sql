@@ -55,8 +55,3 @@ INSERT INTO sivel2_gen_etiqueta (id, nombre, observaciones, fechacreacion, fecha
 INSERT INTO sivel2_gen_etiqueta (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (12, 'COMPARTIR CON SJR LATINOAMÉRICA', '', '2001-01-01', NULL, NULL, NULL);
 INSERT INTO sivel2_gen_etiqueta (id, nombre, observaciones, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (13, 'COMPARTIR CON BANCO DE DATOS CINEP COLOMBIA', '', '2001-01-01', NULL, NULL, NULL);
 
-INSERT INTO sivel2_gen_regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (100, 'ALTO APURE', '2014-01-21', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (101, 'ZULIA', '2014-01-21', NULL, NULL, NULL);
-INSERT INTO sivel2_gen_regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (102, 'TÁCHIRA', '2014-01-21', NULL, NULL, NULL);
-
-

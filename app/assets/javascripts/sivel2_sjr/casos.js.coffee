@@ -443,5 +443,31 @@ $(document).on 'ready page:load',  ->
       root.tfichacambia = Date.now()
     return
   )
+
+  # Agrega actos  
+  $(document).on('click', 'a.agregaractos[href^="#"]', (e) ->
+    e.preventDefault()
+    tn = Date.now()
+    d = -1
+    if (root.tagregaactos) 
+      d = (tn - root.tagregaactos)/1000
+    if (d == -1 || d>5) 
+      f=$('form')
+      a='/actos/agregar'
+      $.post(a, f.serialize())
+      root.tagregaactos= Date.now()
+    return
+  )
+
+  # Elimina acto
+  $(document).on('click', 'a.eliminaracto[href^="#"]', (e) ->
+    e.preventDefault()
+    f = $('form')
+    d = "id_acto=" + $(this).attr('data-eliminaracto')
+    a = '/actos/eliminar'
+    $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
+      alert("Error con ajax " + texto)
+    )
+  )
  
   return

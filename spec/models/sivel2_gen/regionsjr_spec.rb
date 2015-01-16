@@ -18,8 +18,6 @@ module Sivel2Gen
     it "existente" do
       regionsjr = Regionsjr.where(id: 1).take
       expect(regionsjr.nombre).to eq("SIN INFORMACIÓN")
-      regionsjr = Regionsjr.where(id: 100).take
-      expect(regionsjr.id).to eq(100)
     end
   end
 end
