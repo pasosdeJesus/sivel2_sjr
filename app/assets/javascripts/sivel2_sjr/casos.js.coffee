@@ -13,6 +13,58 @@ eliminaPendientes = (elempe) ->
     l = e.find('.remove_fields')
     _cocoon_remove_fields(l)
 
+# Actualiza cuadro de selección con presuntos responsables
+# s es un select jquery
+actualiza_presponsables = (s) ->
+  sel = s.val()
+  nh = ''
+  lcg = $('#presponsable .control-group[style!="display: none;"]')
+  lcg.each((k, v) ->
+    id = $(v).find('select[data-actualiza=presponsable]').val()
+    nh = nh + "<option value='" + id + "'"
+    if id == sel 
+      nh = nh + ' selected'
+    tx = $(v).find('select[data-actualiza=presponsable] option[value=' + id + ']').text()
+    nh = nh + ">" + tx + "</option>" )
+  s.html(nh)
+
+# Actualiza cuadro de selección con víctimas
+# s es un select jquery
+actualiza_victimas = (s) ->
+  sel =s.val()
+  nh = ''
+  c = $('#contacto')
+  lcg = c.add('#victima .control-group[style!="display: none;"]')
+  lcg.each((k, v) ->
+    id = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)).find('input').val()
+    nh = nh + "<option value='" + id + "'"
+    if id == sel 
+      nh = nh + ' selected'
+    # texto: nombres apellidos
+    nom = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_nombres/)).find('input').val()
+    ap = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_apellidos/)).find('input').val()
+    tx = (nom + " " + ap).trim()
+    nh = nh + ">" + tx + "</option>" )
+  s.html(nh)
+
+# Actualiza cuadro de selección con desplazamientos
+# s es un select jquery
+actualiza_desplazamientos = (s) ->
+    sel = s.val()
+    nh = '<option value=""></option>'
+    lcg = $('#desplazamiento .control-group[style!="display: none;"]')
+    lcg.each((k, v) ->
+      # id: fechaexpulsion
+      tx = $(v).find('.caso_desplazamiento_id input').val()
+      id = $(v).find('input[id^=caso_desplazamiento_attributes_][id$=_id]').val()
+      nh = nh + "<option value='" + id + "'"
+      if id == sel 
+        nh = nh + ' selected'
+      # texto: fechaexpulsion
+      tx = $(v).find('.caso_desplazamiento_fechaexpulsion input').val()
+      nh = nh + ">" + tx + "</option>" )
+    s.html(nh)
+
 
 $(document).on 'ready page:load',  -> 
 
@@ -28,56 +80,19 @@ $(document).on 'ready page:load',  ->
   )
 
   # En actos, lista de presuntos responsables se calcula
-  $(document).on('focusin', 'select[id^=caso_acto_attributes_][id$=id_presponsable]', (e) ->
+  $(document).on('focusin', 'select[id^=caso_acto_][id$=id_presponsable]', (e) ->
     #debugger
-    sel = $(this).val()
-    nh = ''
-    lcg = $('#presponsable .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      id = $(v).find('select[data-actualiza=presponsable]').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      tx = $(v).find('select[data-actualiza=presponsable] option[value=' + id + ']').text()
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
+    actualiza_presponsables($(this))
   )
 
   # En actos, lista de víctimas se cálcula
-  $(document).on('focusin', 'select[id^=caso_acto_attributes_][id$=id_persona]', (e) ->
-    sel = $(this).val()
-    nh = ''
-    c = $('#contacto')
-    lcg = c.add('#victima .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      id = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_id/)).find('input').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      # texto: nombres apellidos
-      nom = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_nombres/)).find('input').val()
-      ap = $(v).find('div').filter( () -> this.attributes.class.value.match(/caso_victima[_0-9]*persona_apellidos/)).find('input').val()
-      tx = (nom + " " + ap).trim()
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
+  $(document).on('focusin', 'select[id^=caso_acto_][id$=id_persona]', (e) ->
+    actualiza_victimas($(this))
   )
 
   # En actos, lista de desplazamientos se cálcula
   $(document).on('focusin', 'select[id^=caso_acto_attributes_][id$=desplazamiento_id]', (e) ->
-    sel = $(this).val()
-    nh = '<option value=""></option>'
-    lcg = $('#desplazamiento .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      # id: fechaexpulsion
-      tx = $(v).find('.caso_desplazamiento_id input').val()
-      id = $(v).find('input[id^=caso_desplazamiento_attributes_][id$=_id]').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      # texto: fechaexpulsion
-      tx = $(v).find('.caso_desplazamiento_fechaexpulsion input').val()
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
+    actualiza_desplazamientos($(this))
   )
 
   # En sesiones de atención, lista de desplazamientos se cálcula
@@ -440,6 +455,8 @@ $(document).on 'ready page:load',  ->
       f=$('form')
       a=f.attr('action')
       $.post(a, f.serialize())
+      actualiza_presponsables($('#caso_acto_id_presponsable'))
+      actualiza_victimas($('#caso_acto_id_persona'))
       root.tfichacambia = Date.now()
     return
   )
