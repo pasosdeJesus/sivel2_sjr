@@ -4,6 +4,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 
+#//= require jquery-ui/autocomplete
 #//= require cocoon
 #//= require sivel2_gen/geo
 
@@ -65,7 +66,31 @@ actualiza_desplazamientos = (s) ->
       nh = nh + ">" + tx + "</option>" )
     s.html(nh)
 
+  
+# AUTOCOMPLETACIÓN PERSONA
+# Elije una persona en autocompletación
+selPersona = (label, id, id_victima, divcp) ->
+  cs = id.split(";")
+  id_persona = cs[0]
+  pl = []
+  ini = 0
+  for i in [0..cs.length] by 1
+     t = parseInt(cs[i])
+     pl[i] = label.substring(ini, ini + t)
+     ini = ini + t + 1
+  # pl[1] cnom, pl[2] es cape, pl[3] es cdoc
+  d = "id_victima=" + id_victima
+  d += "&id_persona=" + id_persona
+  a = '/personas/remplazar'
+  $.ajax(url: a, data: d, dataType: "html").fail( (jqXHR, texto) ->
+    alert("Error con ajax " + texto)
+  ).done( (e, r) ->
+    divcp.html(e)
+    return
+  )
 
+# Activa completación por nombre, apellido e identificación de persona
+  
 $(document).on 'ready page:load',  -> 
 
   root = exports ? this
@@ -78,6 +103,28 @@ $(document).on 'ready page:load',  ->
       language: 'es'
     })
   )
+
+  $(document).on('focusin', 
+  'input[id^=caso_victima_attributes][id$=persona_attributes_nombres]', 
+  (e) ->
+    #debugger
+    cnom = $(this).attr('id');
+    v = $("#" + cnom).data('autocompleta')
+    if (v != 1) 
+      $("#" + cnom).data('autocompleta', 1)
+      idvictima = $(this).parent().parent().parent().find('.caso_victima_id').find('input').val()
+      divcp = $(this).parent().parent().parent().find('.campos_persona')
+      $("#" + cnom).autocomplete({
+        source: "/personas.json",
+        minLength: 2,
+        select: ( event, ui ) -> 
+          if (ui.item) 
+            selPersona(ui.item.value, ui.item.id, idvictima, divcp)
+            event.stopPropagation()
+            event.preventDefault()
+      })
+  )
+
 
   # En actos, lista de presuntos responsables se calcula
   $(document).on('focusin', 'select[id^=caso_acto_][id$=id_presponsable]', (e) ->
@@ -486,5 +533,6 @@ $(document).on 'ready page:load',  ->
       alert("Error con ajax " + texto)
     )
   )
+
  
   return
