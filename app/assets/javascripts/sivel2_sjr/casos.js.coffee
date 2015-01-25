@@ -110,7 +110,7 @@ $(document).on 'ready page:load',  ->
     #debugger
     cnom = $(this).attr('id');
     v = $("#" + cnom).data('autocompleta')
-    if (v != 1) 
+    if (v != 1 && v != "no") 
       $("#" + cnom).data('autocompleta', 1)
       idvictima = $(this).parent().parent().parent().find('.caso_victima_id').find('input').val()
       divcp = $(this).parent().parent().parent().find('.campos_persona')
