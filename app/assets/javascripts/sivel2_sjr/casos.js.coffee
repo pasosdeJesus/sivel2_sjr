@@ -44,6 +44,12 @@
       idd = $(v).find('.caso_ubicacion_departamento select').val()
       if (idd > 0)
         tx = tx + " / " + $(v).find('.caso_ubicacion_departamento select option[value=' + idd + ']').text()
+        idm = $(v).find('.caso_ubicacion_municipio select').val()
+        if (idm > 0)
+          tx = tx + " / " + $(v).find('.caso_ubicacion_municipio select option[value=' + idm + ']').text()
+          idc = $(v).find('.caso_ubicacion_clase select').val()
+          if (idc > 0)
+            tx = tx + " / " + $(v).find('.caso_ubicacion_clase select option[value=' + idc + ']').text()
       nh = nh + ">" + tx + "</option>" )
     s.html(nh)
 
@@ -59,22 +65,22 @@ $(document).on 'ready page:load',  ->
 
   # En desplazamientos, lista de sitios de expulsión se cálcula
   $(document).on('focusin', 'select[id^=caso_desplazamiento_attributes_][id$=id_expulsion]', (e) ->
-    @actualiza_ubicaciones($(this))
+    actualiza_ubicaciones($(this))
   )
 
   # En desplazamientos, lista de sitios de llegada se cálcula
   $(document).on('focusin', 'select[id^=caso_desplazamiento_attributes_][id$=id_llegada]', (e) ->
-    @actualiza_ubicaciones($(this))
+    actualiza_ubicaciones($(this))
   )
 
   # En refugios, lista de sitios de salida se cálcula
   $(document).on('focusin', 'select[id^=caso_casosjr_attributes_][id$=id_salida]', (e) ->
-    @actualiza_ubicaciones($(this))
+    actualiza_ubicaciones($(this))
   )
 
   # En refugio, lista de sitios de llegada se cálcula
   $(document).on('focusin', 'select[id^=caso_casosjr_attributes_][id$=id_llegada]', (e) ->
-    @actualiza_ubicaciones($(this))
+    actualiza_ubicaciones($(this))
   )
 
   # Antes de eliminar ubicacion confirmar si se eliminan dependientes
