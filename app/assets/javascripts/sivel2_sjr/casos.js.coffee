@@ -9,6 +9,7 @@
 #//= require sivel2_gen/geo
 #//= require sivel2_gen/libcasos
 
+# Regenera lista de selección de desplazamientos
 # s es un select jquery
 @actualiza_desplazamientos = (s) ->
     sel = s.val()
@@ -26,244 +27,56 @@
       nh = nh + ">" + tx + "</option>" )
     s.html(nh)
 
-  
-# Activa completación por nombre, apellido e identificación de persona
+# Regenera lista de selección de ubicaciones
+# s es un select jquery
+@actualiza_ubicaciones = (s) ->
+    sel = s.val()
+    nh = ''
+    lcg = $('#ubicacion .control-group[style!="display: none;"]')
+    lcg.each((k, v) ->
+      # id: ubicacion
+      id = $(v).find('.caso_ubicacion_id input').val()
+      nh = nh + "<option value='" + id + "'"
+      if id == sel 
+        nh = nh + ' selected'
+      idp = $(v).find('.caso_ubicacion_pais select').val()
+      tx = $(v).find('.caso_ubicacion_pais select option[value=' + idp + ']').text()
+      idd = $(v).find('.caso_ubicacion_departamento select').val()
+      if (idd > 0)
+        tx = tx + " / " + $(v).find('.caso_ubicacion_departamento select option[value=' + idd + ']').text()
+      nh = nh + ">" + tx + "</option>" )
+    s.html(nh)
+
   
 $(document).on 'ready page:load',  -> 
-
   root = exports ? this
-
-  $(document).on('cocoon:after-insert', (e) ->
-    $('[data-behaviour~=datepicker]').datepicker({
-      format: 'yyyy-mm-dd'
-      autoclose: true
-      todayHighlight: true
-      language: 'es'
-    })
-  )
-
-  $(document).on('focusin', 
-  'input[id^=caso_victima_attributes][id$=persona_attributes_nombres]', 
-  (e) ->
-    #debugger
-    cnom = $(this).attr('id');
-    v = $("#" + cnom).data('autocompleta')
-    if (v != 1 && v != "no") 
-      $("#" + cnom).data('autocompleta', 1)
-      idvictima = $(this).parent().parent().parent().find('.caso_victima_id').find('input').val()
-      divcp = $(this).parent().parent().parent().find('.campos_persona')
-      $("#" + cnom).autocomplete({
-        source: "/personas.json",
-        minLength: 2,
-        select: ( event, ui ) -> 
-          if (ui.item) 
-            selPersona(ui.item.value, ui.item.id, idvictima, divcp)
-            event.stopPropagation()
-            event.preventDefault()
-      })
-  )
-
-
-  # En actos, lista de presuntos responsables se calcula
-  $(document).on('focusin', 'select[id^=caso_acto_][id$=id_presponsable]', (e) ->
-    #debugger
-    actualiza_presponsables($(this))
-  )
-
-  # En actos, lista de víctimas se cálcula
-  $(document).on('focusin', 'select[id^=caso_acto_][id$=id_persona]', (e) ->
-    actualiza_victimas($(this))
-  )
+  prepara_eventos_comunes(root, 'antecedentes/causas')
 
   # En actos, lista de desplazamientos se cálcula
   $(document).on('focusin', 'select[id^=caso_acto_attributes_][id$=desplazamiento_id]', (e) ->
     actualiza_desplazamientos($(this))
   )
 
-  # En sesiones de atención, lista de desplazamientos se cálcula
-  $(document).on('focusin', 'select[id^=caso_respuesta_attributes_][id$=fechaexpulsion]', (e) ->
-    sel = $(this).val()
-    nh = ''
-    lcg = $('#desplazamiento .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      # id: fechaexpulsion
-      id = $(v).find('.caso_desplazamiento_fechaexpulsion input').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      # texto: fechaexpulsion
-      tx = id
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
-  )
-
-
   # En desplazamientos, lista de sitios de expulsión se cálcula
   $(document).on('focusin', 'select[id^=caso_desplazamiento_attributes_][id$=id_expulsion]', (e) ->
-    sel = $(this).val()
-    nh = ''
-    lcg = $('#ubicacion .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      # id: ubicacion
-      id = $(v).find('.caso_ubicacion_id input').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      idp = $(v).find('.caso_ubicacion_pais select').val()
-      tx = $(v).find('.caso_ubicacion_pais select option[value=' + idp + ']').text()
-      idd = $(v).find('.caso_ubicacion_departamento select').val()
-      if (idd > 0)
-        tx = tx + " / " + $(v).find('.caso_ubicacion_departamento select option[value=' + idd + ']').text()
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
+    @actualiza_ubicaciones($(this))
   )
 
   # En desplazamientos, lista de sitios de llegada se cálcula
   $(document).on('focusin', 'select[id^=caso_desplazamiento_attributes_][id$=id_llegada]', (e) ->
-    sel = $(this).val()
-    nh = ''
-    lcg = $('#ubicacion .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      # id: ubicacion
-      id = $(v).find('.caso_ubicacion_id input').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      idp = $(v).find('.caso_ubicacion_pais select').val()
-      tx = $(v).find('.caso_ubicacion_pais select option[value=' + idp + ']').text()
-      idd = $(v).find('.caso_ubicacion_departamento select').val()
-      if (idd > 0)
-        tx = tx + " / " + $(v).find('.caso_ubicacion_departamento select option[value=' + idd + ']').text()
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
+    @actualiza_ubicaciones($(this))
   )
 
   # En refugios, lista de sitios de salida se cálcula
   $(document).on('focusin', 'select[id^=caso_casosjr_attributes_][id$=id_salida]', (e) ->
-    sel = $(this).val()
-    nh = ''
-    lcg = $('#ubicacion .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      id = $(v).find('.caso_ubicacion_id input').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      idp = $(v).find('.caso_ubicacion_pais select').val()
-      tx = $(v).find('.caso_ubicacion_pais select option[value=' + idp + ']').text()
-      idd = $(v).find('.caso_ubicacion_departamento select').val()
-      if (idd > 0)
-        tx = tx + " / " + $(v).find('.caso_ubicacion_departamento select option[value=' + idd + ']').text()
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
+    @actualiza_ubicaciones($(this))
   )
 
   # En refugio, lista de sitios de llegada se cálcula
   $(document).on('focusin', 'select[id^=caso_casosjr_attributes_][id$=id_llegada]', (e) ->
-    sel = $(this).val()
-    nh = ''
-    lcg = $('#ubicacion .control-group[style!="display: none;"]')
-    lcg.each((k, v) ->
-      # id: ubicacion
-      id = $(v).find('.caso_ubicacion_id input').val()
-      nh = nh + "<option value='" + id + "'"
-      if id == sel 
-        nh = nh + ' selected'
-      idp = $(v).find('.caso_ubicacion_pais select').val()
-      tx = $(v).find('.caso_ubicacion_pais select option[value=' + idp + ']').text()
-      idd = $(v).find('.caso_ubicacion_departamento select').val()
-      if (idd > 0)
-        tx = tx + " / " + $(v).find('.caso_ubicacion_departamento select option[value=' + idd + ']').text()
-      nh = nh + ">" + tx + "</option>" )
-    $(this).html(nh)
+    @actualiza_ubicaciones($(this))
   )
 
-  # Al cambiar país se recalcula lista de departamentos
-  $(document).on('change', 'select[id^=caso_][id$=id_pais]', (e) ->
-    llenaDepartamento($(this))
-    # Exprimentando actualizar a medida que se modifica:
-    idfu = $(this).attr('id').replace('_id_pais', '_id');
-    idu = $('#' + idfu).val();
-    #if (idu > 0)
-    #   $.ajax(url: '/ubicacion/' + idu + '/update/'
-  )
-
-  # Al cambiar departamento se recalcula lista de municipios
-  $(document).on('change', 'select[id^=caso_][id$=id_departamento]', (e) ->
-    llenaMunicipio($(this))
-  )
-
-  # Al cambiar municipio se recalcula lista de centros poblados
-  $(document).on('change', 'select[id^=caso_][id$=id_municipio]', (e) ->
-    llenaClase($(this))
-  )
-
-  # Antes de eliminar presponsable confirmar si se eliminan dependientes
-  $('#presponsable').on('cocoon:before-remove', '', (e, papa) ->
-    # Ingresa 2 veces, evitando duplicar
-    if (root.elempe && root.elempe.length>0) 
-      return
-    root.elempe = []
-    esel=papa.find('select[data-actualiza=presponsable]')
-    if (esel.length > 0) 
-      idp = esel.val()
-      otiguales = papa.siblings().filter('div[class*=control-group]').filter('div[style!="display: none;"]').find('select option[selected=selected][value=' + idp + ']')
-      if (otiguales.length != 0)
-        return
-      nomelempe = "causas/antecedentes"
-      nomesteelem = "este presunto responsable"
-      $('#antecedentes .control-group[style!="display: none;"] .caso_acto_presponsable select').each((v, e) ->
-        if ($(e).val() == idp) 
-          root.elempe.push($(e).parent().parent());
-      )
-       
-    if (root.elempe.length>0)
-      r = confirm("Hay " + root.elempe.length + " " + nomelempe + 
-        " que se eliminarán con " + nomesteelem + ", ¿Continuar?")
-      if (r==false)
-        papa.data('remove-cancel', 'true')
-        root.elempe = []
-      else
-        papa.data('remove-cancel', 'false')
-  )
-
-  # Tras eliminar presponsable, eliminar dependientes
-  $('#presponsable').on('cocoon:after-remove', '', (e, presponsable) ->
-    eliminaPendientes(root.elempe);
-    root.elempe = []
-  )
- 
-  # Antes de eliminar víctima confirmar si se eliminan dependientes
-  $('#victima').on('cocoon:before-remove', '', (e, papa) ->
-    # Ingresa 2 veces, evitando duplicar
-    if (root.elempe && root.elempe.length>0) 
-      return
-    root.elempe = []
-    vsel=papa.find('.caso_victima_persona_id input')
-    if (vsel.length>0)
-      idv = vsel.val()
-      nomelempe = "causas/antecedentes"
-      nomesteelem = "esta víctima"
-      $('#antecedentes .control-group[style!="display: none;"] .caso_acto_persona select').each((v, e) ->
-        if ($(e).val() == idv) 
-          root.elempe.push($(e).parent().parent());
-      )
-       
-    if (root.elempe.length>0)
-      r = confirm("Hay " + root.elempe.length + " " + nomelempe + 
-        " que se eliminarán con " + nomesteelem + ", ¿Continuar?")
-      if (r==false)
-        papa.data('remove-cancel', 'true')
-        root.elempe = []
-      else
-        papa.data('remove-cancel', 'false')
-  )
-
-  # Tras eliminar víctima, eliminar dependientes
-  $('#victima').on('cocoon:after-remove', '', (e, presponsable) ->
-    eliminaPendientes(root.elempe);
-    root.elempe = []
-  )
- 
   # Antes de eliminar ubicacion confirmar si se eliminan dependientes
   $('#ubicacion').on('cocoon:before-remove', (e, papa) ->
     # Si ingresa más de una vez se evita duplicar
@@ -312,7 +125,7 @@ $(document).on 'ready page:load',  ->
 
   # Tras eliminar ubicacion, eliminar dependientes
   $('#ubicacion').on('cocoon:after-remove', (e, papa) ->
-    eliminaPendientes(root.elempe);
+    elimina_pendientes(root.elempe);
     root.elempe = []
     if (root.elimrefugiosalida) 
       $('#caso_casosjr_attributes_id_salida').val("")
@@ -363,7 +176,7 @@ $(document).on 'ready page:load',  ->
 
   # Tras eliminar desplazamiento, eliminar dependientes
   $('#desplazamiento').on('cocoon:after-remove', (e, papa) ->
-    eliminaPendientes(root.elempe);
+    elimina_pendientes(root.elempe);
     root.elempe = []
   )
  
@@ -376,13 +189,6 @@ $(document).on 'ready page:load',  ->
     return
   )
 
-
-  # Tras añadir desplazamiento poner como fecha por defecto la del hecho
-  #$('#desplazamiento').on('cocoon:after-insert', (e, papa) ->
-  #  usel=papa.find('.caso_desplazamiento_fechaexpulsion input')
-  #  usel.val($('#caso_fecha').val()) 
-  #  return
-  #)
 
   # Al cambiar fecha del hecho cambiar fecha de salida si no se ha 
   # llenado refugio
@@ -424,53 +230,4 @@ $(document).on 'ready page:load',  ->
     return
   )
 
-  # Deshabilitar parte para obligar a completar partes para continuar
-  # http://stackoverflow.com/questions/16777003/what-is-the-easiest-way-to-disable-enable-buttons-and-links-jquery-bootstrap
-  #$('body').on('click', 'a.disabled', (e) -> 
-  #  e.preventDefault() )
- 
-  # Envia formulario al presionar enlaces con clase fichacambia 
-  # con más de 5 segundos de diferencia entre un click y el siguiente
-  $(document).on('click', 'a.fichacambia[href^="#"]', (e) ->
-    tn = Date.now()
-    d = -1
-    if (root.tfichacambia) 
-      d = (tn - root.tfichacambia)/1000
-    if (d == -1 || d>5) 
-      f=$('form')
-      a=f.attr('action')
-      $.post(a, f.serialize())
-      actualiza_presponsables($('#caso_acto_id_presponsable'))
-      actualiza_victimas($('#caso_acto_id_persona'))
-      root.tfichacambia = Date.now()
-    return
-  )
-
-  # Agrega actos  
-  $(document).on('click', 'a.agregaractos[href^="#"]', (e) ->
-    e.preventDefault()
-    tn = Date.now()
-    d = -1
-    if (root.tagregaactos) 
-      d = (tn - root.tagregaactos)/1000
-    if (d == -1 || d>5) 
-      f=$('form')
-      a='/actos/agregar'
-      $.post(a, f.serialize())
-      root.tagregaactos= Date.now()
-    return
-  )
-
-  # Elimina acto
-  $(document).on('click', 'a.eliminaracto[href^="#"]', (e) ->
-    e.preventDefault()
-    f = $('form')
-    d = "id_acto=" + $(this).attr('data-eliminaracto')
-    a = '/actos/eliminar'
-    $.ajax(url: a, data: d, dataType: "script").fail( (jqXHR, texto) ->
-      alert("Error con ajax " + texto)
-    )
-  )
-
- 
   return
