@@ -5362,7 +5362,7 @@ ALTER TABLE ONLY sivel2_sjr_victimasjr
 --
 
 ALTER TABLE ONLY sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_victima_fkey FOREIGN KEY (id_victima) REFERENCES sivel2_gen_victima(id);
+    ADD CONSTRAINT victimasjr_id_victima_fkey FOREIGN KEY (id_victima) REFERENCES sivel2_gen_victima(id) ON DELETE CASCADE;
 
 
 --
@@ -5419,8 +5419,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140527110223');
 
 INSERT INTO schema_migrations (version) VALUES ('20140528043115');
 
-INSERT INTO schema_migrations (version) VALUES ('20140611110441');
-
 INSERT INTO schema_migrations (version) VALUES ('20140611111020');
 
 INSERT INTO schema_migrations (version) VALUES ('20140613044320');
@@ -5440,6 +5438,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140804202100');
 INSERT INTO schema_migrations (version) VALUES ('20140804202101');
 
 INSERT INTO schema_migrations (version) VALUES ('20140804202958');
+
+INSERT INTO schema_migrations (version) VALUES ('20140804210000');
 
 INSERT INTO schema_migrations (version) VALUES ('20140805030341');
 
@@ -5502,4 +5502,6 @@ INSERT INTO schema_migrations (version) VALUES ('20141222174257');
 INSERT INTO schema_migrations (version) VALUES ('20141222174267');
 
 INSERT INTO schema_migrations (version) VALUES ('20141225174739');
+
+INSERT INTO schema_migrations (version) VALUES ('20150213114933');
 
