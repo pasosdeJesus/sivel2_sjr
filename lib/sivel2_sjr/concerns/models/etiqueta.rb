@@ -10,7 +10,7 @@ module Sivel2Sjr
         include Sivel2Gen::Concerns::Models::Etiqueta
 
         included do
-          has_many :etiqueta_usuario, class_name: 'Sivel2Gen::EtiquetaUsuario',
+          has_many :etiqueta_usuario, class_name: 'Sivel2Sjr::EtiquetaUsuario',
             dependent: :delete_all
           has_many :usuario, class_name: 'Usuario', through: :etiqueta_usuario
         end
