@@ -5342,14 +5342,6 @@ ALTER TABLE ONLY sivel2_sjr_victimasjr
 
 
 --
--- Name: victimasjr_id_regimensalud_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_regimensalud_fkey FOREIGN KEY (id_regimensalud) REFERENCES sivel2_sjr_regimensalud(id);
-
-
---
 -- Name: victimasjr_id_rolfamilia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5504,4 +5496,6 @@ INSERT INTO schema_migrations (version) VALUES ('20141222174267');
 INSERT INTO schema_migrations (version) VALUES ('20141225174739');
 
 INSERT INTO schema_migrations (version) VALUES ('20150213114933');
+
+INSERT INTO schema_migrations (version) VALUES ('20150225140336');
 
