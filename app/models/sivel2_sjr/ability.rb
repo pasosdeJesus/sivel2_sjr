@@ -96,6 +96,7 @@ module Sivel2Sjr
           can :new, Sivel2Gen::Caso 
           can [:update, :create, :destroy], Sivel2Gen::Actividad, 
             oficina: { id: usuario.regionsjr_id}
+          can :manage, Sivel2Gen::Acto
         when Ability::ROLANALI
           can :read, Sivel2Gen::Caso
           can :new, Sivel2Gen::Caso
@@ -105,6 +106,7 @@ module Sivel2Sjr
           can :new, Sivel2Gen::Actividad
           can [:update, :create, :destroy], Sivel2Gen::Actividad, 
             oficina: { id: usuario.regionsjr_id}
+          can :manage, Sivel2Gen::Acto
         when Ability::ROLCOOR
           can :read, Sivel2Gen::Caso
           can :new, Sivel2Gen::Caso
@@ -114,11 +116,13 @@ module Sivel2Sjr
           can :new, Sivel2Gen::Actividad
           can [:update, :create, :destroy], Sivel2Gen::Actividad, 
             oficina: { id: usuario.regionsjr_id}
+          can :manage, Sivel2Gen::Acto
           can :new, Usuario
           can [:read, :manage], Usuario, regionsjr: { id: usuario.regionsjr_id}
         when Ability::ROLDIR
           can [:read, :new, :update, :create, :destroy, :ponetetcomp], Sivel2Gen::Caso
           can [:read, :new, :update, :create, :destroy], Sivel2Gen::Actividad
+          can :manage, Sivel2Gen::Acto
           can :manage, Usuario
           can :manage, :tablasbasicas
           @@tablasbasicas.each do |t|
@@ -131,6 +135,7 @@ module Sivel2Sjr
         when Ability::ROLADMIN
           can :manage, Sivel2Gen::Caso
           can :manage, Sivel2Gen::Actividad
+          can :manage, Sivel2Gen::Acto
           can :manage, Usuario
           can :manage, :tablasbasicas
           @@tablasbasicas.each do |t|
