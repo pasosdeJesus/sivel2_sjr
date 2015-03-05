@@ -21,30 +21,6 @@
     %>
     <%= f.input :montoar, label: "Monto A. Humanitaria" %>
 
-    <%= f.association :emprendimiento, 
-      collection: Emprendimiento.habilitados,
-      label: "Emprendimiento",
-      label_method: :nombre, 
-      value_method: :id 
-    %>
-    <%= f.input :detalleem, 
-      label: "Detalle Emprendimiento",
-      wrapper_html: { style: "padding-bottom: 18px;" }
-    %>
-    <%= f.input :montoem, 
-      label: "Monto Emprendimiento",
-      wrapper_html: { style: "padding-bottom: 18px;" }
-    %>
-
-    <%= f.association :aspsicosocial, 
-      collection: Aspsicosocial.habilitados,
-      label: "Asistencia Psicosocial",
-      label_method: :nombre, 
-      value_method: :id 
-    %>
-    <%= f.input :detalleap, label: "Detalle A. Psicosocial" %>
-    <%= f.input :montoap, label: "Monto A. Psicosocial" %>
-
     <%= f.association :aslegal, 
       collection: Sivel2Sjr::Aslegal.habilitados,
       label: "Asistencia Legal",
