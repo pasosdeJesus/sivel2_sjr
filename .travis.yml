@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-        - 2.1.2
+        - 2.1.5
 notifications:
         email: false
 script: CODECLIMATE_REPO_TOKEN=35c5d6dbc0bc5001d536ec62ca501a9d3d6428682f21225c0eedf863a089eb71 xvfb-run rspec
