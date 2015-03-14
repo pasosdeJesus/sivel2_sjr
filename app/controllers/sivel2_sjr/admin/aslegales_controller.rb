@@ -14,6 +14,11 @@ module Sivel2Sjr
         @basica = Sivel2Sjr::Aslegal.find(params[:id])
       end
 
+      def genclase
+        return 'M';
+      end
+
+
       # Never trust parameters from the scary internet, only allow the white list through.
       def aslegal_params
         params.require(:aslegal).permit(*atributos_form)
