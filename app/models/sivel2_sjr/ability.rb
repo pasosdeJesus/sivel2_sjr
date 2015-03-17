@@ -22,6 +22,7 @@ module Sivel2Sjr
       ['Sivel2Gen', 'regionsjr'], ['Sivel2Sjr', 'rolfamilia'],
       ['Sivel2Sjr', 'statusmigratorio'], ['Sivel2Gen', 'supracategoria'], 
       ['Sivel2Gen', 'tclase'], ['Sivel2Gen', 'tdocumento'], 
+      ['Sivel2Sjr', 'tipodesp'],
       ['Sivel2Gen', 'tsitio'], ['Sivel2Gen', 'tviolencia']
 #      ['', 'emprendimiento'],
 #      ['', 'aspsicosocial'],  

@@ -57,6 +57,9 @@ es:
       "sivel2_sjr/statusmigratorio":
         Statusmigratorio: Estatus Migratorio
         Statusmigratorios: Estatus Migratorio
+      "sivel2_sjr/tipodesp":
+        Tipodesp: Tipo de Desplazamiento
+        Tiposdesp: Tipos de Desplazamiento
       "sivel2_sjr/ubicacion":
         Ubicacion: Sitio Geográfico
 
