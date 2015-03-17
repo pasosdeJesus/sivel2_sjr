@@ -2,7 +2,7 @@
   <div class="controls">
     <% 
       if f.object.actosjr.nil?
-        f.object.actosjr = Sivel2Sjr::Actosjr.new(fecha: Date.today)
+        f.object.actosjr = Sivel2Sjr::Actosjr.new(fecha: @caso.fecha || Date.today)
       end 
     %>
   
