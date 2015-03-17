@@ -36,7 +36,7 @@ gem "turbolinks"
 # Ambiente de CSS
 gem "twitter-bootstrap-rails"
 gem "bootstrap-datepicker-rails"
-gem "bootstrap-sass"
+#gem "bootstrap-sass"
 
 # Formularios simples 
 gem "simple_form"
