@@ -2,9 +2,9 @@
   <div class="controls">
     <%= f.input :id, as: :hidden %>
     <%= f.input :fechaexpulsion, 
-        :input_html => { "data-behaviour" => "datepicker",
-          value: f.object.fechaexpulsion || @caso.fecha },
-        :as => :string, :label => "Fecha de Expulsión" %>
+      :input_html => { "data-behaviour" => "datepicker" }
+      :as => :string, :label => "Fecha de Expulsión" 
+    %>
     <%= f.association :expulsion,
         collection: Sivel2Gen::Ubicacion.where(:id_caso => @caso.id),
         label: "Sitio de Expulsión",

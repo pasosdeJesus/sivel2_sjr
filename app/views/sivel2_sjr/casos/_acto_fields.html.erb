@@ -10,7 +10,8 @@
 
     <%= f.simple_fields_for :actosjr do |s| %>
       <%= s.input :fecha, 
-        :input_html => { "data-behaviour" => "datepicker" },
+        :input_html => { "data-behaviour" => "datepicker",
+          value: @caso.fecha },
         :as => :string, :label => "Fecha" 
       %>
 
