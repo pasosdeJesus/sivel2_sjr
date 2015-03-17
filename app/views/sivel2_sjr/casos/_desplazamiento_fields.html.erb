@@ -2,7 +2,7 @@
   <div class="controls">
     <%= f.input :id, as: :hidden %>
     <%= f.input :fechaexpulsion, 
-      :input_html => { "data-behaviour" => "datepicker" }
+      :input_html => { "data-behaviour" => "datepicker" },
       :as => :string, :label => "Fecha de Expulsión" 
     %>
     <%= f.association :expulsion,
