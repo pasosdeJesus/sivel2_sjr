@@ -197,7 +197,7 @@ $(document).on 'ready page:load',  ->
 
 
   # Al cambiar fecha del hecho cambiar fecha de salida si no se ha 
-  # llenado refugio
+  # llenado refugio y cambiar fecha de antecedentes/causas
   # Método para detectar cambios en datepicker de
   # http://stackoverflow.com/questions/17009354/detect-change-to-selected-date-with-bootstrap-datepicker
   $('#caso_fecha').datepicker({
@@ -213,6 +213,7 @@ $(document).on 'ready page:load',  ->
     vob=$('#caso_casosjr_attributes_observacionesref').val()
     if (vss == "" && vfl == "" && vsl == "" && vcr == "" && vob == "") 
       vfl=$('#caso_casosjr_attributes_fechasalida').val(this.value)
+    vfa=$('#caso_acto_fecha').val(this.value)
     return
   #  $("article").css("cursor", "wait")
   #  $(this).parents("form").submit() 
