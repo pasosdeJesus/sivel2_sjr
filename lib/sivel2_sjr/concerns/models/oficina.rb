@@ -1,17 +1,17 @@
 # encoding: UTF-8
 
-require 'sivel2_gen/concerns/models/regionsjr'
+require 'sip/concerns/models/oficina'
 
 module Sivel2Sjr
   module Concerns
     module Models
-      module Regionsjr
+      module Oficina
         extend ActiveSupport::Concern
-        include Sivel2Gen::Concerns::Models::Regionsjr
+        include Sip::Concerns::Models::Oficina
 
         included do
           has_many :casosjr, class_name: 'Sivel2Sjr::Casosjr',
-            foreign_key: "id_regionsjr", validate: true
+            foreign_key: "oficina_id", validate: true
         end
 
         module ClassMethods

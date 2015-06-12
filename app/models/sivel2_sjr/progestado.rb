@@ -1,9 +1,9 @@
 # encoding: UTF-8
 module Sivel2Sjr
   class Progestado < ActiveRecord::Base
-    include Sivel2Gen::Basica
+    include Sip::Basica
   
-  	has_many :progestado_respuesta, 
+    has_many :progestado_respuesta, 
       class_name: "Sivel2Sjr::ProgestadoRespuesta",
       foreign_key: "id_progestado", validate: true, dependent: :destroy
     has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 

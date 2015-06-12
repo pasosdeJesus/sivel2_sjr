@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Sjr
   module Admin
-    class StatusmigratoriosController < Sivel2Gen::Admin::BasicasController
+    class StatusmigratoriosController < Sip::Admin::BasicasController
       before_action :set_statusmigratorio, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Statusmigratorio
 

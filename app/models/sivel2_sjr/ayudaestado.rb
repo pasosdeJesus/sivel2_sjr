@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Sjr
   class Ayudaestado < ActiveRecord::Base
-    include Sivel2Gen::Basica
+    include Sip::Basica
   
   	has_many :ayudaestado_respuesta, 
       class_name: "Sivel2Sjr::AyudaestadoRespuesta", 

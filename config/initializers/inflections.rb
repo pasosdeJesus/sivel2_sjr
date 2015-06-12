@@ -28,7 +28,6 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'motivosjrrespuesta', 'motivosjrrespuesta'
 	inflect.irregular 'progestadorespuesta', 'progestadorespuesta'
 	inflect.irregular 'proteccion', 'protecciones'
-	inflect.irregular 'regionsjr', 'regionessjr'
 	inflect.irregular 'respuesta', 'respuesta'
 	inflect.irregular 'tipodesp', 'tiposdesp'
 end

@@ -6,7 +6,7 @@
   as: :string, label: "Fecha de Salida" 
 %>
 <%= s.association :salida,
-  collection: Sivel2Gen::Ubicacion.where(:id_caso => @caso.id),
+  collection: Sip::Ubicacion.where(:id_caso => @caso.id),
   label: "Sitio de Salida",
   label_method: lambda { |t| formato_ubicacion(t) },
   value_method: :id 
@@ -16,7 +16,7 @@
   :as => :string, :label => "Fecha de Llegada" 
 %>
 <%= s.association :llegada,
-  collection: Sivel2Gen::Ubicacion.where(:id_caso => @caso.id),
+  collection: Sip::Ubicacion.where(:id_caso => @caso.id),
   label: "Sitio de Llegada",
   label_method: lambda { |t| formato_ubicacion(t) },
   value_method: :id 

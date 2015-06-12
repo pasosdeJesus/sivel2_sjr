@@ -55,9 +55,9 @@ module Sivel2Sjr
       @caso.casosjr = Sivel2Sjr::Casosjr.new
       @caso.casosjr.fecharec = DateTime.now.strftime('%Y-%m-%d')
       @caso.casosjr.asesor = current_usuario.id
-      @caso.casosjr.id_regionsjr = current_usuario.regionsjr_id.nil? ?  
-        1 : current_usuario.regionsjr_id
-      per = Sivel2Gen::Persona.new
+      @caso.casosjr.oficina_id= current_usuario.oficina_id.nil? ?  
+        1 : current_usuario.oficina_id
+      per = Sip::Persona.new
       per.nombres = ''
       per.apellidos = ''
       per.sexo = 'S'
@@ -91,17 +91,17 @@ module Sivel2Sjr
         r = nil
 
         if (params[:tabla] == "departamento" && params[:id_pais].to_i > 0)
-          r = Sivel2Gen::Departamento.where(fechadeshabilitacion: nil,
+          r = Sip::Departamento.where(fechadeshabilitacion: nil,
                                  id_pais: params[:id_pais].to_i).order(:nombre)
         elsif (params[:tabla] == "municipio" && params[:id_pais].to_i > 0 && 
                params[:id_departamento].to_i > 0 )
-          r = Sivel2Gen::Municipio.where(id_pais: params[:id_pais].to_i, 
+          r = Sip::Municipio.where(id_pais: params[:id_pais].to_i, 
                               id_departamento: params[:id_departamento].to_i,
                               fechadeshabilitacion: nil).order(:nombre)
         elsif (params[:tabla] == "clase" && params[:id_pais].to_i > 0 && 
                params[:id_departamento].to_i > 0 && 
                params[:id_municipio].to_i > 0)
-          r = Sivel2Gen::Clase.where(id_pais: params[:id_pais].to_i, 
+          r = Sip::Clase.where(id_pais: params[:id_pais].to_i, 
                           id_departamento: params[:id_departamento].to_i, 
                           id_municipio: params[:id_municipio].to_i,
                           fechadeshabilitacion: nil).order(:nombre)
@@ -206,7 +206,7 @@ module Sivel2Sjr
         :grconfiabilidad, :gresclarecimiento, :grimpunidad, :grinformacion, 
         :bienes, :id_intervalo, :memo, 
         :casosjr_attributes => [
-          :id, :fecharec, :asesor, :id_regionsjr, :direccion, 
+          :id, :fecharec, :asesor, :oficina_id, :direccion, 
           :telefono, :comosupo_id, :contacto, :detcomosupo,
           :dependen, :sustento, :leerescribir, 
           :ingresomensual, :gastos, :estrato, :id_statusmigratorio,

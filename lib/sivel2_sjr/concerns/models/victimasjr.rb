@@ -11,7 +11,7 @@ module Sivel2Sjr
           belongs_to :actividadoficio, 
             class_name: "Sivel2Sjr::Actividadoficio", 
             foreign_key: "id_actividadoficio", validate: true
-          belongs_to :departamento, class_name: "Sivel2Sjr::Departamento", 
+          belongs_to :departamento, class_name: "Sip::Departamento", 
             foreign_key: "id_departamento", validate: true
           belongs_to :escolaridad, class_name: "Sivel2Gen::Escolaridad", 
             foreign_key: "id_escolaridad", validate: true
@@ -19,9 +19,9 @@ module Sivel2Sjr
             foreign_key: "id_estadocivil", validate: true
           belongs_to :maternidad, class_name: "Sivel2Sjr::Maternidad", 
             foreign_key: "id_maternidad", validate: true
-          belongs_to :municipio, class_name: "Sivel2Gen::Municipio", 
+          belongs_to :municipio, class_name: "Sip::Municipio", 
             foreign_key: "id_municipio", validate: true
-          belongs_to :pais, class_name: "Sivel2Gen::Pais", 
+          belongs_to :pais, class_name: "Sip::Pais", 
             foreign_key: "id_pais", validate: true
           #belongs_to :regimensalud, class_name: "Sivel2Sjr::Regimensalud", 
           #  foreign_key: "id_regimensalud", validate: true

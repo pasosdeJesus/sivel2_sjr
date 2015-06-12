@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Sjr
   module Admin
-    class AslegalesController < Sivel2Gen::Admin::BasicasController
+    class AslegalesController < Sip::Admin::BasicasController
       before_action :set_aslegal, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Aslegal
 

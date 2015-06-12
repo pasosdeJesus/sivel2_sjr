@@ -4,9 +4,9 @@ module Sivel2Sjr
   
   	has_many :actosjr, class_name: "Sivel2Sjr::Actosjr", validate: true
   
-  	belongs_to :expulsion, class_name: "Sivel2Gen::Ubicacion", 
+  	belongs_to :expulsion, class_name: "Sip::Ubicacion", 
       foreign_key: "id_expulsion", validate: true
-  	belongs_to :llegada, class_name: "Sivel2Gen::Ubicacion", 
+  	belongs_to :llegada, class_name: "Sip::Ubicacion", 
       foreign_key: "id_llegada", validate: true
   	belongs_to :clasifdesp, class_name: "Sivel2Sjr::Clasifdesp", 
       foreign_key: "id_clasifdesp", validate: true
@@ -20,13 +20,13 @@ module Sivel2Sjr
       foreign_key: "id_acreditacion", validate: true
   	belongs_to :modalidadtierra, class_name: "Sivel2Sjr::Modalidadtierra", 
       foreign_key: "id_modalidadtierra", validate: true
-  	belongs_to :pais, class_name: "Sivel2Gen::Pais", 
+  	belongs_to :pais, class_name: "Sip::Pais", 
       foreign_key: "paisdecl", validate: true
-  	belongs_to :departamento, class_name: "Sivel2Gen::Departamento", 
+  	belongs_to :departamento, class_name: "Sip::Departamento", 
       foreign_key: "departamentodecl", validate: true
-  	belongs_to :municipio, class_name: "Sivel2Gen::Municipio", 
+  	belongs_to :municipio, class_name: "Sip::Municipio", 
       foreign_key: "municipiodecl", validate: true
-  	belongs_to :caso, class_name: "Sivel2Gen::Caso", 
+  	belongs_to :caso, class_name: "Sip::Caso", 
       foreign_key: "id_caso", validate: true
   
     validates_presence_of :fechaexpulsion, :expulsion, :fechallegada, :llegada

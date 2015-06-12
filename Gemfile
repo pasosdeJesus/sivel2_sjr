@@ -9,6 +9,12 @@ gem "rails-i18n"
 # Postgresql
 gem "pg"
 
+# Unifica CSSs
+gem "sass"
+
+# Colores en terminal
+gem "colorize"
+
 # Maneja variables de ambiente (como claves y secretos) en .env
 #gem "foreman"
 
@@ -60,8 +66,12 @@ gem "tzinfo"
 gem "tzinfo-data"
 
 # Motor de SIVeL 2
-gem 'sivel2_gen', github: 'pasosdeJesus/sivel2_gen'
-#gem 'sivel2_gen', path: '../sivel2_gen'
+#gem 'sivel2_gen', github: 'pasosdeJesus/sivel2_gen', branch: 'consip'
+gem 'sivel2_gen', path: '../sivel2_gen'
+
+# Motor SIP
+#gem 'sip', github: 'pasosdeJesus/sip'
+gem 'sip', path: '../sip'
 
 group :doc do
   # Genera documentación en doc/api con bundle exec rake doc:rails

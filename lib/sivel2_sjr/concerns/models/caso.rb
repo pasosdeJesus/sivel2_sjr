@@ -47,11 +47,11 @@ module Sivel2Sjr
                 "CREATE OR REPLACE VIEW sivel2_gen_conscaso1 
         AS SELECT casosjr.id_caso as caso_id, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-          FROM sivel2_gen_persona AS persona
+          FROM sip_persona AS persona
           WHERE persona.id=casosjr.contacto), ', ')
           AS contacto_nombre, 
         casosjr.fecharec,
-        regionsjr.nombre AS regionsjr_nombre,
+        oficina.nombre AS oficina_nombre,
         usuario.nusuario,
         caso.fecha AS caso_fecha,
         statusmigratorio.nombre AS statusmigratorio_nombre,
@@ -62,21 +62,21 @@ module Sivel2Sjr
           AS respuesta_ultimafechaatencion,
         caso.memo AS caso_memo
         FROM sivel2_sjr_casosjr AS casosjr, sivel2_gen_caso AS caso, 
-          sivel2_gen_regionsjr AS regionsjr, usuario, 
+          sip_oficina AS oficina, usuario, 
           sivel2_sjr_statusmigratorio AS statusmigratorio
         WHERE casosjr.id_caso = caso.id
-          AND regionsjr.id=casosjr.id_regionsjr
+          AND oficina.id=casosjr.oficina_id
           AND usuario.id = casosjr.asesor
           AND statusmigratorio.id = casosjr.id_statusmigratorio"
               )
               ActiveRecord::Base.connection.execute(
                 "CREATE MATERIALIZED VIEW sivel2_gen_conscaso 
-        AS SELECT caso_id, contacto_nombre, fecharec, regionsjr_nombre, 
+        AS SELECT caso_id, contacto_nombre, fecharec, oficina_nombre, 
           nusuario, caso_fecha, statusmigratorio_nombre,
           respuesta_ultimafechaatencion, caso_memo,
           to_tsvector('spanish', unaccent(caso_id || ' ' || contacto_nombre || 
             ' ' || replace(cast(fecharec AS varchar), '-', ' ') || 
-            ' ' || regionsjr_nombre || ' ' || nusuario || ' ' || 
+            ' ' || oficina_nombre || ' ' || nusuario || ' ' || 
             replace(cast(caso_fecha AS varchar), '-', ' ') || ' ' ||
             statusmigratorio_nombre || ' ' || 
             replace(cast(respuesta_ultimafechaatencion AS varchar), '-', ' ')

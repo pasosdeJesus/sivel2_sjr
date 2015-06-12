@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Sivel2Sjr
   module Admin
-    class AyudassjrController < Sivel2Gen::Admin::BasicasController
+    class AyudassjrController < Sip::Admin::BasicasController
       before_action :set_ayudasjr, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Ayudasjr
 

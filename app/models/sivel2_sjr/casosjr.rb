@@ -9,7 +9,7 @@ module Sivel2Sjr
       foreign_key: "asesor", validate: true
   	belongs_to :comosupo, class_name: "Sivel2Sjr::Comosupo", 
       foreign_key: "comosupo_id", validate: true
-  	belongs_to :contacto, class_name: "Sivel2Gen::Persona",  
+  	belongs_to :contacto, class_name: "Sip::Persona",  
       foreign_key: "contacto", validate: true
   	belongs_to :caso, class_name: "Sivel2Gen::Caso", validate: true,
       foreign_key: "id_caso", inverse_of: :casosjr
@@ -17,13 +17,13 @@ module Sivel2Sjr
       foreign_key: "categoriaref"
   	belongs_to :idioma, class_name: "Sivel2Sjr::Idioma", 
       foreign_key: "id_idioma", validate: true
-  	belongs_to :llegada, class_name: "Sivel2Gen::Ubicacion", validate: true,
+  	belongs_to :llegada, class_name: "Sip::Ubicacion", validate: true,
       foreign_key: "id_llegada"
   	belongs_to :proteccion, class_name: "Sivel2Sjr::Proteccion", 
       foreign_key: "id_proteccion", validate: true
-  	belongs_to :regionsjr, class_name: "Sivel2Gen::Regionsjr", 
-      foreign_key: "id_regionsjr", validate: true
-  	belongs_to :salida, class_name: "Sivel2Gen::Ubicacion", validate: true,
+  	belongs_to :oficina, class_name: "Sip::Oficina", 
+      foreign_key: "oficina_id", validate: true
+  	belongs_to :salida, class_name: "Sip::Ubicacion", validate: true,
       foreign_key: "id_salida"
   	belongs_to :statusmigratorio, class_name: "Sivel2Sjr::Statusmigratorio", 
       foreign_key: "id_statusmigratorio", validate: true
@@ -32,7 +32,7 @@ module Sivel2Sjr
   
   	validates_presence_of :fecharec
   	validates_presence_of :asesor
-    validates_presence_of :regionsjr
+    validates_presence_of :oficina
   
     validate :sitios_diferentes
     def sitios_diferentes
@@ -54,15 +54,15 @@ module Sivel2Sjr
   		if (caso && caso.current_usuario &&
           caso.current_usuario.rol != Ability::ROLADMIN &&
           caso.current_usuario.rol != Ability::ROLDIR && 
-          usuario.regionsjr_id != regionsjr.id && regionsjr.id != 1)
+          usuario.oficina_id != oficina.id && oficina.id != 1)
   			errors.add(:usuario, "Asesor debe ser de oficina")
   		end
       if (caso && caso.current_usuario &&
           caso.current_usuario.rol == Ability::ROLSIST || 
            caso.current_usuario.rol == Ability::ROLCOOR || 
            caso.current_usuario.rol == Ability::ROLANALI)
-          if (regionsjr.id != caso.current_usuario.regionsjr_id)
-              errors.add(:regionsjr, "Solo puede editar casos de su oficina")
+          if (oficina.id != caso.current_usuario.oficina_id)
+              errors.add(:oficina, "Solo puede editar casos de su oficina")
           end
       end
     end
