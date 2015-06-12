@@ -74,34 +74,37 @@ module Sivel2Sjr
           can :read, Sivel2Gen::Caso, casosjr: { oficina_id: usuario.oficina_id }
           can [:update, :create, :destroy], Sivel2Gen::Caso, 
             casosjr: { asesor: usuario.id, oficina_id:usuario.oficina_id }
-          #can :read, Sivel2Gen::Actividad
-          #can :new, Sivel2Gen::Actividad
+          can :read, Cor1440Gen::Actividad
+          can :new, Cor1440Gen::Actividad
           can :new, Sivel2Gen::Caso 
-          #can [:update, :create, :destroy], Sivel2Gen::Actividad, oficina: { id: usuario.oficina_id}
+          can [:update, :create, :destroy], Cor1440Gen::Actividad, 
+            oficina: { id: usuario.oficina_id}
           can :manage, Sivel2Gen::Acto
         when Ability::ROLANALI
           can :read, Sivel2Gen::Caso
           can :new, Sivel2Gen::Caso
           can [:update, :create, :destroy], Sivel2Gen::Caso, 
             casosjr: { oficina_id: usuario.oficina_id }
-          #can :read, Sivel2Gen::Actividad
-          #can :new, Sivel2Gen::Actividad
-          #can [:update, :create, :destroy], Sivel2Gen::Actividad, oficina: { id: usuario.oficina_id}
+          can :read, Cor1440Gen::Actividad
+          can :new, Cor1440Gen::Actividad
+          can [:update, :create, :destroy], Cor1440Gen::Actividad, 
+            oficina: { id: usuario.oficina_id}
           can :manage, Sivel2Gen::Acto
         when Ability::ROLCOOR
           can :read, Sivel2Gen::Caso
           can :new, Sivel2Gen::Caso
           can [:update, :create, :destroy, :poneretcomp], Sivel2Gen::Caso, 
             casosjr: { oficina_id: usuario.oficina_id }
-          #can :read, Sivel2Gen::Actividad
-          #can :new, Sivel2Gen::Actividad
-          #can [:update, :create, :destroy], Sivel2Gen::Actividad, oficina: { id: usuario.oficina_id}
+          can :read, Cor1440Gen::Actividad
+          can :new, Cor1440Gen::Actividad
+          can [:update, :create, :destroy], Cor1440Gen::Actividad, 
+            oficina: { id: usuario.oficina_id}
           can :manage, Sivel2Gen::Acto
           can :new, Usuario
           can [:read, :manage], Usuario, oficina: { id: usuario.oficina_id}
         when Ability::ROLDIR
           can [:read, :new, :update, :create, :destroy, :ponetetcomp], Sivel2Gen::Caso
-          #can [:read, :new, :update, :create, :destroy], Sivel2Gen::Actividad
+          can [:read, :new, :update, :create, :destroy], Cor1440Gen::Actividad
           can :manage, Sivel2Gen::Acto
           can :manage, Usuario
           can :manage, :tablasbasicas
@@ -114,7 +117,7 @@ module Sivel2Sjr
           can :read, Sivel2Gen::Caso 
         when Ability::ROLADMIN
           can :manage, Sivel2Gen::Caso
-          #can :manage, Sivel2Gen::Actividad
+          can :manage, Cor1440Gen::Actividad
           can :manage, Sivel2Gen::Acto
           can :manage, Usuario
           can :manage, :tablasbasicas

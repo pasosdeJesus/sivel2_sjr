@@ -1,4 +1,33 @@
 GIT
+  remote: git://github.com/pasosdeJesus/cor1440_gen.git
+  revision: aea1b940cbee48545325b1ad47f0f33f26251e40
+  specs:
+    cor1440_gen (1.0.a5)
+      devise
+      jquery-rails
+      paperclip
+      rails
+
+GIT
+  remote: git://github.com/pasosdeJesus/sip.git
+  revision: e93549b9415afb41bdfea8a42ae558b4c78ce21b
+  specs:
+    sip (2.0.a6)
+      devise
+      jquery-rails
+      rails
+
+GIT
+  remote: git://github.com/pasosdeJesus/sivel2_gen.git
+  revision: d4e6731c65c966a5d02e3f2d96e11c21eeae2690
+  branch: consip
+  specs:
+    sivel2_gen (2.0.a4)
+      devise
+      jquery-rails
+      rails
+
+GIT
   remote: git://github.com/vtamara/cocoon.git
   revision: 836a331276ea1452d63325a6662483b9f1cb28be
   specs:
@@ -9,22 +38,6 @@ GIT
   revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
   specs:
     jquery-ui-bootstrap-rails (0.1.1)
-      rails
-
-PATH
-  remote: ../sip
-  specs:
-    sip (2.0.a6)
-      devise
-      jquery-rails
-      rails
-
-PATH
-  remote: ../sivel2_gen
-  specs:
-    sivel2_gen (2.0.a4)
-      devise
-      jquery-rails
       rails
 
 GEM
@@ -268,6 +281,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   colorize
+  cor1440_gen!
   devise
   devise-i18n
   factory_girl_rails (~> 4.0)

@@ -15,10 +15,14 @@
     Categoria</label>
   <%= 
     c = options_from_collection_for_select(
-      Sivel2Gen::Categoria.habilitados.where(
-        "id_tviolencia<>'R'").reorder(:id_tviolencia, :id), 
-        "id", 
-        lambda {|t| t.id_tviolencia + t.id.to_s + ' ' + t.nombre }
+      Sivel2Gen::Categoria.from(
+        'sivel2_gen_categoria, sivel2_gen_supracategoria').where(
+          "sivel2_gen_categoria.supracategoria_id=sivel2_gen_supracategoria.id
+     AND sivel2_gen_categoria.fechadeshabilitacion IS NULL 
+     AND sivel2_gen_supracategoria.id_tviolencia <> 'R'").order(
+       'sivel2_gen_supracategoria.id_tviolencia', :id),
+       "id", 
+        lambda {|t| t.supracategoria.id_tviolencia + t.id.to_s + ' ' + t.nombre }
     )
     select_tag "caso_acto_id_categoria", c, multiple: true
   %>

@@ -22,11 +22,12 @@
   value_method: :id 
 %>
 <%= s.association :categoria,
-  collection: Sivel2Gen::Categoria.where(
-    "fechadeshabilitacion IS NULL 
-     AND id_tviolencia='R'").order(:id_tviolencia, :id),
+  collection: Sivel2Gen::Categoria.from('sivel2_gen_categoria, sivel2_gen_supracategoria').where(
+    "sivel2_gen_categoria.supracategoria_id=sivel2_gen_supracategoria.id
+     AND sivel2_gen_categoria.fechadeshabilitacion IS NULL 
+     AND sivel2_gen_supracategoria.id_tviolencia='R'").order(:id),
   label: "Causa del Refugio",
-  label_method: lambda {|t| t.id_tviolencia + t.id.to_s + ' ' + t.nombre },
+  label_method: lambda {|t| t.supracategoria.id_tviolencia + t.id.to_s + ' ' + t.nombre },
   value_method: :id 
 %>
 <%= s.input :observacionesref, 
