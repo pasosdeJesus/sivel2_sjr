@@ -80,6 +80,7 @@ module Sivel2Sjr
           can [:update, :create, :destroy], Cor1440Gen::Actividad, 
             oficina: { id: usuario.oficina_id}
           can :manage, Sivel2Gen::Acto
+          can :manage, Sip::Persona
         when Ability::ROLANALI
           can :read, Sivel2Gen::Caso
           can :new, Sivel2Gen::Caso
@@ -90,6 +91,7 @@ module Sivel2Sjr
           can [:update, :create, :destroy], Cor1440Gen::Actividad, 
             oficina: { id: usuario.oficina_id}
           can :manage, Sivel2Gen::Acto
+          can :manage, Sip::Persona
         when Ability::ROLCOOR
           can :read, Sivel2Gen::Caso
           can :new, Sivel2Gen::Caso
@@ -100,12 +102,14 @@ module Sivel2Sjr
           can [:update, :create, :destroy], Cor1440Gen::Actividad, 
             oficina: { id: usuario.oficina_id}
           can :manage, Sivel2Gen::Acto
+          can :manage, Sip::Persona
           can :new, Usuario
           can [:read, :manage], Usuario, oficina: { id: usuario.oficina_id}
         when Ability::ROLDIR
           can [:read, :new, :update, :create, :destroy, :ponetetcomp], Sivel2Gen::Caso
           can [:read, :new, :update, :create, :destroy], Cor1440Gen::Actividad
           can :manage, Sivel2Gen::Acto
+          can :manage, Sip::Persona
           can :manage, Usuario
           can :manage, :tablasbasicas
           @@tablasbasicas.each do |t|
@@ -119,6 +123,7 @@ module Sivel2Sjr
           can :manage, Sivel2Gen::Caso
           can :manage, Cor1440Gen::Actividad
           can :manage, Sivel2Gen::Acto
+          can :manage, Sip::Persona
           can :manage, Usuario
           can :manage, :tablasbasicas
           @@tablasbasicas.each do |t|

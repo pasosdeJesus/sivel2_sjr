@@ -1,9 +1,6 @@
 # encoding: UTF-8
 module Sivel2Sjr
-  class CasosController < ApplicationController
-    before_action :set_caso, only: [:show, :edit, :update, :destroy]
-    load_and_authorize_resource class: Sivel2Gen::Caso
-    helper Sivel2Gen::UbicacionHelper
+  class CasosController < Sivel2Gen::CasosController
 
     # GET /casos
     # GET /casos.json
@@ -86,69 +83,6 @@ module Sivel2Sjr
       end
     end
 
-    def lista
-      if !params[:tabla].nil?
-        r = nil
-
-        if (params[:tabla] == "departamento" && params[:id_pais].to_i > 0)
-          r = Sip::Departamento.where(fechadeshabilitacion: nil,
-                                 id_pais: params[:id_pais].to_i).order(:nombre)
-        elsif (params[:tabla] == "municipio" && params[:id_pais].to_i > 0 && 
-               params[:id_departamento].to_i > 0 )
-          r = Sip::Municipio.where(id_pais: params[:id_pais].to_i, 
-                              id_departamento: params[:id_departamento].to_i,
-                              fechadeshabilitacion: nil).order(:nombre)
-        elsif (params[:tabla] == "clase" && params[:id_pais].to_i > 0 && 
-               params[:id_departamento].to_i > 0 && 
-               params[:id_municipio].to_i > 0)
-          r = Sip::Clase.where(id_pais: params[:id_pais].to_i, 
-                          id_departamento: params[:id_departamento].to_i, 
-                          id_municipio: params[:id_municipio].to_i,
-                          fechadeshabilitacion: nil).order(:nombre)
-        end
-        respond_to do |format|
-          format.js { render json: r }
-          format.html { render json: r }
-        end
-        return
-      end
-      respond_to do |format|
-        format.html { render inline: 'No' }
-      end
-    end
-
-
-    # GET /casos/1/edit
-    def edit
-      if session[:capturacaso_acordeon] 
-        render 'editv', layout: 'application'
-      else
-        render 'edit', layout: 'application'
-      end
-    end
-
-    # POST /casos
-    # POST /casos.json
-    def create
-      @caso.current_usuario = current_usuario
-      @caso.memo = ''
-      @caso.titulo = ''
-
-      respond_to do |format|
-        if @caso.save
-          format.html { redirect_to @caso, notice: 'Caso creado.' }
-          format.json { 
-            render action: 'show', status: :created, location: @caso 
-          }
-        else
-          format.html { render action: 'new', layout: 'application' }
-          format.json { 
-            render json: @caso.errors, status: :unprocessable_entity 
-          }
-        end
-      end
-    end
-
     # PATCH/PUT /casos/1
     # PATCH/PUT /casos/1.json
     def update
@@ -184,20 +118,11 @@ module Sivel2Sjr
     # DELETE /casos/1
     # DELETE /casos/1.json
     def destroy
-      @caso.casosjr.destroy if !@caso.casosjr.nil?
-      @caso.destroy
-      respond_to do |format|
-        format.html { redirect_to casos_url }
-        format.json { head :no_content }
-      end
+      @caso.casosjr.destroy if @caso.casosjr
+      super
     end
 
     private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_caso
-      @caso = Sivel2Gen::Caso.find(params[:id])
-      @caso.current_usuario = current_usuario
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caso_params

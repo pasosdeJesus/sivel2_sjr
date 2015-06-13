@@ -1,9 +1,8 @@
 # encoding: UTF-8
 require 'date'
 
-module Sivel2Gen
-  class ActosController < ApplicationController
-    load_and_authorize_resource class: Sivel2Gen::Acto
+module Sivel2Sjr
+  class ActosController < Sivel2Gen::ActosController
 
     # Crea nuevos actos procesando parámetros
     def agregar
@@ -60,13 +59,9 @@ module Sivel2Gen
     end
 
     def eliminar
-      acto = Acto.find(params[:id_acto].to_i)
-      @caso = acto.caso
+      acto = Sivel2Gen::Acto.find(params[:id_acto].to_i)
       acto.actosjr.destroy!
-      acto.destroy!
-      respond_to do |format|
-        format.js { render 'refrescar' }
-      end
+      super
     end
 
   end

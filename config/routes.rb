@@ -7,6 +7,10 @@ Sivel2Sjr::Engine.routes.draw do
   get '/casos/nuevavictima' => 'casos#nueva_victima'
   get '/casos/nuevopresponsable' => 'casos#nuevo_presponsable'
   get "/casos/busca" => 'casos#busca'
+  patch "/actos/agregar" => 'actos#agregar' 
+  get "/actos/eliminar" => 'actos#eliminar'
+  get "/personas" => 'personas#index'
+  get "/personas/remplazar" => 'personas#remplazar'
 
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 
