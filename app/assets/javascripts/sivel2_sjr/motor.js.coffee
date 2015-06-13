@@ -4,10 +4,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 
+#//= require sivel2_gen/motor
 #//= require jquery-ui/autocomplete
 #//= require cocoon
-#//= require sivel2_gen/geo
-#//= require sivel2_gen/libcasos
 
 # Regenera lista de selección de desplazamientos
 # s es un select jquery
@@ -53,11 +52,7 @@
       nh = nh + ">" + tx + "</option>" )
     s.html(nh)
 
-  
-$(document).on 'ready page:load',  -> 
-  root = exports ? this
-  prepara_eventos_comunes(root, 'antecedentes/causas')
-
+@sivel2_sjr_prepara_eventos_comunes = (root) ->
   # En actos, lista de desplazamientos se cálcula
   $(document).on('focusin', 'select[id^=caso_acto_][id$=desplazamiento_id]', (e) ->
     actualiza_desplazamientos($(this))
@@ -237,7 +232,10 @@ $(document).on 'ready page:load',  ->
     return
   )
 
+  return
 
+
+@sivel2_sjr_prepara_eventos_unicos = (root) ->
   # Envia formulario al presionar enlaces con clase fichacambia 
   # con más de 5 segundos de diferencia entre un click y el siguiente
   $(document).on('click', 'a.fichacambia[href^="#"]', (e) ->

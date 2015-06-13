@@ -10,7 +10,17 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require sivel2_gen/application.js
+//= require sip/motor
+//= require sivel2_gen/motor
+//= require sivel2_sjr/motor
 //= require_tree .
 
+$(document).on('ready page:load', function() {
+	var root;
+	root = typeof exports !== "undefined" && exports !== null ? exports : this;
+	sip_prepara_eventos_comunes(root);
+	sivel2_gen_prepara_eventos_comunes(root,'antecedentes/causas');
+	sivel2_sjr_prepara_eventos_comunes(root);
+	sivel2_sjr_prepara_eventos_unicos(root);
+});
 

@@ -59,6 +59,7 @@ module Sivel2Sjr
     end
 
     def eliminar
+      byebug
       acto = Sivel2Gen::Acto.find(params[:id_acto].to_i)
       acto.actosjr.destroy!
       super
