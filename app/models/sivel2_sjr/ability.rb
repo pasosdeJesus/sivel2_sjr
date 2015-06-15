@@ -52,8 +52,10 @@ module Sivel2Sjr
     ]
 
 
-    # Ver documentacion de este metodo en app/models/ability de sivel2_gen
+    # Ver documentacion de este metodo en app/models/ability de sip
     def initialize(usuario)
+      # Sin autenticación puede consultarse información geográfica 
+      can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
       if !usuario || usuario.fechadeshabilitacion
         return
       end

@@ -12,7 +12,7 @@ module Sivel2Sjr
       def atributos_index
         ["id",  "nombre" ] + 
           [ :derecho_ids =>  [] ] +
-          ["fechacreacion", "fechadeshabilitacion"] 
+          ["observaciones", "fechacreacion", "fechadeshabilitacion"] 
       end
 
       # Use callbacks to share common setup or constraints between actions.

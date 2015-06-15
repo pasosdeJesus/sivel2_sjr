@@ -14,10 +14,6 @@ module Sivel2Sjr
         @basica = Sivel2Sjr::Comosupo.find(params[:id])
       end
 
-      def atributos_index
-        ["id", "nombre", "fechacreacion", "fechadeshabilitacion"]
-      end
-
       # Never trust parameters from the scary internet, only allow the white list through.
       def comosupo_params
         params.require(:comosupo).permit( *(atributos_index - ["id"]))
