@@ -220,8 +220,14 @@ module Sivel2Sjr
           :motivosjr_ids => [],
           :progestado_ids => [],
       ],
-      :anexo_attributes => [
-        :id, :fecha, :descripcion, :archivo, :adjunto, :_destroy
+      :anexo_caso_attributes => [
+          :id, 
+          :id_caso,
+          :fecha,
+          :_destroy,
+          :sip_anexo_attributes => [
+            :id, :descripcion, :adjunto, :_destroy
+          ]
       ],
         :caso_etiqueta_attributes => [
           :id, :id_usuario, :fecha, :id_etiqueta, :observaciones, :_destroy

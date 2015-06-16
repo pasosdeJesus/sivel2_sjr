@@ -63,8 +63,7 @@ module Sivel2Sjr
       can :contar, Sip::Ubicacion
       can :buscar, Sivel2Gen::Caso
       can :lista, Sivel2Gen::Caso
-      can :descarga_anexo, Sivel2Gen::Anexo
-      #can :descarga_anexoactividad, Sivel2Gen::Anexoactividad
+      can :descarga_anexo, Sip::Anexo
       can :nuevo, Sivel2Sjr::Desplazamiento
       can :nuevo, Sivel2Sjr::Respuesta
       can :nuevo, Sip::Ubicacion
