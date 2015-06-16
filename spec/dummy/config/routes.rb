@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "/personas" => 'sivel2_sjr/personas#index'
   get "/personas/remplazar" => 'sivel2_sjr/personas#remplazar'
 
+  root 'sip/hogar#index'
   mount Sivel2Sjr::Engine, at: "/", as: "sivel2_sjr"
   mount Sivel2Gen::Engine, at: "/", as: "sivel2_gen"
   mount Cor1440Gen::Engine, at: "/", as: "cor1440_gen"
