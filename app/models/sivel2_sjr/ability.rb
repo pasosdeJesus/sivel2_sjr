@@ -3,7 +3,7 @@
 module Sivel2Sjr
   class Ability < Sivel2Gen::Ability
     # Tablas básicas
-    @@tablasbasicas = Sivel2Gen::Ability::BASICAS + [
+    BASICAS_NUEVAS = [
       ['Sivel2Sjr', 'aslegal'], 
       ['Sivel2Sjr', 'ayudasjr'], 
       ['Sivel2Sjr', 'comosupo'], 
@@ -13,14 +13,17 @@ module Sivel2Sjr
       ['Sivel2Sjr', 'statusmigratorio'],
       ['Sivel2Sjr', 'tipodesp'],
     ]
+    @@tablasbasicas += BASICAS_NUEVAS
 
     # Tablas basicas cuya secuencia es de la forma tabla_id_seq 
-    @@basicas_seq_con_id = Sivel2Gen::Ability::BASICAS_SEQID + [
+    BASICAS_SID_NUEVAS = [
       ['Sivel2Sjr', 'comosupo'], 
     ]
 
+    @@basicas_seq_con_id += BASICAS_SID_NUEVAS 
+
     # Tablas básicas que deben volcarse primero --por ser requeridas por otras básicas
-    @@tablasbasicas_prio = Sivel2Gen::Ability::BASICAS_PRIO + [
+    BASICAS_PRIO_NUEVAS = [
       ['Sivel2Sjr', 'regimensalud'],
       ['Sivel2Sjr', 'acreditacion'], 
       ['Sivel2Sjr', 'clasifdesp'],
@@ -34,6 +37,7 @@ module Sivel2Sjr
       ['Sivel2Sjr', 'progestado'],
       ['Sivel2Sjr', 'motivosjr']
     ]
+    @@tablasbasicas_prio +=  BASICAS_PRIO_NUEVAS
 
     ROLADMIN  = 1
     ROLINV    = 2
@@ -50,7 +54,6 @@ module Sivel2Sjr
       ["Analista", ROLANALI], 
       ["Sistematizador", ROLSIST]
     ]
-
 
     # Ver documentacion de este metodo en app/models/ability de sip
     def initialize(usuario)
