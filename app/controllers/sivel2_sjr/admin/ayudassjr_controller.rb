@@ -25,6 +25,29 @@ module Sivel2Sjr
         params.require(:ayudasjr).permit(*atributos_form)
       end
 
+      # Elimina un registro 
+      def destroy
+        # No se ha logrado con before_destroy en modelo
+        mens = ""
+        if @basica.ayudasjr_derecho
+          porb = Sivel2Sjr::AyudasjrDerecho.where(ayudasjr_id: @basica.id)
+          cuenta = porb.count
+          if cuenta > 0
+            porb.delete_all
+            mens += " Se han eliminado automáticamente #{cuenta} registros " +
+              " relacionados de la tabla " + 
+              Sivel2Sjr::AyudasjrDerecho.human_attribute_name(
+                :ayudasjr_derecho) + ". "
+          end
+        end
+        super(mens)
+#        @basica.destroy
+#        respond_to do |format|
+#          format.html { redirect_to admin_basicas_url(@basica) }
+#          format.json { head :no_content }
+#        end
+      end
+
     end
   end
 end
