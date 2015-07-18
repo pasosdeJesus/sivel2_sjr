@@ -16,8 +16,14 @@ module Sivel2Sjr
     @@tablasbasicas = Sip::Ability::BASICAS_PROPIAS + 
       Sivel2Gen::Ability::BASICAS_PROPIAS + BASICAS_PROPIAS
 
+    @@basicas_id_noauto = Sip::Ability::BASICAS_ID_NOAUTO +
+      Sivel2Gen::Ability::BASICAS_ID_NOAUTO 
+
+    @@nobasicas_indice_seq_con_id = Sip::Ability::NOBASICAS_INDSEQID +
+      Sivel2Gen::Ability::NOBASICAS_INDSEQID 
+
     # Tablas básicas que deben volcarse primero --por ser requeridas por otras básicas
-    BASICAS_PRIO_NUEVAS = [
+    BASICAS_PRIO = [
       ['Sivel2Sjr', 'regimensalud'],
       ['Sivel2Sjr', 'acreditacion'], 
       ['Sivel2Sjr', 'clasifdesp'],
