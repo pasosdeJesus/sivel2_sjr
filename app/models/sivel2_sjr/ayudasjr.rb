@@ -16,5 +16,18 @@ module Sivel2Sjr
     accepts_nested_attributes_for :ayudasjr_derecho, reject_if: :all_blank, 
       update_only: true
 
+    before_destroy :confirmar_ayudasjr_derecho
+
+    private
+
+    # No ha operado
+    def confirmar_ayudasjr_derecho
+      if Sivel2Sjr::AyudasjrRespuesta.where(id_ayudasjr: id).take 
+        errors.add(:base, "hay respuestas con esta ayuda humanitaria")
+        return false
+      end
+      return true
+    end
+
   end
 end
