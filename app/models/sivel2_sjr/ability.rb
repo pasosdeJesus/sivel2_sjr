@@ -3,7 +3,7 @@
 module Sivel2Sjr
   class Ability < Sivel2Gen::Ability
     # Tablas básicas
-    BASICAS_NUEVAS = [
+    BASICAS_PROPIAS = [
       ['Sivel2Sjr', 'aslegal'], 
       ['Sivel2Sjr', 'ayudasjr'], 
       ['Sivel2Sjr', 'comosupo'], 
@@ -13,14 +13,8 @@ module Sivel2Sjr
       ['Sivel2Sjr', 'statusmigratorio'],
       ['Sivel2Sjr', 'tipodesp'],
     ]
-    @@tablasbasicas += BASICAS_NUEVAS
-
-    # Tablas basicas cuya secuencia es de la forma tabla_id_seq 
-    BASICAS_SID_NUEVAS = [
-      ['Sivel2Sjr', 'comosupo'], 
-    ]
-
-    @@basicas_seq_con_id += BASICAS_SID_NUEVAS 
+    @@tablasbasicas = Sip::Ability::BASICAS_PROPIAS + 
+      Sivel2Gen::Ability::BASICAS_PROPIAS + BASICAS_PROPIAS
 
     # Tablas básicas que deben volcarse primero --por ser requeridas por otras básicas
     BASICAS_PRIO_NUEVAS = [
@@ -37,7 +31,7 @@ module Sivel2Sjr
       ['Sivel2Sjr', 'progestado'],
       ['Sivel2Sjr', 'motivosjr']
     ]
-    @@tablasbasicas_prio +=  BASICAS_PRIO_NUEVAS
+    @@tablasbasicas_prio = Sip::Ability::BASICAS_PRIO + BASICAS_PRIO
 
     ROLADMIN  = 1
     ROLINV    = 2
@@ -78,8 +72,7 @@ module Sivel2Sjr
           can :read, Sivel2Gen::Caso, casosjr: { oficina_id: usuario.oficina_id }
           can [:update, :create, :destroy], Sivel2Gen::Caso, 
             casosjr: { asesor: usuario.id, oficina_id:usuario.oficina_id }
-          can :read, Cor1440Gen::Actividad
-          can :new, Cor1440Gen::Actividad
+          can [:read, :new], Cor1440Gen::Actividad
           can :new, Sivel2Gen::Caso 
           can [:update, :create, :destroy], Cor1440Gen::Actividad, 
             oficina: { id: usuario.oficina_id}
@@ -90,6 +83,7 @@ module Sivel2Sjr
           can :new, Sivel2Gen::Caso
           can [:update, :create, :destroy], Sivel2Gen::Caso, 
             casosjr: { oficina_id: usuario.oficina_id }
+          can :read, Cor1440Gen::Informe
           can :read, Cor1440Gen::Actividad
           can :new, Cor1440Gen::Actividad
           can [:update, :create, :destroy], Cor1440Gen::Actividad, 
@@ -101,6 +95,7 @@ module Sivel2Sjr
           can :new, Sivel2Gen::Caso
           can [:update, :create, :destroy, :poneretcomp], Sivel2Gen::Caso, 
             casosjr: { oficina_id: usuario.oficina_id }
+          can :manage, Cor1440Gen::Informe
           can :read, Cor1440Gen::Actividad
           can :new, Cor1440Gen::Actividad
           can [:update, :create, :destroy], Cor1440Gen::Actividad, 
@@ -109,23 +104,13 @@ module Sivel2Sjr
           can :manage, Sip::Persona
           can :new, Usuario
           can [:read, :manage], Usuario, oficina: { id: usuario.oficina_id}
-        when Ability::ROLDIR
-          can [:read, :new, :update, :create, :destroy, :ponetetcomp], Sivel2Gen::Caso
-          can [:read, :new, :update, :create, :destroy], Cor1440Gen::Actividad
-          can :manage, Sivel2Gen::Acto
-          can :manage, Sip::Persona
-          can :manage, Usuario
-          can :manage, :tablasbasicas
-          @@tablasbasicas.each do |t|
-            c = Ability.tb_clase(t)
-            can :manage, c
-          end
         when Ability::ROLINV
           cannot :buscar, Sivel2Gen::Caso
           can :read, Sivel2Gen::Caso 
-        when Ability::ROLADMIN
+        when Ability::ROLADMIN, Ability::ROLDIR
           can :manage, Sivel2Gen::Caso
           can :manage, Cor1440Gen::Actividad
+          can :manage, Cor1440Gen::Informe
           can :manage, Sivel2Gen::Acto
           can :manage, Sip::Persona
           can :manage, Usuario
