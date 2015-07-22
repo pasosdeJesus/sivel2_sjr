@@ -7,8 +7,8 @@ module Sivel2Sjr
       foreign_key: "id_derecho", validate: true, dependent: :destroy
     has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
       :through => :derecho_respuesta
-  	has_many :derecho_procesosjr, class_name: "Sivel2Sjr::DerechoProcesosjr", 
-      foreign_key: "id_derecho", validate: true
+#  	has_many :derecho_procesosjr, class_name: "Sivel2Sjr::DerechoProcesosjr", 
+#      foreign_key: "id_derecho", validate: true
 
     has_many :ayudaestado_derecho, 
       class_name: "Sivel2Sjr::AyudaestadoDerecho",  
