@@ -32,9 +32,9 @@ module Sivel2Sjr
             foreign_key: "oficina_id", validate: true
           belongs_to :salida, class_name: "Sip::Ubicacion", validate: true,
             foreign_key: "id_salida"
-          #belongs_to :statusmigratorio, 
-          #class_name: "Sivel2Sjr::Statusmigratorio", 
-          #foreign_key: "id_statusmigratorio", validate: true
+          belongs_to :statusmigratorio, 
+            class_name: "Sivel2Sjr::Statusmigratorio", 
+            foreign_key: "id_statusmigratorio", validate: true
 
           self.primary_key = :id_caso
 

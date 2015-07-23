@@ -30,6 +30,16 @@
   label_method: lambda {|t| t.supracategoria.id_tviolencia + t.id.to_s + ' ' + t.nombre },
   value_method: :id 
 %>
+<%= s.association :statusmigratorio,
+  collection: Sivel2Sjr::Statusmigratorio.habilitados,
+  label_method: :nombre,
+  value_method: :id 
+%>
+<%= s.association :proteccion,
+  collection: Sivel2Sjr::Proteccion.habilitados,
+  label_method: :nombre,
+  value_method: :id 
+%>
 <%= s.input :observacionesref, 
   label: "Observaciones" 
 %>
