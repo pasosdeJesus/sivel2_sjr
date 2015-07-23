@@ -14,7 +14,16 @@ module Sivel2Sjr
       ['Sivel2Sjr', 'tipodesp'],
     ]
     @@tablasbasicas = Sip::Ability::BASICAS_PROPIAS + 
-      Sivel2Gen::Ability::BASICAS_PROPIAS + BASICAS_PROPIAS
+      Sivel2Gen::Ability::BASICAS_PROPIAS + BASICAS_PROPIAS - [
+        ['Sip', 'fuenteprensa'],
+        ['Sivel2Gen', 'filiacion'],
+        ['Sivel2Gen', 'frontera'],
+        ['Sivel2Gen', 'intervalo'],
+        ['Sivel2Gen', 'organizacion'],
+        ['Sivel2Gen', 'region'],
+        ['Sivel2Gen', 'sectorsocial'],
+        ['Sivel2Gen', 'vinculoestado']
+    ]
 
     BASICAS_ID_NOAUTO = []
     @@basicas_id_noauto = Sip::Ability::BASICAS_ID_NOAUTO +
