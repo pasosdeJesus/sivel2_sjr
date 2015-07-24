@@ -1,15 +1,16 @@
 <table class="table table-striped" border='1'>
   <thead>
     <tr>
-      <th><%= @caso.actosjr.human_attribute_name(:presponsable) %></th>
-      <th><%= @caso.actosjr.human_attribute_name(:categoria) %></th>
-      <th><%= @caso.actosjr.human_attribute_name(:victima) %></th>
-      <th><%= @caso.actosjr.human_attribute_name(:fecha) %></th>
-      <th>Causó <%= @caso.actosjr.human_attribute_name(:desplazamiento) %></th>
+      <th><%= Sivel2Sjr::Actosjr.human_attribute_name(:presponsable) %></th>
+      <th><%= Sivel2Sjr::Actosjr.human_attribute_name(:categoria) %></th>
+      <th><%= Sivel2Sjr::Actosjr.human_attribute_name(:victima) %></th>
+      <TH><%= Sivel2Sjr::Actosjr.human_attribute_name(:fecha) %></th>
+      <th>Causó <%= Sivel2Sjr::Actosjr.human_attribute_name(:desplazamiento) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
+  <% if @caso && @caso.actosjr %>
     <% @caso.actosjr.try(:each) do |actosjr| %>
       <tr>
         <td><%= actosjr.acto.presponsable.nombre %></td>
@@ -32,6 +33,7 @@
         </td>
       </tr>
     <% end %>
+  <% end %>
   </tbody>
 </table>
 
