@@ -11,22 +11,17 @@ class RenombraIdSeq22 < ActiveRecord::Migration
     'personadesea',
     'progestado',
   ]
-
   def up
+    conexion = Sivel2Sjr::Casosjr.connection()
     @@tablas.each do |t|
-        execute <<-SQL
-            ALTER SEQUENCE #{t + '_seq'}
-                RENAME TO sivel2_sjr_#{t + '_id_seq'};
-        SQL
+      Sip::renombra_secuencia(conexion, "#{t}_seq", "sivel2_sjr_#{t}_id_seq")
     end
   end
 
   def down
+    conexion = Sivel2Sjr::Casosjr.connection()
     @@tablas.each do |t|
-        execute <<-SQL
-            ALTER SEQUENCE sivel2_sjr_#{t}_id_seq 
-                RENAME TO #{t}_seq;
-        SQL
+      Sip::renombra_secuencia(conexion, "sivel2_sjr_#{t}_id_seq", "#{t}_seq")
     end
   end
 end
