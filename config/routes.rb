@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 Sivel2Sjr::Engine.routes.draw do
   get '/desplazamientos/nuevo' => 'desplazamientos#nuevo'
   get '/respuestas/nuevo' => 'respuestas#nuevo'
