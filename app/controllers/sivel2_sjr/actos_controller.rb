@@ -42,6 +42,7 @@ module Sivel2Sjr
                 id_persona: vic,
               )
               acto.caso = @caso
+              acto.save
               actosjr = Sivel2Sjr::Actosjr.new(
                 fecha: params[:caso_acto_fecha],
                 desplazamiento_id: params[:caso_acto_desplazamiento_id]
@@ -59,9 +60,10 @@ module Sivel2Sjr
     end
 
     def eliminar
-      byebug
-      acto = Sivel2Gen::Acto.find(params[:id_acto].to_i)
-      acto.actosjr.destroy!
+      acto = Sivel2Gen::Acto.where(id: params[:id_acto].to_i).take
+      if acto && acto.actosjr
+        acto.actosjr.destroy!
+      end
       super
     end
 
