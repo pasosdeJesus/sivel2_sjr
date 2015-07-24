@@ -155,18 +155,6 @@ $$;
 
 
 --
--- Name: acreditacion_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE acreditacion_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: acto_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -215,18 +203,6 @@ CREATE SEQUENCE aspsicosocial_seq
 
 
 --
--- Name: ayudaestado_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE ayudaestado_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: caso_etiqueta_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -243,18 +219,6 @@ CREATE SEQUENCE caso_etiqueta_seq
 --
 
 CREATE SEQUENCE caso_presponsable_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: clasifdesp_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE clasifdesp_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -749,30 +713,6 @@ ALTER SEQUENCE cor1440_gen_rangoedadac_id_seq OWNED BY cor1440_gen_rangoedadac.i
 
 
 --
--- Name: declaroante_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE declaroante_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: derecho_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE derecho_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: desplazamiento_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -821,18 +761,6 @@ CREATE SEQUENCE grupoper_seq
 
 
 --
--- Name: inclusion_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE inclusion_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: instanciader_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -857,58 +785,10 @@ CREATE SEQUENCE mecanismoder_seq
 
 
 --
--- Name: modalidadtierra_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE modalidadtierra_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: motivoconsulta_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE motivoconsulta_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: motivosjr_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE motivosjr_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: personadesea_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE personadesea_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: progestado_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE progestado_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2646,11 +2526,23 @@ CREATE TABLE sivel2_gen_vinculoestado (
 
 
 --
+-- Name: sivel2_sjr_acreditacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_acreditacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_acreditacion; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_acreditacion (
-    id integer DEFAULT nextval('acreditacion_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_acreditacion_id_seq'::regclass) NOT NULL,
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
     fechacreacion date DEFAULT '2013-05-24'::date NOT NULL,
     fechadeshabilitacion date,
@@ -2755,11 +2647,23 @@ CREATE TABLE sivel2_sjr_aspsicosocial_respuesta (
 
 
 --
+-- Name: sivel2_sjr_ayudaestado_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_ayudaestado_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_ayudaestado; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_ayudaestado (
-    id integer DEFAULT nextval('ayudaestado_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_ayudaestado_id_seq'::regclass) NOT NULL,
     nombre character varying(50) NOT NULL,
     fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
     fechadeshabilitacion date,
@@ -2843,11 +2747,23 @@ CREATE TABLE sivel2_sjr_ayudasjr_respuesta (
 
 
 --
+-- Name: sivel2_sjr_clasifdesp_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_clasifdesp_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_clasifdesp; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_clasifdesp (
-    id integer DEFAULT nextval('clasifdesp_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_clasifdesp_id_seq'::regclass) NOT NULL,
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
     fechacreacion date DEFAULT '2013-05-24'::date NOT NULL,
     fechadeshabilitacion date,
@@ -2893,11 +2809,23 @@ ALTER SEQUENCE sivel2_sjr_comosupo_id_seq OWNED BY sivel2_sjr_comosupo.id;
 
 
 --
+-- Name: sivel2_sjr_declaroante_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_declaroante_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_declaroante; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_declaroante (
-    id integer DEFAULT nextval('declaroante_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_declaroante_id_seq'::regclass) NOT NULL,
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
     fechacreacion date DEFAULT '2013-05-24'::date NOT NULL,
     fechadeshabilitacion date,
@@ -2909,11 +2837,23 @@ CREATE TABLE sivel2_sjr_declaroante (
 
 
 --
+-- Name: sivel2_sjr_derecho_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_derecho_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_derecho; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_derecho (
-    id integer DEFAULT nextval('derecho_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_derecho_id_seq'::regclass) NOT NULL,
     nombre character varying(100) NOT NULL,
     fechacreacion date DEFAULT '2013-06-12'::date NOT NULL,
     fechadeshabilitacion date,
@@ -3065,11 +3005,23 @@ CREATE TABLE sivel2_sjr_idioma (
 
 
 --
+-- Name: sivel2_sjr_inclusion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_inclusion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_inclusion; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_inclusion (
-    id integer DEFAULT nextval('inclusion_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_inclusion_id_seq'::regclass) NOT NULL,
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
     fechacreacion date DEFAULT '2013-05-24'::date NOT NULL,
     fechadeshabilitacion date,
@@ -3111,11 +3063,23 @@ CREATE TABLE sivel2_sjr_mecanismoder (
 
 
 --
+-- Name: sivel2_sjr_modalidadtierra_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_modalidadtierra_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_modalidadtierra; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_modalidadtierra (
-    id integer DEFAULT nextval('modalidadtierra_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_modalidadtierra_id_seq'::regclass) NOT NULL,
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
     fechacreacion date DEFAULT '2013-05-24'::date NOT NULL,
     fechadeshabilitacion date,
@@ -3142,11 +3106,23 @@ CREATE TABLE sivel2_sjr_motivoconsulta (
 
 
 --
+-- Name: sivel2_sjr_motivosjr_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_motivosjr_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_motivosjr; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_motivosjr (
-    id integer DEFAULT nextval('motivosjr_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_motivosjr_id_seq'::regclass) NOT NULL,
     nombre character varying(100) NOT NULL,
     fechacreacion date DEFAULT '2013-06-16'::date NOT NULL,
     fechadeshabilitacion date,
@@ -3180,11 +3156,23 @@ CREATE TABLE sivel2_sjr_motivosjr_respuesta (
 
 
 --
+-- Name: sivel2_sjr_personadesea_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_personadesea_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_personadesea; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_personadesea (
-    id integer DEFAULT nextval('personadesea_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_personadesea_id_seq'::regclass) NOT NULL,
     nombre character varying(50) NOT NULL,
     fechacreacion date DEFAULT '2013-06-17'::date NOT NULL,
     fechadeshabilitacion date,
@@ -3196,11 +3184,23 @@ CREATE TABLE sivel2_sjr_personadesea (
 
 
 --
+-- Name: sivel2_sjr_progestado_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_sjr_progestado_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_sjr_progestado; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sivel2_sjr_progestado (
-    id integer DEFAULT nextval('progestado_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_sjr_progestado_id_seq'::regclass) NOT NULL,
     nombre character varying(50) NOT NULL,
     fechacreacion date DEFAULT '2013-06-17'::date NOT NULL,
     fechadeshabilitacion date,
@@ -6386,4 +6386,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150717161539');
 INSERT INTO schema_migrations (version) VALUES ('20150720115701');
 
 INSERT INTO schema_migrations (version) VALUES ('20150720120236');
+
+INSERT INTO schema_migrations (version) VALUES ('20150724003736');
+
+INSERT INTO schema_migrations (version) VALUES ('20150724024110');
 

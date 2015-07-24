@@ -1,29 +1,18 @@
 # encoding: UTF-8
 
-connection = ActiveRecord::Base.connection();
+conexion = ActiveRecord::Base.connection();
 
-# Básicas de motor sip
-l = File.readlines(
-  Gem.loaded_specs['sip'].full_gem_path + "/db/datos-basicas.sql"
-)
-connection.execute(l.join("\n"))
+# De motores
+Sip::carga_semillas_sql(conexion, 'sip', :datos)
+motor = ['sivel2_gen', '../..']
+motor.each do |m|
+    Sip::carga_semillas_sql(conexion, m, :cambios)
+    Sip::carga_semillas_sql(conexion, m, :datos)
+end
 
-# Básicas de motor SIVeL genérico
-l = File.readlines(
-  Gem.loaded_specs['sivel2_gen'].full_gem_path + "/db/datos-basicas.sql"
-)
-connection.execute(l.join("\n"))
 
-# Cambios a básicas anteriores
-l = File.readlines("../../db/cambios-basicas.sql")
-connection.execute(l.join("\n"))
-
-# Nuevas basicas de este motor
-l = File.readlines("../../db/datos-basicas.sql")
-connection.execute(l.join("\n"));
-
-# Usuario para primer ingreso
-connection.execute("INSERT INTO usuario 
+# Usuario para primer ingreso sivel2, sivel2
+conexion.execute("INSERT INTO usuario 
 	(nusuario, email, encrypted_password, password, 
   fechacreacion, created_at, updated_at, rol) 
 	VALUES ('sivel2', 'sivel2@localhost', 
