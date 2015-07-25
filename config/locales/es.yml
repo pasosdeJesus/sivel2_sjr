@@ -36,9 +36,9 @@ es:
       "sivel2_sjr/maternidad":
         Maternidad: Estado Maternidad
         Maternidades: Estados Maternidad
-      "sivel2_sjr/motivosjr":
-        Motivosjr: Servicio/Asesoría del SJR
-        Motivossjr: Servicios y Asesorías del SJR
+      "sivel2_sjr/modalidadtierra":
+        Modalidadtierra: Modalidad de tenencia de la tierra
+        Modalidadestierra: Modalidades de tenencia de la tierra
       "sivel2_sjr/progestado":
         Progestado: Programa del Estado
         Progsestado: Programas del Estado

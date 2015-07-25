@@ -24,6 +24,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'ayudasjrrespuesta', 'ayudasjrrespuesta'
 	inflect.irregular 'derechorespuesta', 'derechorespuesta'
 	inflect.irregular 'emprendimientorespuesta', 'emprendimientorespuesta'
+	inflect.irregular 'modalidadtierra', 'modalidadestierra'
 	inflect.irregular 'motivosjr', 'motivossjr'
 	inflect.irregular 'motivosjrrespuesta', 'motivosjrrespuesta'
 	inflect.irregular 'progestadorespuesta', 'progestadorespuesta'
