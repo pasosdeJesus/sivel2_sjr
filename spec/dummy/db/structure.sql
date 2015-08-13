@@ -5830,134 +5830,6 @@ ALTER TABLE ONLY sivel2_sjr_progestado_respuesta
 
 
 --
--- Name: progestado_respuesta_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_progestado_respuesta
-    ADD CONSTRAINT progestado_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES sivel2_sjr_respuesta(id);
-
-
---
--- Name: respuesta_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_respuesta
-    ADD CONSTRAINT respuesta_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_sjr_casosjr(id_caso);
-
-
---
--- Name: respuesta_id_personadesea_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_respuesta
-    ADD CONSTRAINT respuesta_id_personadesea_fkey FOREIGN KEY (id_personadesea) REFERENCES sivel2_sjr_personadesea(id);
-
-
---
--- Name: sip_clase_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sip_clase
-    ADD CONSTRAINT sip_clase_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES sip_municipio(id);
-
-
---
--- Name: sip_municipio_id_departamento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sip_municipio
-    ADD CONSTRAINT sip_municipio_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES sip_departamento(id);
-
-
---
--- Name: sip_persona_id_clase_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sip_persona
-    ADD CONSTRAINT sip_persona_id_clase_fkey FOREIGN KEY (id_clase) REFERENCES sip_clase(id);
-
-
---
--- Name: sip_persona_id_departamento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sip_persona
-    ADD CONSTRAINT sip_persona_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES sip_departamento(id);
-
-
---
--- Name: sip_persona_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sip_persona
-    ADD CONSTRAINT sip_persona_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES sip_municipio(id);
-
-
---
--- Name: sip_ubicacion_id_clase_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sip_ubicacion
-    ADD CONSTRAINT sip_ubicacion_id_clase_fkey FOREIGN KEY (id_clase) REFERENCES sip_clase(id);
-
-
---
--- Name: sip_ubicacion_id_departamento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sip_ubicacion
-    ADD CONSTRAINT sip_ubicacion_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES sip_departamento(id);
-
-
---
--- Name: sip_ubicacion_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sip_ubicacion
-    ADD CONSTRAINT sip_ubicacion_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES sip_municipio(id);
-
-
---
--- Name: sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
-    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey FOREIGN KEY (fuenteprensa_id) REFERENCES sip_fuenteprensa(id);
-
-
---
--- Name: sivel2_gen_caso_fuenteprensa_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
-    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_gen_caso(id);
-
-
---
--- Name: sivel2_gen_categoria_supracategoria_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_categoria
-    ADD CONSTRAINT sivel2_gen_categoria_supracategoria_id_fkey FOREIGN KEY (supracategoria_id) REFERENCES sivel2_gen_supracategoria(id);
-
-
---
--- Name: supracategoria_id_tviolencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_supracategoria
-    ADD CONSTRAINT supracategoria_id_tviolencia_fkey FOREIGN KEY (id_tviolencia) REFERENCES sivel2_gen_tviolencia(id);
-
-
---
--- Name: trelacion_inverso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sip_trelacion
-    ADD CONSTRAINT trelacion_inverso_fkey FOREIGN KEY (inverso) REFERENCES sip_trelacion(id);
-
-
---
 -- Name: ubicacion_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6187,8 +6059,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140527110223');
 
 INSERT INTO schema_migrations (version) VALUES ('20140528043115');
 
-INSERT INTO schema_migrations (version) VALUES ('20140611110441');
-
 INSERT INTO schema_migrations (version) VALUES ('20140611111020');
 
 INSERT INTO schema_migrations (version) VALUES ('20140613044320');
@@ -6271,6 +6141,8 @@ INSERT INTO schema_migrations (version) VALUES ('20141222174257');
 
 INSERT INTO schema_migrations (version) VALUES ('20141222174267');
 
+INSERT INTO schema_migrations (version) VALUES ('20141225174739');
+
 INSERT INTO schema_migrations (version) VALUES ('20150213114933');
 
 INSERT INTO schema_migrations (version) VALUES ('20150217185859');
@@ -6351,7 +6223,11 @@ INSERT INTO schema_migrations (version) VALUES ('20150602104342');
 
 INSERT INTO schema_migrations (version) VALUES ('20150609094809');
 
+INSERT INTO schema_migrations (version) VALUES ('20150609094815');
+
 INSERT INTO schema_migrations (version) VALUES ('20150609094820');
+
+INSERT INTO schema_migrations (version) VALUES ('20150612160810');
 
 INSERT INTO schema_migrations (version) VALUES ('20150612203808');
 
@@ -6390,4 +6266,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150720120236');
 INSERT INTO schema_migrations (version) VALUES ('20150724003736');
 
 INSERT INTO schema_migrations (version) VALUES ('20150724024110');
+
+INSERT INTO schema_migrations (version) VALUES ('20150803082520');
+
+INSERT INTO schema_migrations (version) VALUES ('20150809032138');
 
