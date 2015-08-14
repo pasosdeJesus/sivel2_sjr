@@ -5,14 +5,33 @@ module Sivel2Sjr
     # GET /casos
     # GET /casos.json
     def index
-      Sivel2Gen::Caso.refresca_conscaso
-      q=params[:q]
-      if (q && q.strip.length>0)
-        @conscaso = Sivel2Gen::Conscaso.where(
-          "q @@ plainto_tsquery('spanish', unaccent(?))", q
-        )
-      else
-        @conscaso = Sivel2Gen::Conscaso.all
+      Sivel2Gen::Conscaso.refresca_conscaso
+
+      @incluir = ['casoid', 'contacto', 'fecharec', 'oficina', 
+                  'nusuario', 'fecha', 'statusmigratorio',
+                  'ultimafechaatencion', 'memo'
+      ]
+      @campoord = 'fecharec'
+      @conscaso = Sivel2Gen::Conscaso.all
+      if params && params[:filtro]
+        if params[:filtro][:q] && params[:filtro][:q].length>0
+          q = params[:filtro][:q].gsub("-", " ")
+          @conscaso = @conscaso.where(
+            "q @@ plainto_tsquery('spanish', unaccent(?))", q
+          )
+        end
+        @conscaso = filtro_avanzado @conscaso, params[:filtro]
+        if params[:filtro][:orden]
+         @campoord = params[:filtro][:orden]
+        end
+        nincluir = []
+        for i in @incluir do
+          s = 'inc_' + i
+          if params[:filtro][s.to_sym] && params[:filtro][s.to_sym] == '1'
+            nincluir.push(i)
+          end
+        end
+        @incluir = nincluir
       end
       if (current_usuario.rol == Ability::ROLINV) 
         @conscaso= @conscaso.where(
@@ -23,9 +42,17 @@ module Sivel2Sjr
           AND etiqueta_usuario.usuario_id ='" + 
           current_usuario.id.to_s + "')")
       end
+      @conscaso = @conscaso.ordenar_por @campoord
       @numconscaso = @conscaso.size
-      @conscaso = @conscaso.order(fecharec: :desc).paginate(:page => params[:pagina], per_page: 20)
-      render layout: 'application'
+      @paginar = !params || !params[:filtro] || !params[:filtro][:paginar] ||
+        params[:filtro][:paginar] != '0'
+      if @paginar
+        @conscaso = @conscaso.paginate(page: params[:pagina], per_page: 20)
+      end
+      respond_to do |format|
+        format.html { render layout: 'application' }
+        format.js { render 'sivel2_gen/casos/filtro' }
+      end
     end
 
     # GET /casos/1

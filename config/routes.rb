@@ -14,6 +14,9 @@ Sivel2Sjr::Engine.routes.draw do
   get "/personas" => 'personas#index'
   get "/personas/remplazar" => 'personas#remplazar'
 
+  get '/casos/filtro' => 'casos#index', as: :casos_filtro
+  post '/casos/filtro' => 'casos#index', as: :envia_casos_filtro
+
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 
   namespace :admin do

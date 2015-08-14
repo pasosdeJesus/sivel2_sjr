@@ -53,7 +53,7 @@ module Sivel2Sjr
         casosjr.fecharec,
         oficina.nombre AS oficina_nombre,
         usuario.nusuario,
-        caso.fecha AS caso_fecha,
+        caso.fecha AS fecha,
         statusmigratorio.nombre AS statusmigratorio_nombre,
         ARRAY_TO_STRING(ARRAY(SELECT fechaatencion 
           FROM sivel2_sjr_respuesta AS respuesta
@@ -72,12 +72,12 @@ module Sivel2Sjr
               ActiveRecord::Base.connection.execute(
                 "CREATE MATERIALIZED VIEW sivel2_gen_conscaso 
         AS SELECT caso_id, contacto_nombre, fecharec, oficina_nombre, 
-          nusuario, caso_fecha, statusmigratorio_nombre,
+          nusuario, fecha, statusmigratorio_nombre,
           respuesta_ultimafechaatencion, caso_memo,
           to_tsvector('spanish', unaccent(caso_id || ' ' || contacto_nombre || 
             ' ' || replace(cast(fecharec AS varchar), '-', ' ') || 
             ' ' || oficina_nombre || ' ' || nusuario || ' ' || 
-            replace(cast(caso_fecha AS varchar), '-', ' ') || ' ' ||
+            replace(cast(fecha AS varchar), '-', ' ') || ' ' ||
             statusmigratorio_nombre || ' ' || 
             replace(cast(respuesta_ultimafechaatencion AS varchar), '-', ' ')
             || ' ' || caso_memo )) as q
