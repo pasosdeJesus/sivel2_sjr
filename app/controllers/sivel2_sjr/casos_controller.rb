@@ -2,6 +2,19 @@
 module Sivel2Sjr
   class CasosController < Sivel2Gen::CasosController
 
+    def campos_filtro1
+      [:codigo,
+       :fechaini, :fechafin, 
+       :fecharecini, :fecharecfin, 
+       :oficina_id, :usuario_id,
+       :ultimafechaatencionini, :ultimafechaatencionfin,
+       :statusmigratorio_id,
+       :nombressp, :apellidossp,
+       :nombres, :apellidos, :sexo, :rangoedad_id, 
+       :descripcion
+      ]
+    end
+
     # GET /casos
     # GET /casos.json
     def index

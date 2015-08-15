@@ -10,7 +10,124 @@
 
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Fecha Hecho 
+        <%= Sivel2Sjr::Casosjr.human_attribute_name(:contacto) %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-4 col-md-offset-0 col-md-3">
+        <%= f.input :nombressp,
+          maxlength: 50, 
+          size: 10,
+          label: false,
+          placeholder: 'Nombre(s)'
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-3">
+        <%= f.input :apellidossp,
+          maxlength: 50, 
+          size: 10,
+          label: false,
+          placeholder: 'Apellido(s)'
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-1 text-center">
+        <%= f.input :inc_contacto, 
+          as: :boolean, 
+          label: false,
+          input_html: { :checked => "checked" }
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-1 text-center">
+      </div>
+    </div>
+
+    <div class="row filtro-fila">
+      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+        <%= Sivel2Sjr::Casosjr.human_attribute_name(:fecharec) %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-3">
+        <%= f.input :fecharecini,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Inicial',
+          input_html: {
+          "data-behaviour" => "datepicker"
+          }
+        %>
+      </div>
+      <div class="col-sm-offset-1 col-sm-3">
+        <%= f.input :fecharecfin,
+          maxlength: 10, 
+          size: 10,
+          label: false,
+          placeholder: 'Final',
+          input_html: {
+          "data-behaviour" => "datepicker"
+          }
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-1 text-center">
+        <%= f.input :inc_fecharec, 
+          as: :boolean, 
+          label: false,
+          input_html: { :checked => "checked" }
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-1 text-center">
+        <%= f.radio_button(:orden, :fecharec) %>
+      </div>
+    </div>
+
+    <div class="row filtro-fila">
+      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+        <%= Sivel2Sjr::Casosjr.human_attribute_name(:oficina) %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-7">
+        <%= f.input :oficina_id,
+          collection: Sip::Oficina.habilitados,
+          label_method: :nombre,
+          value_method: :id,
+          label: false,
+          include_blank: '-- Oficina'
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-1 text-center">
+        <%= f.input :inc_oficina, 
+          as: :boolean, 
+          label: false,
+          input_html: { :checked => "checked" }
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-1 text-center">
+      </div>
+    </div> 
+
+    <div class="row filtro-fila">
+      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+        <%= Sivel2Gen::Caso.human_attribute_name(:asesor) %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-7">
+        <%= f.input :usuario_id,
+          collection: ::Usuario.habilitados,
+          label_method: :nombre,
+          value_method: :id,
+          label: false,
+          include_blank: '-- Asesor'
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-1 text-center">
+        <%= f.input :inc_nusuario, 
+          as: :boolean, 
+          label: false,
+          input_html: { :checked => "checked" }
+        %>
+      </div>
+      <div class="col-sm-offset-0 col-sm-1 text-center">
+      </div>
+    </div> 
+
+    <div class="row filtro-fila">
+      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+        <%= Sivel2Gen::Caso.human_attribute_name(:fecha) %>
       </div>
       <div class="col-sm-offset-0 col-sm-4 col-md-offset-0 col-md-3">
         <%= f.input :fechaini,
@@ -33,7 +150,7 @@
           "data-behaviour" => "datepicker"
           }
         %>
-    </div>
+      </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
         <%= f.input :inc_fecha, 
           as: :boolean, 
@@ -46,51 +163,36 @@
       </div>
     </div>
 
-
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Fecha Recepción
+        <%= Sivel2Sjr::Casosjr.human_attribute_name(:statusmigratorio) %>
       </div>
-      <div class="col-sm-offset-0 col-sm-4 col-md-offset-0 col-md-3">
-        <%= f.input :fecharecini,
-          maxlength: 10, 
-          size: 10,
+      <div class="col-sm-offset-0 col-sm-10 col-md-offset-0 col-md-7">
+        <%= f.input :statusmigratorio_id,
+          collection: Sivel2Sjr::Statusmigratorio.habilitados,
+          label_method: :nombre,
+          value_method: :id,
           label: false,
-          placeholder: 'Inicial',
-          input_html: {
-          "data-behaviour" => "datepicker"
-          }
+          include_blank: true
         %>
       </div>
-      <div class="col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-3">
-        <%= f.input :fecharecfin,
-          maxlength: 10, 
-          size: 10,
-          label: false,
-          placeholder: 'Final',
-          input_html: {
-          "data-behaviour" => "datepicker"
-          }
-        %>
-    </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_fecharec, 
+        <%= f.input :inc_statusmigratorio, 
           as: :boolean, 
           label: false,
           input_html: { :checked => "checked" }
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.radio_button(:orden, :fecharec) %>
       </div>
     </div>
 
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Fecha Ult. Atención
+        <%= Sivel2Sjr::Casosjr.human_attribute_name(:ultimafechaatencion) %>
       </div>
       <div class="col-sm-offset-0 col-sm-4 col-md-offset-0 col-md-3">
-        <%= f.input :ultiafechaatencionini,
+        <%= f.input :ultimafechaatencionini,
           maxlength: 10, 
           size: 10,
           label: false,
@@ -123,22 +225,23 @@
       </div>
     </div>
 
-
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-       Estatus Migratorio
+        <%= Sivel2Gen::Caso.human_attribute_name(:memo) %>
       </div>
-      <div class="col-sm-offset-0 col-sm-10 col-md-offset-0 col-md-7">
-        <%= f.input :statusmigratorio_id,
-          collection: Sivel2Sjr::Statusmigratorio.habilitados,
-          label_method: :nombre,
-          value_method: :id,
+      <div class="col-sm-offset-0 col-sm-9 col-md-offset-0 col-md-7">
+        <%= f.input :descripcion,
+          maxlength: 500, 
           label: false,
-          include_blank: true
+          placeholder: Sivel2Gen::Caso.human_attribute_name(:memo)
         %>
       </div>
+        <!--%= select_tag "contexto", options_from_collection_for_select(
+          Sivel2Gen::Contexto.habilitados,
+          "id", "nombre") 
+        %-->
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_statusmigratorio, 
+        <%= f.input :inc_memo, 
           as: :boolean, 
           label: false,
           input_html: { :checked => "checked" }
@@ -147,9 +250,10 @@
       <div class="col-sm-offset-0 col-sm-1 text-center">
       </div>
     </div>
+
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Sol. Principal
+        Miembro Grupo Familiar
       </div>
       <div class="col-sm-offset-0 col-sm-4 col-md-offset-0 col-md-3">
         <%= f.input :nombres,
@@ -168,41 +272,6 @@
         %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_contacto, 
-          as: :boolean, 
-          label: false,
-          input_html: { :checked => "checked" }
-        %>
-      </div>
-      <div class="col-sm-offset-0 col-sm-1 text-center">
-      </div>
-    </div>
-    <div class="row filtro-fila">
-      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Miembro Grupo Familiar
-      </div>
-      <div class="col-sm-offset-0 col-sm-4 col-md-offset-0 col-md-3">
-        <%= f.input :nombresgf,
-          maxlength: 50, 
-          size: 10,
-          label: false,
-          placeholder: 'Nombre(s)'
-        %>
-      </div>
-      <div class="col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-3">
-        <%= f.input :apellidosgf,
-          maxlength: 50, 
-          size: 10,
-          label: false,
-          placeholder: 'Apellido(s)'
-        %>
-      </div>
-      <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_grupofam, 
-          as: :boolean, 
-          label: false,
-          input_html: { :checked => "checked" }
-        %>
       </div>
       <div class="col-sm-offset-0 col-sm-1 text-center">
       </div>
@@ -238,31 +307,7 @@
       <div class="col-sm-offset-0 col-sm-1 text-center">
       </div>
     </div>
-    <div class="row filtro-fila">
-      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Descripción
-      </div>
-      <div class="col-sm-offset-0 col-sm-9 col-md-offset-0 col-md-7">
-        <%= f.input :descripcion,
-          maxlength: 500, 
-          label: false,
-          placeholder: 'Descripción'
-        %>
-      </div>
-        <!--%= select_tag "contexto", options_from_collection_for_select(
-          Sivel2Gen::Contexto.habilitados,
-          "id", "nombre") 
-        %-->
-      <div class="col-sm-offset-0 col-sm-1 text-center">
-        <%= f.input :inc_memo, 
-          as: :boolean, 
-          label: false,
-          input_html: { :checked => "checked" }
-        %>
-      </div>
-      <div class="col-sm-offset-0 col-sm-1 text-center">
-      </div>
-    </div>
+
     <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
         Etiqueta
@@ -302,52 +347,9 @@
       <div class="col-sm-offset-0 col-sm-1 text-center">
       </div>
     </div>
+    
+
     <div class="row filtro-fila">
-      <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
-        Ingreso a Sistema
-      </div>
-      <div class="col-sm-offset-0 col-sm-2">
-        <%= f.input :usuario_id,
-          collection: ::Usuario.habilitados,
-          label_method: :nombre,
-          value_method: :id,
-          label: false,
-          include_blank: '-- Asesor'
-        %>
-      </div>
-      <div class="col-sm-offset-0 col-sm-1">
-        <%= f.input :oficina_id,
-          collection: Sip::Oficina.habilitados,
-          label_method: :nombre,
-          value_method: :id,
-          label: false,
-          include_blank: '-- Oficina'
-        %>
-      </div>
-      <div class="col-md-offset-0 col-sm-2">
-        <%= f.input :fechaingini,
-          maxlength: 10, 
-          size: 10,
-          label: false,
-          placeholder: 'Fecha Inicial',
-          input_html: {
-          "data-behaviour" => "datepicker"
-          }
-        %>
-      </div>
-      <div class="col-sm-2">
-        <%= f.input :fechaingfin,
-          maxlength: 10, 
-          size: 10,
-          label: false,
-          placeholder: 'Fecha Final',
-          input_html: {
-          "data-behaviour" => "datepicker"
-          }
-        %>
-      </div>
-    </div>
-   <div class="row filtro-fila">
       <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
        Código(s) 
       </div>

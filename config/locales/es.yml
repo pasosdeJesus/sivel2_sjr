@@ -21,6 +21,12 @@ es:
         contacto: Solicitante Principal
         statusmigratorio: Estatus Migratorio
         proteccion: Necesidad de Protección Internacional
+      "sivel2_gen/caso":
+        fecharec: F. Recepción
+        contacto: Solicitante Principal
+        ultimafechaatencion: Fecha Ult. Atención
+        nusuario: Usuario
+        statusmigratorio: Estatus Migratorio
       "sivel2_sjr/comosupo":
         Comosupo: Como Supo del SJR
         Comosupos: Como Supo del SJR
