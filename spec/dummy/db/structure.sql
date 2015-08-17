@@ -1039,12 +1039,12 @@ CREATE VIEW sip_mundep_sinorden AS
     (((sip_municipio.nombre)::text || ' / '::text) || (sip_departamento.nombre)::text) AS nombre
    FROM (sip_municipio
      JOIN sip_departamento ON ((sip_municipio.id_departamento = sip_departamento.id)))
-  WHERE (sip_departamento.id_pais = 170)
+  WHERE (((sip_departamento.id_pais = 170) AND (sip_municipio.fechadeshabilitacion IS NULL)) AND (sip_departamento.fechadeshabilitacion IS NULL))
 UNION
  SELECT sip_departamento.id_deplocal AS idlocal,
     sip_departamento.nombre
    FROM sip_departamento
-  WHERE (sip_departamento.id_pais = 170);
+  WHERE ((sip_departamento.id_pais = 170) AND (sip_departamento.fechadeshabilitacion IS NULL));
 
 
 --
@@ -1172,6 +1172,18 @@ CREATE TABLE sip_persona (
 
 
 --
+-- Name: sip_persona_trelacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sip_persona_trelacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sip_persona_trelacion; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1181,7 +1193,8 @@ CREATE TABLE sip_persona_trelacion (
     id_trelacion character(2) DEFAULT 'SI'::bpchar NOT NULL,
     observaciones character varying(200),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    id integer DEFAULT nextval('sip_persona_trelacion_id_seq'::regclass) NOT NULL
 );
 
 
@@ -4243,14 +4256,6 @@ ALTER TABLE ONLY sip_persona
 
 
 --
--- Name: persona_trelacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY sip_persona_trelacion
-    ADD CONSTRAINT persona_trelacion_pkey PRIMARY KEY (persona1, persona2, id_trelacion);
-
-
---
 -- Name: personadesea_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4464,6 +4469,30 @@ ALTER TABLE ONLY sip_municipio
 
 ALTER TABLE ONLY sip_municipio
     ADD CONSTRAINT sip_municipio_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sip_persona_trelacion_id_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sip_persona_trelacion
+    ADD CONSTRAINT sip_persona_trelacion_id_key UNIQUE (id);
+
+
+--
+-- Name: sip_persona_trelacion_persona1_persona2_id_trelacion_key; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sip_persona_trelacion
+    ADD CONSTRAINT sip_persona_trelacion_persona1_persona2_id_trelacion_key UNIQUE (persona1, persona2, id_trelacion);
+
+
+--
+-- Name: sip_persona_trelacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sip_persona_trelacion
+    ADD CONSTRAINT sip_persona_trelacion_pkey PRIMARY KEY (id);
 
 
 --
@@ -5830,6 +5859,134 @@ ALTER TABLE ONLY sivel2_sjr_progestado_respuesta
 
 
 --
+-- Name: progestado_respuesta_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_progestado_respuesta
+    ADD CONSTRAINT progestado_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES sivel2_sjr_respuesta(id);
+
+
+--
+-- Name: respuesta_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_respuesta
+    ADD CONSTRAINT respuesta_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_sjr_casosjr(id_caso);
+
+
+--
+-- Name: respuesta_id_personadesea_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_respuesta
+    ADD CONSTRAINT respuesta_id_personadesea_fkey FOREIGN KEY (id_personadesea) REFERENCES sivel2_sjr_personadesea(id);
+
+
+--
+-- Name: sip_clase_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_clase
+    ADD CONSTRAINT sip_clase_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES sip_municipio(id);
+
+
+--
+-- Name: sip_municipio_id_departamento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_municipio
+    ADD CONSTRAINT sip_municipio_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES sip_departamento(id);
+
+
+--
+-- Name: sip_persona_id_clase_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_persona
+    ADD CONSTRAINT sip_persona_id_clase_fkey FOREIGN KEY (id_clase) REFERENCES sip_clase(id);
+
+
+--
+-- Name: sip_persona_id_departamento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_persona
+    ADD CONSTRAINT sip_persona_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES sip_departamento(id);
+
+
+--
+-- Name: sip_persona_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_persona
+    ADD CONSTRAINT sip_persona_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES sip_municipio(id);
+
+
+--
+-- Name: sip_ubicacion_id_clase_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_ubicacion
+    ADD CONSTRAINT sip_ubicacion_id_clase_fkey FOREIGN KEY (id_clase) REFERENCES sip_clase(id);
+
+
+--
+-- Name: sip_ubicacion_id_departamento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_ubicacion
+    ADD CONSTRAINT sip_ubicacion_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES sip_departamento(id);
+
+
+--
+-- Name: sip_ubicacion_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_ubicacion
+    ADD CONSTRAINT sip_ubicacion_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES sip_municipio(id);
+
+
+--
+-- Name: sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
+    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey FOREIGN KEY (fuenteprensa_id) REFERENCES sip_fuenteprensa(id);
+
+
+--
+-- Name: sivel2_gen_caso_fuenteprensa_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
+    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_gen_caso(id);
+
+
+--
+-- Name: sivel2_gen_categoria_supracategoria_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_categoria
+    ADD CONSTRAINT sivel2_gen_categoria_supracategoria_id_fkey FOREIGN KEY (supracategoria_id) REFERENCES sivel2_gen_supracategoria(id);
+
+
+--
+-- Name: supracategoria_id_tviolencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_supracategoria
+    ADD CONSTRAINT supracategoria_id_tviolencia_fkey FOREIGN KEY (id_tviolencia) REFERENCES sivel2_gen_tviolencia(id);
+
+
+--
+-- Name: trelacion_inverso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_trelacion
+    ADD CONSTRAINT trelacion_inverso_fkey FOREIGN KEY (inverso) REFERENCES sip_trelacion(id);
+
+
+--
 -- Name: ubicacion_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6059,6 +6216,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140527110223');
 
 INSERT INTO schema_migrations (version) VALUES ('20140528043115');
 
+INSERT INTO schema_migrations (version) VALUES ('20140611110441');
+
 INSERT INTO schema_migrations (version) VALUES ('20140611111020');
 
 INSERT INTO schema_migrations (version) VALUES ('20140613044320');
@@ -6141,8 +6300,6 @@ INSERT INTO schema_migrations (version) VALUES ('20141222174257');
 
 INSERT INTO schema_migrations (version) VALUES ('20141222174267');
 
-INSERT INTO schema_migrations (version) VALUES ('20141225174739');
-
 INSERT INTO schema_migrations (version) VALUES ('20150213114933');
 
 INSERT INTO schema_migrations (version) VALUES ('20150217185859');
@@ -6223,11 +6380,7 @@ INSERT INTO schema_migrations (version) VALUES ('20150602104342');
 
 INSERT INTO schema_migrations (version) VALUES ('20150609094809');
 
-INSERT INTO schema_migrations (version) VALUES ('20150609094815');
-
 INSERT INTO schema_migrations (version) VALUES ('20150609094820');
-
-INSERT INTO schema_migrations (version) VALUES ('20150612160810');
 
 INSERT INTO schema_migrations (version) VALUES ('20150612203808');
 
