@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 3006f2dcbd50275091d0fd7034b753a08e3e7e15
+  revision: bca53fe19a3590e6d18fdca883bc9fffcc8edc03
   specs:
     sip (2.0.a6)
       devise
@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: f6ded29157042b0a34593b56aeb75f5baadccb5a
+  revision: 90b31e8f5c2eae40f45a55870df9724835347ff3
   specs:
     sivel2_gen (2.0.a7)
       devise
@@ -137,7 +137,7 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    loofah (2.0.2)
+    loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)

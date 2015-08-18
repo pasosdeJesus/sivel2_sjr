@@ -4806,78 +4806,6 @@ ALTER TABLE ONLY sivel2_gen_actocolectivo
 
 
 --
--- Name: actocolectivo_id_grupoper_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_actocolectivo
-    ADD CONSTRAINT actocolectivo_id_grupoper_fkey1 FOREIGN KEY (id_grupoper, id_caso) REFERENCES sivel2_gen_victimacolectiva(id_grupoper, id_caso);
-
-
---
--- Name: actocolectivo_id_presponsable_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_actocolectivo
-    ADD CONSTRAINT actocolectivo_id_presponsable_fkey FOREIGN KEY (id_presponsable) REFERENCES sivel2_gen_presponsable(id);
-
-
---
--- Name: actosjr_desplazamiento_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_actosjr
-    ADD CONSTRAINT actosjr_desplazamiento_id_fkey FOREIGN KEY (desplazamiento_id) REFERENCES sivel2_sjr_desplazamiento(id);
-
-
---
--- Name: actosjr_id_acto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_actosjr
-    ADD CONSTRAINT actosjr_id_acto_fkey FOREIGN KEY (id_acto) REFERENCES sivel2_gen_acto(id);
-
-
---
--- Name: anexo_fuenteprensa_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_anexo_caso
-    ADD CONSTRAINT anexo_fuenteprensa_id_fkey FOREIGN KEY (fuenteprensa_id) REFERENCES sip_fuenteprensa(id);
-
-
---
--- Name: anexo_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_anexo_caso
-    ADD CONSTRAINT anexo_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_gen_caso(id);
-
-
---
--- Name: anexo_id_fotra_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_anexo_caso
-    ADD CONSTRAINT anexo_id_fotra_fkey FOREIGN KEY (id_fotra) REFERENCES sivel2_gen_fotra(id);
-
-
---
--- Name: antecedente_caso_id_antecedente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_antecedente_caso
-    ADD CONSTRAINT antecedente_caso_id_antecedente_fkey FOREIGN KEY (id_antecedente) REFERENCES sivel2_gen_antecedente(id);
-
-
---
--- Name: antecedente_caso_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_gen_antecedente_caso
-    ADD CONSTRAINT antecedente_caso_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_gen_caso(id);
-
-
---
 -- Name: antecedente_comunidad_id_antecedente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4955,22 +4883,6 @@ ALTER TABLE ONLY sivel2_sjr_aslegal_respuesta
 
 ALTER TABLE ONLY sivel2_sjr_aslegal_respuesta
     ADD CONSTRAINT aslegal_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES sivel2_sjr_respuesta(id);
-
-
---
--- Name: aspsicosocial_respuesta_id_aspsicosocial_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_aspsicosocial_respuesta
-    ADD CONSTRAINT aspsicosocial_respuesta_id_aspsicosocial_fkey FOREIGN KEY (id_aspsicosocial) REFERENCES sivel2_sjr_aspsicosocial(id);
-
-
---
--- Name: aspsicosocial_respuesta_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_aspsicosocial_respuesta
-    ADD CONSTRAINT aspsicosocial_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES sivel2_sjr_respuesta(id);
 
 
 --
@@ -5566,35 +5478,11 @@ ALTER TABLE ONLY sivel2_sjr_desplazamiento
 
 
 --
--- Name: emprendimiento_respuesta_id_emprendimiento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_emprendimiento_respuesta
-    ADD CONSTRAINT emprendimiento_respuesta_id_emprendimiento_fkey FOREIGN KEY (id_emprendimiento) REFERENCES sivel2_sjr_emprendimiento(id);
-
-
---
--- Name: emprendimiento_respuesta_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_emprendimiento_respuesta
-    ADD CONSTRAINT emprendimiento_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES sivel2_sjr_respuesta(id);
-
-
---
--- Name: fk_rails_025bc94355; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_02f5fb9150; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sivel2_sjr_motivosjr_derecho
-    ADD CONSTRAINT fk_rails_025bc94355 FOREIGN KEY (motivosjr_id) REFERENCES sivel2_sjr_motivosjr(id);
-
-
---
--- Name: fk_rails_07092afc7a; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_motivosjr_derecho
-    ADD CONSTRAINT fk_rails_07092afc7a FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
+    ADD CONSTRAINT fk_rails_02f5fb9150 FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
 
 
 --
@@ -5603,14 +5491,6 @@ ALTER TABLE ONLY sivel2_sjr_motivosjr_derecho
 
 ALTER TABLE ONLY cor1440_gen_financiador_proyectofinanciero
     ADD CONSTRAINT fk_rails_0cd09d688c FOREIGN KEY (financiador_id) REFERENCES cor1440_gen_financiador(id);
-
-
---
--- Name: fk_rails_257d7770de; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_ayudasjr_derecho
-    ADD CONSTRAINT fk_rails_257d7770de FOREIGN KEY (ayudasjr_id) REFERENCES sivel2_sjr_ayudasjr(id);
 
 
 --
@@ -5662,11 +5542,19 @@ ALTER TABLE ONLY cor1440_gen_actividad_proyectofinanciero
 
 
 --
--- Name: fk_rails_67a0c62011; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_74442b8f19; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_motivosjr_derecho
+    ADD CONSTRAINT fk_rails_74442b8f19 FOREIGN KEY (motivosjr_id) REFERENCES sivel2_sjr_motivosjr(id);
+
+
+--
+-- Name: fk_rails_93fdde2014; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sivel2_sjr_ayudasjr_derecho
-    ADD CONSTRAINT fk_rails_67a0c62011 FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
+    ADD CONSTRAINT fk_rails_93fdde2014 FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
 
 
 --
@@ -5683,22 +5571,6 @@ ALTER TABLE ONLY cor1440_gen_actividad_proyectofinanciero
 
 ALTER TABLE ONLY cor1440_gen_informe
     ADD CONSTRAINT fk_rails_c02831dd89 FOREIGN KEY (filtroactividadarea) REFERENCES cor1440_gen_actividadarea(id);
-
-
---
--- Name: fk_rails_c0e3a876ba; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_progestado_derecho
-    ADD CONSTRAINT fk_rails_c0e3a876ba FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
-
-
---
--- Name: fk_rails_c2b3897008; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sivel2_sjr_progestado_derecho
-    ADD CONSTRAINT fk_rails_c2b3897008 FOREIGN KEY (progestado_id) REFERENCES sivel2_sjr_progestado(id);
 
 
 --
@@ -5726,19 +5598,27 @@ ALTER TABLE ONLY cor1440_gen_actividad_proyecto
 
 
 --
--- Name: fk_rails_e2eac2e0d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_cff2ad554d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY sivel2_sjr_ayudaestado_derecho
-    ADD CONSTRAINT fk_rails_e2eac2e0d5 FOREIGN KEY (ayudaestado_id) REFERENCES sivel2_sjr_ayudaestado(id);
+ALTER TABLE ONLY sivel2_sjr_progestado_derecho
+    ADD CONSTRAINT fk_rails_cff2ad554d FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
 
 
 --
--- Name: fk_rails_f5ed8ca37f; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_e645a3e73c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY sivel2_sjr_ayudaestado_derecho
-    ADD CONSTRAINT fk_rails_f5ed8ca37f FOREIGN KEY (derecho_id) REFERENCES sivel2_sjr_derecho(id);
+ALTER TABLE ONLY sivel2_sjr_ayudasjr_derecho
+    ADD CONSTRAINT fk_rails_e645a3e73c FOREIGN KEY (ayudasjr_id) REFERENCES sivel2_sjr_ayudasjr(id);
+
+
+--
+-- Name: fk_rails_e8743fd8f6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_progestado_derecho
+    ADD CONSTRAINT fk_rails_e8743fd8f6 FOREIGN KEY (progestado_id) REFERENCES sivel2_sjr_progestado(id);
 
 
 --
@@ -5827,6 +5707,134 @@ ALTER TABLE ONLY sivel2_gen_presponsable
 
 ALTER TABLE ONLY sivel2_sjr_progestado_respuesta
     ADD CONSTRAINT progestado_respuesta_id_progestado_fkey FOREIGN KEY (id_progestado) REFERENCES sivel2_sjr_progestado(id);
+
+
+--
+-- Name: progestado_respuesta_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_progestado_respuesta
+    ADD CONSTRAINT progestado_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES sivel2_sjr_respuesta(id);
+
+
+--
+-- Name: respuesta_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_respuesta
+    ADD CONSTRAINT respuesta_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_sjr_casosjr(id_caso);
+
+
+--
+-- Name: respuesta_id_personadesea_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_sjr_respuesta
+    ADD CONSTRAINT respuesta_id_personadesea_fkey FOREIGN KEY (id_personadesea) REFERENCES sivel2_sjr_personadesea(id);
+
+
+--
+-- Name: sip_clase_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_clase
+    ADD CONSTRAINT sip_clase_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES sip_municipio(id);
+
+
+--
+-- Name: sip_municipio_id_departamento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_municipio
+    ADD CONSTRAINT sip_municipio_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES sip_departamento(id);
+
+
+--
+-- Name: sip_persona_id_clase_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_persona
+    ADD CONSTRAINT sip_persona_id_clase_fkey FOREIGN KEY (id_clase) REFERENCES sip_clase(id);
+
+
+--
+-- Name: sip_persona_id_departamento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_persona
+    ADD CONSTRAINT sip_persona_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES sip_departamento(id);
+
+
+--
+-- Name: sip_persona_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_persona
+    ADD CONSTRAINT sip_persona_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES sip_municipio(id);
+
+
+--
+-- Name: sip_ubicacion_id_clase_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_ubicacion
+    ADD CONSTRAINT sip_ubicacion_id_clase_fkey FOREIGN KEY (id_clase) REFERENCES sip_clase(id);
+
+
+--
+-- Name: sip_ubicacion_id_departamento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_ubicacion
+    ADD CONSTRAINT sip_ubicacion_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES sip_departamento(id);
+
+
+--
+-- Name: sip_ubicacion_id_municipio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_ubicacion
+    ADD CONSTRAINT sip_ubicacion_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES sip_municipio(id);
+
+
+--
+-- Name: sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
+    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_fuenteprensa_id_fkey FOREIGN KEY (fuenteprensa_id) REFERENCES sip_fuenteprensa(id);
+
+
+--
+-- Name: sivel2_gen_caso_fuenteprensa_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
+    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES sivel2_gen_caso(id);
+
+
+--
+-- Name: sivel2_gen_categoria_supracategoria_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_categoria
+    ADD CONSTRAINT sivel2_gen_categoria_supracategoria_id_fkey FOREIGN KEY (supracategoria_id) REFERENCES sivel2_gen_supracategoria(id);
+
+
+--
+-- Name: supracategoria_id_tviolencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_supracategoria
+    ADD CONSTRAINT supracategoria_id_tviolencia_fkey FOREIGN KEY (id_tviolencia) REFERENCES sivel2_gen_tviolencia(id);
+
+
+--
+-- Name: trelacion_inverso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_trelacion
+    ADD CONSTRAINT trelacion_inverso_fkey FOREIGN KEY (inverso) REFERENCES sip_trelacion(id);
 
 
 --
