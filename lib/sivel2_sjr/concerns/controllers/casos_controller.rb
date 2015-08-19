@@ -46,6 +46,10 @@ module Sivel2Sjr
             'fecharec'
           end
 
+          def cortamemo
+            200
+          end
+
           # Filtro adicional para autenticar usado por index
           def filtro_particular(conscaso, params_filtro)
             if (current_usuario.rol == Ability::ROLINV) 
@@ -153,6 +157,26 @@ module Sivel2Sjr
           # y a repetir before_action :set_caso, only: [:show, :edit, :update, :destroy]
           # en el included do de este
           def destroy
+            if @caso.casosjr.respuesta
+              # No se logró hacer ni con dependente:destroy en
+              # las relaciones ni borrando con delete 
+              @caso.casosjr.respuesta.each do |r|
+                Sivel2Sjr::AslegalRespuesta.delete_all(id_respuesta: r.id)
+                #r.aslegal_respuesta.delete
+                Sivel2Sjr::AyudaestadoRespuesta.delete_all(id_respuesta: r.id)
+                #r.ayudaestado_respuesta.delete
+                Sivel2Sjr::AyudasjrRespuesta.delete_all(id_respuesta: r.id)
+                #r.ayudasjr_respuesta.delete
+                Sivel2Sjr::DerechoRespuesta.delete_all(id_respuesta: r.id)
+                #r.derecho_respuesta.delete
+                Sivel2Sjr::MotivosjrRespuesta.delete_all(id_respuesta: r.id)
+                #r.motivosjr_respuesta.delete
+                Sivel2Sjr::ProgestadoRespuesta.delete_all(id_respuesta: r.id)
+                #r.progestado_respuesta.delete
+              end
+              @caso.casosjr.respuesta.delete
+              Sivel2Sjr::Respuesta.delete_all(id_caso: @caso.id)
+            end
             @caso.casosjr.destroy if @caso.casosjr
             sivel2_gen_destroy
           end

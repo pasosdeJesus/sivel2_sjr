@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: bca53fe19a3590e6d18fdca883bc9fffcc8edc03
+  revision: 07c4a355f3c1a3f356f66a6487803543070069f6
   specs:
     sip (2.0.a6)
       devise
@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: c24fe176707466aab0b8f26bcacf0280fd57118e
+  revision: 42126ce02ec2d96dde104e808b457bdaf8784da5
   specs:
     sivel2_gen (2.0.a7)
       devise
@@ -235,7 +235,7 @@ GEM
     spring (1.3.6)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    sprockets (3.3.1)
+    sprockets (3.3.2)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
       actionpack (>= 3.0)
