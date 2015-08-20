@@ -9,7 +9,7 @@ module Sivel2Sjr
         included do
           
           has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
-            validate: true, foreign_key: "id_caso", dependent: :destroy
+            validate: true, foreign_key: "id_caso"#, dependent: :destroy
 
           # Ordenados por foreign_key para comparar con esquema en base
           belongs_to :usuario, class_name: "Usuario", 
