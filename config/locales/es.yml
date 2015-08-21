@@ -24,9 +24,9 @@ es:
       "sivel2_gen/caso":
         fecharec: F. Recepción
         contacto: Solicitante Principal
-        ultimafechaatencion: Fecha Ult. Atención
         nusuario: Usuario
         statusmigratorio: Estatus Migratorio
+        ultimafechaatencion: Fecha Ult. Atención
       "sivel2_sjr/comosupo":
         Comosupo: Como Supo del SJR
         Comosupos: Como Supo del SJR
