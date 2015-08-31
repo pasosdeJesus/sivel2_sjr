@@ -28,6 +28,7 @@ module Sivel2Sjr
               :statusmigratorio_id,
               :nombressp, :apellidossp,
               :nombres, :apellidos, :sexo, :rangoedad_id, 
+              :categoria_id,
               :descripcion
             ]
           end
