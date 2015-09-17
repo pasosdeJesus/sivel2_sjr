@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 15731aaf97cdaae2a17888f1b48e30527d842f4a
+  revision: c834709b5bca821bcf740c97a58a5e27a53242d5
   specs:
     sip (2.0.a6)
       devise
@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 0b3e1c9c873b72c36a0c32a8052b743324194f02
+  revision: cf3983a0edaa4982b5178fdc9660e151c1ba54ae
   specs:
     sivel2_gen (2.0.a7)
       devise
