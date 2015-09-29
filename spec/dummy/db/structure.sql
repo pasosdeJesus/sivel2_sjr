@@ -4525,6 +4525,14 @@ ALTER TABLE ONLY sivel2_gen_supracategoria
 
 
 --
+-- Name: sivel2_sjr_acreditacion_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sivel2_sjr_acreditacion
+    ADD CONSTRAINT sivel2_sjr_acreditacion_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: statusmigratorio_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6430,4 +6438,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150803082520');
 INSERT INTO schema_migrations (version) VALUES ('20150809032138');
 
 INSERT INTO schema_migrations (version) VALUES ('20150826000000');
+
+INSERT INTO schema_migrations (version) VALUES ('20150929112313');
 
