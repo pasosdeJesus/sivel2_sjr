@@ -184,9 +184,13 @@ module Sivel2Sjr
 
           private
 
+          def otros_params
+            []
+          end
+
           # Never trust parameters from the scary internet, only allow the white list through.
           def caso_params
-            params.require(:caso).permit(
+            params.require(:caso).permit([
               :id, :titulo, :fecha, :hora, :duracion, 
               :grconfiabilidad, :gresclarecimiento, :grimpunidad, :grinformacion, 
               :bienes, :id_intervalo, :memo, 
@@ -201,6 +205,7 @@ module Sivel2Sjr
                 :fechallegada, :id_llegada, 
                 :categoriaref,
                 :observacionesref,
+                :memo1612,
                 :_destroy
             ], 
               :victima_attributes => [
@@ -292,6 +297,7 @@ module Sivel2Sjr
               :caso_etiqueta_attributes => [
                 :id, :id_usuario, :fecha, :id_etiqueta, :observaciones, :_destroy
             ]
+            ] + otros_params
             )
           end
 
