@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 4b0b69bd660ca85f905bd024efdbc741bd7d4d28
+  revision: f50519a545c77409402596a33007be9164e64e7c
   specs:
     cor1440_gen (1.0.a5)
       devise
@@ -10,16 +10,16 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 50e093fa2c962898cc1f47042a293e599fb30a79
+  revision: a13a875b1ba74a526ac3dc353b2a2f4dca513605
   specs:
-    sip (2.0.a6)
+    sip (2.0.a7)
       devise
       jquery-rails
       rails
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: d9aad30f0eda20964ae40a02728431ed29f2e6c6
+  revision: 63cdb226e2ca45ea465f24df01e48225062d101b
   specs:
     sivel2_gen (2.0.a7)
       devise
@@ -157,7 +157,7 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.3)
-    pry (0.10.2)
+    pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
