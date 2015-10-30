@@ -48,7 +48,6 @@ INSERT INTO sivel2_sjr_clasifdesp (id, nombre, fechacreacion, fechadeshabilitaci
 INSERT INTO sivel2_sjr_clasifdesp (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (1, 'INTER-MUNICIPAL', '2013-05-24', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_sjr_clasifdesp (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (3, 'INTRA-URBANO', '2013-05-24', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_sjr_clasifdesp (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (4, 'INTER-VEREDAL', '2013-05-24', NULL, NULL, NULL, NULL);
-INSERT INTO sivel2_sjr_clasifdesp (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (5, 'INTER-FRONTERA', '2013-05-24', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_sjr_clasifdesp (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (6, 'URBANO', '2013-05-24', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_sjr_clasifdesp (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (7, 'TRANSFRONTERIZO', '2013-05-24', NULL, NULL, NULL, NULL);
 INSERT INTO sivel2_sjr_clasifdesp (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at, observaciones) VALUES (8, 'INTERDEPARTAMENTAL', '2013-05-24', NULL, NULL, NULL, NULL);
