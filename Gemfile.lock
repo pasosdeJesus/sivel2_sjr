@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: cee49faaa4cfc92280a96a9ef0da5974b6fca485
+  revision: ac223b00ad7dbc7af3c9525bc0b099419cad6790
   specs:
     sip (2.0.a7)
       bootstrap-datepicker-rails
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: db7584feb9b6301ee7d9e4eea3ab359b04d8ec51
+  revision: 934193ce848cac174fc0fd1da7d078e00ad7857e
   specs:
     sivel2_gen (2.0.a7)
       devise
@@ -118,7 +118,7 @@ GEM
     commonjs (0.2.7)
     concurrent-ruby (1.0.0)
     debug_inspector (0.0.2)
-    devise (3.5.2)
+    devise (3.5.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -239,7 +239,7 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
-    sass (3.4.19)
+    sass (3.4.20)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -285,7 +285,7 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    warden (1.2.3)
+    warden (1.2.4)
       rack (>= 1.0)
     web-console (2.2.1)
       activemodel (>= 4.0)

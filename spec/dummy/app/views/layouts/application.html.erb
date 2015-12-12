@@ -5,7 +5,10 @@
 <% content_for :menu do %>
   <%= menu_group do %>
     <% if !current_usuario.nil? %>
-      <%= menu_item "Casos", sivel2_sjr.casos_path %>
+      <%= drop_down "Casos" do %>
+        <%= menu_item "Listado", sivel2_gen.casos_path %>
+        <%= menu_item "Conteo Demografía Víctimas", sivel2_sjr.conteos_personas_path %>
+      <% end %>
       <%= menu_item "Actividades", cor1440_gen.actividades_path %>
     <% end %>
   <% end %>
