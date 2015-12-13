@@ -12,13 +12,16 @@ module Sivel2Sjr
 
         included do
 
+          def respuestas_que
+            return [{ 
+              'aslegal' => 'Asistencia Legal del SJR',
+              'ayudasjr' => 'Ayuda Humanitaria del SJR'
+            }, 'ayudasjr', 'Servicios Prestados']
+          end
+
           def respuestas
-            @pque = { 'derecho' => 'Derecho vulnerado',
-                      'ayudaestado' => 'Ayuda del Estado',
-                      'ayudasjr' => 'Ayuda Humanitaria del SJR',
-                      'motivosjr' => 'Servicio/Asesoria del SJR',
-                      'progestado' => 'Subsidio/Programa del Estado'
-            }
+            authorize! :contar, Sivel2Gen::Caso
+            @pque, pContarDef, @titulo_respuesta = respuestas_que
 
             pFaini = param_escapa('fechaini')
             pFafin = param_escapa('fechafin')
@@ -26,7 +29,7 @@ module Sivel2Sjr
             pOficina = param_escapa('oficina')
 
             if (pContar == '') 
-              pContar = 'derecho'
+              pContar = pContarDef
             end
 
             personas_cons1 = 'cres1'
@@ -70,7 +73,7 @@ module Sivel2Sjr
             trel = "#{pContar}_respuesta"
             idrel = "id_#{pContar}"
             case (pContar) 
-            when 'ayudasjr', 'ayudaestado', 'derecho', 'motivosjr', 'progestado'
+            when 'ayudasjr', 'ayudaestado', 'derecho', 'motivosjr', 'progestado', 'aslegal'
               que1 = agrega_tabla(que1, "#{trel}.#{idrel} AS #{idrel}")
               where1 = consulta_and_sinap(
                 where1, "respuesta.id", "#{trel}.id_respuesta"
@@ -89,8 +92,9 @@ module Sivel2Sjr
 
             # Filtrar 
             q1="CREATE VIEW #{personas_cons1} AS 
-            SELECT #{que1}
-            FROM #{tablas1} WHERE #{where1}"
+              SELECT #{que1}
+              FROM #{tablas1} WHERE #{where1}
+            "
             #puts "q1 es #{q1}"
             ActiveRecord::Base.connection.execute q1
 
@@ -115,11 +119,11 @@ module Sivel2Sjr
             que3 << ["", "Cantidad atenciones"]
             twhere3 = where3 == "" ? "" : "WHERE " + where3
             q3 = "SELECT #{qc}
-            COUNT(cast(#{personas_cons1}.id_caso as text) || ' '
-            || cast(#{personas_cons1}.fechaatencion as text))
-            FROM #{tablas3}
-            #{twhere3}
-            #{gb} 
+              COUNT(cast(#{personas_cons1}.id_caso as text) || ' '
+              || cast(#{personas_cons1}.fechaatencion as text))
+              FROM #{tablas3}
+              #{twhere3}
+              #{gb} 
             "
             @cuerpotabla = ActiveRecord::Base.connection.select_all(q3)
 

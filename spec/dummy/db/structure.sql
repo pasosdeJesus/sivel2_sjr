@@ -1077,6 +1077,92 @@ ALTER SEQUENCE cor1440_gen_rangoedadac_id_seq OWNED BY cor1440_gen_rangoedadac.i
 
 
 --
+-- Name: respuesta_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE respuesta_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_sjr_aslegal_respuesta; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sivel2_sjr_aslegal_respuesta (
+    id_respuesta integer NOT NULL,
+    id_aslegal integer DEFAULT 0 NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sivel2_sjr_respuesta; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sivel2_sjr_respuesta (
+    id_caso integer NOT NULL,
+    fechaatencion date NOT NULL,
+    prorrogas boolean,
+    numprorrogas integer,
+    montoprorrogas integer,
+    fechaultima date,
+    lugarultima character varying(500),
+    entregada boolean,
+    proxprorroga boolean,
+    turno character varying(100),
+    lugar character varying(500),
+    descamp character varying(5000),
+    compromisos character varying(5000),
+    remision character varying(5000),
+    orientaciones character varying(5000),
+    gestionessjr character varying(5000),
+    observaciones character varying(5000),
+    id_personadesea integer DEFAULT 0,
+    verifcsjr character varying(5000),
+    verifcper character varying(5000),
+    efectividad character varying(5000),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    id integer DEFAULT nextval('respuesta_seq'::regclass) NOT NULL,
+    detallear character varying(5000),
+    montoar integer,
+    cantidadayes character varying(50),
+    institucionayes character varying(500),
+    informacionder boolean,
+    accionesder character varying(5000),
+    detallemotivo character varying(5000),
+    difobsprog character varying(5000),
+    detalleal character varying(5000),
+    montoal integer,
+    detalleap character varying(5000),
+    montoap integer,
+    detalleem character varying(5000),
+    montoem integer
+);
+
+
+--
+-- Name: cres1; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW cres1 AS
+ SELECT caso.id AS id_caso,
+    respuesta.fechaatencion,
+    casosjr.oficina_id,
+    aslegal_respuesta.id_aslegal
+   FROM sivel2_gen_caso caso,
+    sivel2_sjr_casosjr casosjr,
+    sivel2_sjr_respuesta respuesta,
+    sivel2_sjr_aslegal_respuesta aslegal_respuesta
+  WHERE (((caso.id = casosjr.id_caso) AND (caso.id = respuesta.id_caso)) AND (respuesta.id = aslegal_respuesta.id_respuesta));
+
+
+--
 -- Name: fotra_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1153,18 +1239,6 @@ CREATE SEQUENCE regimensalud_seq
 --
 
 CREATE SEQUENCE resagresion_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: respuesta_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE respuesta_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1924,52 +1998,6 @@ CREATE TABLE sivel2_gen_comunidad_vinculoestado (
     id_caso integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
-);
-
-
---
--- Name: sivel2_sjr_respuesta; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_sjr_respuesta (
-    id_caso integer NOT NULL,
-    fechaatencion date NOT NULL,
-    prorrogas boolean,
-    numprorrogas integer,
-    montoprorrogas integer,
-    fechaultima date,
-    lugarultima character varying(500),
-    entregada boolean,
-    proxprorroga boolean,
-    turno character varying(100),
-    lugar character varying(500),
-    descamp character varying(5000),
-    compromisos character varying(5000),
-    remision character varying(5000),
-    orientaciones character varying(5000),
-    gestionessjr character varying(5000),
-    observaciones character varying(5000),
-    id_personadesea integer DEFAULT 0,
-    verifcsjr character varying(5000),
-    verifcper character varying(5000),
-    efectividad character varying(5000),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    id integer DEFAULT nextval('respuesta_seq'::regclass) NOT NULL,
-    detallear character varying(5000),
-    montoar integer,
-    cantidadayes character varying(50),
-    institucionayes character varying(500),
-    informacionder boolean,
-    accionesder character varying(5000),
-    detallemotivo character varying(5000),
-    difobsprog character varying(5000),
-    detalleal character varying(5000),
-    montoal integer,
-    detalleap character varying(5000),
-    montoap integer,
-    detalleem character varying(5000),
-    montoem integer
 );
 
 
@@ -2737,18 +2765,6 @@ CREATE TABLE sivel2_sjr_aslegal (
     updated_at timestamp without time zone,
     observaciones character varying(5000),
     CONSTRAINT aslegal_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
--- Name: sivel2_sjr_aslegal_respuesta; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE sivel2_sjr_aslegal_respuesta (
-    id_respuesta integer NOT NULL,
-    id_aslegal integer DEFAULT 0 NOT NULL,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
 );
 
 

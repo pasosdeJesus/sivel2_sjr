@@ -5,11 +5,22 @@
 <% content_for :menu do %>
   <%= menu_group do %>
     <% if !current_usuario.nil? %>
-      <%= drop_down "Casos" do %>
-        <%= menu_item "Listado", sivel2_gen.casos_path %>
-        <%= menu_item "Conteo Demografía Víctimas", sivel2_sjr.conteos_personas_path %>
+      <% if can? :read, Sivel2Gen::Caso then %>
+        <%= drop_down "Casos" do %>
+          <%= menu_item "Listado", sivel2_gen.casos_path %>
+          <%= menu_item "Nuevo", sivel2_gen.new_caso_path %>
+          <%= menu_item "Conteo Demografía Víctimas", sivel2_sjr.conteos_personas_path %>
+          <%= menu_item "Conteo Servicios Prestados", sivel2_sjr.conteos_respuestas_path %>
+        <% end %>
       <% end %>
-      <%= menu_item "Actividades", cor1440_gen.actividades_path %>
+      <% if can? :read, Cor1440Gen::Actividad then %>
+        <%= drop_down "Actividades" do %>
+          <%= menu_item "Listado", cor1440_gen.actividades_path %>
+          <%= menu_item "Nueva", cor1440_gen.new_actividad_path %>
+          <%= menu_item "Convenios Financiados", cor1440_gen.admin_proyectosfinancieros_path %>
+          <%= menu_item "Informes", cor1440_gen.informes_path %>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
   <%= menu_group :pull => :right do %>

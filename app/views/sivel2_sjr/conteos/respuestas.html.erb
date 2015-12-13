@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%=t '.title', :default => "Respuestas y Derechos vulnerados" %></h1>
+  <h1><%=t '.title', :default => @titulo_respuesta %></h1>
 </div>
 
 <div sytle="text-align: right">
@@ -32,5 +32,5 @@
 </div>
 
 <div id="resultado">
-  <%= render 'resultado_tabla' %>
+  <%= render 'sivel2_gen/conteos/resultado_tabla' %>
 </div> <!-- id: resultado -->
