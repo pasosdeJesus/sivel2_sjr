@@ -16,17 +16,17 @@ module Sivel2Sjr
             return [{ 
               'aslegal' => 'Asistencia Legal del SJR',
               'ayudasjr' => 'Ayuda Humanitaria del SJR'
-            }, 'ayudasjr', 'Servicios Prestados']
+            }, 'aslegal', 'Servicios Prestados']
           end
 
           def respuestas
             authorize! :contar, Sivel2Gen::Caso
             @pque, pContarDef, @titulo_respuesta = respuestas_que
 
-            pFaini = param_escapa('fechaini')
-            pFafin = param_escapa('fechafin')
-            pContar = param_escapa('contar')
-            pOficina = param_escapa('oficina')
+            pFaini = param_escapa([:filtro, 'fechaini'])
+            pFafin = param_escapa([:filtro, 'fechafin'])
+            pContar = param_escapa([:filtro, 'contar'])
+            pOficina = param_escapa([:filtro, 'oficina_id'])
 
             if (pContar == '') 
               pContar = pContarDef
@@ -142,7 +142,14 @@ module Sivel2Sjr
           end # def respuesta
   
           def personas_filtros_especializados
-            @pOficina = param_escapa('oficina')
+            @opsegun =  [
+              "", "ACTIVIDAD / OFICIO", "CABEZA DE HOGAR", "ESTADO CIVIL", 
+              "ETNIA", "MES RECEPCIÓN", "NIVEL ESCOLAR", "RANGO DE EDAD", 
+              "SEXO"
+            ]
+            @titulo_personas = 'Personas atendidas'
+            @titulo_personas_fecha = 'Fecha de Recepción'
+            @pOficina = param_escapa([:filtro, 'oficina_id'])
           end
 
           def personas_fecha_inicial(where1)
