@@ -15,7 +15,7 @@ module Sivel2Sjr
           def respuestas_que
             return [{ 
               'aslegal' => 'Asistencia Legal del SJR',
-              'ayudasjr' => 'Ayuda Humanitaria del SJR'
+              'ayudasjr' => 'Ayuda Humanitaria del SJR',
             }, 'aslegal', 'Servicios Prestados']
           end
 
@@ -72,8 +72,8 @@ module Sivel2Sjr
             if (pOficina != '') 
               where1 = consulta_and(where1, "casosjr.oficina_id", pOficina)
             end
-
             que1 = agrega_tabla(que1, "casosjr.oficina_id AS oficina_id")
+
             trel = "#{pContar}_respuesta"
             idrel = "id_#{pContar}"
             case (pContar) 
@@ -88,6 +88,12 @@ module Sivel2Sjr
               tablas3 = agrega_tabla(tablas3, "sivel2_sjr_#{pContar} AS #{pContar}")
               where3 = consulta_and_sinap(where3, idrel, "#{pContar}.id")
               que3 << ["#{pContar}.nombre", @pque[pContar]]
+            when 'remision'
+              que1 = agrega_tabla(
+                que1, "(CASE WHEN remision IS NOT NULL AND TRIM(remision)<>'' 
+                  THEN 'SI' ELSE 'NO' END) AS remitido"
+              )
+              que3 << ["remitido",  @pque[pContar]]
             else
               puts "opción desconocida #{pContar}"
             end
