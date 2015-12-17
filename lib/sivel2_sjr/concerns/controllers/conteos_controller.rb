@@ -55,13 +55,17 @@ module Sivel2Sjr
             where1 = consulta_and_sinap(where1, "caso.id", "casosjr.id_caso")
             where1 = consulta_and_sinap(where1, "caso.id", "respuesta.id_caso")
             if (pFaini != '') 
+              pfechaini = DateTime.strptime(pFaini, '%Y-%m-%d')
+              @fechaini = pfechaini.strftime('%Y-%m-%d')
               where1 = consulta_and(
-                where1, "respuesta.fechaatencion", pFaini, ">="
+                where1, "respuesta.fechaatencion", @fechaini, ">="
               )
             end
             if (pFafin != '') 
+              pfechafin = DateTime.strptime(pFafin, '%Y-%m-%d')
+              @fechafin = pfechafin.strftime('%Y-%m-%d')
               where1 = consulta_and(
-                where1, "respuesta.fechaatencion", pFafin, "<="
+                where1, "respuesta.fechaatencion", @fechafin, "<="
               )
             end
 
