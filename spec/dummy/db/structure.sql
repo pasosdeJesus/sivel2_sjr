@@ -376,12 +376,12 @@ CREATE VIEW cben1 AS
             ELSE 0
         END AS beneficiario,
     1 AS npersona,
-    victimasjr.id_actividadoficio
+    victimasjr.id_estadocivil
    FROM sivel2_gen_caso caso,
     sivel2_sjr_casosjr casosjr,
     sivel2_gen_victima victima,
     sivel2_sjr_victimasjr victimasjr
-  WHERE ((((caso.id = victima.id_caso) AND (caso.id = casosjr.id_caso)) AND (caso.id = victima.id_caso)) AND (victima.id = victimasjr.id_victima));
+  WHERE (((((caso.id = victima.id_caso) AND (caso.id = casosjr.id_caso)) AND (caso.id = victima.id_caso)) AND (casosjr.oficina_id = 1)) AND (victima.id = victimasjr.id_victima));
 
 
 --
@@ -577,7 +577,7 @@ CREATE VIEW cben2 AS
     cben1.contacto,
     cben1.beneficiario,
     cben1.npersona,
-    cben1.id_actividadoficio,
+    cben1.id_estadocivil,
     ubicacion.id_departamento,
     departamento.nombre AS departamento_nombre,
     ubicacion.id_municipio,
@@ -591,7 +591,7 @@ CREATE VIEW cben2 AS
      LEFT JOIN sip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
      LEFT JOIN sip_municipio municipio ON ((ubicacion.id_municipio = municipio.id)))
      LEFT JOIN sip_clase clase ON ((ubicacion.id_clase = clase.id)))
-  GROUP BY cben1.id_caso, cben1.id_persona, cben1.contacto, cben1.beneficiario, cben1.npersona, cben1.id_actividadoficio, ubicacion.id_departamento, departamento.nombre, ubicacion.id_municipio, municipio.nombre, ubicacion.id_clase, clase.nombre;
+  GROUP BY cben1.id_caso, cben1.id_persona, cben1.contacto, cben1.beneficiario, cben1.npersona, cben1.id_estadocivil, ubicacion.id_departamento, departamento.nombre, ubicacion.id_municipio, municipio.nombre, ubicacion.id_clase, clase.nombre;
 
 
 --
