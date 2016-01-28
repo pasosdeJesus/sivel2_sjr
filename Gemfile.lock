@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/cor1440_gen.git
-  revision: b99adfada92f1f4a3ee47cfe72d06067ba083a77
+  revision: 9e190726c66d482bf9fc3962db8311deb5c93a17
   specs:
     cor1440_gen (1.0.a5)
       devise
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 702472312947443d329e970e35de89bef151797b
+  revision: 85efdffed450f6b5baeacfe977590e837a164ce5
   specs:
     sip (2.0.a7)
       bootstrap-datepicker-rails
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: c50b421f4a2541baaa53538fc1f8a8fc79f61107
+  revision: b7284d68bda39a494a30a2e0e26db5f3b677f125
   specs:
     sivel2_gen (2.0.a8)
       devise
@@ -223,7 +223,7 @@ GEM
       json (~> 1.4)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
-    rspec-core (3.4.1)
+    rspec-core (3.4.2)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -231,7 +231,7 @@ GEM
     rspec-mocks (3.4.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
-    rspec-rails (3.4.0)
+    rspec-rails (3.4.1)
       actionpack (>= 3.0, < 4.3)
       activesupport (>= 3.0, < 4.3)
       railties (>= 3.0, < 4.3)
@@ -288,7 +288,7 @@ GEM
       json (>= 1.8.0)
     warden (1.2.4)
       rack (>= 1.0)
-    web-console (3.0.0)
+    web-console (3.1.1)
       activemodel (>= 4.2)
       debug_inspector
       railties (>= 4.2)
