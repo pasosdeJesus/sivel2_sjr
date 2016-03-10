@@ -74,8 +74,8 @@ gem 'sivel2_gen', github: 'pasosdeJesus/sivel2_gen'#, branch: 'consip'
 #gem 'sivel2_gen', path: '../sivel2_gen'
 
 # Motor Cor1440
-gem 'cor1440_gen', github: 'pasosdeJesus/cor1440_gen'
-#gem 'cor1440_gen', path: '../cor1440_gen'
+#gem 'cor1440_gen', github: 'pasosdeJesus/cor1440_gen'
+gem 'cor1440_gen', path: '../cor1440_gen'
 
 group :doc do
   # Genera documentación en doc/api con bundle exec rake doc:rails
