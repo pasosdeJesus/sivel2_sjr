@@ -18,6 +18,13 @@ gem "colorize"
 # Maneja variables de ambiente (como claves y secretos) en .env
 #gem "foreman"
 
+# Generación de PDF
+gem "prawn"
+gem "prawnto_2",  :require => "prawnto"
+gem "prawn-table"
+
+# Plantilla ODT
+gem "odf-report"
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem "jbuilder"
