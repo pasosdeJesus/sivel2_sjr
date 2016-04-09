@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 99893c18ed3461902eb4e7335ed738f689b6f5d6
+  revision: 78957039a28ff96bbe2ee8d99c1c4506f452a6ef
   specs:
     sip (2.0.a7)
       bootstrap-datepicker-rails
@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 7a41e3142e11975d565c8a495a0b87a72e7b388b
+  revision: 440dcc8ddeba7cdf31ea8106f4e271ff14b8af77
   specs:
     sivel2_gen (2.0.a8)
       devise
@@ -44,7 +44,7 @@ GIT
 PATH
   remote: ../cor1440_gen
   specs:
-    cor1440_gen (1.0.a6)
+    cor1440_gen (1.0.a5)
       devise
       jquery-rails
       paperclip
@@ -124,7 +124,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-i18n (1.0.0)
+    devise-i18n (1.0.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
