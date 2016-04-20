@@ -58,21 +58,34 @@ module Sivel2Sjr
             end
           end
 
+          # Verifica que un usuariosea de la misma oficina de otro
+          def self.asesor_de_oficina(current_usuario, usuario, oficina)
+              current_usuario.rol == Ability::ROLADMIN ||
+              current_usuario.rol == Ability::ROLDIR ||
+              usuario.rol == Ability::ROLADMIN ||
+              usuario.rol == Ability::ROLDIR ||
+              usuario.oficina_id == oficina.id || oficina.id == 1
+          end
+
+          # Verifica que un usuario edita caso de su oficina
+          def self.asesor_edita_de_su_oficina(current_usuario, oficina)
+            (current_usuario.rol != Ability::ROLSIST &&
+             current_usuario.rol != Ability::ROLCOOR &&
+             current_usuario.rol != Ability::ROLANALI) ||
+             oficina.id == current_usuario.oficina_id
+          end
+ 
           validate :rol_usuario
           def rol_usuario
-            if (caso && caso.current_usuario &&
-                caso.current_usuario.rol != Ability::ROLADMIN &&
-                caso.current_usuario.rol != Ability::ROLDIR && 
-                usuario.oficina_id != oficina.id && oficina.id != 1)
+            if (caso && caso.current_usuario && 
+                !Sivel2Sjr::Casosjr::asesor_de_oficina(
+                  caso.current_usuario, usuario, oficina))
               errors.add(:usuario, "Asesor debe ser de oficina")
             end
             if (caso && caso.current_usuario &&
-                caso.current_usuario.rol == Ability::ROLSIST || 
-                caso.current_usuario.rol == Ability::ROLCOOR || 
-                caso.current_usuario.rol == Ability::ROLANALI)
-              if (oficina.id != caso.current_usuario.oficina_id)
-                errors.add(:oficina, "Solo puede editar casos de su oficina")
-              end
+                !Sivel2Sjr::Casosjr::asesor_edita_de_su_oficina(
+                  caso.current_usuario, oficina))
+              errors.add(:oficina, "Solo puede editar casos de su oficina")
             end
           end
   

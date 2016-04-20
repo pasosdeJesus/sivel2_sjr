@@ -4,7 +4,6 @@
 
   <%= f.association :oficina, 
     collection: Sip::Oficina.habilitados.where("id<>'1'"),
-    label: "Oficina",
     label_method: :nombre,
     value_method: :id,
     include_blank: true
@@ -13,7 +12,6 @@
   <%= f.association :etiqueta, 
     collection: Sip::Etiqueta.habilitados.where(
       "nombre LIKE 'COMPARTIR%'"),
-	  label: "Etiquetas Compartir",
 	  label_method: :nombre, 
     value_method: :id 
   %>
