@@ -301,6 +301,17 @@ module Sivel2Sjr
           end
 
           def personas_vista_geo(que3, tablas3, where3)
+            ActiveRecord::Base.connection.execute(
+              "CREATE OR REPLACE VIEW  ultimodesplazamiento AS 
+            (SELECT sivel2_sjr_desplazamiento.id, s.id_caso, s.fechaexpulsion, 
+              sivel2_sjr_desplazamiento.id_expulsion 
+              FROM sivel2_sjr_desplazamiento, 
+              (SELECT  id_caso, MAX(sivel2_sjr_desplazamiento.fechaexpulsion) 
+               AS fechaexpulsion FROM sivel2_sjr_desplazamiento  GROUP BY 1) 
+               AS s WHERE sivel2_sjr_desplazamiento.id_caso=s.id_caso and 
+              sivel2_sjr_desplazamiento.fechaexpulsion=s.fechaexpulsion);")
+
+
             if (@pDepartamento == "1") 
               que3 << ["departamento_nombre", "Último Departamento Expulsor"]
             end
@@ -313,18 +324,18 @@ module Sivel2Sjr
             departamento.nombre AS departamento_nombre, 
             ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
             ubicacion.id_clase, clase.nombre AS clase_nombre, 
-            max(sivel2_sjr_desplazamiento.fechaexpulsion) FROM
-            #{personas_cons1} LEFT JOIN sivel2_sjr_desplazamiento ON
-            (#{personas_cons1}.id_caso = sivel2_sjr_desplazamiento.id_caso)
+            ultimodesplazamiento.fechaexpulsion FROM
+            #{personas_cons1} LEFT JOIN ultimodesplazamiento ON
+            (#{personas_cons1}.id_caso = ultimodesplazamiento.id_caso)
             LEFT JOIN sip_ubicacion AS ubicacion ON 
-              (sivel2_sjr_desplazamiento.id_expulsion = ubicacion.id) 
+              (ultimodesplazamiento.id_expulsion = ubicacion.id) 
             LEFT JOIN sip_departamento AS departamento ON 
               (ubicacion.id_departamento=departamento.id) 
             LEFT JOIN sip_municipio AS municipio ON 
               (ubicacion.id_municipio=municipio.id)
             LEFT JOIN sip_clase AS clase ON 
               (ubicacion.id_clase=clase.id)
-            GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12", que3, tablas3, where3]
+            ", que3, tablas3, where3]
           end
 
           def personas_consulta_final(i, que3, tablas3, where3, qc, gb)
