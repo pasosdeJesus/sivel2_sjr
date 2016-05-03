@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 74574b290e04f373a174bfd796e1d1a635fc2bfe
+  revision: 6af482ba8a6e1c3bcd342edad4b12d783f020ae6
   specs:
     sip (2.0.a7)
       bootstrap-datepicker-rails
@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 743cf5253e8597e78644649b6784301e5741bf83
+  revision: fe08a6dd45827314438ba6f216afeac388651d65
   specs:
     sivel2_gen (2.0.a9)
       devise
@@ -115,9 +115,9 @@ GEM
     coffee-script-source (1.10.0)
     colorize (0.7.7)
     commonjs (0.2.7)
-    concurrent-ruby (1.0.1)
+    concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
-    devise (4.0.0)
+    devise (4.1.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
@@ -167,7 +167,7 @@ GEM
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    multi_json (1.11.2)
+    multi_json (1.12.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     odf-report (0.5.1)
@@ -233,7 +233,7 @@ GEM
     rake (11.1.2)
     rdoc (4.2.2)
       json (~> 1.4)
-    responders (2.1.2)
+    responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
