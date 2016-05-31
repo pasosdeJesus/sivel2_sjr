@@ -11,6 +11,7 @@
           <%= menu_item "Nuevo", sivel2_gen.new_caso_path %>
           <%= menu_item "Conteo Demografía Víctimas", sivel2_sjr.conteos_personas_path %>
           <%= menu_item "Conteo Servicios Prestados", sivel2_sjr.conteos_respuestas_path %>
+          <%= menu_item "Validaciones", sivel2_gen.validarcasos_path %>
         <% end %>
       <% end %>
       <% if can? :read, Cor1440Gen::Actividad then %>
