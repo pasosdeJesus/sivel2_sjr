@@ -35,6 +35,11 @@ module Sivel2Sjr
 
             validacion_estandar(@casos.clone, 'Casos sin memo', 
                                 "TRIM(sivel2_gen_caso.memo)='' OR sivel2_gen_caso.memo IS NULL")
+            sincontacto = @casos.clone.joins(:victima)
+            validacion_estandar(
+              sincontacto, 
+              'Casos sin contacto', 
+              "sivel2_gen_victima.id=sivel2_sjr_casosjr.contacto")
           end # def validar
          
           def validarcasos_params
