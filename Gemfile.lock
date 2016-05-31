@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pasosdeJesus/cor1440_gen.git
-  revision: a39897ee78d358b3fae2ff3d9860345b4ba24639
+  revision: 7daacf1559df0facd5ebc8a576d76fb98134d362
   specs:
     cor1440_gen (1.0.a6)
       devise
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: 6af482ba8a6e1c3bcd342edad4b12d783f020ae6
+  revision: caecfc89473b2779561be12207456fcf0174f0e8
   specs:
     sip (2.0.a7)
       bootstrap-datepicker-rails
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: fe08a6dd45827314438ba6f216afeac388651d65
+  revision: 2a4d661069ced02045154ed2ae6fbd1decf5a5d6
   specs:
     sivel2_gen (2.0.a9)
       devise
@@ -94,11 +94,11 @@ GEM
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-datepicker-rails (1.6.0.1)
+    bootstrap-datepicker-rails (1.6.1.1)
       railties (>= 3.0)
     builder (3.2.2)
     camertron-eprun (1.1.0)
-    cancancan (1.13.1)
+    cancancan (1.14.0)
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -118,7 +118,7 @@ GEM
     commonjs (0.2.7)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
-    devise (4.1.0)
+    devise (4.1.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
@@ -128,7 +128,7 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
-    execjs (2.6.0)
+    execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.7.0)
@@ -138,7 +138,7 @@ GEM
       activesupport (>= 4.1.0)
     i18n (0.7.0)
     interception (0.5)
-    jbuilder (2.4.1)
+    jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jquery-rails (4.1.1)
@@ -162,13 +162,13 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (3.0)
+    mime-types (3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0221)
+    mime-types-data (3.2016.0521)
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
-    minitest (5.8.4)
-    multi_json (1.12.0)
+    minitest (5.9.0)
+    multi_json (1.12.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     odf-report (0.5.1)
@@ -195,7 +195,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-rescue (1.4.2)
+    pry-rescue (1.4.4)
       interception (>= 0.5)
       pry
     pry-stack_explorer (0.4.9.2)
@@ -280,7 +280,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.2)
+    tilt (2.0.4)
     ttfunk (1.4.0)
     turbolinks (2.5.3)
       coffee-rails
@@ -358,4 +358,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
