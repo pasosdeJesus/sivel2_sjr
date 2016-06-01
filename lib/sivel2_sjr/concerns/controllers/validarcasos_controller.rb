@@ -55,7 +55,7 @@ module Sivel2Sjr
               "sip_persona.nombres = 'N' AND sip_persona.apellidos = 'N'")
           end
 
-          def validarinterno
+          def validar_interno
             @rango_fechas = 'Fecha de recepción'
             #byebug
             valida_sincontacto
