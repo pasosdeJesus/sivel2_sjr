@@ -11,9 +11,17 @@ module Sivel2Sjr
         include Sivel2Gen::Concerns::Controllers::ValidarcasosController
 
         included do
-
-          def rango_fechas
-            'Fecha de recepción'
+          
+          def validacion_estandar(
+            casos, titulo, where, atr = [:id_caso, :fecharec],
+            encabezado = ['Código', 'Fecha de recepción'])
+            res = casos.where(where).select(atr)
+            arr = ActiveRecord::Base.connection.select_all(res.to_sql)
+            @validaciones << { 
+              titulo: titulo,
+              encabezado: encabezado,
+              cuerpo: arr 
+            }
           end
 
           def filtro_oficina(casos, campo = 'oficina_id')
@@ -25,21 +33,37 @@ module Sivel2Sjr
             return casos
           end
 
-          def validar
-            @titulo_validarcasos = 'Reporte de Validaciones'
-            @rango_fechas = rango_fechas
-            @validaciones = []
-            @casos = Sivel2Sjr::Casosjr.joins(:caso).all.order(:fecharec)
-            @casos = filtro_fechas(@casos, 'fecharec')
-            @casos = filtro_oficina(@casos)
+          def ini_filtro
+            casos = Sivel2Sjr::Casosjr.joins(:caso).all.order(:fecharec)
+            casos = filtro_fechas(casos, 'fecharec')
+            casos = filtro_oficina(casos)
+            return casos
+          end
 
-            validacion_estandar(@casos.clone, 'Casos sin memo', 
-                                "TRIM(sivel2_gen_caso.memo)='' OR sivel2_gen_caso.memo IS NULL")
-            sincontacto = @casos.clone.joins(:victima)
+          def valida_sincontacto
+            casos = ini_filtro
+            casos = casos.clone.
+              joins(
+                'INNER JOIN sivel2_gen_victima
+                 ON sivel2_gen_victima.id=sivel2_sjr_casosjr.contacto').
+              joins(
+                'INNER JOIN sip_persona
+                 ON sip_persona.id=sivel2_gen_victima.id_persona')
             validacion_estandar(
-              sincontacto, 
+              casos, 
               'Casos sin contacto', 
-              "sivel2_gen_victima.id=sivel2_sjr_casosjr.contacto")
+              "sip_persona.nombres = 'N' AND sip_persona.apellidos = 'N'")
+          end
+
+          def validar
+            @rango_fechas = 'Fecha de recepción'
+            @titulo_validarcasos = 'Reporte de Validaciones'
+            @validaciones = []
+      
+            #byebug
+            valida_sinmemo
+            valida_sincontacto
+
           end # def validar
          
           def validarcasos_params
