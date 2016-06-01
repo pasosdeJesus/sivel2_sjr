@@ -55,16 +55,12 @@ module Sivel2Sjr
               "sip_persona.nombres = 'N' AND sip_persona.apellidos = 'N'")
           end
 
-          def validar
+          def validarinterno
             @rango_fechas = 'Fecha de recepción'
-            @titulo_validarcasos = 'Reporte de Validaciones'
-            @validaciones = []
-      
             #byebug
-            valida_sinmemo
             valida_sincontacto
-
-          end # def validar
+            valida_sinmemo
+          end # def validar_interno
          
           def validarcasos_params
             params.require(:validarcaso).permit(
