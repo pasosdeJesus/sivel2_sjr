@@ -122,6 +122,21 @@ module Sivel2Sjr
           end
 
 
+          def valida_sinayudasjr
+            casos = ini_filtro
+            casos = casos.joins('JOIN sivel2_sjr_respuesta ON
+              sivel2_sjr_respuesta.id_caso=sivel2_sjr_casosjr.id_caso')
+            validacion_estandar(
+              casos, 
+              'Casos con respuesta pero sin ayuda/asesoria del SJR',
+              'sivel2_sjr_respuesta.id NOT IN 
+               (SELECT id_respuesta FROM sivel2_sjr_ayudasjr_respuesta)
+               AND sivel2_sjr_respuesta.id NOT IN 
+               (SELECT id_respuesta FROM sivel2_sjr_aslegal_respuesta)
+              '
+            )
+          end
+
           def validar_sivel2_sjr
             valida_sincontacto
             valida_sinubicaciones
@@ -129,6 +144,7 @@ module Sivel2Sjr
             valida_sinrespuesta
             valida_sinfechadesp
             valida_sindocid
+            valida_sinayudasjr
           end
 
           def validar_interno
