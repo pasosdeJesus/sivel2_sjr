@@ -6,8 +6,16 @@
       <%= render 'sip/personas/persona_fields', :f => p %>
     <% end %>
 
-    <%= s.input :direccion, label: "Dirección actual" %>
-    <%= s.input :telefono, label: 'Teléfono' %>
+    <%= s.input :direccion, label: "Dirección actual",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Registrar dirección completa, especificando calle, apto, barrio o finca'}
+    %>
+    <%= s.input :telefono, label: 'Teléfono',
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Registrar teléfono del solicitante sin símbolos de puntuación'
+    %>
     <%= s.association :comosupo,
       collection: Sivel2Sjr::Comosupo.habilitados,
       include_blank: false,
@@ -22,11 +30,17 @@
   
     <%= s.input :concentimientosjr, 
       boolean_style: :nested,
-      inline_label: "Consentimiento Informado compartir SJR"
+      inline_label: "Consentimiento Informado compartir SJR",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Informar a la persona sobre el uso interno de la información en el SJR'
     %>
     <%= s.input :concentimientobd, 
       boolean_style: :nested,
-      inline_label: "Consentimiento Informado compartir BD CINEP"
+      inline_label: "Consentimiento Informado compartir BD CINEP",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Informar a la persona sobre el uso de la información en el Banco de Datos de violencia sociopolítica del CINEP'
     %>
   <% end %>  <!-- if -->
 <% end %> <!-- simple_fields_for :victima -->
