@@ -3,23 +3,36 @@
   "data-behaviour" => "datepicker",
   value: s.object.fechasalida || @caso.fecha 
 },
-  as: :string, label: "Fecha de Salida" 
+  as: :string, label: "Fecha de Salida",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Si este refugio corresponde al refugio emblemático, esta fecha debe ser la misma registrada en datos básicos como "expulsión emblemática"'}
 %>
 <%= s.association :salida,
   collection: Sip::Ubicacion.where(:id_caso => @caso.id),
   label: "Sitio de Salida",
   label_method: lambda { |t| formato_ubicacion(t) },
-  value_method: :id 
+  value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Rgistrar sitio de salida eligiendo entre las ubicaciones registradas en la pestaña anterior'}
 %>
 <%= s.input :fechallegada, 
   :input_html => { "data-behaviour" => "datepicker" },
-  :as => :string, :label => "Fecha de Llegada" 
+  :as => :string, :label => "Fecha de Llegada",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Registrar la fecha de llegada del refugio emblemático'}
 %>
 <%= s.association :llegada,
   collection: Sip::Ubicacion.where(:id_caso => @caso.id),
   label: "Sitio de Llegada",
   label_method: lambda { |t| formato_ubicacion(t) },
-  value_method: :id 
+  value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Registrar sitio de llegada entre las ubicaciones registradas en la pestaña anterior'}
+ 
 %>
 <%= s.association :categoria,
   collection: Sivel2Gen::Categoria.from('sivel2_gen_categoria, sivel2_gen_supracategoria').where(
@@ -28,18 +41,30 @@
      AND sivel2_gen_supracategoria.id_tviolencia='R'").order(:id),
   label: "Causa del Refugio",
   label_method: lambda {|t| t.supracategoria.id_tviolencia + t.id.to_s + ' ' + t.nombre },
-  value_method: :id 
+  value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Seleccione de la lista una o varias causas que hayan generado el refugio'}
 %>
 <%= s.association :statusmigratorio,
   collection: Sivel2Sjr::Statusmigratorio.habilitados,
   label_method: :nombre,
-  value_method: :id 
+  value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Elegir de las opciones de la lista el estatus migratorio actual del solicitante'}
 %>
 <%= s.association :proteccion,
   collection: Sivel2Sjr::Proteccion.habilitados,
   label_method: :nombre,
-  value_method: :id 
+  value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Elegir de la lista el nivel protección internacional que requiere el solicitante'}
 %>
 <%= s.input :observacionesref, 
-  label: "Observaciones" 
+  label: "Observaciones",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Añada los comentarios adicionales que considere necesarios'}
 %>
