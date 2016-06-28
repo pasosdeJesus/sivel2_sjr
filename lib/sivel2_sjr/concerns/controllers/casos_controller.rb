@@ -224,6 +224,7 @@ module Sivel2Sjr
                 :id_maternidad, :ndiscapacidad, :enfermedad, 
                 :id_escolaridad,
                 :sindocumento, :cabezafamilia, :asisteescuela, 
+                :fechadesagregacion,
                 :id_regimensalud, :eps, :tienesisben
             ]
             ], 
@@ -244,7 +245,8 @@ module Sivel2Sjr
                 :oficioantes, :id_modalidadtierra,
                 :materialesperdidos, :inmaterialesperdidos,
                 :protegiorupta, :documentostierra,
-                :_destroy
+                :_destroy,
+                :categoria_ids => []
             ],
               :caso_presponsable_attributes => [
                 :id, :id_presponsable, :tipo, 
