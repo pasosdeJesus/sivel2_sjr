@@ -19,6 +19,7 @@
         'sivel2_gen_categoria, sivel2_gen_supracategoria').where(
           "sivel2_gen_categoria.supracategoria_id=sivel2_gen_supracategoria.id
      AND sivel2_gen_categoria.fechadeshabilitacion IS NULL 
+     AND sivel2_gen_categoria.tipocat = 'I'
      AND sivel2_gen_supracategoria.id_tviolencia <> 'R'").order(
        'sivel2_gen_supracategoria.id_tviolencia', :id),
        "id", 
