@@ -6,15 +6,33 @@
       label_method: :nombre,
       value_method: :id,
       wrapper_html: { style: "padding-bottom: 18px;" },
-      input_html: { 'data-actualiza' => 'presponsable' }
+      input_html: { 'data-actualiza' => 'presponsable' },
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Registre mínimo un presunto responsable que haya afectado al solicitante o grupo familiar. Para incluir adicionales, haga clic abajo en el botón azul “añadir presunto responsable”'}
     %>
-    <%= f.input :bloque %>
-    <%= f.input :frente %>
+    <%= f.input :bloque,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'En el caso de grupos paramilitares'}
+   %>
+    <%= f.input :frente,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'En el caso de grupos guerilleros'} 
+    %>
     <%= f.input :brigada,
       label: "Brigada / Batallón / División",
-      wrapper_html: { style: "padding-bottom: 18px;" }
+      wrapper_html: { style: "padding-bottom: 18px;" },
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'En el caso de ejército'} 
     %>
-    <%= f.input :otro %>
+    <%= f.input :otro,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'En caso de responsables individuales'}
+    %>
     <%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar " +
       Sivel2Gen::Presponsable.human_attribute_name("Presponsable"), f, 

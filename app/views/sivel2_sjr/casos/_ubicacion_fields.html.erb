@@ -27,10 +27,21 @@
         fechadeshabilitacion: nil).order(:nombre)),
       label: "Centro Poblado",
       label_method: :nombre,
-      value_method: :id 
+      value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Elegir centro poblado exacto de la lista de despliegue'}
     %>
-    <%= f.input :lugar %>
-      <%= f.input :sitio %>
+    <%= f.input :lugar,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Lugar exacto en que se produjo el hecho victimizante. Registre el barrio en caso de ubicación urbana y la vereda en caso rural'}
+    %>
+      <%= f.input :sitio,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Sitio exacto en que se produjo el hecho victimizante. Registre dirección de casa en caso urbano y de la finca en caso rural'}
+    %>
       <%= f.input :latitud%>
       <%= f.input :longitud%>
       <%= f.association :tsitio,
@@ -38,7 +49,10 @@
         label: "Tipo de Sitio",
         label_method: :nombre, 
         value_method: :id,
-        include_blank: false
+        include_blank: false,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Seleccione si el sitio registrado corresponde a urbano o rural'}
       %>
       <%= f.input :id, as: :hidden %>
         <%= link_to_remove_association "Eliminar " + 

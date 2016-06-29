@@ -3,7 +3,11 @@
     <%= f.input :id, as: :hidden %>
     <%= f.input :fechaatencion, 
       :input_html => { "data-behaviour" => "datepicker"},
-      :as => :string, :label => "Fecha de Atención" %>
+      :as => :string, :label => "Fecha de Atención",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Fecha inicial de recepción del caso en el SJR.  Para las siguientes sesiones agregue una nueva respuesta institucional haciendo clic en el botón inferior azul “Añadir Respuesta” e incluya la fecha correspondiente'}
+ %>
     <%= f.input :descamp, as: :text, label: "Situación encontrada" %>
     <%= f.input :observaciones, as: :text, label: "Observaciones" %>
     <%= f.input :orientaciones, as: :text, label: "Recomendaciones" %>
@@ -14,22 +18,37 @@
       collection: Sivel2Sjr::Ayudasjr.habilitados,
       label: "Asistencia Humanitaria",
       label_method: :nombre, 
-      value_method: :id 
+      value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Seleccione el tipo de ayuda brindada por el SJR'}
     %>
     <%= f.input :detallear, label: "Detalle A. Humanitaria",
-        wrapper_html: { style: "padding-bottom: 18px;" }
+        wrapper_html: { style: "padding-bottom: 18px;" },
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Describir la ayuda humanitaria del SJR (campo opcional)'}
     %>
-    <%= f.input :montoar, label: "Monto A. Humanitaria" %>
-
+    <%= f.input :montoar, label: "Monto A. Humanitaria",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Cantidad de dinero otorgado'}
+  %>
     <%= f.association :aslegal, 
       collection: Sivel2Sjr::Aslegal.habilitados,
       label: "Asistencia Legal",
       label_method: :nombre, 
-      value_method: :id 
+      value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Seleccione el (los) tipo (s) de asesoría judicial brindada por el SJR'}
     %>
-    <%= f.input :detalleal, label: "Detalle A. Legal" %>
+    <%= f.input :detalleal, label: "Detalle A. Legal",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Describir la asistencia judicial del SJR (campo opcional)'}
+    %>
     <%= f.input :montoal, label: "Monto A. Legal" %>
-
     <%= link_to_remove_association "Eliminar Sesión de Atención", f, 
       {:class => 'btn-danger', :'data-existing' => 'true'} 
     %>

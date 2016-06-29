@@ -3,7 +3,7 @@
 	include_blank: false,
 	label: "Rango de Edad",
 	label_method: :rango, 
-	value_method: :id 
+	value_method: :id
 %>
 <%= victima.association :etnia,
 	collection: Sivel2Gen::Etnia.habilitados,
@@ -41,7 +41,10 @@
   include_blank: false,
   label: "Rol en Familia",
   label_method: :nombre, 
-  value_method: :id 
+  value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Solicite a la persona identificar su rol en la familia, con ello podremos analizar el tipo de ayuda que requiere'}
 %>
 <%= victimasjr.association :maternidad,
   collection: Sivel2Gen::Maternidad.habilitados,

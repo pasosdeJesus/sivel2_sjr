@@ -2,7 +2,10 @@
 
 <%= s.input :fecharec, 
   :input_html => { "data-behaviour" => "datepicker" },
-  :as => :string, :label => "Fecha de Recepción" 
+  :as => :string, :label => "Fecha de Recepción",
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Fecha inicial de atención al caso'}
 %>
 
 <%= s.association :usuario,
@@ -18,13 +21,19 @@
   include_blank: false,
   label: "Oficina",
   label_method: :nombre, 
-  value_method: :id 
+  value_method: :id,
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Oficina del SJR que reporta el caso'}
 %>
 
 <%= f.input :fecha, :input_html => { 
   "data-behaviour" => "datepicker" },
   :as => :string, :label => "F. Desplazamiento Emblemático",
-  wrapper_html: { style: "padding-bottom: 18px;" }
+  wrapper_html: { style: "padding-bottom: 18px;" },
+    input_html: {
+    "data-toggle" => 'tooltip',
+    "title" => 'Fecha en la que el solicitante sufrió el hecho victimizante'}
 %>
 
 <%= f.input :memo, label: 'Descripción' %>
