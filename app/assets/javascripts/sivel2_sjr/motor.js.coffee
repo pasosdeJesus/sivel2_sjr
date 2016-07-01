@@ -239,6 +239,7 @@
   # Envia formulario al presionar enlaces con clase fichacambia 
   # con más de 5 segundos de diferencia entre un click y el siguiente
   $(document).on('click', 'a.fichacambia[href^="#"]', (e) ->
+    e.preventDefault()
     tn = Date.now()
     d = -1
     if (root.tfichacambia) 
