@@ -1,11 +1,13 @@
 <%= f.input :id, label: "Código", readonly: true%>
 
 <%= s.input :fecharec, 
-  :input_html => { "data-behaviour" => "datepicker" },
-  :as => :string, :label => "Fecha de Recepción",
-    input_html: {
+  as: :string, 
+  label: "Fecha de Recepción",
+  input_html: {
+     "data-behaviour" => "datepicker",
     "data-toggle" => 'tooltip',
-    "title" => 'Fecha inicial de atención al caso'}
+    "title" => 'Fecha inicial de atención al caso'
+  }
 %>
 
 <%= s.association :usuario,
@@ -22,18 +24,21 @@
   label: "Oficina",
   label_method: :nombre, 
   value_method: :id,
-    input_html: {
+  input_html: {
     "data-toggle" => 'tooltip',
-    "title" => 'Oficina del SJR que reporta el caso'}
+    "title" => 'Oficina del SJR que reporta el caso'
+  }
 %>
 
-<%= f.input :fecha, :input_html => { 
-  "data-behaviour" => "datepicker" },
-  :as => :string, :label => "F. Desplazamiento Emblemático",
+<%= f.input :fecha,
+  as: :string, 
+  label: "F. Desplazamiento Emblemático",
   wrapper_html: { style: "padding-bottom: 18px;" },
-    input_html: {
+  input_html: {
+    "data-behaviour" => "datepicker",
     "data-toggle" => 'tooltip',
-    "title" => 'Fecha en la que el solicitante sufrió el hecho victimizante'}
+    "title" => 'Fecha en la que el solicitante sufrió el desplazamiento principal'
+  }
 %>
 
 <%= f.input :memo, label: 'Descripción' %>

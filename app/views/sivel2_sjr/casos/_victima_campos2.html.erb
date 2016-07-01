@@ -42,9 +42,10 @@
   label: "Rol en Familia",
   label_method: :nombre, 
   value_method: :id,
-    input_html: {
+  input_html: {
     "data-toggle" => 'tooltip',
-    "title" => 'Solicite a la persona identificar su rol en la familia, con ello podremos analizar el tipo de ayuda que requiere'}
+    "title" => 'Solicite a la persona identificar su rol en la familia, con ello podremos analizar el tipo de ayuda que requiere'
+  }
 %>
 <%= victimasjr.association :maternidad,
   collection: Sivel2Gen::Maternidad.habilitados,
@@ -83,10 +84,15 @@
   label_method: :nombre, 
   value_method: :id
 %>
-<%= victimasjr.input :asisteescuela, 
-  label: "Asiste a Escuela",
+<!--%= victimasjr.input :asisteescuela, 
+  label: 
   wrapper_html: { 
     class: "span11 offset1",
   }  
+%-->
+
+<%= victimasjr.input :asisteescuela, 
+  boolean_style: :nested,
+  inline_label: "Asiste a Escuela"
 %>
 <%= victimasjr.input :id_victima, as: :hidden %>

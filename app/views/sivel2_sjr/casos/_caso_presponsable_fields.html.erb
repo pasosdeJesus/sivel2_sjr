@@ -6,37 +6,42 @@
       label_method: :nombre,
       value_method: :id,
       wrapper_html: { style: "padding-bottom: 18px;" },
-      input_html: { 'data-actualiza' => 'presponsable' },
-    input_html: {
-    "data-toggle" => 'tooltip',
-    "title" => 'Registre mínimo un presunto responsable que haya afectado al solicitante o grupo familiar. Para incluir adicionales, haga clic abajo en el botón azul “añadir presunto responsable”'}
+      input_html: { 
+        'data-actualiza' => 'presponsable',
+        "data-toggle" => 'tooltip',
+        "title" => 'Registre mínimo un presunto responsable que haya afectado al solicitante o grupo familiar. Para incluir adicionales, haga clic abajo en el botón “Añadir presunto responsable”'
+      }
     %>
     <%= f.input :bloque,
-    input_html: {
-    "data-toggle" => 'tooltip',
-    "title" => 'En el caso de grupos paramilitares'}
-   %>
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'En el caso de grupos paramilitares'
+       }
+    %>
     <%= f.input :frente,
-    input_html: {
-    "data-toggle" => 'tooltip',
-    "title" => 'En el caso de grupos guerilleros'} 
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'En el caso de grupos guerilleros'
+      } 
     %>
     <%= f.input :brigada,
       label: "Brigada / Batallón / División",
       wrapper_html: { style: "padding-bottom: 18px;" },
-    input_html: {
-    "data-toggle" => 'tooltip',
-    "title" => 'En el caso de ejército'} 
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'En el caso de ejército'
+      } 
     %>
     <%= f.input :otro,
-    input_html: {
-    "data-toggle" => 'tooltip',
-    "title" => 'En caso de responsables individuales'}
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'Por ejemplo para incluir responsables individuales'
+      }
     %>
     <%= f.input :id, as: :hidden %>
     <%= link_to_remove_association "Eliminar " +
       Sivel2Gen::Presponsable.human_attribute_name("Presponsable"), f, 
-      {:class => 'btn-danger', :'data-existing' => 'true'} 
+      {class: 'btn-danger', :'data-existing' => 'true'} 
     %> 
   </div>
 </div>

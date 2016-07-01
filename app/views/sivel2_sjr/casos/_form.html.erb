@@ -2,7 +2,7 @@
   <li><a href="usuarios/sign_in">Iniciar Sesión</a>
 <%- else  %>
   <article>
-  <%= simple_form_for @caso, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= simple_form_for @caso, html: { class: 'form-horizontal' } do |f| %>
     <div data-role="content" class="form-inputs">
 
       <div id="errores">
@@ -61,48 +61,48 @@
         <div class="tab-content">
           <%= f.simple_fields_for :casosjr do |s| %>
             <div role="tabpanel" class="tab-pane active" id="basicos" > 
-              <%= render 'basicos', :f => f, :s => s %>
+              <%= render 'basicos', f: f, s: s %>
             </div> 
 
             <div role="tabpanel" class="tab-pane" id="contacto" > 
-              <%= render 'contacto', :f => f, :s => s %>
+              <%= render 'contacto', f: f, s: s %>
             </div>
 
             <div role="tabpanel" class="tab-pane" id="victima" > 
-              <%= render 'victimas', :f => f, :s => s %>
+              <%= render 'victimas', f: f, s: s %>
             </div> 
 
             <div role="tabpanel" class="tab-pane" id="ubicacion" > 
-              <%= render 'ubicaciones', :f => f, :s => s %>
+              <%= render 'ubicaciones', f: f, s: s %>
             </div>
 
             <div role="tabpanel" class="tab-pane" id="refugio" > 
-              <%= render 'refugio', :f => f, :s => s %>
+              <%= render 'refugio', f: f, s: s %>
             </div> 
           <% end %>
 
           <div role="tabpanel" class="tab-pane" id="desplazamiento" > 
-            <%= render 'desplazamientos', :f => f %>
+            <%= render 'desplazamientos', f: f %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="presponsable"> 
-            <%= render 'presponsables', :f => f %>
+            <%= render 'presponsables', f: f %>
           </div> 
   
           <div role="tabpanel" class="tab-pane" id="antecedentes" > 
-            <%= render 'antecedentes', :f => f %>
+            <%= render 'antecedentes', f: f %>
           </div>
   
           <div role="tabpanel" class="tab-pane" id="atencion" > 
-            <%= render 'respuestas', :f => f %>
+            <%= render 'respuestas', f: f %>
           </div> 
 
           <div role="tabpanel" class="tab-pane" id="anexos"> 
-            <%= render 'sivel2_gen/casos/anexos', :f => f  %>
+            <%= render 'sivel2_gen/casos/anexos', f: f  %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="etiquetas"> 
-            <%= render 'etiquetas', :f => f  %>
+            <%= render 'etiquetas', f: f  %>
           </div> 
 
         </div> <!-- tab-content -->
