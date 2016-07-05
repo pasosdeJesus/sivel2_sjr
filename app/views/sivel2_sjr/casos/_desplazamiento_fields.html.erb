@@ -4,6 +4,7 @@
     <%= f.input :fechaexpulsion, 
       as: :string, 
       label: "Fecha de Expulsión",
+      inline_label: "Consentimiento Informado compartir BD CINEP",
       input_html: { 
         "data-behaviour" => "datepicker",
         "data-toggle" => 'tooltip',
@@ -54,6 +55,8 @@
         "title" => 'Descripción del desplazamiento (Utilice mayúsculas y minúsculas)'
       }
     %>
+
+    <%= render 'desplazamiento_campos2', f: f %>
 
     <%= link_to_remove_association "Eliminar Desplazamiento", f, 
       {class: 'btn-danger', :'data-existing' => 'true'} 

@@ -10,13 +10,19 @@
     <% end %>
 
     <%= f.simple_fields_for :victimasjr do |victimasjr| %>
-      <%= render 'victima_campos2', victima: f, victimasjr: victimasjr %>
+      <% (1..7).each do |i| %>
+        <%= render 'victima_campos' + i.to_s, 
+          victima: f, 
+          victimasjr: victimasjr
+        %>
+    <% end %>
+
       <%= victimasjr.input :fechadesagregacion, 
         input_html: { "data-behaviour" => "datepicker" },
         as: :string, 
         label: "Fecha de Desagregación" 
       %>
-    <% end %>
+    <% end %> <!-- simple_fields_for :victimasjr -->
 
     <%= link_to_remove_association "Eliminar Víctima", f, 
       {class: 'btn-danger', :'data-existing' => 'true'} %> 

@@ -4,11 +4,19 @@ es:
     fechadeshabilitacion: Deshabilitación 
   activerecord:
     attributes:
+      "sivel2_gen/caso":
+        fecha: F. desplazamiento emblemático
+        id: Código
+        memo: Descripción
+      "sivel2_gen/caso_presponsable":
+        presponsable: Agente de persecución
+      "sivel2_gen/presponsable":
+        presponsable: agente de persecución
       "sivel2_sjr/acto":
-        presponsable: Agente de Persecución
+        presponsable: Agente de persecución
       "sivel2_sjr/aslegal":
-        Aslegal: Asistencia Legal
-        Aslegales: Asistencias Legales
+        Aslegal: Asistencia legal
+        Aslegales: Asistencias legales
       "sivel2_sjr/ayudaestado": 
         Ayudaestado: Ayuda del Estado
         Ayudasestado: Ayudas del Estado
@@ -16,32 +24,33 @@ es:
         Ayudasjr: Ayuda del SJR
         Ayudassjr: Ayudas del SJR
       "sivel2_sjr/casosjr":
-        fecharec: F. Recepción
+        comosupo: Como supo del SJR
+        contacto: Solicitante principal
+        concentimientobd: Consentimiento Informado compartir BD CINEP
+        concentimientosjr: Consentimiento Informado compartir SJR
+        direccion: Dirección actual
+        fecharec: Fecha de recepción
+        proteccion: Necesidad de protección internacional
         regionsjr: Oficina
-        contacto: Solicitante Principal
-        statusmigratorio: Estatus Migratorio
-        proteccion: Necesidad de Protección Internacional
-      "sivel2_gen/caso":
-        fecharec: F. Recepción
-        contacto: Solicitante Principal
-        nusuario: Usuario
-        statusmigratorio: Estatus Migratorio
-        ultimafechaatencion: Fecha Ult. Atención
+        statusmigratorio: Estatus migratorio
+        telefono: Teléfono
+        ultimafechaatencion: Fecha ult. Atención
+        usuario: Asesor SJR
       "sivel2_sjr/comosupo":
-        Comosupo: Como Supo del SJR
-        Comosupos: Como Supo del SJR
+        Comosupo: Como supo del SJR
+        Comosupos: Como supo del SJR
       "sivel2_sjr/emprendimiento":
         Emprendimiento: Emprendimiento
         Emprendimientos: Emprendimientos
       "sivel2_sjr/estadocivil":
-        Estadocivil: Estado Civil
-        Estadosciviles: Estado Civil
+        Estadocivil: Estado civil
+        Estadosciviles: Estado civil
       "sivel2_sjr/idioma":
         Idioma: Idioma
         Idiomas: Idiomas
       "sivel2_sjr/maternidad":
-        Maternidad: Estado Maternidad
-        Maternidades: Estados Maternidad
+        Maternidad: Estado maternidad
+        Maternidades: Estados maternidad
       "sivel2_sjr/modalidadtierra":
         Modalidadtierra: Modalidad de tenencia de la tierra
         Modalidadestierra: Modalidades de tenencia de la tierra
@@ -49,23 +58,48 @@ es:
         Progestado: Programa del Estado
         Progsestado: Programas del Estado
       "sivel2_sjr/proteccion":
-        Proteccion: Necesidad de Protección Internacional
-        Protecciones: Necesidades de Protección Internacional
+        Proteccion: Necesidad de protección internacional
+        Protecciones: Necesidades de protección internacional
       "sivel2_sjr/presponsable":
-        Presponsable: Agente de Persecución
-        Presponsables: Agentes de Persecución
+        Presponsable: Agente de persecución
+        Presponsables: Agentes de persecución
       "sivel2_sjr/regimensalud":
-        Regimensalud: Régimen Salud
-        Regimenessalud: Régimenes Salud
+        Regimensalud: Régimen salud
+        Regimenessalud: Régimenes salud
+      "sivel2_sjr/respuesta":
+        aslegal: Asistencia legal
+        ayudasjr: Asistencia humanitaria
+        compromisos:  Compromisos de la persona
+        descamp: Situación encontrada
+        detallear: Detalle A. humanitaria
+        detalleal: Detalle A. legal
+        fechaatencion: Fecha de atención
+        gestionessjr:  Compromisos del SJR
+        montoar: Monto A. humanitaria
+        montoal: Monto A. legal
+        observaciones:  Observaciones
+        orientaciones:  Recomendaciones
+        Sesionesatencion: Sesiones de atención
+        sesionatencion: sesión de atención
       "sivel2_sjr/rolfamilia":
-        Rolfamilia: Rol en Familia
-        Rolesfamilia: Roles en Familia
+        Rolfamilia: Rol en familia
+        Rolesfamilia: Roles en familia
       "sivel2_sjr/statusmigratorio":
-        Statusmigratorio: Estatus Migratorio
-        Statusmigratorios: Estatus Migratorio
+        Statusmigratorio: Estatus migratorio
+        Statusmigratorios: Estatus migratorio
       "sivel2_sjr/tipodesp":
-        Tipodesp: Tipo de Desplazamiento
-        Tiposdesp: Tipos de Desplazamiento
+        Tipodesp: Tipo de desplazamiento
+        Tiposdesp: Tipos de desplazamiento
       "sivel2_sjr/ubicacion":
-        Ubicacion: Sitio Geográfico
-
+        Ubicacion: Sitio geográfico
+      "sip/ubicacion":
+        clase: Centro poblado
+        departamento: Estado/Departamento/Provincia
+        latitud: Latitud
+        longitud: Longitud
+        lugar: Lugar
+        municipio: Municipio/Cantón
+        pais: País
+        sitio: Sitio
+        tsitio: Tipo de sitio
+        Ubicacion: Sitio geográfico

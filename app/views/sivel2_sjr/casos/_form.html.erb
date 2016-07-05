@@ -50,7 +50,7 @@
             data-toggle="tab">Causas/Antecedentes</a></li>
           <li role="presentation"><a href="#atencion" class="fichacambia" 
             aria-controls="atencion" role="tab" 
-            data-toggle="tab">Sesiones de Atención</a></li>
+            data-toggle="tab"><%= Sivel2Sjr::Respuesta.human_attribute_name(:Sesionesatencion) %></a></li>
           <li role="presentation"><a href="#anexos" class="fichacambia" 
             aria-controls="anexos" role="tab" 
             data-toggle="tab">Anexos</a></li>
@@ -86,7 +86,7 @@
           </div>
 
           <div role="tabpanel" class="tab-pane" id="presponsable"> 
-            <%= render 'presponsables', f: f %>
+            <%= render 'sivel2_gen/casos/presponsables', f: f %>
           </div> 
   
           <div role="tabpanel" class="tab-pane" id="antecedentes" > 
@@ -102,7 +102,7 @@
           </div>
 
           <div role="tabpanel" class="tab-pane" id="etiquetas"> 
-            <%= render 'etiquetas', f: f  %>
+            <%= render 'sivel2_gen/casos/etiquetas', f: f  %>
           </div> 
 
         </div> <!-- tab-content -->
