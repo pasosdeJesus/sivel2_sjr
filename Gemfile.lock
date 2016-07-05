@@ -30,6 +30,15 @@ GIT
       will_paginate
 
 GIT
+  remote: git://github.com/pasosdeJesus/sivel2_gen.git
+  revision: b78588661e83eca44d378fd80d34fea3581ac7b5
+  specs:
+    sivel2_gen (2.0.a9)
+      devise
+      jquery-rails
+      rails
+
+GIT
   remote: git://github.com/vtamara/cocoon.git
   revision: 20f8f3bab2fee21309c57b586f5fab9921ac0894
   specs:
@@ -40,14 +49,6 @@ GIT
   revision: 944cf4164ea511a2977f91031cc7f69d3e06e6cb
   specs:
     jquery-ui-bootstrap-rails (0.1.1)
-      rails
-
-PATH
-  remote: ../sivel2_gen
-  specs:
-    sivel2_gen (2.0.a9)
-      devise
-      jquery-rails
       rails
 
 GEM
@@ -224,7 +225,7 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails-i18n (4.0.8)
+    rails-i18n (4.0.9)
       i18n (~> 0.7)
       railties (~> 4.0)
     railties (4.2.7.rc1)
