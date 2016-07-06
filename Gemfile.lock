@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sip.git
-  revision: ac741047e14c9fb02b241a9a63e60e404157bf40
+  revision: 4c8f104f9ca428c897b61f0ee216efd7b238cf27
   specs:
     sip (2.0.a7)
       bootstrap-datepicker-rails
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/pasosdeJesus/sivel2_gen.git
-  revision: b78588661e83eca44d378fd80d34fea3581ac7b5
+  revision: bab0e85cc4bcf4688837794093a15c8256249f1d
   specs:
     sivel2_gen (2.0.a9)
       devise
@@ -298,7 +298,7 @@ GEM
       tzinfo
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2016.5)
+    tzinfo-data (1.2016.6)
       tzinfo (>= 1.0.0)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
