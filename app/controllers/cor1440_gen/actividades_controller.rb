@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-require_dependency 'cor1440_gen/concerns/controllers/actividades_controller.rb'
+require_dependency 'cor1440_gen/concerns/controllers/actividades_controller'
 
 class Cor1440Gen::ActividadesController < ApplicationController
 
