@@ -182,18 +182,6 @@ CREATE SEQUENCE anexo_seq
     CACHE 1;
 
 
---
--- Name: antecedente_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE antecedente_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -1693,16 +1681,29 @@ CREATE TABLE sivel2_gen_anexo_caso (
 
 
 --
+-- Name: sivel2_gen_antecedente_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_gen_antecedente_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: sivel2_gen_antecedente; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE sivel2_gen_antecedente (
-    id integer DEFAULT nextval('antecedente_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('sivel2_gen_antecedente_id_seq'::regclass) NOT NULL,
     nombre character varying(500) COLLATE public.es_co_utf_8 NOT NULL,
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    observaciones character varying(5000),
     CONSTRAINT antecedente_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -1716,6 +1717,16 @@ CREATE TABLE sivel2_gen_antecedente_caso (
     id_caso integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sivel2_gen_antecedente_combatiente; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sivel2_gen_antecedente_combatiente (
+    id_antecedente integer,
+    id_combatiente integer
 );
 
 
@@ -1926,6 +1937,49 @@ CREATE TABLE sivel2_gen_categoria (
     CONSTRAINT categoria_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT categoria_tipocat_check CHECK (((tipocat = 'I'::bpchar) OR (tipocat = 'C'::bpchar) OR (tipocat = 'O'::bpchar)))
 );
+
+
+--
+-- Name: sivel2_gen_combatiente; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sivel2_gen_combatiente (
+    id integer NOT NULL,
+    nombre character varying(500) NOT NULL,
+    alias character varying(500),
+    edad integer,
+    sexo character varying(1) DEFAULT 'S'::character varying NOT NULL,
+    id_resagresion integer DEFAULT 1 NOT NULL,
+    id_profesion integer DEFAULT 22,
+    id_rangoedad integer DEFAULT 6,
+    id_filiacion integer DEFAULT 10,
+    id_sectorsocial integer DEFAULT 15,
+    id_organizacion integer DEFAULT 16,
+    id_vinculoestado integer DEFAULT 38,
+    id_caso integer,
+    organizacionarmada integer DEFAULT 35,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sivel2_gen_combatiente_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sivel2_gen_combatiente_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_combatiente_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sivel2_gen_combatiente_id_seq OWNED BY sivel2_gen_combatiente.id;
 
 
 --
@@ -3615,6 +3669,13 @@ ALTER TABLE ONLY sip_tdocumento ALTER COLUMN id SET DEFAULT nextval('sip_tdocume
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY sivel2_gen_combatiente ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_combatiente_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY sivel2_gen_resagresion ALTER COLUMN id SET DEFAULT nextval('sivel2_gen_resagresion_id_seq'::regclass);
 
 
@@ -4528,6 +4589,14 @@ ALTER TABLE ONLY sivel2_gen_caso_fuenteprensa
 
 
 --
+-- Name: sivel2_gen_combatiente_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_combatiente
+    ADD CONSTRAINT sivel2_gen_combatiente_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sivel2_gen_resagresion_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4775,6 +4844,20 @@ CREATE INDEX index_sivel2_gen_actividad_rangoedadac_on_actividad_id ON cor1440_g
 --
 
 CREATE INDEX index_sivel2_gen_actividad_rangoedadac_on_rangoedadac_id ON cor1440_gen_actividad_rangoedadac USING btree (rangoedadac_id);
+
+
+--
+-- Name: index_sivel2_gen_antecedente_combatiente_on_id_antecedente; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_antecedente_combatiente_on_id_antecedente ON sivel2_gen_antecedente_combatiente USING btree (id_antecedente);
+
+
+--
+-- Name: index_sivel2_gen_antecedente_combatiente_on_id_combatiente; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_antecedente_combatiente_on_id_combatiente ON sivel2_gen_antecedente_combatiente USING btree (id_combatiente);
 
 
 --
@@ -5531,6 +5614,14 @@ ALTER TABLE ONLY cor1440_gen_actividad_proyectofinanciero
 
 
 --
+-- Name: fk_rails_6485d06d37; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_combatiente
+    ADD CONSTRAINT fk_rails_6485d06d37 FOREIGN KEY (id_vinculoestado) REFERENCES sivel2_gen_vinculoestado(id);
+
+
+--
 -- Name: fk_rails_74442b8f19; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5547,11 +5638,35 @@ ALTER TABLE ONLY sivel2_sjr_ayudasjr_derecho
 
 
 --
+-- Name: fk_rails_95f4a0b8f6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_combatiente
+    ADD CONSTRAINT fk_rails_95f4a0b8f6 FOREIGN KEY (id_profesion) REFERENCES sivel2_gen_profesion(id);
+
+
+--
 -- Name: fk_rails_a8489e0d62; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY cor1440_gen_actividad_proyectofinanciero
     ADD CONSTRAINT fk_rails_a8489e0d62 FOREIGN KEY (actividad_id) REFERENCES cor1440_gen_actividad(id);
+
+
+--
+-- Name: fk_rails_af43e915a6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_combatiente
+    ADD CONSTRAINT fk_rails_af43e915a6 FOREIGN KEY (id_filiacion) REFERENCES sivel2_gen_filiacion(id);
+
+
+--
+-- Name: fk_rails_bfb49597e1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_combatiente
+    ADD CONSTRAINT fk_rails_bfb49597e1 FOREIGN KEY (organizacionarmada) REFERENCES sivel2_gen_presponsable(id);
 
 
 --
@@ -5603,6 +5718,14 @@ ALTER TABLE ONLY cor1440_gen_informe
 
 
 --
+-- Name: fk_rails_e2d01a5a99; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_combatiente
+    ADD CONSTRAINT fk_rails_e2d01a5a99 FOREIGN KEY (id_sectorsocial) REFERENCES sivel2_gen_sectorsocial(id);
+
+
+--
 -- Name: fk_rails_e645a3e73c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5616,6 +5739,46 @@ ALTER TABLE ONLY sivel2_sjr_ayudasjr_derecho
 
 ALTER TABLE ONLY sivel2_sjr_progestado_derecho
     ADD CONSTRAINT fk_rails_e8743fd8f6 FOREIGN KEY (progestado_id) REFERENCES sivel2_sjr_progestado(id);
+
+
+--
+-- Name: fk_rails_f0cf2a7bec; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_combatiente
+    ADD CONSTRAINT fk_rails_f0cf2a7bec FOREIGN KEY (id_resagresion) REFERENCES sivel2_gen_resagresion(id);
+
+
+--
+-- Name: fk_rails_f305297325; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_antecedente_combatiente
+    ADD CONSTRAINT fk_rails_f305297325 FOREIGN KEY (id_combatiente) REFERENCES sivel2_gen_combatiente(id);
+
+
+--
+-- Name: fk_rails_f77dda7a40; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_combatiente
+    ADD CONSTRAINT fk_rails_f77dda7a40 FOREIGN KEY (id_organizacion) REFERENCES sivel2_gen_organizacion(id);
+
+
+--
+-- Name: fk_rails_fb02819ec4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_combatiente
+    ADD CONSTRAINT fk_rails_fb02819ec4 FOREIGN KEY (id_rangoedad) REFERENCES sivel2_gen_rangoedad(id);
+
+
+--
+-- Name: fk_rails_fc1811169b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sivel2_gen_antecedente_combatiente
+    ADD CONSTRAINT fk_rails_fc1811169b FOREIGN KEY (id_antecedente) REFERENCES sivel2_gen_antecedente(id);
 
 
 --
@@ -6088,6 +6251,6 @@ ALTER TABLE ONLY sivel2_sjr_victimasjr
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20131128151014'), ('20131204135932'), ('20131204140000'), ('20131204143718'), ('20131204183530'), ('20131205233111'), ('20131206081531'), ('20131210221541'), ('20131220103409'), ('20131223175141'), ('20140117212555'), ('20140129151136'), ('20140207102709'), ('20140207102739'), ('20140211162355'), ('20140211164659'), ('20140211172443'), ('20140217100541'), ('20140313012209'), ('20140317121823'), ('20140514142421'), ('20140518120059'), ('20140527110223'), ('20140528043115'), ('20140611111020'), ('20140613044320'), ('20140613200951'), ('20140620112004'), ('20140704035033'), ('20140804194616'), ('20140804200235'), ('20140804202100'), ('20140804202101'), ('20140804202958'), ('20140804210000'), ('20140805030341'), ('20140814184537'), ('20140815111351'), ('20140815111352'), ('20140815121224'), ('20140815123542'), ('20140815124157'), ('20140815124606'), ('20140827142659'), ('20140901105741'), ('20140901106000'), ('20140902101425'), ('20140904033941'), ('20140904211823'), ('20140904213327'), ('20140905121420'), ('20140909141336'), ('20140909165233'), ('20140918115412'), ('20140922102737'), ('20140922110956'), ('20141002140242'), ('20141111102451'), ('20141111203313'), ('20141112111129'), ('20141126085907'), ('20141222174237'), ('20141222174247'), ('20141222174257'), ('20141222174267'), ('20141225174739'), ('20150213114933'), ('20150217185859'), ('20150225140336'), ('20150313153722'), ('20150317084149'), ('20150317084737'), ('20150317090631'), ('20150413000000'), ('20150413160156'), ('20150413160157'), ('20150413160158'), ('20150413160159'), ('20150416074423'), ('20150416090140'), ('20150416095646'), ('20150416101228'), ('20150417071153'), ('20150417180000'), ('20150417180314'), ('20150419000000'), ('20150420104520'), ('20150420110000'), ('20150420125522'), ('20150420153835'), ('20150420200255'), ('20150503120915'), ('20150510125926'), ('20150513112126'), ('20150513130058'), ('20150513130510'), ('20150513160835'), ('20150520115257'), ('20150521092657'), ('20150521181918'), ('20150521191227'), ('20150528100944'), ('20150602094513'), ('20150602095241'), ('20150602104342'), ('20150609094809'), ('20150609094815'), ('20150609094820'), ('20150612160810'), ('20150612203808'), ('20150615024318'), ('20150616095023'), ('20150616100351'), ('20150616100551'), ('20150624200701'), ('20150707164448'), ('20150709203137'), ('20150710012947'), ('20150710114451'), ('20150716085420'), ('20150716171420'), ('20150716192356'), ('20150717101243'), ('20150717161539'), ('20150720115701'), ('20150720120236'), ('20150724003736'), ('20150724024110'), ('20150803082520'), ('20150809032138'), ('20150826000000'), ('20150929112313'), ('20151006105402'), ('20151020203420'), ('20151020203421'), ('20151030094611'), ('20151124110943'), ('20151127102425'), ('20151130101417'), ('20160308213334'), ('20160316093659'), ('20160316094627'), ('20160316100620'), ('20160316100621'), ('20160316100622'), ('20160316100623'), ('20160316100624'), ('20160316100625'), ('20160316100626'), ('20160519195544'), ('20160719195853'), ('20160719214520');
+INSERT INTO schema_migrations (version) VALUES ('20131128151014'), ('20131204135932'), ('20131204140000'), ('20131204143718'), ('20131204183530'), ('20131205233111'), ('20131206081531'), ('20131210221541'), ('20131220103409'), ('20131223175141'), ('20140117212555'), ('20140129151136'), ('20140207102709'), ('20140207102739'), ('20140211162355'), ('20140211164659'), ('20140211172443'), ('20140217100541'), ('20140313012209'), ('20140317121823'), ('20140514142421'), ('20140518120059'), ('20140527110223'), ('20140528043115'), ('20140611111020'), ('20140613044320'), ('20140613200951'), ('20140620112004'), ('20140704035033'), ('20140804194616'), ('20140804200235'), ('20140804202100'), ('20140804202101'), ('20140804202958'), ('20140804210000'), ('20140805030341'), ('20140814184537'), ('20140815111351'), ('20140815111352'), ('20140815121224'), ('20140815123542'), ('20140815124157'), ('20140815124606'), ('20140827142659'), ('20140901105741'), ('20140901106000'), ('20140902101425'), ('20140904033941'), ('20140904211823'), ('20140904213327'), ('20140905121420'), ('20140909141336'), ('20140909165233'), ('20140918115412'), ('20140922102737'), ('20140922110956'), ('20141002140242'), ('20141111102451'), ('20141111203313'), ('20141112111129'), ('20141126085907'), ('20141222174237'), ('20141222174247'), ('20141222174257'), ('20141222174267'), ('20141225174739'), ('20150213114933'), ('20150217185859'), ('20150225140336'), ('20150313153722'), ('20150317084149'), ('20150317084737'), ('20150317090631'), ('20150413000000'), ('20150413160156'), ('20150413160157'), ('20150413160158'), ('20150413160159'), ('20150416074423'), ('20150416090140'), ('20150416095646'), ('20150416101228'), ('20150417071153'), ('20150417180000'), ('20150417180314'), ('20150419000000'), ('20150420104520'), ('20150420110000'), ('20150420125522'), ('20150420153835'), ('20150420200255'), ('20150503120915'), ('20150510125926'), ('20150513112126'), ('20150513130058'), ('20150513130510'), ('20150513160835'), ('20150520115257'), ('20150521092657'), ('20150521181918'), ('20150521191227'), ('20150528100944'), ('20150602094513'), ('20150602095241'), ('20150602104342'), ('20150609094809'), ('20150609094815'), ('20150609094820'), ('20150612160810'), ('20150612203808'), ('20150615024318'), ('20150616095023'), ('20150616100351'), ('20150616100551'), ('20150624200701'), ('20150707164448'), ('20150709203137'), ('20150710012947'), ('20150710114451'), ('20150716085420'), ('20150716171420'), ('20150716192356'), ('20150717101243'), ('20150717161539'), ('20150720115701'), ('20150720120236'), ('20150724003736'), ('20150724024110'), ('20150803082520'), ('20150809032138'), ('20150826000000'), ('20150929112313'), ('20151006105402'), ('20151020203420'), ('20151020203421'), ('20151030094611'), ('20151124110943'), ('20151127102425'), ('20151130101417'), ('20160308213334'), ('20160316093659'), ('20160316094627'), ('20160316100620'), ('20160316100621'), ('20160316100622'), ('20160316100623'), ('20160316100624'), ('20160316100625'), ('20160316100626'), ('20160519195544'), ('20160719195853'), ('20160719214520'), ('20160724160049'), ('20160724164110'), ('20160725123242'), ('20160725125929'), ('20160725131347');
 
 
