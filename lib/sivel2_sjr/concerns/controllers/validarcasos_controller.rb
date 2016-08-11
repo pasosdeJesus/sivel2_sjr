@@ -11,11 +11,19 @@ module Sivel2Sjr
         include Sivel2Gen::Concerns::Controllers::ValidarcasosController
 
         included do
-          
-          def validacion_estandar(
-            casos, titulo, where, atr = [:id_caso, :fecharec],
-            encabezado = ['Código', 'Fecha de recepción'])
-            res = casos.where(where).select(atr)
+
+
+          def validacion_estandar(casos, titulo, where, 
+                                  atr = ['sivel2_gen_caso.id', :fecha, 
+                                         'usuario.nusuario', 
+                                         'sip_oficina.nombre'],
+                                  encabezado = [
+                                         'Código', 'Fecha de Desp. Emb.', 
+                                         'Asesor', 'Oficina'])
+            res = casos.joins('JOIN usuario ON usuario.id=asesor').
+              joins('JOIN sip_oficina ON 
+                    sip_oficina.id=sivel2_sjr_casosjr.oficina_id').
+              where(where).select(atr)
             arr = ActiveRecord::Base.connection.select_all(res.to_sql)
             @validaciones << { 
               titulo: titulo,

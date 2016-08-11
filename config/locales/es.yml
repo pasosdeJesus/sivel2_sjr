@@ -12,6 +12,8 @@ es:
         presponsable: Agente de persecución
       "sivel2_gen/presponsable":
         presponsable: agente de persecución
+      "sivel2_gen/victima":
+        edad: Edad en Desp. Emblemático
       "sivel2_sjr/acto":
         presponsable: Agente de persecución
       "sivel2_sjr/aslegal":
