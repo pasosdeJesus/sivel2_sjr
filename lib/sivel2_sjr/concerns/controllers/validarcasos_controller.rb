@@ -107,8 +107,8 @@ module Sivel2Sjr
             casos = ini_filtro
             validacion_estandar(
               casos, 
-              'Casos con fecha de desplazamiento igual a fecha de recepción', 
-              'sivel2_gen_caso.fecha = fecharec'
+              'Casos con fecha de desp. emblemático igual o posterior a fecha de recepción', 
+              'sivel2_gen_caso.fecha >= fecharec'
             )
           end
 
