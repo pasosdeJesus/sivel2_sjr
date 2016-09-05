@@ -60,7 +60,8 @@ module Sivel2Sjr
             validacion_estandar(
               casos, 
               'Casos sin contacto', 
-              "sip_persona.nombres = 'N' AND sip_persona.apellidos = 'N'")
+              "length(sip_persona.nombres)<=1  
+              AND length(sip_persona.apellidos)<=1")
           end
 
           def valida_sinubicaciones
