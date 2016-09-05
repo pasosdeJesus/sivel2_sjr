@@ -52,11 +52,11 @@ module Sivel2Sjr
             casos = ini_filtro
             casos = casos.
               joins(
-                'INNER JOIN sivel2_gen_victima
-                 ON sivel2_gen_victima.id=sivel2_sjr_casosjr.contacto').
-              joins(
                 'INNER JOIN sip_persona
-                 ON sip_persona.id=sivel2_gen_victima.id_persona')
+                 ON sip_persona.id=sivel2_sjr_casosjr.contacto')
+#              joins(
+#                'INNER JOIN sivel2_gen_victima
+#                 ON sivel2_gen_victima.id_persona=sivel2_sjr_casosjr.contacto').
             validacion_estandar(
               casos, 
               'Casos sin contacto', 
