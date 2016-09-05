@@ -157,7 +157,7 @@ module Sivel2Sjr
           # Este método obligó a definir sivel2_gen_destroy en sivel2_gen/concerns/controllers/casos_controllers
           # y a repetir before_action :set_caso, only: [:show, :edit, :update, :destroy]
           # en el included do de este
-          def destroy
+          def sivel2_sjr_destroy
             if @caso.casosjr.respuesta
               # No se logró hacer ni con dependente:destroy en
               # las relaciones ni borrando con delete 
@@ -180,6 +180,10 @@ module Sivel2Sjr
             end
             @caso.casosjr.destroy if @caso.casosjr
             sivel2_gen_destroy
+          end
+
+          def destroy
+            sivel2_sjr_destroy
           end
 
           private
