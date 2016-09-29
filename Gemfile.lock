@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/pasosdeJesus/cor1440_gen.git
+  remote: https://github.com/pasosdeJesus/cor1440_gen.git
   revision: 0b188484cbcde615d99baaa9c7bcac3fc0508ba4
   specs:
     cor1440_gen (1.0.b1)
@@ -9,7 +9,7 @@ GIT
       rails
 
 GIT
-  remote: git://github.com/pasosdeJesus/sip.git
+  remote: https://github.com/pasosdeJesus/sip.git
   revision: b7a09bfed6c239f9b8203fccc1be436c8b98ed08
   specs:
     sip (2.0.b1)
@@ -29,7 +29,7 @@ GIT
       will_paginate
 
 GIT
-  remote: git://github.com/pasosdeJesus/sivel2_gen.git
+  remote: https://github.com/pasosdeJesus/sivel2_gen.git
   revision: 89c7b6f2d992b2e0b172366629a3e43a0b93b571
   specs:
     sivel2_gen (2.0b1)
@@ -38,7 +38,7 @@ GIT
       rails
 
 GIT
-  remote: git://github.com/vtamara/cocoon.git
+  remote: https://github.com/vtamara/cocoon.git
   revision: 20f8f3bab2fee21309c57b586f5fab9921ac0894
   specs:
     cocoon (1.2.6)
