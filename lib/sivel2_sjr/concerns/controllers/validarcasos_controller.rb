@@ -24,6 +24,7 @@ module Sivel2Sjr
               joins('JOIN sip_oficina ON 
                     sip_oficina.id=sivel2_sjr_casosjr.oficina_id').
               where(where).select(atr)
+            puts "validacion_estandar: res.to_sql=", res.to_sql
             arr = ActiveRecord::Base.connection.select_all(res.to_sql)
             @validaciones << { 
               titulo: titulo,
@@ -32,7 +33,7 @@ module Sivel2Sjr
             }
           end
 
-          def filtro_oficina(casos, campo = 'oficina_id')
+          def filtro_oficina(casos, campo = 'sivel2_sjr_casosjr.oficina_id')
             if (params[:validarcaso] && params[:validarcaso][:oficina_id] && 
                 params[:validarcaso][:oficina_id] != '')
               ofi = params[:validarcaso][:oficina_id].to_i
