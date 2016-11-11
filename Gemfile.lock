@@ -102,6 +102,7 @@ GEM
     builder (3.2.2)
     camertron-eprun (1.1.1)
     cancancan (1.15.0)
+    chosen (0.0.4)
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -134,6 +135,8 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
+    font-awesome-rails (4.7.0.0)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -319,6 +322,7 @@ DEPENDENCIES
   bcrypt
   bootstrap-datepicker-rails
   cancancan
+  chosen
   cocoon!
   coffee-rails
   colorize
@@ -326,6 +330,7 @@ DEPENDENCIES
   devise
   devise-i18n
   factory_girl_rails
+  font-awesome-rails
   heb412_gen!
   jbuilder
   jquery-rails
