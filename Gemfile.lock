@@ -9,8 +9,16 @@ GIT
       rails
 
 GIT
+  remote: https://github.com/pasosdeJesus/heb412_gen.git
+  revision: 79ffb76e0ce5554c72755833b0fcca59dc738cf3
+  specs:
+    heb412_gen (1.0.a1)
+      rails
+      sip
+
+GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 966848fbfc2253ed5e8bdebf567bd21ac9a5183f
+  revision: 6acf8ab9cb2a9c60863d92418ebb15ef98eaf361
   specs:
     sip (2.0.b1)
       bootstrap-datepicker-rails
@@ -30,7 +38,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 8306088dba77cf73b4aa9dece25e105dd9c289d3
+  revision: ed8a2f6d82a73e5171fa35e1879f476a3fee121f
   specs:
     sivel2_gen (2.0b1)
       devise
@@ -83,7 +91,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
@@ -98,8 +107,6 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
-    codeclimate-test-reporter (0.6.0)
-      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -118,9 +125,8 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.1.0)
+    devise-i18n (1.1.1)
     diff-lcs (1.2.5)
-    docile (1.1.5)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -196,6 +202,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    public_suffix (2.0.4)
     puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -231,8 +238,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.3.0)
-    rdoc (4.2.2)
-      json (~> 1.4)
+    rdoc (4.3.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.5.4)
@@ -260,11 +266,6 @@ GEM
     simple_form (3.3.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
-    simplecov (0.12.0)
-      docile (~> 1.1.0)
-      json (>= 1.8, < 3)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.0)
     slop (3.6.0)
     spork (0.9.2)
     spring (2.0.0)
@@ -289,19 +290,19 @@ GEM
       execjs (>= 2.2.2, >= 2.2)
       less-rails (>= 2.5.0)
       railties (>= 3.1)
-    twitter_cldr (3.6.0)
+    twitter_cldr (4.0.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.0)
       tzinfo
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2016.8)
+    tzinfo-data (1.2016.9)
       tzinfo (>= 1.0.0)
     uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
-    web-console (3.3.1)
+    web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       debug_inspector
@@ -319,13 +320,13 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   cancancan
   cocoon!
-  codeclimate-test-reporter
   coffee-rails
   colorize
   cor1440_gen!
   devise
   devise-i18n
   factory_girl_rails
+  heb412_gen!
   jbuilder
   jquery-rails
   jquery-ui-rails
@@ -362,4 +363,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.13.1
+   1.13.6
