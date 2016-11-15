@@ -23,7 +23,8 @@ Sivel2Sjr::Engine.routes.draw do
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 
   namespace :admin do
-    ::Ability.tablasbasicas.each do |t|
+    ab = ::Ability.new
+    ab.tablasbasicas.each do |t|
       if (t[0] == "Sivel2Sjr") 
         c = t[1].pluralize
         resources c.to_sym, 
