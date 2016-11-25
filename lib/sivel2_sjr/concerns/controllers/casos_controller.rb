@@ -280,6 +280,7 @@ module Sivel2Sjr
                 :informacionder, :accionesder,
                 :detalleem, :montoem,
                 :detallemotivo, 
+                :descatencion,
                 :difobsprog,
                 :_destroy, 
                 :aslegal_ids => [],
