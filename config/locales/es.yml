@@ -6,8 +6,12 @@ es:
     attributes:
       "sivel2_gen/caso":
         fecha: F. desplazamiento emblemático
+        fecharec: Fecha recepción
+        nusuario: Asesor SJR
         id: Código
         memo: Descripción
+        statusmigratorio: Estatus migratorio
+        ultimaatencion_fecha: Fecha ult. atención
       "sivel2_gen/caso_presponsable":
         presponsable: Agente de persecución
       "sivel2_gen/presponsable":
@@ -36,7 +40,6 @@ es:
         regionsjr: Oficina
         statusmigratorio: Estatus migratorio
         telefono: Teléfono
-        ultimaatencion_fecha: Fecha ult. atención
         usuario: Asesor SJR
       "sivel2_sjr/comosupo":
         Comosupo: Como supo del SJR
