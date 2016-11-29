@@ -36,7 +36,7 @@ es:
         regionsjr: Oficina
         statusmigratorio: Estatus migratorio
         telefono: Teléfono
-        ultimafechaatencion: Fecha ult. Atención
+        ultimaatencion_fecha: Fecha ult. atención
         usuario: Asesor SJR
       "sivel2_sjr/comosupo":
         Comosupo: Como supo del SJR

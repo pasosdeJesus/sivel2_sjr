@@ -23,12 +23,12 @@ module Sivel2Sjr
             where('sivel2_gen_conscaso.fecharec <= ?', f)
           }
 
-          scope :filtro_ultimafechaatencionini, lambda { |f|
-            where('sivel2_gen_conscaso.ultimafechaatencion >= ?', f)
+          scope :filtro_ultimaatencion_fechaini, lambda { |f|
+            where('sivel2_gen_conscaso.ultimaatencion_fecha >= ?', f)
           }
 
-          scope :filtro_ultimafechaatencionfin, lambda { |f|
-            where('sivel2_gen_conscaso.ultimafechaatencion <= ?', f)
+          scope :filtro_ultimaatencion_fechafin, lambda { |f|
+            where('sivel2_gen_conscaso.ultimaatencion_fecha <= ?', f)
           }
 
           scope :filtro_statusmigratorio_id, lambda { |id|
@@ -69,10 +69,10 @@ module Sivel2Sjr
               order("sivel2_gen_conscaso.caso_id desc")
             when /^codigo/
               order("sivel2_gen_conscaso.caso_id asc")
-            when /^ultimafechaatencionasc/
-              order("sivel2_gen_conscaso.ultimafechaatencion asc")
-            when /^ultimafechaatencion/
-              order("sivel2_gen_conscaso.ultimafechaatencion desc")
+            when /^ultimaatencion_fechaasc/
+              order("sivel2_gen_conscaso.ultimaatencion_fecha asc")
+            when /^ultimaatencion_fecha/
+              order("sivel2_gen_conscaso.ultimaatencion_fecha desc")
             else
               raise(ArgumentError, "Ordenamiento invalido: #{ campo.inspect }")
             end
@@ -103,7 +103,7 @@ module Sivel2Sjr
           FROM sivel2_sjr_respuesta AS respuesta
           WHERE respuesta.id_caso=casosjr.id_caso 
           ORDER BY fechaatencion DESC LIMIT 1), ', ')
-          AS ultimafechaatencion,
+          AS ultimaatencion_fecha,
         caso.memo AS memo,
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
         FROM sip_persona AS persona, 
@@ -122,13 +122,13 @@ module Sivel2Sjr
                 "CREATE MATERIALIZED VIEW sivel2_gen_conscaso 
         AS SELECT caso_id, contacto, fecharec, oficina, 
           nusuario, fecha, statusmigratorio,
-          ultimafechaatencion, memo, victimas, 
+          ultimaatencion_fecha, memo, victimas, 
           to_tsvector('spanish', unaccent(caso_id || ' ' || contacto || 
             ' ' || replace(cast(fecharec AS varchar), '-', ' ') || 
             ' ' || oficina || ' ' || nusuario || ' ' || 
             replace(cast(fecha AS varchar), '-', ' ') || ' ' ||
             statusmigratorio || ' ' || 
-            replace(cast(ultimafechaatencion AS varchar), '-', ' ')
+            replace(cast(ultimaatencion_fecha AS varchar), '-', ' ')
             || ' ' || memo || ' ' || victimas)) as q
         FROM sivel2_gen_conscaso1"
               );

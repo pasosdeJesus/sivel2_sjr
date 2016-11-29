@@ -24,7 +24,7 @@ module Sivel2Sjr
               :fechaini, :fechafin, 
               :fecharecini, :fecharecfin, 
               :oficina_id, :usuario_id,
-              :ultimafechaatencionini, :ultimafechaatencionfin,
+              :ultimaatencion_fechaini, :ultimaatencion_fechafin,
               :statusmigratorio_id,
               :nombressp, :apellidossp,
               :nombres, :apellidos, :sexo, :rangoedad_id, 
@@ -37,7 +37,7 @@ module Sivel2Sjr
           def incluir_inicial
             ['casoid', 'contacto', 'fecharec', 'oficina', 
               'nusuario', 'fecha', 'statusmigratorio',
-              'ultimafechaatencion', 'memo'
+              'ultimaatencion_fecha', 'memo'
             ]
           end
 
