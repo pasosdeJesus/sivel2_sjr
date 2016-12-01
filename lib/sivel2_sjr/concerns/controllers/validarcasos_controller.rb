@@ -49,6 +49,15 @@ module Sivel2Sjr
             return casos
           end
 
+          def valida_contactonull
+            casos = ini_filtro
+            validacion_estandar(
+              casos, 
+              'Casos con contacto NULL', 
+              "contacto IS NULL")
+          end
+
+
           def valida_sincontacto
             casos = ini_filtro
             casos = casos.
@@ -60,7 +69,7 @@ module Sivel2Sjr
 #                 ON sivel2_gen_victima.id_persona=sivel2_sjr_casosjr.contacto').
             validacion_estandar(
               casos, 
-              'Casos sin contacto', 
+              'Casos con contacto de nombre muy corto', 
               "length(sip_persona.nombres)<=1  
               AND length(sip_persona.apellidos)<=1")
           end
@@ -148,6 +157,7 @@ module Sivel2Sjr
           end
 
           def validar_sivel2_sjr
+            valida_contactonull
             valida_sincontacto
             valida_sinubicaciones
             valida_sinrefugionidesplazamiento
