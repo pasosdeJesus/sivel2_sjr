@@ -9,9 +9,6 @@ gem "rails-i18n"
 # Postgresql
 gem "pg"
 
-# Mientras solucionan https://github.com/sparklemotion/nokogiri/issues/1569
-gem 'nokogiri', '1.6.8.1' 
-
 gem 'puma'
 
 # Unifica CSSs
