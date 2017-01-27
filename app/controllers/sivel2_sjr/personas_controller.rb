@@ -54,12 +54,12 @@ module Sivel2Sjr
     def remplazar
       @persona = Sip::Persona.find(params[:id_persona].to_i)
       #@persona.current_usuario = current_usuario
-      victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
-      personaant = victima.persona
-      @caso = victima.caso
+      @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
+      personaant = @victima.persona
+      @caso = @victima.caso
       @caso.current_usuario = current_usuario
-      victima.persona = @persona
-      victima.save!
+      @victima.persona = @persona
+      @victima.save!
       if @caso.casosjr.contacto.id == personaant.id
         @caso.casosjr.contacto = @persona
         @caso.casosjr.save
