@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 27ca255114821bd6e404fb3d8a8624393328d050
+  revision: 3f35cfdda3dc42c5c963510120d0f58c8753f599
   specs:
     cor1440_gen (1.0.b1)
       devise
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: f73e79864ec5e79f1b82820f023fde75dd5bc584
+  revision: 32ffe2d633492c9eab891f0ce891a6dc3467a769
   specs:
     sivel2_gen (2.0b2)
       devise
