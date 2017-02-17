@@ -9,15 +9,24 @@
   }
 %>
 
+<% colus= current_usuario.oficina_id ? 
+  Usuario.habilitados.where(oficina_id: current_usuario.oficina_id).
+    order(:nombre) :
+  Usuario.habilitados.order(:nombre) 
+%>
 <%= s.association :usuario,
-  collection: Usuario.all.order(:nombre),
+  collection: colus,
   include_blank: false,
   label_method: :nusuario, 
   value_method: :id 
 %>
 
+<% colof= current_usuario.oficina_id ? 
+  Sip::Oficina.habilitados.where(id: current_usuario.oficina_id) :
+  Sip::Oficina.habilitados
+%>
 <%= s.association :oficina,
-  collection: Sip::Oficina.habilitados,
+  collection: colof,
   include_blank: false,
   label_method: :nombre, 
   value_method: :id,
