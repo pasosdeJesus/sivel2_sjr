@@ -2,17 +2,18 @@
 class Ability  < Sivel2Sjr::Ability
 
   def tablasbasicas
-    return super()-[
-      ['Sivel2Sjr', 'acreditacion'],
-      ['Sivel2Sjr', 'ayudaestado'],
-      ['Sivel2Sjr', 'clasifdesp'],
-      ['Sivel2Sjr', 'declaroante'],
-      ['Sivel2Sjr', 'inclusion'],
-      ['Sivel2Sjr', 'modalidadtierra'],
-      ['Sivel2Sjr', 'personadesea'],
-      ['Sivel2Sjr', 'progestado'],
-      ['Sivel2Sjr', 'tipodesp']
-    ]
+    return super()
+#   -[
+#      ['Sivel2Sjr', 'acreditacion'],
+#      ['Sivel2Sjr', 'ayudaestado'],
+#      ['Sivel2Sjr', 'clasifdesp'],
+#      ['Sivel2Sjr', 'declaroante'],
+#      ['Sivel2Sjr', 'inclusion'],
+#      ['Sivel2Sjr', 'modalidadtierra'],
+#      ['Sivel2Sjr', 'personadesea'],
+#      ['Sivel2Sjr', 'progestado'],
+#      ['Sivel2Sjr', 'tipodesp']
+#    ]
   end
   # Autorizaciones con CanCanCan
   def initialize(usuario = nil)
