@@ -22,14 +22,23 @@ module Sivel2Sjr
 
     # Tablas básicas propias
     BASICAS_PROPIAS = [
+      ['Sivel2Sjr', 'acreditacion'], 
       ['Sivel2Sjr', 'aslegal'], 
+      ['Sivel2Sjr', 'ayudaestado'], 
       ['Sivel2Sjr', 'ayudasjr'], 
+      ['Sivel2Sjr', 'clasifdesp'], 
       ['Sivel2Sjr', 'comosupo'], 
+      ['Sivel2Sjr', 'declaroante'],
       ['Sivel2Sjr', 'derecho'],
       ['Sivel2Sjr', 'idioma'],
+      ['Sivel2Sjr', 'inclusion'],
+      ['Sivel2Sjr', 'modalidadtierra'],
+      ['Sivel2Sjr', 'personadesea'],
       ['Sivel2Sjr', 'proteccion'],
+      ['Sivel2Sjr', 'progestado'],
       ['Sivel2Sjr', 'rolfamilia'],
       ['Sivel2Sjr', 'statusmigratorio'],
+      ['Sivel2Sjr', 'tipodesp'],
     ]
     def tablasbasicas 
       Sip::Ability::BASICAS_PROPIAS + 

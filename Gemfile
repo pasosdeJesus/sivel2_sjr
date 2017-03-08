@@ -110,14 +110,13 @@ end
 # Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
 group :test do
 
+  gem "connection_pool"
+  gem "minitest-reporters"
+
   # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
   gem "spring"
 
   gem 'rails-controller-testing'
-
-  # Pruebas con rspec
-  gem 'spring-commands-rspec'
-  gem 'rspec-rails'
 
   # Un proceso para cada prueba -- acelera
   gem 'spork'
@@ -133,7 +132,6 @@ group :test do
   # Envia resultados de pruebas desde travis a codeclimate
   #gem "codeclimate-test-reporter", require: nil
 
-  # Para examinar errores, usar "rescue rspec" en lugar de "rspec"
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
 
