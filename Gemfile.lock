@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 640f26b2caafc6e2cf21dd0387ce5166126fbd28
+  revision: f00060fb8ee4d0b5da159c1f0c46b5c000c8f909
   specs:
     cor1440_gen (1.0.b1)
       devise
@@ -10,13 +10,13 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 4ad02eecba2e67970baf32946fe9abab096b614b
+  revision: 557c7c715abea410ab9e10d62715b2ce74849fdf
   specs:
     heb412_gen (1.0.a1)
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 18c03d9d245af3b1ad70aa8a3a59fe76676a6762
+  revision: 6efa709f297a8efc731e76d0b4cbe1a855562504
   specs:
     sip (2.0.b2)
       bootstrap-datepicker-rails
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 566dfd4235b4a67a1fe53d2c2b69179e2c45c050
+  revision: 4ffac73305050973bce86411dc0cbfcd2407e32a
   specs:
     sivel2_gen (2.0b2)
       devise
@@ -89,11 +89,12 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.5.0)
+    addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     ansi (1.5.0)
     arel (7.1.4)
     bcrypt (3.1.11)
+    bindex (0.5.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-datepicker-rails (1.6.4.1)
@@ -282,7 +283,7 @@ GEM
       execjs (~> 2.7)
       less-rails (~> 2.8, >= 2.8.0)
       railties (~> 5.0, >= 5.0.1)
-    twitter_cldr (4.3.0)
+    twitter_cldr (4.3.1)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.0)
       tzinfo
@@ -290,14 +291,14 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2017.2)
       tzinfo (>= 1.0.0)
-    uglifier (3.1.10)
+    uglifier (3.1.11)
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
-    web-console (3.4.0)
+    web-console (3.5.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
-      debug_inspector
+      bindex (>= 0.4.0)
       railties (>= 5.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
