@@ -10,6 +10,9 @@ module Sivel2Sjr
     has_many :etiqueta, class_name: 'Sip::Etiqueta',
       through: :etiqueta_usuario
 
+    belongs_to :oficina, foreign_key: "oficina_id", validate: true,
+      class_name: 'Sip::Oficina'
+
     validate :rol_usuario
     def rol_usuario
       if oficina && (rol == Ability::ROLADMIN ||
