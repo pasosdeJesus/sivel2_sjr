@@ -16,7 +16,7 @@ gem "sass"
 
 gem 'font-awesome-rails' 
 
-gem 'chosen' 
+gem 'chosen-rails' 
 
 
 # Colores en terminal

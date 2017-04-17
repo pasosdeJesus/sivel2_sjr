@@ -45,6 +45,7 @@ module Sivel2Sjr
         Cor1440Gen::Ability::BASICAS_PROPIAS +
         Sivel2Gen::Ability::BASICAS_PROPIAS + BASICAS_PROPIAS - [
           ['Sip', 'fuenteprensa'],
+          ['Sip', 'grupo'],
           ['Sivel2Gen', 'filiacion'],
           ['Sivel2Gen', 'frontera'],
           ['Sivel2Gen', 'intervalo'],

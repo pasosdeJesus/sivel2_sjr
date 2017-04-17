@@ -1472,6 +1472,50 @@ CREATE TABLE sip_fuenteprensa (
 
 
 --
+-- Name: sip_grupo; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sip_grupo (
+    id integer NOT NULL,
+    nombre character varying(500) NOT NULL,
+    observaciones character varying(5000),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sip_grupo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sip_grupo_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sip_grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sip_grupo_id_seq OWNED BY sip_grupo.id;
+
+
+--
+-- Name: sip_grupo_usuario; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sip_grupo_usuario (
+    usuario_id integer NOT NULL,
+    sip_grupo_id integer NOT NULL
+);
+
+
+--
 -- Name: sip_mundep_sinorden; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -3843,6 +3887,13 @@ ALTER TABLE ONLY sip_anexo ALTER COLUMN id SET DEFAULT nextval('sip_anexo_id_seq
 
 
 --
+-- Name: sip_grupo id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_grupo ALTER COLUMN id SET DEFAULT nextval('sip_grupo_id_seq'::regclass);
+
+
+--
 -- Name: sip_pais id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4729,6 +4780,14 @@ ALTER TABLE ONLY sip_departamento
 
 ALTER TABLE ONLY sip_fuenteprensa
     ADD CONSTRAINT sip_fuenteprensa_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sip_grupo sip_grupo_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_grupo
+    ADD CONSTRAINT sip_grupo_pkey PRIMARY KEY (id);
 
 
 --
@@ -5868,11 +5927,27 @@ ALTER TABLE ONLY sivel2_gen_combatiente
 
 
 --
+-- Name: sip_grupo_usuario fk_rails_734ee21e62; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_grupo_usuario
+    ADD CONSTRAINT fk_rails_734ee21e62 FOREIGN KEY (usuario_id) REFERENCES usuario(id);
+
+
+--
 -- Name: sivel2_sjr_motivosjr_derecho fk_rails_74442b8f19; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sivel2_sjr_motivosjr_derecho
     ADD CONSTRAINT fk_rails_74442b8f19 FOREIGN KEY (motivosjr_id) REFERENCES sivel2_sjr_motivosjr(id);
+
+
+--
+-- Name: sip_grupo_usuario fk_rails_8d24f7c1c0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sip_grupo_usuario
+    ADD CONSTRAINT fk_rails_8d24f7c1c0 FOREIGN KEY (sip_grupo_id) REFERENCES sip_grupo(id);
 
 
 --
@@ -6673,6 +6748,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20161103083352'),
 ('20161108102349'),
 ('20170405104322'),
-('20170406213334');
+('20170406213334'),
+('20170413185012'),
+('20170414035328');
 
 
