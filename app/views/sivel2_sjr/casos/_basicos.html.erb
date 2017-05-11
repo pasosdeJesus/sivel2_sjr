@@ -10,9 +10,9 @@
 %>
 
 <% colus= current_usuario.oficina_id ? 
-  Usuario.habilitados.where(oficina_id: current_usuario.oficina_id).
+  Usuario.where(oficina_id: current_usuario.oficina_id).
     order(:nombre) :
-  Usuario.habilitados.order(:nombre) 
+  Usuario.order(:nombre) 
 %>
 <%= s.association :usuario,
   collection: colus,
