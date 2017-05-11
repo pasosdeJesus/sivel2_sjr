@@ -11,8 +11,8 @@
 
 <% colus= current_usuario.oficina_id ? 
   Usuario.where(oficina_id: current_usuario.oficina_id).
-    order(:nombre) :
-  Usuario.order(:nombre) 
+    order(:nusuario) :
+  Usuario.order(:nusuario) 
 %>
 <%= s.association :usuario,
   collection: colus,
