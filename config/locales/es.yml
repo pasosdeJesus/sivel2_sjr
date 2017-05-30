@@ -1,5 +1,6 @@
 es:
   attributes:
+    departamento: Departamento/Estado/Cantón 
     fechacreacion: Creación
     fechadeshabilitacion: Deshabilitación 
   activerecord:
