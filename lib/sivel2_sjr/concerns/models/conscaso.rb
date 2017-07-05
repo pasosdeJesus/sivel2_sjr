@@ -57,22 +57,26 @@ module Sivel2Sjr
 
           scope :ordenar_por, lambda { |campo|
             case campo.to_s
-            when /^fecharecasc/
-              order("sivel2_gen_conscaso.fecharec asc")
-            when /^fecharec/
-              order("sivel2_gen_conscaso.fecharec desc")
-            when /^fechadesc/
-              order("sivel2_gen_conscaso.fecha desc")
-            when /^fecha/
-              order("sivel2_gen_conscaso.fecha asc")
-            when /^codigodesc/
-              order("sivel2_gen_conscaso.caso_id desc")
             when /^codigo/
               order("sivel2_gen_conscaso.caso_id asc")
-            when /^ultimaatencion_fechaasc/
-              order("sivel2_gen_conscaso.ultimaatencion_fecha asc")
+            when /^codigodesc/
+              order("sivel2_gen_conscaso.caso_id desc")
+            when /^fecharec/
+              order("sivel2_gen_conscaso.fecharec desc")
+            when /^fecharecasc/
+              order("sivel2_gen_conscaso.fecharec asc")
+            when /^fecha/
+              order("sivel2_gen_conscaso.fecha asc")
+            when /^fechadesc/
+              order("sivel2_gen_conscaso.fecha desc")
+            when /^ubicacion/
+              order("sivel2_gen_conscaso.ubicaciones asc")
+            when /^ubicaciondesc/
+              order("sivel2_gen_conscaso.ubicaciones desc")
             when /^ultimaatencion_fecha/
               order("sivel2_gen_conscaso.ultimaatencion_fecha desc")
+            when /^ultimaatencion_fechaasc/
+              order("sivel2_gen_conscaso.ultimaatencion_fecha asc")
             else
               raise(ArgumentError, "Ordenamiento invalido: #{ campo.inspect }")
             end
