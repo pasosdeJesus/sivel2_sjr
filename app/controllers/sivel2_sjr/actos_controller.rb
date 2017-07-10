@@ -10,22 +10,27 @@ module Sivel2Sjr
         respond_to do |format|
           format.html { render inline: 'Falta identificacion del caso' }
         end
+        return
       elsif !params[:caso_acto_id_presponsable]
         respond_to do |format|
           format.html { render inline: 'Debe tener Presunto Responsable' }
         end
+        return
       elsif !params[:caso_acto_id_categoria]
         respond_to do |format|
           format.html { render inline: 'Debe tener Categoria' }
         end
+        return
       elsif !params[:caso_acto_id_persona]
         respond_to do |format|
           format.html { render inline: 'Debe tener Víctima' }
         end
+        return
       elsif !params[:caso_acto_fecha]
         respond_to do |format|
           format.html { render inline: 'Debe tener Fecha' }
         end
+        return
       else
         params[:caso_acto_id_presponsable].each do |cpresp|
           presp = cpresp.to_i
