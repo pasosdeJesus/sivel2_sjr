@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
-#ruby "2.1.5"
-
 # Rails (internacionalización)
-gem "rails", '~> 5.0.0'
+gem "rails", '~> 5.1.0'
 gem "rails-i18n"
 
 # Postgresql
@@ -47,7 +45,7 @@ gem "jquery-rails"
 gem "jquery-ui-rails"
 
 # Seguir enlaces más rápido. Ver: https://github.com/rails/turbolinks
-gem "turbolinks", '2.5.3'
+gem "turbolinks"
 
 # Ambiente de CSS
 gem "twitter-bootstrap-rails"
@@ -131,10 +129,6 @@ group :test do
   # https://www.relishapp.com/womply/rails-style-guide/docs/developing-rails-applications/bundler
   # Lanza programas para examinar resultados
   gem "launchy"
-
-
-  # Envia resultados de pruebas desde travis a codeclimate
-  #gem "codeclimate-test-reporter", require: nil
 
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
