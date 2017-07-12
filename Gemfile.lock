@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: c03c404db213af944e5cda79349f5a758ab575d7
+  revision: 95df7bdd772fafdc6fde04c8a6f94fb92a8358fa
   specs:
     cor1440_gen (1.0.b1)
       devise
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 4fa77beb1cbee9ba7ef9d5bc82b45499217b24b0
+  revision: 8df2b183f3d8afd3fd864b7acedf5fb700bdbc4d
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: ff0d1dc1153096fff2a331f99cf1f72a66c7d58c
+  revision: d1f6332e94765ceb13e058b147f7ca037dd7817f
   specs:
     sip (2.0.b3)
       bootstrap-datepicker-rails
@@ -33,7 +33,7 @@ GIT
       devise-i18n
       jquery-rails
       jquery-ui-rails
-      minitest (= 5.10.1)
+      minitest
       paperclip
       rails
       rails-i18n
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: cbc153c2d823a207c10518e6306e6a29f254ae30
+  revision: e57537936d2de74a70f21e9296409efe8c9eb714
   specs:
     sivel2_gen (2.0b2)
       devise
@@ -184,7 +184,7 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_portile2 (2.2.0)
-    minitest (5.10.1)
+    minitest (5.10.2)
     minitest-reporters (1.1.14)
       ansi
       builder
