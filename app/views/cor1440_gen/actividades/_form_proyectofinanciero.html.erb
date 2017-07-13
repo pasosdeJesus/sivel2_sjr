@@ -1,0 +1,24 @@
+<%
+  if f.object.fecha 
+    fr = f.object.fecha
+  else
+    fr = Time.now.strftime('%Y-%m-%d')
+  end
+  lp = Cor1440Gen::Proyectofinanciero.where(
+    "fechainicio <= ? AND ? <= fechacierre", fr, fr)
+  if current_usuario.rol != Ability::ROLADMIN &&
+    current_usuario.rol != Ability::ROLDIR
+    lp = lp.where(
+      'cor1440_gen_proyectofinanciero.id in (SELECT proyectofinanciero_id
+      FROM sivel2_sjr_oficina_proyectofinanciero WHERE
+      oficina_id=?)', current_usuario.oficina_id)
+  end
+%>
+
+<%= f.association :proyectofinanciero,
+   collection: lp,
+  label_method: :nombre, 
+  value_method: :id,
+  input_html: { class: 'chosen-select' }
+%>
+
