@@ -12,7 +12,7 @@ class CreateJoinTableOficinaProyectofinanciero < ActiveRecord::Migration[5.1]
       (oficina_id, proyectofinanciero_id) 
       (SELECT usuario.oficina_id, cor1440_gen_proyectofinanciero.id FROM
         cor1440_gen_proyectofinanciero JOIN usuario ON
-        responsable_id=usuario.id)
+        responsable_id=usuario.id WHERE usuario.oficina_id IS NOT NULL)
     SQL
   end
 
