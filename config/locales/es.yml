@@ -5,6 +5,8 @@ es:
     fechadeshabilitacion: Deshabilitación 
   activerecord:
     attributes:
+      "cor1440_gen/proyectofinanciero":
+        "{:oficina_ids=>[]}": Oficinas
       "sivel2_gen/caso":
         fecha: F. desplazamiento emblemático
         fecharec: Fecha recepción
