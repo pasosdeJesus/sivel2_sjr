@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: f6a195c4b706b83514f7564e2575f7b7b935b1b9
+  revision: 6d0df01992f4db4f79fcc1671f7261ed2ae887cc
   specs:
     sivel2_gen (2.0b2)
       devise
@@ -270,11 +270,11 @@ GEM
       rubyzip (~> 1.1)
     ruby-progressbar (1.8.1)
     rubyzip (1.1.7)
-    sass (3.5.0)
-      sass-listen (~> 3.0.7)
-    sass-listen (3.0.7)
-      rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9.7)
+    sass (3.5.1)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)
