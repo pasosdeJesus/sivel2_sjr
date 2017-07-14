@@ -246,9 +246,7 @@
     if (root.tfichacambia) 
       d = (tn - root.tfichacambia)/1000
     if (d == -1 || d>5) 
-      f=$('form')
-      a=f.attr('action')
-      $.post(a, f.serialize())
+      sip_enviarautomatico_formulario($('form'), 'POST', 'json', false)
       elimina_destruidos()
       actualiza_presponsables($('#caso_acto_id_presponsable'))
       actualiza_victimas($('#caso_acto_id_persona'))
