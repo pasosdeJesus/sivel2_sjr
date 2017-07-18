@@ -30,4 +30,4 @@ test/dummy/.sass-cache
 tmp/
 herram/
 coverage
-
+test/dummy/.byebug_history
