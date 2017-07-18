@@ -151,6 +151,7 @@ module Sivel2Sjr
                 format.js   { render action: 'edit' }
               end
             end
+            Sivel2Gen::Conscaso.refresca_conscaso
           end
 
           # DELETE /casos/1.json
@@ -180,6 +181,7 @@ module Sivel2Sjr
             end
             @caso.casosjr.destroy if @caso.casosjr
             sivel2_gen_destroy
+            Sivel2Gen::Conscaso.refresca_conscaso
           end
 
           def destroy

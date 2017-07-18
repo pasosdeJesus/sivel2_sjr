@@ -90,7 +90,7 @@ module Sivel2Sjr
           # Si cambia la definición de la vista borre sivel2_gen_conscaso1 y
           # sivel2_gen_conscaso para que esta función las genere modificadas
           def refresca_conscaso
-            if !ActiveRecord::Base.connection.table_exists? 'sivel2_gen_conscaso'
+            if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
               ActiveRecord::Base.connection.execute(
                 "CREATE OR REPLACE VIEW sivel2_gen_conscaso1 
         AS SELECT casosjr.id_caso as caso_id, 
