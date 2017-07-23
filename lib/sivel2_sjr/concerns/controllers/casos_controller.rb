@@ -142,6 +142,7 @@ module Sivel2Sjr
               end
               @caso.current_usuario = current_usuario
               if @caso.update(caso_params)
+                Sivel2Gen::Conscaso.refresca_conscaso
                 format.html { redirect_to @caso, notice: 'Caso actualizado.' }
                 format.json { head :no_content }
                 format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
@@ -151,7 +152,6 @@ module Sivel2Sjr
                 format.js   { render action: 'edit' }
               end
             end
-            Sivel2Gen::Conscaso.refresca_conscaso
           end
 
           # DELETE /casos/1.json
