@@ -1,11 +1,11 @@
 language: ruby
 rvm:
         - 2.4.0
+addons:
+        postgresql: "9.6"
 notifications:
         email: false
 script: bundle exec rails test
-after_success:
-        - CODECLIMATE_REPO_TOKEN=35c5d6dbc0bc5001d536ec62ca501a9d3d6428682f21225c0eedf863a089eb71 bundle exec codeclimate-test-reporter
 env:
         global:
                 - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
