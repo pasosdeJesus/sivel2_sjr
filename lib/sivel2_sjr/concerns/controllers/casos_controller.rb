@@ -163,21 +163,21 @@ module Sivel2Sjr
               # No se logró hacer ni con dependente:destroy en
               # las relaciones ni borrando con delete 
               @caso.casosjr.respuesta.each do |r|
-                Sivel2Sjr::AslegalRespuesta.delete_all(id_respuesta: r.id)
+                Sivel2Sjr::AslegalRespuesta.where(id_respuesta: r.id).delete_all
                 #r.aslegal_respuesta.delete
-                Sivel2Sjr::AyudaestadoRespuesta.delete_all(id_respuesta: r.id)
+                Sivel2Sjr::AyudaestadoRespuesta.where(id_respuesta: r.id).delete_all
                 #r.ayudaestado_respuesta.delete
-                Sivel2Sjr::AyudasjrRespuesta.delete_all(id_respuesta: r.id)
+                Sivel2Sjr::AyudasjrRespuesta.where(id_respuesta: r.id).delete_all
                 #r.ayudasjr_respuesta.delete
-                Sivel2Sjr::DerechoRespuesta.delete_all(id_respuesta: r.id)
+                Sivel2Sjr::DerechoRespuesta.where(id_respuesta: r.id).delete_all
                 #r.derecho_respuesta.delete
-                Sivel2Sjr::MotivosjrRespuesta.delete_all(id_respuesta: r.id)
+                Sivel2Sjr::MotivosjrRespuesta.where(id_respuesta: r.id).delete_all
                 #r.motivosjr_respuesta.delete
-                Sivel2Sjr::ProgestadoRespuesta.delete_all(id_respuesta: r.id)
+                Sivel2Sjr::ProgestadoRespuesta.where(id_respuesta: r.id).delete_all
                 #r.progestado_respuesta.delete
               end
               @caso.casosjr.respuesta.delete
-              Sivel2Sjr::Respuesta.delete_all(id_caso: @caso.id)
+              Sivel2Sjr::Respuesta.where(id_caso: @caso.id).delete_all
             end
             @caso.casosjr.destroy if @caso.casosjr
             sivel2_gen_destroy
