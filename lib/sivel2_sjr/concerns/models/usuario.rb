@@ -7,9 +7,10 @@ module Sivel2Sjr
     module Models
       module Usuario
         extend ActiveSupport::Concern
-        include Sivel2Gen::Concerns::Models::Usuario
 
         included do
+          include Sivel2Gen::Concerns::Models::Usuario
+
           has_many :casosjr, class_name: 'Sivel2Sjr::Casosjr',
             foreign_key: "asesor", validate: true
           has_many :etiqueta_usuario, class_name: 'Sivel2Sjr::EtiquetaUsuario',
