@@ -51,26 +51,35 @@ module Sivel2Sjr
             200
           end
 
+          def inicializa_index
+            @plantillas = Heb412Gen::Plantillahcm.
+              where(vista: 'Caso').select('nombremenu, id').map { 
+              |c| [c.nombremenu, c.id] 
+            }
+            if current_usuario.rol == ::Ability::ROLINV
+              m = current_usuario.etiqueta.map(&:id)
+              if m == []
+                @conscaso = @conscaso.where(FALSE)
+              else
+                @conscaso = @conscaso.
+                  where("caso_id IN (SELECT id_caso FROM 
+                        sivel2_gen_caso_etiqueta WHERE
+                        sivel2_gen_caso_etiqueta.id_etiqueta IN 
+                          (#{m.join(',')}))")
+              end
+            end
+          end
+
           # Filtro adicional para autenticar usado por index
           def filtro_particular(conscaso, params_filtro)
-            if (current_usuario.rol == Ability::ROLINV) 
-              return conscaso.where(
-                "caso_id IN (SELECT id_caso FROM 
-                    sivel2_gen_caso_etiqueta AS caso_etiqueta, 
-                    sivel2_sjr_etiqueta_usuario AS etiqueta_usuario 
-                    WHERE caso_etiqueta.id_etiqueta=etiqueta_usuario.etiqueta_id
-                    AND etiqueta_usuario.usuario_id ='" + 
-                current_usuario.id.to_s + "')")
-            else
-              return conscaso
-            end
+            conscaso
           end
 
           # GET /casos/1
           # GET /casos/1.json
           def show
-            # No hemos logrado poner con cancan la condición para ROLINV en 
-            # models/ability.rb
+            # En models/ability.rb agregar
+            # can :read, Sivel2Gen::Caso,  etiqueta: { id: usuario.etiqueta.map(&:id) } 
             if current_usuario.rol == Ability::ROLINV
               ace = @caso.caso_etiqueta.map { |ce| ce.id_etiqueta }
               aeu = current_usuario.etiqueta_usuario.map { |eu| eu.etiqueta_id }
