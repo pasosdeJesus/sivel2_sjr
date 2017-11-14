@@ -18,6 +18,12 @@ module Sivel2Sjr
             foreign_key: 'proyectofinanciero_id'
           has_many :oficina, through: :oficina_proyectofinanciero,
             class_name: 'Sip::Oficina'
+
+          scope :filtro_oficina_ids, lambda { |o|
+            joins(:oficina_proyectofinanciero).
+              where('sivel2_sjr_oficina_proyectofinanciero.oficina_id=?', o)
+          }
+
         end
 
       end # module Proyectofinanciero
