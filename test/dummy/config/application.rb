@@ -32,7 +32,7 @@ module Dummy
     config.x.sal7711_presencia_adjuntodesc = true
     config.x.sal7711_presencia_fuenteprensa = true
     config.x.sal7711_presencia_fecha = true
-    config.x.sal7711_presencia_pagina = true
+    config.x.sal7711_presencia_pagina = false
 
   end
 end
