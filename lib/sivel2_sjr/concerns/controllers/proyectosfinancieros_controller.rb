@@ -40,7 +40,24 @@ module Sivel2Sjr
               "compromisos",
               "monto",
               "observaciones"
+            ] +
+            [ :objetivopf_attributes =>  [
+              :id, :numero, :objetivo, :_destroy ] 
+            ] +
+            [ :resultadopf_attributes =>  [
+              :id, :objetivopf_id,
+              :numero, :resultado, :_destroy ] 
+            ] +
+            [ :indicadorpf_attributes =>  [
+              :id, :resultadopf_id,
+              :numero, :indicador, :_destroy ] 
+            ] +
+            [ :actividadpf_attributes =>  [
+              :id, :resultadopf_id,
+              :nombrecorto, :titulo, 
+              :descripcion, :_destroy ] 
             ] 
+
           end
 
         end # included
