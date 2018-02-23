@@ -42,10 +42,25 @@ module Sivel2Sjr
             return casos
           end
 
+          def filtro_etiqueta(casos)
+            if (params[:validarcaso] && 
+                params[:validarcaso][:etiqueta_id] && 
+                params[:validarcaso][:etiqueta_id] != '')
+              eti = params[:validarcaso][:etiqueta_id].to_i
+              casos = casos.where(
+                "sivel2_gen_caso.id NOT IN (SELECT id_caso " +
+                "FROM sivel2_gen_caso_etiqueta " +
+                "WHERE id_etiqueta = ?)", eti)
+            end
+            return casos
+          end
+
+
           def ini_filtro
             casos = Sivel2Sjr::Casosjr.joins(:caso).all.order(:fecharec)
             casos = filtro_fechas(casos, 'fecharec')
             casos = filtro_oficina(casos)
+            casos = filtro_etiqueta(casos)
             return casos
           end
 

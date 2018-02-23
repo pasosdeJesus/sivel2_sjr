@@ -13,4 +13,19 @@
         params[:validarcaso][:oficina_id] : nil
     %>
   </div>
+  <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+    Excluir por etiqueta
+  </div>
+  <div class="col-sm-offset-0 col-sm-4">
+    <%= f.input :etiqueta_id,
+      collection: Sip::Etiqueta.habilitados,
+      label_method: :nombre,
+      value_method: :id,
+      label: false,
+      include_blank: true,
+      selected: params[:validarcaso] ? 
+        params[:validarcaso][:etiqueta_id] : nil
+    %>
+  </div>
+
 </div> <!-- class: filtro-fila -->
