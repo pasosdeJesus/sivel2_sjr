@@ -50,13 +50,10 @@ module Sivel2Sjr
             ] +
             [ :indicadorpf_attributes =>  [
               :id, :resultadopf_id,
-              :numero, :indicador, :_destroy ] 
+              :numero, :indicador, :tipoindicador_id, 
+              :_destroy ] 
             ] +
-            [ :actividadpf_attributes =>  [
-              :id, :resultadopf_id,
-              :nombrecorto, :titulo, 
-              :descripcion, :_destroy ] 
-            ] 
+            [ :actividadpf ] 
 
           end
 
