@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 79f8aa4bab5a6313f1dc319449c66069768ae843
+  revision: 66c1d03024c6eff485aa66bc868bbd1832d7136d
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: d952d00ce9ebd1712a0e98002463102a64ae6a83
+  revision: 5f5307b04fb780a0d0967174847f741ee12e80a7
   specs:
     sip (2.0.b4)
       bootstrap-datepicker-rails
@@ -126,8 +126,6 @@ GEM
       sass-rails (>= 3.2)
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.2.0)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -208,12 +206,12 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
-    paperclip (5.2.1)
+    paperclip (6.0.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     pdf-core (0.7.0)
     pg (0.21.0)
     prawn (2.2.2)
@@ -310,6 +308,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)

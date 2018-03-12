@@ -59,6 +59,9 @@
     "title" => 'Elegir de las opciones de la lista el estatus migratorio actual del solicitante'
   }
 %>
+
+<%= render 'refugio_campos_i1', s: s %>
+
 <%= s.association :proteccion,
   collection: Sivel2Sjr::Proteccion.habilitados,
   label_method: :nombre,
