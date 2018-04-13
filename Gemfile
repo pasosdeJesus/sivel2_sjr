@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-gem "rails", '~> 5.2.0'
+#gem "rails", '~> 5.2.0'
+# Resuelve problema con minitest y rails 5.2.0
+gem "rails", '~> 5.2.0', git: 'https://github.com/rails/rails.git', ref: '4887f97bd8a8859294ad02ccea20d83a94ec0812'
+
 gem "rails-i18n"
 
 gem 'bootsnap', '>=1.1.0', require: false
@@ -31,7 +34,7 @@ gem "prawnto_2",  :require => "prawnto"
 gem "prawn-table"
 
 # Plantilla ODT
-gem "odf-report", git: 'https://github.com/vtamara/odf-report.git', branch: 'update-rubyzip'
+gem "odf-report"
 
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
@@ -79,19 +82,19 @@ gem "paperclip"
 gem "tzinfo"
 
 # Motor SIP
-gem 'sip', git: "https://github.com/pasosdeJesus/sip.git", branch: 'rails5.2'
+gem 'sip', git: "https://github.com/pasosdeJesus/sip.git"
 #gem 'sip', path: '../sip'
 
 # Motor de heb412
-gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git", branch: 'rails5.2'
+gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git"
 #gem 'heb412_gen', path: '../heb412_gen'
 
 # Motor de SIVeL 2
-gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git", branch: 'rails5.2'
+gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git"
 #gem 'sivel2_gen', path: '../sivel2_gen'
 
 # Motor Cor1440
-gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git", branch: 'rails5.2'
+gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git"
 #gem 'cor1440_gen', path: '../cor1440_gen'
 
 # Los siguientes son para desarrollo o para pruebas con generadores
