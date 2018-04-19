@@ -5,7 +5,7 @@
     fr = Time.now.strftime('%Y-%m-%d')
   end
   lp = Cor1440Gen::Proyectofinanciero.where(
-    "fechainicio <= ? AND ? <= fechacierre", fr, fr)
+    "fechainicio <= ? AND (? <= fechacierre OR fechacierre IS NULL)", fr, fr)
   if current_usuario.rol != Ability::ROLADMIN &&
     current_usuario.rol != Ability::ROLDIR
     lp = lp.where(
