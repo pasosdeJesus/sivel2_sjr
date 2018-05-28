@@ -2,8 +2,7 @@
 
 require_dependency 'cor1440_gen/concerns/controllers/actividades_controller'
 
-class Cor1440Gen::ActividadesController < ApplicationController
-
+class Cor1440Gen::ActividadesController < Sip::ModelosController
   # Funcion por sobrecargar para filtrar por otros parámetros personalizados
   def self.filtramas(par, ac, current_usuario)
     return ac
