@@ -16,9 +16,8 @@ module Sivel2Sjr
       ["Director Nacional", ROLDIR], 
       ["Coordinador oficina", ROLCOOR], 
       ["Analista", ROLANALI], 
-      ["Sistematizador", ROLSIST]
+      ["Sistematizador", ROLSIST],
     ]
-
 
     # Tablas básicas propias
     BASICAS_PROPIAS = [

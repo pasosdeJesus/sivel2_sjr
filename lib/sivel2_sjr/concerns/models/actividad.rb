@@ -1,5 +1,7 @@
 # encoding: UTF-8
 
+require 'cor1440_gen/concerns/models/actividad'
+
 module Sivel2Sjr
   module Concerns
     module Models
@@ -7,7 +9,7 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
-          include Cor1440Gen::Conerns::Models::Actividad
+          include Cor1440Gen::Concerns::Models::Actividad
 
           validate :oficina_responsable_current_usuario
           def oficina_responsable_current_usuario
