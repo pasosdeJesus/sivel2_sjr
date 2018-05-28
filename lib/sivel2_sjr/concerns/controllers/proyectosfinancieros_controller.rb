@@ -35,7 +35,7 @@ module Sivel2Sjr
             [ 
               :fechainicio_localizada,
               :fechacierre_localizada,
-              :responsable_id
+              :responsable
             ] +
             [ :oficina_ids =>  [] ] +
             [ :proyecto_ids =>  [] ] +

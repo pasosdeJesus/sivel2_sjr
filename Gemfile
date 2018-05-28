@@ -95,8 +95,8 @@ gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git"
 #gem 'sivel2_gen', path: '../sivel2_gen'
 
 # Motor Cor1440
-#gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git", branch: 'vista_actividad_sipmodelo'
-gem 'cor1440_gen', path: '../cor1440_gen'
+gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git", branch: 'vista_actividad_sipmodelo'
+#gem 'cor1440_gen', path: '../cor1440_gen'
 
 # Los siguientes son para desarrollo o para pruebas con generadores
 group :development do
