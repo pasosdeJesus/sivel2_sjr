@@ -1,4 +1,4 @@
-1ource 'https://rubygems.org'
+source 'https://rubygems.org'
 
 # Rails (internacionalización)
 #gem "rails", '~> 5.2.0'
