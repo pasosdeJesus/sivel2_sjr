@@ -113,29 +113,18 @@ end
 
 # Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
 group :test do
-
-  gem 'simplecov'
-
-  gem "connection_pool"
-  gem "minitest-reporters"
-
-  # Acelera ejecutando en fondo. https://github.com/jonleighton/spring
-  gem "spring"
-
+  gem 'spring'
   gem 'rails-controller-testing'
-
-  # Un proceso para cada prueba -- acelera
-  gem 'spork'
-
-  # Maneja datos de prueba
-  gem "factory_girl_rails", group: [:development, :test]
-
-  # https://www.relishapp.com/womply/rails-style-guide/docs/developing-rails-applications/bundler
-  # Lanza programas para examinar resultados
-  gem "launchy"
-
+  gem 'launchy'
+  gem 'simplecov'
+  gem 'selenium-webdriver'
+  gem 'connection_pool'
+  gem 'minitest-reporters'
+  gem 'minitest-rails-capybara'
+  gem 'poltergeist'
+  
+  # Para examinar errores, usar "rescue rspec" en lugar de "rspec"
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
-
 end
 
