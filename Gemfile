@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+1ource 'https://rubygems.org'
 
 # Rails (internacionalización)
 #gem "rails", '~> 5.2.0'
@@ -95,7 +95,7 @@ gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git"
 #gem 'sivel2_gen', path: '../sivel2_gen'
 
 # Motor Cor1440
-gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git", branch: 'vista_actividad_sipmodelo'
+gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git"
 #gem 'cor1440_gen', path: '../cor1440_gen'
 
 # Los siguientes son para desarrollo o para pruebas con generadores
@@ -104,7 +104,7 @@ group :development do
   gem "thor"
 
   # Depurar
-  #gem 'byebug'
+  gem 'byebug'
   
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console'
