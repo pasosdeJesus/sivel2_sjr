@@ -11,8 +11,8 @@ Sivel2Sjr::Engine.routes.draw do
   get "/casos/busca" => 'casos#busca'
   patch "/actos/agregar" => 'actos#agregar' 
   get "/actos/eliminar" => 'actos#eliminar'
-  get "/personas" => 'personas#index'
-  get "/personas/remplazar" => 'personas#remplazar'
+  #get "/personas" => 'personas#index'
+  #get "/personas/remplazar" => 'personas#remplazar'
 
   get '/casos/filtro' => 'casos#index', as: :casos_filtro
   post '/casos/filtro' => 'casos#index', as: :envia_casos_filtro
