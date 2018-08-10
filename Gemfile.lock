@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: e1deae92ec15dcf975ec77f87dffc594d803e7c1
+  revision: 2aeb35b4d25589b819c228f3f74c8d3c3edb7eca
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: bd31783a542d0f043a97f133acb1936a79c7777b
+  revision: 69d0e7ae853ffb7d0d88cbbefc87fdda06012603
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 1c56f50c0079b3f5b5a9caaa63237cc42f9aa54b
+  revision: 891271dbf8d90d91eb6517fafb47776e40d6d12a
   branch: sip_grupoper
   specs:
     sip (2.0.b5)
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: db82572da060602efbd03b16bdb460ccb157b869
+  revision: f911aa1df61044e80ce6dde568549fb5b54985b7
   branch: sip_grupoper
   specs:
     sivel2_gen (2.0b7)
@@ -192,7 +192,7 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    i18n (1.0.1)
+    i18n (1.1.0)
       concurrent-ruby (~> 1.0)
     interception (0.5)
     jbuilder (2.7.0)
@@ -314,7 +314,7 @@ GEM
     rspreadsheet (0.4.5)
       andand (~> 1.3)
       rubyzip (~> 1.1)
-    ruby-progressbar (1.9.0)
+    ruby-progressbar (1.10.0)
     rubyzip (1.2.1)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
@@ -367,7 +367,7 @@ GEM
       tzinfo
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.17)
+    uglifier (4.1.18)
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
