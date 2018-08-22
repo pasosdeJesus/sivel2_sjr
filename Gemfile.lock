@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 6f653b717a4c37ed5d148bb39872051672d5f844
+  revision: 36e485ca964872b4710c74c6d9bc5d0b1fc1c255
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: fa3f5049b3f64907b01aab9c91230e5bef495da9
+  revision: 4fa4b7891d9c7e004aef80c9aa8811b097aaee63
   branch: sip_grupoper
   specs:
     sip (2.0.b5)
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: f732494ca7f2bd1ab959acd958b88ed6e0c47bd0
+  revision: 67d95d1f851b5b8f67b4f676d8ab0372ad523201
   branch: sip_grupoper
   specs:
     sivel2_gen (2.0b7)
@@ -176,7 +176,7 @@ GEM
     connection_pool (2.2.2)
     crass (1.0.4)
     debug_inspector (0.0.3)
-    devise (4.4.3)
+    devise (4.5.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
@@ -243,7 +243,7 @@ GEM
       minitest-capybara (~> 0.8)
       minitest-metadata (~> 0.6)
       minitest-rails (~> 3.0)
-    minitest-reporters (1.3.1)
+    minitest-reporters (1.3.2)
       ansi
       builder
       minitest (>= 5.0)
@@ -286,7 +286,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    public_suffix (3.0.2)
+    public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.5)
     rack-test (1.1.0)
@@ -353,9 +353,9 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.8)
     ttfunk (1.5.1)
-    turbolinks (5.1.1)
-      turbolinks-source (~> 5.1)
-    turbolinks-source (5.1.0)
+    turbolinks (5.2.0)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     twitter-bootstrap-rails (4.0.0)
       actionpack (~> 5.0, >= 5.0.1)
       execjs (~> 2.7)

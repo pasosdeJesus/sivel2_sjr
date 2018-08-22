@@ -15,7 +15,7 @@ module Sivel2Sjr
       end
 
       def genclase
-        return 'M';
+        return 'F';
       end
 
 
