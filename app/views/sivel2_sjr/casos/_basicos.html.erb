@@ -1,50 +1,60 @@
-<%= f.input :id, readonly: true%>
+<div class="row">
+  <div class="col-md-6">
+    <%= f.input :id, readonly: true%>
+  </div>
+  <div class="col-md-6">
+    <%= s.input :fecharec, 
+      as: :string, 
+      input_html: {
+        "data-behaviour" => "datepicker",
+        "data-toggle" => 'tooltip',
+        "title" => 'Fecha inicial de atención al caso'
+      } %>
+  </div>
+</div>
 
-<%= s.input :fecharec, 
-  as: :string, 
-  input_html: {
-     "data-behaviour" => "datepicker",
-    "data-toggle" => 'tooltip',
-    "title" => 'Fecha inicial de atención al caso'
-  }
-%>
+<div class="row">
+  <div class="col-md-6">
+    <% colus= current_usuario.oficina_id ? 
+      Usuario.where(oficina_id: current_usuario.oficina_id).
+      order('LOWER(nusuario)') :
+      Usuario.order('LOWER(nusuario)') %>
+    <%= s.association :usuario,
+      collection: colus,
+      include_blank: false,
+      label_method: :nusuario, 
+      value_method: :id %>
+  </div>
+  <div class="col-md-6">
+    <% colof= current_usuario.oficina_id ? 
+      Sip::Oficina.habilitados.where(id: current_usuario.oficina_id) :
+      Sip::Oficina.habilitados %>
+    <%= s.association :oficina,
+      collection: colof,
+      include_blank: false,
+      label_method: :nombre, 
+      value_method: :id,
+      input_html: {
+        "data-toggle" => 'tooltip',
+        "title" => 'Oficina del SJR que reporta el caso'
+      } %>
+  </div>
+</div>
 
-<% colus= current_usuario.oficina_id ? 
-  Usuario.where(oficina_id: current_usuario.oficina_id).
-    order('LOWER(nusuario)') :
-  Usuario.order('LOWER(nusuario)') 
-%>
-<%= s.association :usuario,
-  collection: colus,
-  include_blank: false,
-  label_method: :nusuario, 
-  value_method: :id 
-%>
-
-<% colof= current_usuario.oficina_id ? 
-  Sip::Oficina.habilitados.where(id: current_usuario.oficina_id) :
-  Sip::Oficina.habilitados
-%>
-<%= s.association :oficina,
-  collection: colof,
-  include_blank: false,
-  label_method: :nombre, 
-  value_method: :id,
-  input_html: {
-    "data-toggle" => 'tooltip',
-    "title" => 'Oficina del SJR que reporta el caso'
-  }
-%>
-
-<%= f.input :fecha,
-  as: :string, 
-  wrapper_html: { style: "padding-bottom: 18px;" },
-  input_html: {
-    "data-behaviour" => "datepicker",
-    "data-toggle" => 'tooltip',
-    "title" => 'Fecha en la que el solicitante sufrió el desplazamiento principal'
-  }
-%>
-
-<%= render partial: 'basicos_pie', locals: {f: f, s: s} %>
+<div class="row">
+  <div class="col-md-6">
+    <%= f.input :fecha,
+      as: :string, 
+      wrapper_html: { style: "padding-bottom: 18px;" },
+      input_html: {
+        "data-behaviour" => "datepicker",
+        "data-toggle" => 'tooltip',
+        "title" => 'Fecha en la que el solicitante sufrió el ' + 
+        'desplazamiento principal'
+      } %>
+  </div>
+  <div class="col-md-6">
+    <%= render partial: 'basicos_pie', locals: {f: f, s: s} %>
+  </div>
+</div>
 

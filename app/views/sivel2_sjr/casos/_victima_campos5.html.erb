@@ -1,8 +1,13 @@
-<%= victimasjr.input(:ndiscapacidad, collection: [
-                     ['FÍSICA', 'FÍSICA'], 
-                     ['PSÍQUICA', 'PSÍQUICA'], 
-                     ['SENSORIAL', 'SENSORIAL'] 
-], 
-  label: "Discapacidad") 
-%>
-<%= victimasjr.input :enfermedad %>
+<div class="row">
+  <div class="col-md-6">
+    <%= victimasjr.input :ndiscapacidad, collection: [
+      ['FÍSICA', 'FÍSICA'], 
+      ['PSÍQUICA', 'PSÍQUICA'], 
+      ['SENSORIAL', 'SENSORIAL'] ], 
+      label: "Discapacidad" %>
+  </div> 
+  <div class="col-md-6">
+    <%= victimasjr.input :enfermedad %>
+  </div> 
+</div> 
+

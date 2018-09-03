@@ -1,8 +1,10 @@
 # encoding: UTF-8
 require 'date'
 
-module Sivel2Sjr
-  class PersonasController < Sivel2Gen::PersonasController
+module Sip
+  class PersonasController < ApplicationController
+    include Sivel2Gen::Concerns::Controller::PersonasController
+
     load_and_authorize_resource class: Sivel2Gen::Caso
 
     # Busca y lista persona(s)
