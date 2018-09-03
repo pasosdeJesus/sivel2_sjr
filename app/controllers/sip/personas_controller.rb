@@ -1,10 +1,10 @@
 # encoding: UTF-8
 require 'date'
-require 'sivel2_gen/concerns/controller/personas_controller'
+require 'sivel2_gen/concerns/controllers/personas_controller'
 
 module Sip
   class PersonasController < ApplicationController
-    include Sivel2Gen::Concerns::Controller::PersonasController
+    include Sivel2Gen::Concerns::Controllers::PersonasController
 
     load_and_authorize_resource class: Sivel2Gen::Caso
 
