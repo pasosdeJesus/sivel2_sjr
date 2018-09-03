@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: a3358f7c65f7040c7a8e28a75cf4cc5d138475bc
+  revision: a15fb23cb132cce486f63d6922831b43df277b2c
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 65846d02d5be0704015fffd062cf39db4fd2164c
+  revision: ed68c963fdbce0c49963bbf4d3f5babac118a650
   branch: vista_listado
   specs:
     heb412_gen (1.0.a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 3ea74d7267a84497dfd2dcd4a9356fdfa310ca45
+  revision: 3c93615802fdaf5152728fa4916ab4e7763d7902
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 5704ae51c3db9d089eb1334df5cef2e0c716492e
+  revision: 02b072e6b9a8d952646f38aae96201758db97e8d
   specs:
     sivel2_gen (2.0b7)
       devise
@@ -364,7 +364,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
-    web-console (3.6.2)
+    web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
