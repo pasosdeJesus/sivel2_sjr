@@ -153,7 +153,8 @@ module Sivel2Sjr
   
           def personas_filtros_especializados
             @opsegun =  [
-              "", "ACTIVIDAD / OFICIO", "CABEZA DE HOGAR", "ESTADO CIVIL", 
+              "", "ACTIVIDAD / OFICIO", "AÑO DE NACIMIENTO",
+              "CABEZA DE HOGAR", "ESTADO CIVIL", 
               "ETNIA", "MES RECEPCIÓN", "NIVEL ESCOLAR", "RANGO DE EDAD", 
               "SEXO"
             ]
