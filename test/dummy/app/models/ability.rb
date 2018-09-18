@@ -22,16 +22,23 @@ class Ability  < Sivel2Sjr::Ability
     if !usuario || usuario.fechadeshabilitacion
       return
     end
+    can :read, Heb412Gen::Plantillahcm
+    can :read, Heb412Gen::Plantillahcr
+    can :read, Heb412Gen::Plantilladoc
+
+    can :descarga_anexo, Sip::Anexo
     can :contar, Sip::Ubicacion
+    can :nuevo, Sip::Ubicacion
+
     can :contar, Sivel2Gen::Caso
     can :buscar, Sivel2Gen::Caso
     can :lista, Sivel2Gen::Caso
-    can :descarga_anexo, Sip::Anexo
-    can :nuevo, Sivel2Sjr::Desplazamiento
-    can :nuevo, Sivel2Sjr::Respuesta
-    can :nuevo, Sip::Ubicacion
     can :nuevo, Sivel2Gen::Presponsable
     can :nuevo, Sivel2Gen::Victima
+
+    can :nuevo, Sivel2Sjr::Desplazamiento
+    can :nuevo, Sivel2Sjr::Respuesta
+
     if !usuario.nil? && !usuario.rol.nil? then
       case usuario.rol 
       when Ability::ROLINV
@@ -101,6 +108,10 @@ class Ability  < Sivel2Sjr::Ability
         can :manage, Cor1440Gen::Actividad
         can :manage, Cor1440Gen::Informe
         can :manage, Cor1440Gen::Proyectofinanciero
+
+        can :manage, Heb412Gen::Plantillahcm
+        can :manage, Heb412Gen::Plantillahcr
+        can :manage, Heb412Gen::Plantilladoc
 
         can :manage, Sip::Actorsocial
         can :manage, Sip::Persona

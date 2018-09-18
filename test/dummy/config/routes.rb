@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     end
   end
   mount Cor1440Gen::Engine, at: "/", as: "cor1440_gen"
+  mount Heb412Gen::Engine, at: "/", as: "heb412_gen"
   mount Sivel2Sjr::Engine, at: "/", as: "sivel2_sjr"
   mount Sivel2Gen::Engine, at: "/", as: "sivel2_gen"
   mount Sip::Engine, at: "/", as: "sip"

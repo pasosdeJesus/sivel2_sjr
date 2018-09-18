@@ -86,5 +86,13 @@ module Sivel2Sjr
       Sip::Ability::BASICAS_PRIO + BASICAS_PRIO
     end
 
+
+    def campos_plantillas 
+      Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.
+        clone.merge(Cor1440Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone.merge(
+        Sivel2Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone
+      ))
+    end
+
   end
 end
