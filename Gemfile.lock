@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: dd94ebb25449a3b409d18c1276409ae60d49a6c5
+  revision: 1e10c896d5e916ee3829775043e36c0471216a7f
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 6f1f90a67c96e9964290931723b26a9dff617e2c
+  revision: a6662787156b0b6da6a70e4459e86627ad6f54a5
   branch: hojacalculo_registro
   specs:
     heb412_gen (1.0.a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 5ca2bc7ed557a640c703fe56d6b53943472859f8
+  revision: b227a1b94c00471bbd21710c3b92bda3b138e165
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -310,7 +310,7 @@ GEM
       rubyzip (~> 1.1)
     ruby-progressbar (1.10.0)
     rubyzip (1.2.2)
-    sass (3.5.7)
+    sass (3.6.0)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
