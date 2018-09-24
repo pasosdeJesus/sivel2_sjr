@@ -1,4 +1,4 @@
-class ActoNoUnico < ActiveRecord::Migration
+class ActoNoUnico < ActiveRecord::Migration[4.2]
   def change
     # en diversas fechas puede ocurrir lo mismo
     execute "ALTER TABLE acto DROP CONSTRAINT IF EXISTS

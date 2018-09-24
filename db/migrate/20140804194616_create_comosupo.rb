@@ -1,4 +1,4 @@
-class CreateComosupo < ActiveRecord::Migration
+class CreateComosupo < ActiveRecord::Migration[4.2]
   def change
     create_table :comosupo do |t|
       t.string :nombre, limit: 500, null: false

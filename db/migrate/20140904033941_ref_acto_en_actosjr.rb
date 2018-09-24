@@ -1,4 +1,4 @@
-class RefActoEnActosjr < ActiveRecord::Migration
+class RefActoEnActosjr < ActiveRecord::Migration[4.2]
   def up 
     execute "DROP SEQUENCE IF EXISTS actosjr_seq CASCADE"
     execute "ALTER TABLE actosjr DROP CONSTRAINT IF EXISTS actosjr_pkey CASCADE"

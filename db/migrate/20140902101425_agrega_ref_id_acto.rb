@@ -1,5 +1,5 @@
 #encoding: UTF-8
-class AgregaRefIdActo < ActiveRecord::Migration
+class AgregaRefIdActo < ActiveRecord::Migration[4.2]
   def up
 
     execute "ALTER TABLE actosjr 

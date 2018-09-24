@@ -1,4 +1,4 @@
-class RenombraAislasjr < ActiveRecord::Migration
+class RenombraAislasjr < ActiveRecord::Migration[4.2]
   def change
     rename_table :acreditacion, :sivel2_sjr_acreditacion
     rename_table :actosjr, :sivel2_sjr_actosjr

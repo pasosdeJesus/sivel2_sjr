@@ -1,5 +1,5 @@
 #encoding: UTF-8
-class AgregaRefidVictima < ActiveRecord::Migration
+class AgregaRefidVictima < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
         ALTER TABLE victimasjr 

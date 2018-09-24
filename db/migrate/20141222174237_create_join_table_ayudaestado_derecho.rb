@@ -1,4 +1,4 @@
-class CreateJoinTableAyudaestadoDerecho < ActiveRecord::Migration
+class CreateJoinTableAyudaestadoDerecho < ActiveRecord::Migration[4.2]
   def change
     create_table :sivel2_sjr_ayudaestado_derecho, id:false do |t|
       t.column :ayudaestado_id, :integer

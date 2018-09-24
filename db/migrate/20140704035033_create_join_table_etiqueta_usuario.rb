@@ -1,4 +1,4 @@
-class CreateJoinTableEtiquetaUsuario < ActiveRecord::Migration
+class CreateJoinTableEtiquetaUsuario < ActiveRecord::Migration[4.2]
   def change
     create_table :etiqueta_usuario do |t|
       t.references :etiqueta

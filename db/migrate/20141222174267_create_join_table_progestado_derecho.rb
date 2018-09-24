@@ -1,4 +1,4 @@
-class CreateJoinTableProgestadoDerecho < ActiveRecord::Migration
+class CreateJoinTableProgestadoDerecho < ActiveRecord::Migration[4.2]
   def change
     create_table :sivel2_sjr_progestado_derecho, id:false do |t|
       t.column :progestado_id, :integer

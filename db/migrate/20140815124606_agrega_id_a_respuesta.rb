@@ -1,4 +1,4 @@
-class AgregaIdARespuesta < ActiveRecord::Migration
+class AgregaIdARespuesta < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
         CREATE SEQUENCE respuesta_seq;

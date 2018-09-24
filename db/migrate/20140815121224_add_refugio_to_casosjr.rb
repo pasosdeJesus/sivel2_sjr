@@ -1,4 +1,4 @@
-class AddRefugioToCasosjr < ActiveRecord::Migration
+class AddRefugioToCasosjr < ActiveRecord::Migration[4.2]
   def change
     add_column :casosjr, :fechasalida, :date
     add_column :casosjr, :id_salida, :integer

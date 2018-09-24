@@ -1,4 +1,4 @@
-class AddComosupoToCasosjr < ActiveRecord::Migration
+class AddComosupoToCasosjr < ActiveRecord::Migration[4.2]
   def change
     #remove_column :casosjr, :comosupo, :string
     add_reference :casosjr, :comosupo, index: true, default: 1

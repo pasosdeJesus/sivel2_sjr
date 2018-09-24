@@ -1,4 +1,4 @@
-class AgregaIdADesplazamiento < ActiveRecord::Migration
+class AgregaIdADesplazamiento < ActiveRecord::Migration[4.2]
   def up
    execute "DROP SEQUENCE IF EXISTS desplazamiento_seq"
    execute "CREATE SEQUENCE desplazamiento_seq"
