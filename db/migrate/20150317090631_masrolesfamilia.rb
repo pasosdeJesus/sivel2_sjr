@@ -1,4 +1,4 @@
-class Masrolesfamilia < ActiveRecord::Migration
+class Masrolesfamilia < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
 INSERT INTO sivel2_sjr_rolfamilia (id, nombre, fechacreacion, created_at) VALUES (9, 'NIETO/A', '2015-03-17', '2015-03-17');

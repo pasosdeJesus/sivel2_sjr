@@ -1,4 +1,4 @@
-class RenombraIdSeq22 < ActiveRecord::Migration
+class RenombraIdSeq22 < ActiveRecord::Migration[4.2]
   @@tablas = [
     'acreditacion',  
     'ayudaestado', 

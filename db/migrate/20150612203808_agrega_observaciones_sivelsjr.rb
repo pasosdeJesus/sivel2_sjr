@@ -1,4 +1,4 @@
-class AgregaObservacionesSivelsjr < ActiveRecord::Migration
+class AgregaObservacionesSivelsjr < ActiveRecord::Migration[4.2]
   def change
     add_column :sivel2_sjr_acreditacion, :observaciones, :string, limit: 5000
     add_column :sivel2_sjr_aslegal, :observaciones, :string, limit: 5000

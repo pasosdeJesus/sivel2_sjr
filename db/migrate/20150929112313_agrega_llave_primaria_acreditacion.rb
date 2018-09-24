@@ -1,4 +1,4 @@
-class AgregaLlavePrimariaAcreditacion < ActiveRecord::Migration
+class AgregaLlavePrimariaAcreditacion < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
     ALTER TABLE sivel2_sjr_acreditacion ADD PRIMARY KEY (id);

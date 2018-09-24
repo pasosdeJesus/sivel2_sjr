@@ -1,4 +1,4 @@
-class Eliminterfrontera < ActiveRecord::Migration
+class Eliminterfrontera < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
         UPDATE sivel2_sjr_desplazamiento SET id_clasifdesp = '7' where id_clasifdesp = '5';

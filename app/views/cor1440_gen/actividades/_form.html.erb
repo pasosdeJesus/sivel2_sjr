@@ -20,7 +20,7 @@
     <%= f.error_notification %>
   </div>
 
-  <div class='row'>
+  <div class='row'> <!-- 1 -->
     <div class='col-sm-2'>
       <label for="actividad_fecha_localizada"><%= @actividad.class.human_attribute_name(:fecha_localizada) %></label>
     </div>
@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <div class='row'>
+  <div class='row'> <!-- 2 -->
     <div class='col-sm-2'>
       <label for="actividad_lugar">
         <%= @actividad.class.human_attribute_name(:lugar) %>
@@ -49,9 +49,8 @@
       <%= f.input_field :lugar %>
     </div>
     <div class='col-sm-2'>
-      <label for="actividad_proyecto">
-        <%= @actividad.class.human_attribute_name(:proyecto) %>
-      </label>
+      <%= render partial: 'campo_proyectos_etiqueta', 
+        locals: {f: f, con_label: false} %>
     </div>
     <div class='col-sm-4'>
       <%= render partial: 'campo_proyectos', 
@@ -59,7 +58,7 @@
     </div>
   </div>
 
-  <div class='row'>
+  <div class='row'> <!-- 3 -->
     <div class='col-sm-2'>
       <label for="actividad_proyectofinanciero">
         <%= @actividad.class.human_attribute_name(:proyectofinanciero) %>
@@ -80,7 +79,7 @@
     </div>
   </div>
 
-  <div class='row'>
+  <div class='row'> <!-- 4 -->
     <div class='col-sm-2'>
       <label for="actividad_responsable">
         <%= @actividad.class.human_attribute_name(:responsable) %>
@@ -101,7 +100,7 @@
     </div>
   </div>
 
-  <div class='row'>
+  <div class='row'> <!-- 5 -->
     <div class='col-sm-2'>
       <label for="actividad_nombre">
         <%= @actividad.class.human_attribute_name(:nombre) %>

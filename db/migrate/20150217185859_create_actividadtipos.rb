@@ -1,4 +1,4 @@
-class CreateActividadtipos < ActiveRecord::Migration
+class CreateActividadtipos < ActiveRecord::Migration[4.2]
   def change
     create_table :actividadtipos do |t|
       t.string :nombre, limit: 500, null: false

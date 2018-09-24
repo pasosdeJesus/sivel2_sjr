@@ -1,4 +1,4 @@
-class PreparaParaCotejacion < ActiveRecord::Migration
+class PreparaParaCotejacion < ActiveRecord::Migration[4.2]
   def up
     execute <<-SQL
       DROP MATERIALIZED VIEW IF EXISTS sivel2_gen_conscaso;

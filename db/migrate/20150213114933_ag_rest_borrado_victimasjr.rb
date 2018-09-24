@@ -1,4 +1,4 @@
-class AgRestBorradoVictimasjr < ActiveRecord::Migration
+class AgRestBorradoVictimasjr < ActiveRecord::Migration[4.2]
   def change
     execute <<-SQL
     ALTER TABLE sivel2_sjr_victimasjr
