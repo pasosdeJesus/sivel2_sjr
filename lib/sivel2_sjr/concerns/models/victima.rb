@@ -10,8 +10,8 @@ module Sivel2Sjr
         include Sivel2Gen::Concerns::Models::Victima
 
         included do
-          has_many :antecedente_victima, foreign_key: :id_victima, 
-            validate: true, dependent: :destroy
+          #has_many :antecedente_victima, foreign_key: :id_victima, 
+          #  validate: true, dependent: :destroy
 
           has_one :victimasjr, class_name: 'Sivel2Sjr::Victimasjr', 
             foreign_key: "id_victima", dependent: :destroy, validate: true, 
