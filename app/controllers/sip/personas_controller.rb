@@ -6,7 +6,7 @@ module Sip
   class PersonasController < Sip::ModelosController
     include Sivel2Gen::Concerns::Controllers::PersonasController
 
-    load_and_authorize_resource class: Sivel2Gen::Persona
+    load_and_authorize_resource class: Sip::Persona
 
     # Busca y lista persona(s)
     

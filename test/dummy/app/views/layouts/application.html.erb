@@ -26,7 +26,7 @@
     <% end %>
   <% end %>
   <%= menu_group :pull => :right do %>
-    <%= menu_item "Documentacion", sivel2_gen.acercade_path %>
+    <%= menu_item "Documentacion", sip.acercade_path %>
     <% if !current_usuario.nil? %>
       <%= drop_down "Administrar" do %>
         <%= menu_item "Clave", main_app.editar_registro_usuario_path %>
