@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 2ecce6ea6de6005e43abe805c5a17c257f2a1f42
+  revision: e1d1ee04005f7c07c786b6d8c43e9456f447a787
   branch: persona_sipmodelo
   specs:
     sip (2.0.b5)
@@ -47,7 +47,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 00c58ff7ba96a80f297e01907170b5bf98c97947
+  revision: e9e4dfb5d35d5170fb8508338c187e0ff177dd74
   branch: persona_sipmodelo
   specs:
     sivel2_gen (2.0b7)
