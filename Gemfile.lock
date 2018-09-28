@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: a6662787156b0b6da6a70e4459e86627ad6f54a5
+  revision: 97c1c4499c410bbecdaf73e5914e24ba13420abc
   branch: hojacalculo_registro
   specs:
     heb412_gen (1.0.a1)
@@ -24,7 +24,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: b227a1b94c00471bbd21710c3b92bda3b138e165
+  revision: 2ecce6ea6de6005e43abe805c5a17c257f2a1f42
+  branch: persona_sipmodelo
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -46,7 +47,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 4048add961db1318a362ae1f33728abff3857c6f
+  revision: 00c58ff7ba96a80f297e01907170b5bf98c97947
+  branch: persona_sipmodelo
   specs:
     sivel2_gen (2.0b7)
       devise
@@ -156,7 +158,7 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.6.4)
+    devise-i18n (1.6.5)
       devise (>= 4.4)
     docile (1.3.1)
     erubi (1.7.1)

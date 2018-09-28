@@ -3,19 +3,18 @@ require 'date'
 require 'sivel2_gen/concerns/controllers/personas_controller'
 
 module Sip
-  class PersonasController < ApplicationController
+  class PersonasController < Sip::ModelosController
     include Sivel2Gen::Concerns::Controllers::PersonasController
 
-    load_and_authorize_resource class: Sivel2Gen::Caso
+    load_and_authorize_resource class: Sivel2Gen::Persona
 
     # Busca y lista persona(s)
-    def index
-      if !params[:term]
-        respond_to do |format|
-          format.html { render inline: 'Falta variable term' }
-          format.json { render inline: 'Falta variable term' }
-        end
-      else
+    
+    def index(c = nil)
+      if c == nil
+        c = Sip::Persona.all
+      end
+      if params[:term]
         term = Sivel2Gen::Caso.connection.quote_string(params[:term])
         consNomvic = term.downcase.strip #sin_tildes
         consNomvic.gsub!(/ +/, ":* & ")
@@ -48,7 +47,10 @@ module Sip
         r = ActiveRecord::Base.connection.select_all qstring
         respond_to do |format|
           format.json { render :json, inline: r.to_json }
+          format.html { render :json, inline: 'No responde con parametro term' }
         end
+      else
+        super(c)
       end
     end
 
