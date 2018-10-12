@@ -86,15 +86,15 @@ gem 'rubyzip', '~>1.2'
 gem "tzinfo"
 
 # Motor SIP
-gem 'sip', git: "https://github.com/pasosdeJesus/sip.git", branch: :persona_sipmodelo
+gem 'sip', git: "https://github.com/pasosdeJesus/sip.git"
 #gem 'sip', path: '../sip'
 
 # Motor de heb412
-gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git", branch: :hojacalculo_registro
+gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git"
 #gem 'heb412_gen', path: '../heb412_gen'
 
 # Motor de SIVeL 2
-gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git", branch: :persona_sipmodelo
+gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git"
 #gem 'sivel2_gen', path: '../sivel2_gen'
 
 # Motor Cor1440
