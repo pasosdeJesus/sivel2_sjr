@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: f35d188e02d2789f137ff3e7c93dd4be937da35b
+  revision: 7549b6d9eb8a626faefd8a140d0c7966bb97de5d
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 6a10ea049e8e0e24149da7ccc9861fcd47ea5df9
+  revision: ea8f85695c309b32f49c540c8e53ecd031c92474
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: b7052f9614e785cbe33e52a7af02650e46f03595
+  revision: 068307e1208f5bdab8aef4c4a74ae32eb08a7044
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 3a18bf7e0a9db5f17a8f216c0731932a83698805
+  revision: 9d4dd3b2d294bcaf146a6aa722d72fc9e3440608
   specs:
     sivel2_gen (2.0b7)
       devise
@@ -248,9 +248,9 @@ GEM
       ttfunk (~> 1.5)
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
-    prawnto_2 (0.2.6)
-      prawn (>= 0.6.0)
-      rails (>= 3.1)
+    prawnto_2 (0.3.0)
+      prawn (>= 1.0.0)
+      rails (>= 3.2)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
