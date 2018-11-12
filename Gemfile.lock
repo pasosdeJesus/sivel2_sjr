@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 9c5929b1d6c307c85e6b1616629a8e53fda6a5de
+  revision: 76cd61468a4fe1004351947aeacaa48017277892
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 5b5e248aee264969cb2244c1683d29fedf4312a8
+  revision: 7a394ccafb43c69ae2bbabca36de4e4576349e61
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 4164b687d1bd9794e4a1bf550e00d303e5713cd0
+  revision: 0ac17e344bbdc2b090fef0c9b10983e652a9ea55
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 4976928d9af7c46e355566b0d5009ac5ba9a29b1
+  revision: b665b86966b079c6e14473e79ebc3ade531c8de6
   specs:
     sivel2_gen (2.0b8)
       devise
@@ -110,8 +110,6 @@ GEM
     arel (9.0.0)
     bcrypt (3.1.12)
     bindex (0.5.0)
-    binding_of_caller (0.8.0)
-      debug_inspector (>= 0.0.1)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
     bootstrap-datepicker-rails (1.8.0.1)
@@ -135,7 +133,6 @@ GEM
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.2.0)
     cliver (0.3.2)
-    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -148,7 +145,6 @@ GEM
     concurrent-ruby (1.1.3)
     connection_pool (2.2.2)
     crass (1.0.4)
-    debug_inspector (0.0.3)
     devise (4.5.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -167,7 +163,6 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
-    interception (0.5)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -251,15 +246,6 @@ GEM
     prawnto_2 (0.3.0)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    pry (0.12.0)
-      coderay (~> 1.1.0)
-      method_source (~> 0.9.0)
-    pry-rescue (1.4.5)
-      interception (>= 0.5)
-      pry
-    pry-stack_explorer (0.4.9.3)
-      binding_of_caller (>= 0.7)
-      pry (>= 0.9.11)
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
@@ -408,8 +394,6 @@ DEPENDENCIES
   prawn
   prawn-table
   prawnto_2
-  pry-rescue
-  pry-stack_explorer
   puma
   rails (~> 5.2.1)
   rails-controller-testing

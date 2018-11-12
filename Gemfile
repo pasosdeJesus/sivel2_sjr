@@ -125,9 +125,5 @@ group :test do
   gem 'minitest-reporters'
   gem 'minitest-rails-capybara'
   gem 'poltergeist'
-  
-  # Para examinar errores, usar "rescue rspec" en lugar de "rspec"
-  gem 'pry-rescue'
-  gem 'pry-stack_explorer'
 end
 
