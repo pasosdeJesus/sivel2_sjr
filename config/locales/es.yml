@@ -26,6 +26,9 @@ es:
       "sivel2_sjr/aslegal":
         Aslegal: Asistencia legal
         Aslegales: Asistencias legales
+      "sivel2_sjr/aspsicosocial":
+        Aspsicosocial: Asistencia psicosocial
+        Aspsicosociales: Asistencias psicosociales
       "sivel2_sjr/ayudaestado": 
         Ayudaestado: Ayuda del Estado
         Ayudasestado: Ayudas del Estado

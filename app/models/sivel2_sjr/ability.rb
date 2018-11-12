@@ -23,6 +23,7 @@ module Sivel2Sjr
     BASICAS_PROPIAS = [
       ['Sivel2Sjr', 'acreditacion'], 
       ['Sivel2Sjr', 'aslegal'], 
+      ['Sivel2Sjr', 'aspsicosocial'], 
       ['Sivel2Sjr', 'ayudaestado'], 
       ['Sivel2Sjr', 'ayudasjr'], 
       ['Sivel2Sjr', 'clasifdesp'], 
