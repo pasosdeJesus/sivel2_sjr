@@ -19,6 +19,16 @@ module Sivel2Sjr
           has_many :aslegal, class_name: "Sivel2Sjr::Aslegal", 
             :through => :aslegal_respuesta
 
+          has_many :aspsicosocial_respuesta,  validate: true,
+            class_name: "Sivel2Sjr::AspsicosocialRespuesta",  
+            foreign_key: "id_respuesta", dependent: :destroy 
+          has_many :aspsicosocial, 
+            class_name: "Sivel2Sjr::Aspsicosocial", 
+            :through => :aspsicosocial_respuesta
+          accepts_nested_attributes_for :aspsicosocial_respuesta, 
+            reject_if: :all_blank, update_only: true
+
+
           has_many :ayudasjr_respuesta, 
             class_name: "Sivel2Sjr::AyudasjrRespuesta",  
             foreign_key: "id_respuesta", dependent: :delete_all
