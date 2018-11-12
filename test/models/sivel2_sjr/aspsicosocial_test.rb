@@ -24,10 +24,6 @@ module Sivel2Sjr
       aspsicosocial.destroy
     end
 
-    test "existente" do
-      aspsicosocial = Sivel2Sjr::Aspsicosocial.where(id: 0).take
-      assert_equal aspsicosocial.nombre, "SIN INFORMACIÓN"
-    end
 
   end
 end
