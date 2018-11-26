@@ -3,6 +3,9 @@ class AspsicosocialASivel2Sjr < ActiveRecord::Migration[5.2]
     if table_exists? :aspsicosocial
       rename_table :aspsicosocial, :sivel2_sjr_aspsicosocial
       rename_table :aspsicosocial_respuesta, :sivel2_sjr_aspsicosocial_respuesta
+      execute <<-SQL
+        ALTER SEQUENCE IF EXISTS aspsicosocial_seq RENAME TO sivel2_sjr_aspsicosocial_id_seq;
+      SQL
     else
       create_table :sivel2_sjr_aspsicosocial do |t|
         t.string :nombre, limit: 100, null: false
