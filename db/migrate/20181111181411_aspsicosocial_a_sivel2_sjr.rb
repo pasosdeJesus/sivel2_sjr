@@ -6,6 +6,7 @@ class AspsicosocialASivel2Sjr < ActiveRecord::Migration[5.2]
       execute <<-SQL
         ALTER SEQUENCE IF EXISTS aspsicosocial_seq RENAME TO sivel2_sjr_aspsicosocial_id_seq;
       SQL
+    else
       create_table :sivel2_sjr_aspsicosocial do |t|
         t.string :nombre, limit: 100, null: false
         t.string :observaciones, limit: 5000
