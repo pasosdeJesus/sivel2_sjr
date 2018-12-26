@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 6432e758cdc638d8a28b4e616c7fe947eb9d972e
+  revision: a1c732425a89090702a0eb001ab75536853d0eb3
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 725ef2288d8ef4c35299b3b4e837bd3a0fdb8003
+  revision: 7b8e910515b468b5af4ca329d0d802a851b6db32
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 349c1fd14e9953566dd6209ece06be298b6d3fb3
+  revision: 2f24afc6195e6bbb05cf24a7a7075113a452d507
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: b981d11ccad9e59eed6a1863d33e87ab6f0aa5e3
+  revision: e23e7b4338cf4fc962d18ae3ae7c049239de0f97
   specs:
     sivel2_gen (2.0b8)
       devise
@@ -109,7 +109,7 @@ GEM
     ansi (1.5.0)
     arel (9.0.0)
     bcrypt (3.1.12)
-    bigdecimal (1.3.5)
+    bigdecimal (1.4.2)
     bindex (0.5.0)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
@@ -368,7 +368,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
-  bigdecimal (= 1.3.5)
+  bigdecimal
   bootsnap (>= 1.1.0)
   bootstrap-datepicker-rails
   cancancan
