@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: a1c732425a89090702a0eb001ab75536853d0eb3
+  revision: d2d90dc09e614f1662fd6ca29d04957e0edcb4c4
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 7b8e910515b468b5af4ca329d0d802a851b6db32
+  revision: 2ef29e925902b72e8689be8bab0193c5fe3548fb
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 2f24afc6195e6bbb05cf24a7a7075113a452d507
+  revision: b580b19677793bd6b62ea5ec5755d9756058d162
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -157,12 +157,12 @@ GEM
     docile (1.3.1)
     erubi (1.8.0)
     execjs (2.7.0)
-    ffi (1.9.25)
+    ffi (1.10.0)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    i18n (1.3.0)
+    i18n (1.5.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
@@ -218,10 +218,10 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    msgpack (1.2.4)
+    msgpack (1.2.6)
     multi_json (1.13.1)
     nio4r (2.3.1)
-    nokogiri (1.9.1)
+    nokogiri (1.10.0)
       mini_portile2 (~> 2.4.0)
     odf-report (0.5.2)
       nokogiri (>= 1.5.0)
@@ -234,7 +234,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     pdf-core (0.7.0)
-    pg (1.1.3)
+    pg (1.1.4)
     poltergeist (1.18.1)
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
@@ -296,7 +296,7 @@ GEM
       rubyzip (~> 1.1)
     ruby-progressbar (1.10.0)
     rubyzip (1.2.2)
-    sass (3.7.2)
+    sass (3.7.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -419,4 +419,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.17.2
+   2.0.1
