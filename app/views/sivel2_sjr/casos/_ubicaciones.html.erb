@@ -3,11 +3,11 @@
 <% end %>
 <div class="links">
   <%= link_to_add_association 'Añadir ' +
-    Sip::Ubicacion.human_attribute_name(:Ubicacion), f, 
-    :ubicacion, { 
-      class: 'btn-primary',
-      "data-ajax" => "/ubicaciones/nuevo", 
-      "data-ajaxdata" => "caso_id" 
-    }
-  %>
+    Sip::Ubicacion.human_attribute_name(:Ubicacion), f, :ubicacion, { 
+    class: 'btn-primary',
+    "data-ajax" => File.join(
+      Rails.configuration.relative_url_root, "ubicaciones/nuevo"
+    ), 
+    "data-ajaxdata" => "caso_id" 
+  } %>
 </div>

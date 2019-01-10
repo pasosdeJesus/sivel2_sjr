@@ -6,7 +6,10 @@
     Sivel2Sjr::Respuesta.human_attribute_name(:sesionatencion), f, 
     :respuesta, {
       class: 'btn-primary',
-      "data-ajax" => "/respuestas/nuevo", 
+      "data-ajax" => File.join(
+        Rails.configuration.relative_url_root,
+        "respuestas/nuevo"
+      ), 
       "data-ajaxdata" => "caso_id" 
     }
   %>

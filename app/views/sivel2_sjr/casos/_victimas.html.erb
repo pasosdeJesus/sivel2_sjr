@@ -6,10 +6,13 @@
 <% end %>
 
 <div class="links">
-  <%= link_to_add_association 'Añadir Integrante', f, :victima, 
-    { partial: 'victima_campos',
-      class: 'btn-primary',
-      "data-ajax" => "/victimas/nuevo", 
-      "data-ajaxdata" => "caso_id" 
+  <%= link_to_add_association 'Añadir Integrante', f, :victima, { 
+    partial: 'victima_campos',
+    class: 'btn-primary',
+    "data-ajax" => File.join(
+      Rails.configuration.relative_url_root,
+      "victimas/nuevo"
+    ), 
+    "data-ajaxdata" => "caso_id" 
   } %>
 </div>

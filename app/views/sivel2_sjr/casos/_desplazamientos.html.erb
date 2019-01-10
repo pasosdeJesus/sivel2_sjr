@@ -2,9 +2,12 @@
   <%= render 'desplazamiento_fields', f: desplazamiento %>
 <% end %>
 <div class="links">
-  <%= link_to_add_association 'Añadir Desplazamiento', f, 
-    :desplazamiento, {class: 'btn-primary',
-      "data-ajax" => "/desplazamientos/nuevo", 
-      "data-ajaxdata" => "caso_id" }
-    %>
+  <%= link_to_add_association 'Añadir Desplazamiento', f, :desplazamiento, {
+    class: 'btn-primary',
+    "data-ajax" => File.join(
+      Rails.configuration.relative_url_root,
+      "desplazamientos/nuevo"
+    ), 
+    "data-ajaxdata" => "caso_id" }
+  %>
   </div>
