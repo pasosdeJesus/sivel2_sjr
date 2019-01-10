@@ -13,11 +13,11 @@ module Sivel2Sjr
           @current_usuario = nil
           attr_accessor :current_usuario
 
-          has_many :oficina_proyectofinanciero, dependent: :delete_all,
-            class_name: 'Sivel2Sjr::OficinaProyectofinanciero',
-            foreign_key: 'proyectofinanciero_id'
-          has_many :oficina, through: :oficina_proyectofinanciero,
-            class_name: 'Sip::Oficina'
+          has_and_belongs_to_many :oficina, 
+            class_name: 'Sip::Oficina',
+            foreign_key: 'proyectofinanciero_id',
+            association_foreign_key: "oficina_id",
+            join_table: 'sivel2_sjr_oficina_proyectofinanciero'
 
           scope :filtro_oficina_ids, lambda { |o|
             joins(:oficina_proyectofinanciero).

@@ -39,6 +39,7 @@ module Sivel2Sjr
                   "unlock_token",
                   "locked_at"
                 ]
+            r
           end
 
           private

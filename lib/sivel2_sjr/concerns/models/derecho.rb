@@ -9,35 +9,36 @@ module Sivel2Sjr
         include Sip::Basica
         included do
   
-          has_many :derecho_respuesta, class_name: "Sivel2Sjr::DerechoRespuesta", 
-            foreign_key: "id_derecho", validate: true, dependent: :delete_all
-          has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
-            :through => :derecho_respuesta
-          #  	has_many :derecho_procesosjr, class_name: "Sivel2Sjr::DerechoProcesosjr", 
-          #      foreign_key: "id_derecho", validate: true
+          has_and_belongs_to_many :respuesta, 
+            class_name: "Sivel2Sjr::Respuesta", 
+            foreign_key: "id_derecho", 
+            validate: true,
+            association_foreign_key: "id_respuesta",
+            join_table: 'sivel2_sjr_derecho_respuesta' 
 
-          has_many :ayudaestado_derecho, 
-            class_name: "Sivel2Sjr::AyudaestadoDerecho",  
-            foreign_key: "derecho_id", dependent: :delete_all
-          has_many :ayudaestado, class_name: "Sivel2Sjr::Ayudaestado", 
-            :through => :ayudaestado_derecho
+          has_and_belongs_to_many :ayudaestado, 
+            class_name: "Sivel2Sjr::Ayudaestado", 
+            foreign_key: "derecho_id",
+            association_foreign_key: "ayudaestado_id",
+            join_table: 'sivel2_sjr_ayudaestado_derecho' 
 
-          has_many :ayudasjr_derecho, class_name: "Sivel2Sjr::AyudasjrDerecho",  
-            foreign_key: "derecho_id", dependent: :delete_all
-          has_many :ayudasjr, class_name: "Sivel2Sjr::Ayudasjr", 
-            :through => :ayudasjr_derecho
+          has_and_belongs_to_many :ayudasjr, 
+            class_name: "Sivel2Sjr::Ayudasjr", 
+            foreign_key: "derecho_id",
+            association_foreign_key: "ayudasjr_id",
+            join_table: 'sivel2_sjr_ayudasjr_derecho' 
 
-          has_many :motivosjr_derecho, 
-            class_name: "Sivel2Sjr::MotivosjrDerecho",  
-            foreign_key: "derecho_id", dependent: :delete_all
-          has_many :motivosjr, class_name: "Sivel2Sjr::Motivosjr", 
-            :through => :motivosjr_derecho
+          has_and_belongs_to_many :motivosjr, 
+            class_name: "Sivel2Sjr::Motivosjr", 
+            foreign_key: "derecho_id",
+            association_foreign_key: "motivosjr_id",
+            join_table: 'sivel2_sjr_motivosjr_derecho' 
 
-          has_many :progestado_derecho, 
-            class_name: "Sivel2Sjr::ProgestadoDerecho",  
-            foreign_key: "derecho_id", dependent: :delete_all
-          has_many :progestado, class_name: "Sivel2Sjr::Progestado", 
-            :through => :progestado_derecho
+          has_and_belongs_to_many :progestado, 
+            class_name: "Sivel2Sjr::Progestado", 
+            foreign_key: "derecho_id",
+            association_foreign_key: "progestado_id",
+            join_table: 'sivel2_sjr_progestado_derecho' 
 
         end
 
