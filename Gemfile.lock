@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 2c86271e69ae1492c86762a900f762b540f9119d
+  revision: a7bbb26eae4304ab16490a368196078296372649
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 204f6e6f82355d6c983ff8229619d5d4be11196d
+  revision: d000c8b0d85dbb6db25c05f76bfbc70daf22c1f3
   specs:
     mr519_gen (0.1.0)
       rails (~> 5.2.2, >= 5.2.2)
@@ -169,7 +169,7 @@ GEM
     ffi (1.10.0)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
-    globalid (0.4.1)
+    globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.5.1)
       concurrent-ruby (~> 1.0)

@@ -1022,6 +1022,16 @@ ALTER SEQUENCE public.cor1440_gen_asistencia_id_seq OWNED BY public.cor1440_gen_
 
 
 --
+-- Name: cor1440_gen_beneficiariopf; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cor1440_gen_beneficiariopf (
+    persona_id integer,
+    proyectofinanciero_id integer
+);
+
+
+--
 -- Name: cor1440_gen_campoact; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1115,6 +1125,16 @@ CREATE SEQUENCE public.cor1440_gen_caracterizacionpersona_id_seq
 --
 
 ALTER SEQUENCE public.cor1440_gen_caracterizacionpersona_id_seq OWNED BY public.cor1440_gen_caracterizacionpersona.id;
+
+
+--
+-- Name: cor1440_gen_caracterizacionpf; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cor1440_gen_caracterizacionpf (
+    formulario_id integer,
+    proyectofinanciero_id integer
+);
 
 
 --
@@ -7202,6 +7222,14 @@ ALTER TABLE ONLY public.mr519_gen_encuestausuario
 
 
 --
+-- Name: cor1440_gen_caracterizacionpf fk_rails_1d1caee38f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_caracterizacionpf
+    ADD CONSTRAINT fk_rails_1d1caee38f FOREIGN KEY (formulario_id) REFERENCES public.mr519_gen_formulario(id);
+
+
+--
 -- Name: heb412_gen_campohc fk_rails_1e5f26c999; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7343,6 +7371,14 @@ ALTER TABLE ONLY public.cor1440_gen_indicadorpf
 
 ALTER TABLE ONLY public.cor1440_gen_valorcampotind
     ADD CONSTRAINT fk_rails_4f2fc96457 FOREIGN KEY (campotind_id) REFERENCES public.cor1440_gen_campotind(id);
+
+
+--
+-- Name: cor1440_gen_caracterizacionpf fk_rails_4fcf0ffb4f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_caracterizacionpf
+    ADD CONSTRAINT fk_rails_4fcf0ffb4f FOREIGN KEY (proyectofinanciero_id) REFERENCES public.cor1440_gen_proyectofinanciero(id);
 
 
 --
@@ -7522,6 +7558,14 @@ ALTER TABLE ONLY public.cor1440_gen_actividad_proyectofinanciero
 
 
 --
+-- Name: cor1440_gen_beneficiariopf fk_rails_ac70e973ee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_beneficiariopf
+    ADD CONSTRAINT fk_rails_ac70e973ee FOREIGN KEY (proyectofinanciero_id) REFERENCES public.cor1440_gen_proyectofinanciero(id);
+
+
+--
 -- Name: sivel2_gen_combatiente fk_rails_af43e915a6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7663,6 +7707,14 @@ ALTER TABLE ONLY public.cor1440_gen_valorcampoact
 
 ALTER TABLE ONLY public.sivel2_sjr_ayudasjr_derecho
     ADD CONSTRAINT fk_rails_e645a3e73c FOREIGN KEY (ayudasjr_id) REFERENCES public.sivel2_sjr_ayudasjr(id);
+
+
+--
+-- Name: cor1440_gen_beneficiariopf fk_rails_e6ba73556e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_beneficiariopf
+    ADD CONSTRAINT fk_rails_e6ba73556e FOREIGN KEY (persona_id) REFERENCES public.sip_persona(id);
 
 
 --
@@ -8502,6 +8554,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181227210510'),
 ('20181228014507'),
 ('20190109125417'),
-('20190110191802');
+('20190110191802'),
+('20190111092816'),
+('20190111102201');
 
 
