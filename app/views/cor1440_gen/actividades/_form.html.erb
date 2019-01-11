@@ -65,7 +65,7 @@
       </label>
     </div>
     <div class='col-sm-4'>
-      <%= render partial: 'campo_proyectosfinancieros',
+      <%= render partial: 'campo_proyectofinanciero',
         locals: {f: f, con_label: false} %>
     </div>
     <div class='col-sm-2'>
@@ -115,6 +115,9 @@
     locals: {f: f} %>
 
   <%= render partial: 'cor1440_gen/actividades/campo_valorcampoact', 
+    locals: {f: f} %>
+
+  <%= render partial: 'cor1440_gen/actividades/campo_actorsocial', 
     locals: {f: f} %>
 
   <%= render partial: 'cor1440_gen/actividades/campo_listadoasistencia', 

@@ -95,6 +95,11 @@ gem 'sip', git: "https://github.com/pasosdeJesus/sip.git"
 gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git"
 #gem 'heb412_gen', path: '../heb412_gen'
 
+# Motor de formularios
+gem 'mr519_gen', git: "https://github.com/pasosdeJesus/mr519_gen.git"
+#gem 'mr519_gen', path: '../mr519_gen'
+
+
 # Motor de SIVeL 2
 gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git"
 #gem 'sivel2_gen', path: '../sivel2_gen'
