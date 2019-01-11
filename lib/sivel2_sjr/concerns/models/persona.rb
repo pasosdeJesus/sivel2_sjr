@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 require 'sivel2_gen/concerns/models/persona'
+require 'cor1440_gen/concerns/models/persona'
 
 module Sivel2Sjr
   module Concerns
@@ -10,6 +11,7 @@ module Sivel2Sjr
 
         included do
           include Sivel2Gen::Concerns::Models::Persona
+          include Cor1440Gen::Concerns::Models::Persona
 
           has_many :casosjr, class_name: 'Sivel2Sjr::Casosjr',
             foreign_key: "contacto"
