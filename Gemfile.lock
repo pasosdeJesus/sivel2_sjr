@@ -1,11 +1,12 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: b3988d5399b21557b39221e6aa8fc2390d227e66
+  revision: 261872757b77bb3f9cef458e2b901253b033864a
   specs:
     cor1440_gen (1.0b2)
       devise
       heb412_gen
       jquery-rails
+      mr519_gen
       paperclip
       rails
       sip
@@ -31,7 +32,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 517bbd4d0da6a07db7eadd23fc6be44c0accad7c
+  revision: dd5fc92abd3ef16d4db7e8edbacfa4c57e538bb7
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
