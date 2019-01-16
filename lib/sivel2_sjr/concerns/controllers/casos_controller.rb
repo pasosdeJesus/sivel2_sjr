@@ -203,12 +203,16 @@ module Sivel2Sjr
             []
           end
 
+          def otros_params_victima
+            []
+          end
+
+
           def otros_params_respuesta
             []
           end
 
-          # Never trust parameters from the scary internet, only allow the white list through.
-          def caso_params
+          def lista_params
             lp = [
               :bienes, 
               :duracion, 
@@ -279,7 +283,8 @@ module Sivel2Sjr
                 :id_rangoedad, 
                 :id_vinculoestado, 
                 :orientacionsexual, 
-                :_destroy, 
+                :_destroy 
+              ] + otros_params_victima + [
                 :persona_attributes => [
                   :apellidos, 
                   :anionac, 
@@ -455,8 +460,13 @@ module Sivel2Sjr
                 :observaciones, 
                 :_destroy
               ]
-            ] 
-            lp = lp + otros_params
+           ] 
+            lp
+          end
+ 
+          # Never trust parameters from the scary internet, only allow the white list through.
+          def caso_params
+            lp = lista_params + otros_params
             params.require(:caso).permit(lp)
           end
 
