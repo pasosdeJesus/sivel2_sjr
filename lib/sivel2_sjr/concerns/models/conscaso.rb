@@ -116,13 +116,12 @@ module Sivel2Sjr
         sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
         AND victima.id_caso=caso.id), ', ')
         AS victimas
-        FROM sivel2_sjr_casosjr AS casosjr, sivel2_gen_caso AS caso, 
-          sip_oficina AS oficina, usuario, 
-          sivel2_sjr_statusmigratorio AS statusmigratorio
-        WHERE casosjr.id_caso = caso.id
-          AND oficina.id=casosjr.oficina_id
-          AND usuario.id = casosjr.asesor
-          AND statusmigratorio.id = casosjr.id_statusmigratorio"
+        FROM sivel2_sjr_casosjr AS casosjr
+        JOIN sivel2_gen_caso AS caso ON casosjr.id_caso = caso.id
+        JOIN sip_oficina AS oficina ON oficina.id=casosjr.oficina_id
+        JOIN usuario ON usuario.id = casosjr.asesor
+        LEFT JOIN sivel2_sjr_statusmigratorio AS statusmigratorio ON
+          statusmigratorio.id = casosjr.id_statusmigratorio"
               )
               ActiveRecord::Base.connection.execute(
                 "CREATE MATERIALIZED VIEW sivel2_gen_conscaso 
