@@ -20,7 +20,7 @@ es:
       "sivel2_gen/presponsable":
         presponsable: agente de persecución
       "sivel2_gen/victima":
-        edad: Edad en Desp. Emblemático
+        edad: Edad en fecha de salida
       "sivel2_sjr/acto":
         presponsable: Agente de persecución
       "sivel2_sjr/aslegal":
@@ -43,11 +43,12 @@ es:
         direccion: Dirección actual
         fecharec: Fecha de recepción
         proteccion: Necesidad de protección internacional
+        Refugio: Refugio
         regionsjr: Oficina
         statusmigratorio: Estatus migratorio
         telefono: Teléfono
+        Ubicacion: Sitios geográficos
         usuario: Asesor SJR
-        Refugio: Refugio
       "sivel2_sjr/comosupo":
         Comosupo: Como supo del SJR
         Comosupos: Como supo del SJR

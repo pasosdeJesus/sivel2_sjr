@@ -60,7 +60,7 @@
   }
 %>
 
-<%= render 'refugio_campos_i1', s: s %>
+<%= render partial: 'refugio_campos_i1', locals: {s: s, f: f} %>
 
 <%= s.association :proteccion,
   collection: Sivel2Sjr::Proteccion.habilitados,

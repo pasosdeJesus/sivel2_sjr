@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 3ad0acb65a4d34a4bb35a899206024bdd4eabf37
+  revision: b7ab050c7f20e6b030d74432b64f67209e8bd441
   specs:
     sivel2_gen (2.0b8)
       devise
@@ -222,7 +222,7 @@ GEM
       minitest-capybara (~> 0.8)
       minitest-metadata (~> 0.6)
       minitest-rails (~> 3.0)
-    minitest-reporters (1.3.5)
+    minitest-reporters (1.3.6)
       ansi
       builder
       minitest (>= 5.0)

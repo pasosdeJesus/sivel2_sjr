@@ -151,7 +151,6 @@ module Sivel2Sjr
               end
               @caso.current_usuario = current_usuario
               if @caso.update(caso_params)
-                Sivel2Gen::Conscaso.refresca_conscaso
                 format.html { redirect_to @caso, notice: 'Caso actualizado.' }
                 format.json { head :no_content }
                 format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
@@ -160,6 +159,7 @@ module Sivel2Sjr
                 format.json { render json: @caso.errors, status: :unprocessable_entity }
                 format.js   { render action: 'edit' }
               end
+              Sivel2Gen::Conscaso.refresca_conscaso
             end
           end
 
@@ -206,7 +206,6 @@ module Sivel2Sjr
           def otros_params_respuesta
             []
           end
-
 
           # Never trust parameters from the scary internet, only allow the white list through.
           def caso_params
