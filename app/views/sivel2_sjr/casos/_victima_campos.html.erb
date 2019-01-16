@@ -18,7 +18,11 @@
     <% end %>
 
       <%= victimasjr.input :fechadesagregacion, 
-        input_html: { "data-behaviour" => "datepicker" },
+        input_html: { 
+          "data-behaviour" => "datepicker",
+          "data-toggle" => 'tooltip',
+          title: 'Sólo se llena si la persona sale del grupo familiar y se registra la fecha en la que salió del grupo familiar (sin eliminar a la persona del grupo familiar que queda como información histórica)'
+        },
         as: :string, 
         label: "Fecha de Desagregación" 
       %>
