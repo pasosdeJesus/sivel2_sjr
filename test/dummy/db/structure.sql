@@ -3142,12 +3142,11 @@ CREATE VIEW public.sivel2_gen_conscaso1 AS
            FROM public.sip_persona persona,
             public.sivel2_gen_victima victima
           WHERE ((persona.id = victima.id_persona) AND (victima.id_caso = caso.id))), ', '::text) AS victimas
-   FROM public.sivel2_sjr_casosjr casosjr,
-    public.sivel2_gen_caso caso,
-    public.sip_oficina oficina,
-    public.usuario,
-    public.sivel2_sjr_statusmigratorio statusmigratorio
-  WHERE ((casosjr.id_caso = caso.id) AND (oficina.id = casosjr.oficina_id) AND (usuario.id = casosjr.asesor) AND (statusmigratorio.id = casosjr.id_statusmigratorio));
+   FROM ((((public.sivel2_sjr_casosjr casosjr
+     JOIN public.sivel2_gen_caso caso ON ((casosjr.id_caso = caso.id)))
+     JOIN public.sip_oficina oficina ON ((oficina.id = casosjr.oficina_id)))
+     JOIN public.usuario ON ((usuario.id = casosjr.asesor)))
+     LEFT JOIN public.sivel2_sjr_statusmigratorio statusmigratorio ON ((statusmigratorio.id = casosjr.id_statusmigratorio)));
 
 
 --
@@ -8556,6 +8555,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190109125417'),
 ('20190110191802'),
 ('20190111092816'),
-('20190111102201');
+('20190111102201'),
+('20190116133230');
 
 
