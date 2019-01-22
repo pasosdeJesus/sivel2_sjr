@@ -56,7 +56,8 @@ module Sivel2Sjr
               where(vista: 'Caso').select('nombremenu, id').map { 
               |c| [c.nombremenu, c.id] 
             }
-            if current_usuario.rol == ::Ability::ROLINV
+            if defined?(::Ability::ROLINV) && 
+                current_usuario.rol == ::Ability::ROLINV
               m = current_usuario.etiqueta.map(&:id)
               if m == []
                 @conscaso = @conscaso.where(FALSE)
