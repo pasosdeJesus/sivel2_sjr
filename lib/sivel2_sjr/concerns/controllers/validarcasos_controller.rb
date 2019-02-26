@@ -69,7 +69,7 @@ module Sivel2Sjr
             validacion_estandar(
               casos, 
               'Casos con contacto NULL', 
-              "contacto IS NULL")
+              "contacto_id IS NULL")
           end
 
 
@@ -78,10 +78,10 @@ module Sivel2Sjr
             casos = casos.
               joins(
                 'INNER JOIN sip_persona
-                 ON sip_persona.id=sivel2_sjr_casosjr.contacto')
+                 ON sip_persona.id=sivel2_sjr_casosjr.contacto_id')
 #              joins(
 #                'INNER JOIN sivel2_gen_victima
-#                 ON sivel2_gen_victima.id_persona=sivel2_sjr_casosjr.contacto').
+#                 ON sivel2_gen_victima.id_persona=sivel2_sjr_casosjr.contacto_id').
             validacion_estandar(
               casos, 
               'Casos con contacto de nombre muy corto', 
@@ -143,7 +143,7 @@ module Sivel2Sjr
             casos = casos.
               joins(
                 'INNER JOIN sip_persona
-                 ON sip_persona.id=sivel2_sjr_casosjr.contacto').
+                 ON sip_persona.id=sivel2_sjr_casosjr.contacto_id').
               joins(
                 'INNER JOIN sivel2_gen_victima
                  ON sivel2_gen_victima.id_persona=sip_persona.id')

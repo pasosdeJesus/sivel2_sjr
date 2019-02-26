@@ -48,7 +48,7 @@ module Sivel2Sjr
 #        AS SELECT casosjr.id_caso as caso_id, 
 #        ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
 #          FROM sip_persona AS persona
-#          WHERE persona.id=casosjr.contacto), ', ')
+#          WHERE persona.id=casosjr.contacto_id), ', ')
 #          AS contacto_nombre, 
 #        casosjr.fecharec,
 #        oficina.nombre AS oficina_nombre,

@@ -38,14 +38,14 @@ module Sivel2Sjr
 
           scope :filtro_nombressp, lambda { |a|
             joins(:casosjr).joins(:persona).
-              where('sivel2_sjr_casosjr.contacto = sip_persona.id ' +
+              where('sivel2_sjr_casosjr.contacto_id = sip_persona.id ' +
                     'AND sip_persona.nombres ILIKE \'%' +
                     ActiveRecord::Base.connection.quote_string(a) + '%\'')
           }
 
           scope :filtro_apellidossp, lambda { |a|
               joins(:casosjr).joins(:persona).
-              where('sivel2_sjr_casosjr.contacto = sip_persona.id ' +
+              where('sivel2_sjr_casosjr.contacto_id = sip_persona.id ' +
                     'AND sip_persona.apellidos ILIKE \'%' +
                     ActiveRecord::Base.connection.quote_string(a) + '%\'')
           }
@@ -98,7 +98,7 @@ module Sivel2Sjr
         AS SELECT casosjr.id_caso as caso_id, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
           FROM sip_persona AS persona
-          WHERE persona.id=casosjr.contacto), ', ')
+          WHERE persona.id=casosjr.contacto_id), ', ')
           AS contacto,
         casosjr.fecharec,
         oficina.nombre AS oficina,

@@ -191,9 +191,9 @@ module Sivel2Sjr
             # Validaciones todo caso es casosjr y viceversa
 
             que1 = 'caso.id AS id_caso, victima.id_persona AS id_persona,
-            CASE WHEN (casosjr.contacto=victima.id_persona) THEN 1 ELSE 0 END 
+            CASE WHEN (casosjr.contacto_id=victima.id_persona) THEN 1 ELSE 0 END 
             AS contacto, 
-            CASE WHEN (casosjr.contacto<>victima.id_persona) THEN 1 ELSE 0 END
+            CASE WHEN (casosjr.contacto_id<>victima.id_persona) THEN 1 ELSE 0 END
             AS beneficiario, 
             1 as npersona'
             tablas1 = 'sivel2_gen_caso AS caso, ' +

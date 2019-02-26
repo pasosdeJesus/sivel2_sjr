@@ -14,7 +14,7 @@ module Sivel2Sjr
           include Cor1440Gen::Concerns::Models::Persona
 
           has_many :casosjr, class_name: 'Sivel2Sjr::Casosjr',
-            foreign_key: "contacto"
+            foreign_key: "contacto_id"
 
           belongs_to :nacional, class_name: "Sip::Pais", 
             foreign_key: "nacionalde", validate: true

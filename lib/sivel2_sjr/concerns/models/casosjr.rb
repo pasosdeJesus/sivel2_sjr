@@ -17,7 +17,7 @@ module Sivel2Sjr
           belongs_to :comosupo, class_name: "Sivel2Sjr::Comosupo", 
             foreign_key: "comosupo_id", validate: true
           belongs_to :contacto, class_name: "Sip::Persona",  
-            foreign_key: "contacto", validate: true
+            foreign_key: "contacto_id"#, validate: true
           belongs_to :caso, class_name: "Sivel2Gen::Caso", validate: true,
             foreign_key: "id_caso", inverse_of: :casosjr
           belongs_to :categoria, class_name: "Sivel2Gen::Categoria", 
