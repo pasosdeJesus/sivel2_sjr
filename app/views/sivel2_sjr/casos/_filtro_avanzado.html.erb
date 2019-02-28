@@ -416,5 +416,31 @@
         %>
       </div>
     </div>
+    <% if @plantillas %>
+      <div class="row filtro-fila">
+        <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+          Generar Plantilla
+        </div>
+        <div class="col-sm-offset-1 col-sm-4">
+          <%= f.input :disgenera,
+            collection: @plantillas,
+            label: false,
+            include_blank: false
+          %>
+        </div>
+        <div class="col-sm-2">
+          <%= link_to t('Generar'), 
+            '#',
+            class: 'btn', 
+            target: '_blank', 
+            "data-turbolinks" => 'false',
+            onclick: 'heb412_gen_completa_generarp(this, \'#filtro_disgenera\',
+            \'/casos/filtro\', \'casos\')' %>
+
+        </div>
+        <div class="col-sm-3">
+        </div>
+      </div> <!-- row -->
+    <% end %> 
   <!--% end %-->
 </div>
