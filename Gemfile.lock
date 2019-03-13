@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 1c0c28dda69d06a74a9ade798d7a0805d1eafc24
+  revision: bdb076c5eaaacb28fb38854fc8fe4fe27ce10664
   specs:
     cor1440_gen (1.0b2)
       devise
@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 119aba9f0abb63b63a1560e405e62e3bceb660d0
+  revision: 0257a344d4e8e3126fe3194d885bacfa6370c30d
   specs:
     heb412_gen (1.0.a1)
       chosen-rails
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 9c44d33cbdbd6459e26618af4ed7895b90a6dd02
+  revision: 0ec10948c0f6680570c878ba479b54fe43cc4f25
   specs:
     mr519_gen (0.1.0)
       rails (~> 5.2.2, >= 5.2.2)
@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: d79bc2c4c779ae8c79f77b5f0bbaa08e74c0caa3
+  revision: affa3af5640483bef360de691e7ff5851946a655
   specs:
     sip (2.0.b5)
       bootstrap-datepicker-rails
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: d74cf7aeae6eaaf7ec565320f2e6460c92296275
+  revision: 43860d91e9a3ed8ef5bd6b65a67c11afde74a4fd
   specs:
     sivel2_gen (2.0b8)
       devise
@@ -152,7 +152,7 @@ GEM
     coffee-script-source (1.12.2)
     colorize (0.8.1)
     commonjs (0.2.7)
-    concurrent-ruby (1.1.4)
+    concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
     crass (1.0.4)
     devise (4.6.1)
@@ -227,7 +227,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    msgpack (1.2.7)
+    msgpack (1.2.9)
     multi_json (1.13.1)
     nio4r (2.3.1)
     nokogiri (1.10.1)
