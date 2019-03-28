@@ -99,30 +99,13 @@ module Sivel2Sjr
             end
           end
 
-
-          # Busca y lista persona(s)
-          def remplazar
-            @persona = Sip::Persona.find(params[:id_persona].to_i)
-            #@persona.current_usuario = current_usuario
-            @victima = Sivel2Gen::Victima.find(params[:id_victima].to_i)
-            personaant = @victima.persona
-            @caso = @victima.caso
-            @caso.current_usuario = current_usuario
-            @victima.persona = @persona
-            @victima.save!
-            if @caso.casosjr.contacto.id == personaant.id
+          def remplazar_despues_salvar_v
+            if @caso.casosjr.contacto.id == @personaant.id
               @caso.casosjr.contacto = @persona
               @caso.casosjr.save
               if @caso.validate
                 @caso.save
               end
-            end
-            if (personaant.nombres == 'N' && personaant.apellidos == 'N') ||
-                (personaant.nombres == '' && personaant.apellidos == '')
-              personaant.destroy
-            end
-            respond_to do |format|
-              format.html { render('remplazar', layout: false) }
             end
           end
 

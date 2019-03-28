@@ -1,8 +1,8 @@
-<%= f.simple_fields_for :victima do |victima| %>
-  <% if !victima.object.persona.nil? && 
-       victima.object.persona.id != @caso.casosjr.contacto.id %>
+<%= f.simple_fields_for :victima, Sivel2Gen::Victima.
+  where(id_caso: @caso.id).
+  where('id_persona <> ?', @caso.casosjr.contacto.id).
+  order(:id) do |victima| %>
     <%= render 'victima_campos', f: victima %>
-  <% end %>
 <% end %>
 
 <div class="links">
