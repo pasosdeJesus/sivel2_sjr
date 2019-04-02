@@ -41,8 +41,8 @@ module Sivel2Sjr
 
             # Para la vista personas_cons1 emplear que1, tablas1 y where1
             que1 = 'caso.id AS id_caso, respuesta.fechaatencion AS fechaatencion'
-            tablas1 = 'sivel2_gen_caso AS caso, sivel2_sjr_casosjr AS casosjr, ' +
-              'sivel2_sjr_respuesta AS respuesta'
+            tablas1 = 'public.sivel2_gen_caso AS caso, public.sivel2_sjr_casosjr AS casosjr, ' +
+              'public.sivel2_sjr_respuesta AS respuesta'
             where1 = ''
 
             # Para la consulta final emplear arreglo que3, que tendrá parejas
@@ -84,8 +84,8 @@ module Sivel2Sjr
               )
               #where1 = consulta_and_sinap( where1, "respuesta.fechaatencion", 
               #"#{trel}.fechaatencion")
-              tablas1 = agrega_tabla(tablas1, "sivel2_sjr_#{trel} AS #{trel}")
-              tablas3 = agrega_tabla(tablas3, "sivel2_sjr_#{pContar} AS #{pContar}")
+              tablas1 = agrega_tabla(tablas1, "public.sivel2_sjr_#{trel} AS #{trel}")
+              tablas3 = agrega_tabla(tablas3, "public.sivel2_sjr_#{pContar} AS #{pContar}")
               where3 = consulta_and_sinap(where3, idrel, "#{pContar}.id")
               que3 << ["#{pContar}.nombre", @pque[pContar]]
             when 'remision'
@@ -196,9 +196,9 @@ module Sivel2Sjr
             CASE WHEN (casosjr.contacto_id<>victima.id_persona) THEN 1 ELSE 0 END
             AS beneficiario, 
             1 as npersona'
-            tablas1 = 'sivel2_gen_caso AS caso, ' +
-              'sivel2_sjr_casosjr AS casosjr, ' +
-              'sivel2_gen_victima AS victima'
+            tablas1 = 'public.sivel2_gen_caso AS caso, ' +
+              'public.sivel2_sjr_casosjr AS casosjr, ' +
+              'public.sivel2_gen_victima AS victima'
 
             # Para la consulta final emplear arreglo que3, que tendrá parejas
             # (campo, titulo por presentar en tabla)
@@ -221,11 +221,11 @@ module Sivel2Sjr
               que1 = agrega_tabla(
                 que1, "victimasjr.id_#{tabla} AS id_#{tabla}")
               tablas1 = agrega_tabla(
-                tablas1, 'sivel2_sjr_victimasjr AS victimasjr')
+                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
               where1 = consulta_and_sinap(
                 where1, "victima.id", "victimasjr.id_victima")
               tablas3 = agrega_tabla(
-                tablas3, "sivel2_gen_#{tabla} AS #{tabla}")
+                tablas3, "public.sivel2_gen_#{tabla} AS #{tabla}")
               where3 = consulta_and_sinap(
                 where3, "id_#{tabla}", "#{tabla}.id")
               que3 << ["#{tabla}.nombre", nomtabla]
@@ -239,7 +239,7 @@ module Sivel2Sjr
             when 'ACTIVIDAD / OFICIO'
               que1, tablas1, where1, que3, tablas3, where3 = 
                 personas_segun_tipico_sjr(
-                  'actividadoficio', 'Actividad/Oficio', que1, tablas1, where1, 
+                  'public.actividadoficio', 'Actividad/Oficio', que1, tablas1, where1, 
                   que3, tablas3, where3
               )
             when 'CABEZA DE HOGAR'
@@ -250,7 +250,7 @@ module Sivel2Sjr
                   'NO'
                 END AS cabezafamilia")
               tablas1 = agrega_tabla(
-                tablas1, 'sivel2_sjr_victimasjr AS victimasjr')
+                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
               where1 = consulta_and_sinap(
                 where1, "victima.id", "victimasjr.id_victima")
               que3 << ["cabezafamilia", "Cabeza de Hogar"]
@@ -258,7 +258,7 @@ module Sivel2Sjr
             when 'ESTADO CIVIL'
               que1, tablas1, where1, que3, tablas3, where3 = 
                 personas_segun_tipico_sjr(
-                  'estadocivil', 'Estado Civil', que1, tablas1, where1,
+                  'public.estadocivil', 'Estado Civil', que1, tablas1, where1,
                   que3, tablas3, where3
               )
 
@@ -272,7 +272,7 @@ module Sivel2Sjr
             when 'NIVEL ESCOLAR'
               que1, tablas1, where1, que3, tablas3, where3 = 
                 personas_segun_tipico_sjr(
-                  'escolaridad', 'Nivel Escolar', que1, tablas1, where1,
+                  'public.escolaridad', 'Nivel Escolar', que1, tablas1, where1,
                   que3, tablas3, where3
               )
 
@@ -280,11 +280,11 @@ module Sivel2Sjr
               que1 = agrega_tabla(
                 que1, 'victimasjr.id_regimensalud AS id_regimensalud')
               tablas1 = agrega_tabla(
-                tablas1, 'sivel2_sjr_victimasjr AS victimasjr')
+                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
               where1 = consulta_and_sinap(
                 where1, "victima.id", "victimasjr.id_victima")
               tablas3 = agrega_tabla(
-                tablas3, 'sivel2_sjr_regimensalud AS regimensalud')
+                tablas3, 'public.sivel2_sjr_regimensalud AS regimensalud')
               where3 = consulta_and_sinap(
                 where3, "id_regimensalud", "regimensalud.id")
               que3 << ["regimensalud.nombre", "Régimen de Salud"]
@@ -306,9 +306,9 @@ module Sivel2Sjr
               "CREATE OR REPLACE VIEW  ultimodesplazamiento AS 
             (SELECT sivel2_sjr_desplazamiento.id, s.id_caso, s.fechaexpulsion, 
               sivel2_sjr_desplazamiento.id_expulsion 
-              FROM sivel2_sjr_desplazamiento, 
+              FROM public.sivel2_sjr_desplazamiento, 
               (SELECT  id_caso, MAX(sivel2_sjr_desplazamiento.fechaexpulsion) 
-               AS fechaexpulsion FROM sivel2_sjr_desplazamiento  GROUP BY 1) 
+               AS fechaexpulsion FROM public.sivel2_sjr_desplazamiento  GROUP BY 1) 
                AS s WHERE sivel2_sjr_desplazamiento.id_caso=s.id_caso and 
               sivel2_sjr_desplazamiento.fechaexpulsion=s.fechaexpulsion);")
 
@@ -326,7 +326,7 @@ module Sivel2Sjr
             ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
             ubicacion.id_clase, clase.nombre AS clase_nombre, 
             ultimodesplazamiento.fechaexpulsion FROM
-            #{personas_cons1} LEFT JOIN ultimodesplazamiento ON
+            #{personas_cons1} LEFT JOIN public.ultimodesplazamiento ON
             (#{personas_cons1}.id_caso = ultimodesplazamiento.id_caso)
             LEFT JOIN sip_ubicacion AS ubicacion ON 
               (ultimodesplazamiento.id_expulsion = ubicacion.id) 

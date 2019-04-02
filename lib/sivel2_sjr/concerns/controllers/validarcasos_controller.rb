@@ -49,7 +49,7 @@ module Sivel2Sjr
               eti = params[:validarcaso][:etiqueta_id].to_i
               casos = casos.where(
                 "sivel2_gen_caso.id NOT IN (SELECT id_caso " +
-                "FROM sivel2_gen_caso_etiqueta " +
+                "FROM public.sivel2_gen_caso_etiqueta " +
                 "WHERE id_etiqueta = ?)", eti)
             end
             return casos
@@ -97,7 +97,7 @@ module Sivel2Sjr
               'id_caso NOT IN 
                (SELECT id_caso FROM 
                 (SELECT id_caso, count(id) AS cubi
-                 FROM sip_ubicacion GROUP BY 1) AS nubi 
+                 FROM public.sip_ubicacion GROUP BY 1) AS nubi 
                 WHERE cubi>=2)')
           end
 
@@ -109,7 +109,7 @@ module Sivel2Sjr
               'id_caso NOT IN 
                (SELECT id_caso FROM 
                 (SELECT id_caso, count(id) AS cdes
-                 FROM sivel2_sjr_desplazamiento GROUP BY 1) AS ndesp
+                 FROM public.sivel2_sjr_desplazamiento GROUP BY 1) AS ndesp
                 WHERE cdes>0)
                AND sivel2_sjr_casosjr.id_salida IS NULL
                AND sivel2_sjr_casosjr.id_llegada IS NULL
@@ -164,9 +164,9 @@ module Sivel2Sjr
               casos, 
               'Casos con respuesta pero sin ayuda/asesoria del SJR',
               'sivel2_sjr_respuesta.id NOT IN 
-               (SELECT id_respuesta FROM sivel2_sjr_ayudasjr_respuesta)
+               (SELECT id_respuesta FROM public.sivel2_sjr_ayudasjr_respuesta)
                AND sivel2_sjr_respuesta.id NOT IN 
-               (SELECT id_respuesta FROM sivel2_sjr_aslegal_respuesta)
+               (SELECT id_respuesta FROM public.sivel2_sjr_aslegal_respuesta)
               '
             )
           end

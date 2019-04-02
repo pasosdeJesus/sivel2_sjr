@@ -64,7 +64,7 @@ module Sivel2Sjr
               else
                 @conscaso = @conscaso.
                   where("caso_id IN (SELECT id_caso FROM 
-                        sivel2_gen_caso_etiqueta WHERE
+                        public.sivel2_gen_caso_etiqueta WHERE
                         sivel2_gen_caso_etiqueta.id_etiqueta IN 
                           (#{m.join(',')}))")
               end

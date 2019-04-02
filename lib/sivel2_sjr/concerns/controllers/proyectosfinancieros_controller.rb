@@ -20,7 +20,7 @@ module Sivel2Sjr
               current_usuario.rol != Ability::ROLDIR
               c = c.where('cor1440_gen_proyectofinanciero.id IN 
               (SELECT proyectofinanciero_id 
-              FROM sivel2_sjr_oficina_proyectofinanciero 
+              FROM public.sivel2_sjr_oficina_proyectofinanciero 
               WHERE oficina_id=?)', current_usuario.oficina_id)
             end
             super(c)

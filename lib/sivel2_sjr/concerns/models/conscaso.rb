@@ -97,7 +97,7 @@ module Sivel2Sjr
                 "CREATE OR REPLACE VIEW sivel2_gen_conscaso1 
         AS SELECT casosjr.id_caso as caso_id, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-          FROM sip_persona AS persona
+          FROM public.sip_persona AS persona
           WHERE persona.id=casosjr.contacto_id), ', ')
           AS contacto,
         casosjr.fecharec,
@@ -106,17 +106,17 @@ module Sivel2Sjr
         caso.fecha AS fecha,
         statusmigratorio.nombre AS statusmigratorio,
         ARRAY_TO_STRING(ARRAY(SELECT fechaatencion 
-          FROM sivel2_sjr_respuesta AS respuesta
+          FROM public.sivel2_sjr_respuesta AS respuesta
           WHERE respuesta.id_caso=casosjr.id_caso 
           ORDER BY fechaatencion DESC LIMIT 1), ', ')
           AS ultimaatencion_fecha,
         caso.memo AS memo,
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-        FROM sip_persona AS persona, 
-        sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
+        FROM public.sip_persona AS persona, 
+        public.sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
         AND victima.id_caso=caso.id), ', ')
         AS victimas
-        FROM sivel2_sjr_casosjr AS casosjr
+        FROM public.sivel2_sjr_casosjr AS casosjr
         JOIN sivel2_gen_caso AS caso ON casosjr.id_caso = caso.id
         JOIN sip_oficina AS oficina ON oficina.id=casosjr.oficina_id
         JOIN usuario ON usuario.id = casosjr.asesor
@@ -135,7 +135,7 @@ module Sivel2Sjr
             statusmigratorio || ' ' || 
             replace(cast(ultimaatencion_fecha AS varchar), '-', ' ')
             || ' ' || memo || ' ' || victimas)) as q
-        FROM sivel2_gen_conscaso1"
+        FROM public.sivel2_gen_conscaso1"
               );
               ActiveRecord::Base.connection.execute(
                 "CREATE INDEX busca_conscaso ON sivel2_gen_conscaso USING gin(q);"

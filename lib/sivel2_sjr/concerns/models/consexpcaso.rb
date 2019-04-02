@@ -17,7 +17,7 @@ module Sivel2Sjr
 
           def consulta_consexpcaso 
             "SELECT conscaso.*
-             FROM sivel2_gen_conscaso AS conscaso"
+             FROM public.sivel2_gen_conscaso AS conscaso"
           end
         end # ClassMethods
 

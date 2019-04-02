@@ -86,7 +86,7 @@ module Sivel2Sjr
                 seps = " || ' ' || ";
               end
               qstring = "SELECT TRIM(#{s}) AS value, #{l} AS id 
-        FROM sip_persona AS persona
+        FROM public.sip_persona AS persona
         WHERE #{where} ORDER BY 1";
 
         r = ActiveRecord::Base.connection.select_all qstring
