@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-gem "rails", '~> 5.2.1'
+gem "rails", '~> 6.0.0.rc1'
 
 gem 'bigdecimal'
 
@@ -17,10 +17,11 @@ gem 'puma'
 # Unifica CSSs
 gem "sass"
 
+gem 'webpacker'
+
 gem 'font-awesome-rails' 
 
-gem 'chosen-rails' 
-
+gem 'chosen-rails', git: 'https://github.com/vtamara/chosen-rails.git', branch: 'several-fixes'
 
 # Colores en terminal
 gem "colorize"
@@ -88,24 +89,24 @@ gem 'rubyzip', '~>1.2'
 gem "tzinfo"
 
 # Motor SIP
-gem 'sip', git: "https://github.com/pasosdeJesus/sip.git"
+gem 'sip', git: "https://github.com/pasosdeJesus/sip.git", branch: :rails6
 #gem 'sip', path: '../sip'
 
 # Motor de heb412
-gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git"
+gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git", branch: :rails6
 #gem 'heb412_gen', path: '../heb412_gen'
 
 # Motor de formularios
-gem 'mr519_gen', git: "https://github.com/pasosdeJesus/mr519_gen.git"
+gem 'mr519_gen', git: "https://github.com/pasosdeJesus/mr519_gen.git", branch: :rails6
 #gem 'mr519_gen', path: '../mr519_gen'
 
 
 # Motor de SIVeL 2
-gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git"
+gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git", branch: :rails6
 #gem 'sivel2_gen', path: '../sivel2_gen'
 
 # Motor Cor1440
-gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git"
+gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git", branch: :rails6
 #gem 'cor1440_gen', path: '../cor1440_gen'
 
 # Los siguientes son para desarrollo o para pruebas con generadores
@@ -124,13 +125,9 @@ end
 # Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
 group :test do
   gem 'spring'
-  gem 'rails-controller-testing'
   gem 'launchy'
   gem 'simplecov'
   gem 'selenium-webdriver'
-  gem 'connection_pool'
-  gem 'minitest-reporters'
-  gem 'minitest-rails-capybara'
   gem 'poltergeist'
 end
 
