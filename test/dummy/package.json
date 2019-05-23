@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@rails/webpacker": "^4.0.2"
+  }
+}

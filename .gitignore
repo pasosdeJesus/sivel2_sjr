@@ -31,3 +31,4 @@ tmp/
 herram/
 coverage
 test/dummy/.byebug_history
+test/dummy/node_modules/
