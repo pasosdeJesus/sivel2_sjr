@@ -23,6 +23,7 @@ module Sivel2Sjr
 
           validate :rol_usuario
           def rol_usuario
+            #byebug
             if oficina && (rol == Ability::ROLADMIN ||
                            rol == Ability::ROLINV || 
                            rol == Ability::ROLDIR)
