@@ -198,6 +198,16 @@ module Sivel2Sjr
             sivel2_sjr_destroy
           end
 
+          def set_caso
+            @caso = Sivel2Gen::Caso.find(params[:id].to_i)
+            @caso.current_usuario = current_usuario
+            pcs = Sivel2Sjr::Casosjr.where(id_caso: params[:id].to_i)
+            @casosjr = nil
+            if pcs.count > 0
+              @casosjr = pcs.take
+            end
+          end
+
           private
 
           def otros_params
