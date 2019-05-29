@@ -15,26 +15,26 @@ module Sivel2Sjr
           belongs_to :usuario, class_name: "Usuario", 
             foreign_key: "asesor", validate: true
           belongs_to :comosupo, class_name: "Sivel2Sjr::Comosupo", 
-            foreign_key: "comosupo_id", validate: true
+            foreign_key: "comosupo_id", validate: true, optional: true
           belongs_to :contacto, class_name: "Sip::Persona",  
-            foreign_key: "contacto_id"#, validate: true
+            foreign_key: "contacto_id"
           belongs_to :caso, class_name: "Sivel2Gen::Caso", validate: true,
             foreign_key: "id_caso", inverse_of: :casosjr
           belongs_to :categoria, class_name: "Sivel2Gen::Categoria", 
-            validate: true, foreign_key: "categoriaref"
+            validate: true, foreign_key: "categoriaref", optional: true
           belongs_to :idioma, class_name: "Sivel2Sjr::Idioma", 
-            foreign_key: "id_idioma", validate: true
+            foreign_key: "id_idioma", validate: true, optional: true
           belongs_to :llegada, class_name: "Sip::Ubicacion", validate: true,
-            foreign_key: "id_llegada"
+            foreign_key: "id_llegada", optional: true
           belongs_to :proteccion, class_name: "Sivel2Sjr::Proteccion", 
-            foreign_key: "id_proteccion", validate: true
+            foreign_key: "id_proteccion", validate: true, optional: true
           belongs_to :oficina, class_name: "Sip::Oficina", 
-            foreign_key: "oficina_id", validate: true
+            foreign_key: "oficina_id", validate: true, optional: true
           belongs_to :salida, class_name: "Sip::Ubicacion", validate: true,
-            foreign_key: "id_salida"
+            foreign_key: "id_salida", optional: true
           belongs_to :statusmigratorio, 
             class_name: "Sivel2Sjr::Statusmigratorio", 
-            foreign_key: "id_statusmigratorio", validate: true
+            foreign_key: "id_statusmigratorio", validate: true, optional: true
 
           self.primary_key = :id_caso
 

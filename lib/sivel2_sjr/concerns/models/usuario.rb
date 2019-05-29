@@ -19,7 +19,7 @@ module Sivel2Sjr
             through: :etiqueta_usuario
 
           belongs_to :oficina, foreign_key: "oficina_id", validate: true,
-            class_name: 'Sip::Oficina'
+            class_name: 'Sip::Oficina', optional: true
 
           validate :rol_usuario
           def rol_usuario

@@ -11,29 +11,29 @@ module Sivel2Sjr
             validate: true
 
           belongs_to :expulsion, class_name: "Sip::Ubicacion", 
-            foreign_key: "id_expulsion", validate: true
+            foreign_key: "id_expulsion", validate: true, optional: true
           belongs_to :llegada, class_name: "Sip::Ubicacion", 
-            foreign_key: "id_llegada", validate: true
+            foreign_key: "id_llegada", validate: true, optional: true
           belongs_to :clasifdesp, class_name: "Sivel2Sjr::Clasifdesp", 
-            foreign_key: "id_clasifdesp", validate: true
+            foreign_key: "id_clasifdesp", validate: true, optional: true
           belongs_to :tipodesp, class_name: "Sivel2Sjr::Tipodesp", 
-            foreign_key: "id_tipodesp", validate: true
+            foreign_key: "id_tipodesp", validate: true, optional: true
           belongs_to :declaroante, class_name: "Sivel2Sjr::Declaroante", 
-            foreign_key: "id_declaroante", validate: true
+            foreign_key: "id_declaroante", validate: true, optional: true
           belongs_to :inclusion, class_name: "Sivel2Sjr::Inclusion", 
-            foreign_key: "id_inclusion", validate: true
+            foreign_key: "id_inclusion", validate: true, optional: true
           belongs_to :acreditacion, 
             class_name: "Sivel2Sjr::Acreditacion", 
-            foreign_key: "id_acreditacion", validate: true
+            foreign_key: "id_acreditacion", validate: true, optional: true
           belongs_to :modalidadtierra, 
             class_name: "Sivel2Sjr::Modalidadtierra", 
-            foreign_key: "id_modalidadtierra", validate: true
+            foreign_key: "id_modalidadtierra", validate: true, optional: true
           belongs_to :pais, class_name: "Sip::Pais", 
-            foreign_key: "paisdecl", validate: true
+            foreign_key: "paisdecl", validate: true, optional: true
           belongs_to :departamento, class_name: "Sip::Departamento", 
-            foreign_key: "departamentodecl", validate: true
+            foreign_key: "departamentodecl", validate: true, optional: true
           belongs_to :municipio, class_name: "Sip::Municipio", 
-            foreign_key: "municipiodecl", validate: true
+            foreign_key: "municipiodecl", validate: true, optional: true
           belongs_to :caso, class_name: "Sip::Caso", 
             foreign_key: "id_caso", validate: true
 

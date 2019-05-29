@@ -17,7 +17,7 @@ module Sivel2Sjr
             foreign_key: "contacto_id"
 
           belongs_to :nacional, class_name: "Sip::Pais", 
-            foreign_key: "nacionalde", validate: true
+            foreign_key: "nacionalde", validate: true, optional: true
 
         end
 
