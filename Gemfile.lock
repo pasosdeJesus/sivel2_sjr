@@ -167,6 +167,7 @@ GEM
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.2.0)
     cliver (0.3.2)
+    coderay (1.1.2)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 5.2.0)
@@ -257,6 +258,9 @@ GEM
     prawnto_2 (0.3.0)
       prawn (>= 1.0.0)
       rails (>= 3.2)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.1.0)
     puma (3.12.1)
     rack (2.0.7)
@@ -409,6 +413,7 @@ DEPENDENCIES
   prawn
   prawn-table
   prawnto_2
+  pry
   puma
   rails (~> 6.0.0.rc1)
   rails-i18n

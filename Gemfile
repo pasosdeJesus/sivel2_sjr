@@ -120,6 +120,8 @@ group :development do
   # Consola irb en páginas con excepciones o usando <%= console %> en vistasA
   gem 'web-console'
 
+  gem 'pry'
+
 end
 
 # Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
