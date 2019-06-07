@@ -214,6 +214,10 @@ module Sivel2Sjr
             []
           end
 
+          def otros_params_casosjr
+            []
+          end
+
           def otros_params_victima
             []
           end
@@ -281,7 +285,7 @@ module Sivel2Sjr
                 :sustento, 
                 :telefono, 
                 :_destroy
-              ], 
+              ] + otros_params_casosjr, 
               :victima_attributes => [
                 :anotaciones,
                 :id, 
