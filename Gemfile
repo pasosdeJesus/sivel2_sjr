@@ -89,24 +89,24 @@ gem 'rubyzip', '~>1.2'
 gem "tzinfo"
 
 # Motor SIP
-gem 'sip', git: "https://github.com/pasosdeJesus/sip.git", branch: :rails6
+gem 'sip', git: "https://github.com/pasosdeJesus/sip.git"
 #gem 'sip', path: '../sip'
 
 # Motor de heb412
-gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git", branch: :rails6
+gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git"
 #gem 'heb412_gen', path: '../heb412_gen'
 
 # Motor de formularios
-gem 'mr519_gen', git: "https://github.com/pasosdeJesus/mr519_gen.git", branch: :rails6
+gem 'mr519_gen', git: "https://github.com/pasosdeJesus/mr519_gen.git"
 #gem 'mr519_gen', path: '../mr519_gen'
 
 
 # Motor de SIVeL 2
-gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git", branch: :rails6
+gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git"
 #gem 'sivel2_gen', path: '../sivel2_gen'
 
 # Motor Cor1440
-gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git", branch: :rails6
+gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git"
 #gem 'cor1440_gen', path: '../cor1440_gen'
 
 # Los siguientes son para desarrollo o para pruebas con generadores
@@ -121,7 +121,6 @@ group :development do
   gem 'web-console'
 
   gem 'pry'
-
 end
 
 # Los siguientes son para pruebas y no tiene generadores requeridos en desarrollo
