@@ -14,7 +14,8 @@ module Sivel2Sjr
 
 
           def validacion_estandar(casos, titulo, where, 
-                                  atr = ['sivel2_gen_caso.id', :fecha, 
+                                  atr = ['sivel2_gen_caso.id', 
+                                         'sivel2_gen_caso.fecha', 
                                          'usuario.nusuario', 
                                          'sip_oficina.nombre'],
                                   encabezado = [
