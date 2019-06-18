@@ -217,6 +217,7 @@ module Sivel2Sjr
             return [que1, tablas1, where1, que3, tablas3, where3] 
           end
 
+          # @param tabla es tabla sin prefijo sivel2_gen
           def personas_segun_tipico_sjr(tabla, nomtabla, que1, tablas1, where1, que3, tablas3, where3)
               que1 = agrega_tabla(
                 que1, "victimasjr.id_#{tabla} AS id_#{tabla}")
@@ -239,7 +240,7 @@ module Sivel2Sjr
             when 'ACTIVIDAD / OFICIO'
               que1, tablas1, where1, que3, tablas3, where3 = 
                 personas_segun_tipico_sjr(
-                  'public.actividadoficio', 'Actividad/Oficio', que1, tablas1, where1, 
+                  'actividadoficio', 'Actividad/Oficio', que1, tablas1, where1, 
                   que3, tablas3, where3
               )
             when 'CABEZA DE HOGAR'
@@ -258,7 +259,7 @@ module Sivel2Sjr
             when 'ESTADO CIVIL'
               que1, tablas1, where1, que3, tablas3, where3 = 
                 personas_segun_tipico_sjr(
-                  'public.estadocivil', 'Estado Civil', que1, tablas1, where1,
+                  'estadocivil', 'Estado Civil', que1, tablas1, where1,
                   que3, tablas3, where3
               )
 
@@ -272,7 +273,7 @@ module Sivel2Sjr
             when 'NIVEL ESCOLAR'
               que1, tablas1, where1, que3, tablas3, where3 = 
                 personas_segun_tipico_sjr(
-                  'public.escolaridad', 'Nivel Escolar', que1, tablas1, where1,
+                  'escolaridad', 'Nivel Escolar', que1, tablas1, where1,
                   que3, tablas3, where3
               )
 
