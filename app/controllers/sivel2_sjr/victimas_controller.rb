@@ -9,9 +9,9 @@ module Sivel2Sjr
     # params[:caso_id].  Pone valores simples en los campos requeridos
     def nuevo
       if !params[:caso_id].nil?
-        @persona = Persona.new
-        @victima = Victima.new
-        @victimasjr = Victimasjr.new
+        @persona = Sip::Persona.new
+        @victima = Sivel2Gen::Victima.new
+        @victimasjr = Sivel2Sjr::Victimasjr.new
         @persona.nombres = 'N'
         @persona.apellidos = 'N'
         @persona.sexo = 'S'

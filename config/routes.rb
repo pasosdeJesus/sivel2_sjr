@@ -20,6 +20,10 @@ Sivel2Sjr::Engine.routes.draw do
   get "/conteos/personas" => 'conteos#personas', as: :conteos_personas
   get "/conteos/respuestas" => 'conteos#respuestas', as: :conteos_respuestas
 
+  get '/victimas' => 'victimas#index', as: :victimas
+  get '/victimas/nuevo' => 'victimas#nuevo'
+  get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
+  
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 
   namespace :admin do
