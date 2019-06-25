@@ -5,19 +5,20 @@
         f.object.victimasjr = Sivel2Sjr::Victimasjr.new
        end %>
        
-    <%= f.simple_fields_for :persona do |p| %>
-      <%= render 'sip/personas/persona_campos', f: p, fvictima: f %>
-    <% end %>
+    <%= f.simple_fields_for :victimasjr do |fvictimasjr| %>
+      <%= f.simple_fields_for :persona do |fp| %>
+        <%= render 'sip/personas/persona_campos', f: fp, fvictima: f, 
+          fvictimasjr: fvictimasjr %>
+      <% end %>
 
-    <%= f.simple_fields_for :victimasjr do |victimasjr| %>
       <% (1..7).each do |i| %>
         <%= render 'victima_campos' + i.to_s, 
           victima: f, 
-          victimasjr: victimasjr
+          victimasjr: fvictimasjr
         %>
     <% end %>
 
-      <%= victimasjr.input :fechadesagregacion, 
+      <%= fvictimasjr.input :fechadesagregacion, 
         input_html: { 
           "data-behaviour" => "datepicker",
           "data-toggle" => 'tooltip',
@@ -26,7 +27,7 @@
         as: :string, 
         label: "Fecha de Desagregación" 
       %>
-    <% end %> <!-- simple_fields_for :victimasjr -->
+    <% end %> <!-- simple_fields_for :fvictimasjr -->
 
     <%= link_to_remove_association "Eliminar Víctima", f, 
       {class: 'btn-danger', :'data-existing' => 'true'} %> 

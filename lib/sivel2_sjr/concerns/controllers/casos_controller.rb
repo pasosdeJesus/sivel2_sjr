@@ -222,6 +222,9 @@ module Sivel2Sjr
             []
           end
 
+          def otros_params_victimasjr
+            []
+          end
 
           def otros_params_respuesta
             []
@@ -334,7 +337,7 @@ module Sivel2Sjr
                   :ndiscapacidad, 
                   :sindocumento, 
                   :tienesisben
-                ]
+                ] + otros_params_victimasjr 
               ], 
               :ubicacion_attributes => [
                 :id, 
