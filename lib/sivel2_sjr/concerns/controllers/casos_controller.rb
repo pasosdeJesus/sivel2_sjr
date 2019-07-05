@@ -94,6 +94,16 @@ module Sivel2Sjr
 
           # GET /casos/new
           def new
+            @registro = @caso = Sivel2Gen::Caso.new
+            new_sivel2_sjr
+            if session[:capturacaso_acordeon] 
+              render 'newv', layout: 'application'
+            else
+              render 'new', layout: 'application'
+            end
+          end
+
+          def new_sivel2_sjr
             @caso.current_usuario = current_usuario
             @caso.fecha = DateTime.now.strftime('%Y-%m-%d')
             @caso.memo = ''
@@ -124,10 +134,22 @@ module Sivel2Sjr
             cu.id_caso = @caso.id
             cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
             cu.save!(validate: false)
-            if session[:capturacaso_acordeon] 
-              render 'newv', layout: 'application'
+          end
+
+          def edit_sivel2_sjr
+            @caso = @registro = Sivel2Gen::Caso.find(params[:id])
+            authorize! :edit, @registro
+            asegura_camposdinamicos(@registro)
+            @registro.save!(validate: false)
+          end
+
+          # GET /casos/1/edit
+          def edit
+            edit_sivel2_sjr
+            if session[:capturacaso_acordeon]
+              render 'editv', layout: 'application'
             else
-              render 'new', layout: 'application'
+              render 'edit', layout: 'application'
             end
           end
 
