@@ -136,6 +136,9 @@ module Sivel2Sjr
             cu.save!(validate: false)
           end
 
+          def asegura_camposdinamicos(registro)
+          end
+
           def edit_sivel2_sjr
             @caso = @registro = Sivel2Gen::Caso.find(params[:id])
             authorize! :edit, @registro
