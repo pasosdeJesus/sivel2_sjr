@@ -1,21 +1,21 @@
 source 'https://rubygems.org'
 
 # Rails (internacionalización)
-gem "rails", '~> 6.0.0.rc1'
+gem 'rails', '~> 6.0.0.rc1'
 
 gem 'bigdecimal'
 
-gem "rails-i18n"
+gem 'rails-i18n'
 
 gem 'bootsnap', '>=1.1.0', require: false
 
 # Postgresql
-gem "pg"#, '~> 0.21'
+gem 'pg'#, '~> 0.21'
 
 gem 'puma'
 
 # Unifica CSSs
-gem "sass"
+gem 'sass'
 
 gem 'webpacker'
 
@@ -24,61 +24,65 @@ gem 'font-awesome-rails'
 gem 'chosen-rails', git: 'https://github.com/vtamara/chosen-rails.git', branch: 'several-fixes'
 
 # Colores en terminal
-gem "colorize"
+gem 'colorize'
 
 # Maneja variables de ambiente (como claves y secretos) en .env
-#gem "foreman"
+#gem 'foreman'
 
 # Generación de PDF
-gem "prawn"
-gem "prawnto_2",  :require => "prawnto"
-gem "prawn-table"
+gem 'prawn'
+gem 'prawnto_2',  :require => 'prawnto'
+gem 'prawn-table'
 
 # Plantilla ODT
-gem "odf-report"
+gem 'odf-report'
 
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
-gem "jbuilder"
+gem 'jbuilder'
 
 # Uglifier comprime recursos Javascript
-gem "uglifier"
+gem 'uglifier'
 
 # CoffeeScript para recuersos .js.coffee y vistas
-gem "coffee-rails"
+gem 'coffee-rails'
 
 # jquery como librería JavaScript
-gem "jquery-rails"
-gem "jquery-ui-rails"
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Seguir enlaces más rápido. Ver: https://github.com/rails/turbolinks
-gem "turbolinks"
+gem 'turbolinks'
 
 # Ambiente de CSS
-gem "twitter-bootstrap-rails"
-gem "bootstrap-datepicker-rails"
+gem 'twitter-bootstrap-rails'
+gem 'bootstrap-datepicker-rails'
+
+# Facilita elegir colores en tema
+gem 'pick-a-color-rails'
+gem 'tiny-color-rails'
 
 # Formularios simples 
-gem "simple_form"
+gem 'simple_form'
 
 # Formularios anidados (algunos con ajax)
-gem "cocoon", git: "https://github.com/vtamara/cocoon.git", branch: 'new_id_with_ajax'
+gem 'cocoon', git: 'https://github.com/vtamara/cocoon.git', branch: 'new_id_with_ajax'
 
 
 # Autenticación y roles
-gem "devise"
-gem "devise-i18n"
-gem "cancancan"
-gem "bcrypt"
+gem 'devise'
+gem 'devise-i18n'
+gem 'cancancan'
+gem 'bcrypt'
 
 # Pagina listados
-gem "will_paginate"
+gem 'will_paginate'
 
 # ICU con CLDR
 gem 'twitter_cldr'
  
 # Maneja adjuntos
-gem "paperclip"
+gem 'paperclip'
 
 
 gem 'libxml-ruby'
@@ -86,33 +90,32 @@ gem 'rspreadsheet'
 gem 'rubyzip', '~>1.2'
 
 # Zonas horarias
-gem "tzinfo"
+gem 'tzinfo'
 
 # Motor SIP
-gem 'sip', git: "https://github.com/pasosdeJesus/sip.git"
+gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git', branch: :temas
 #gem 'sip', path: '../sip'
 
-# Motor de heb412
-gem 'heb412_gen', git: "https://github.com/pasosdeJesus/heb412_gen.git"
-#gem 'heb412_gen', path: '../heb412_gen'
-
-# Motor de formularios
-gem 'mr519_gen', git: "https://github.com/pasosdeJesus/mr519_gen.git"
+# Motro de formularios
+gem 'mr519_gen', git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: :temas
 #gem 'mr519_gen', path: '../mr519_gen'
 
+# Motor con nubre y exportacion a documento y hoja de calculo
+gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: :temas
+#gem 'heb412_gen', path: '../heb412_gen'
 
 # Motor de SIVeL 2
-gem 'sivel2_gen', git: "https://github.com/pasosdeJesus/sivel2_gen.git"
+gem 'sivel2_gen', git: 'https://github.com/pasosdeJesus/sivel2_gen.git', branch: :temas
 #gem 'sivel2_gen', path: '../sivel2_gen'
 
 # Motor Cor1440
-gem 'cor1440_gen', git: "https://github.com/pasosdeJesus/cor1440_gen.git"
+gem 'cor1440_gen', git: 'https://github.com/pasosdeJesus/cor1440_gen.git', branch: :temas
 #gem 'cor1440_gen', path: '../cor1440_gen'
 
 # Los siguientes son para desarrollo o para pruebas con generadores
 group :development do
   # Requerido por rake
-  gem "thor"
+  gem 'thor'
 
   # Depurar
   #gem 'byebug'

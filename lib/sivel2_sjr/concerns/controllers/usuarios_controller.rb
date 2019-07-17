@@ -13,31 +13,33 @@ module Sivel2Sjr
           include Sip::Concerns::Controllers::UsuariosController
 
           def atributos_index
-            [ "id",
-              "nusuario",
-              "nombre",
-              "rol",
-              "oficina_id",
-              "email",
-              "created_at_localizada"
+            [ :id,
+              :nusuario,
+              :nombre,
+              :rol,
+              :oficina_id,
+              :email,
+              :tema,
+              :created_at_localizada
             ]
           end
 
           def atributos_form
-            r = [ "nusuario",
-                  "nombre",
-                  "descripcion",
-                  "rol",
-                  "oficina_id"] +
+            r = [ :nusuario,
+                  :nombre,
+                  :descripcion,
+                  :rol,
+                  :oficina_id] +
                 [ :etiqueta_ids =>  [] ] +
-                [ "email",
-                  "idioma",
-                  "encrypted_password",
-                  "fechacreacion_localizada",
-                  "fechadeshabilitacion_localizada",
-                  "failed_attempts",
-                  "unlock_token",
-                  "locked_at"
+                [ :email,
+                  :tema,
+                  :idioma,
+                  :encrypted_password,
+                  :fechacreacion_localizada,
+                  :fechadeshabilitacion_localizada,
+                  :failed_attempts,
+                  :unlock_token,
+                  :locked_at
                 ]
             r
           end
@@ -51,6 +53,7 @@ module Sivel2Sjr
               :rol, :idioma, :email, :encrypted_password, 
               :fechacreacion_localizada, :fechadeshabilitacion_localizada, 
               :reset_password_token, 
+              :tema_id,
               :reset_password_sent_at, :remember_created_at, :sign_in_count, 
               :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, 
               :failed_attempts, :unlock_token, :locked_at,
