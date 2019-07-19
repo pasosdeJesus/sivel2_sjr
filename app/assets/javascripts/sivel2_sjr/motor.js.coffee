@@ -92,7 +92,7 @@
       alert('No se ubico actividad_actividad_casosjr_id')
       return
     $("#" + cnom).autocomplete({
-      source: root.puntomontaje + "/casos/busca.json",
+      source: root.puntomontaje + "casos/busca.json",
       minLength: 2,
       select: ( event, ui ) -> 
         if (ui.item) 
