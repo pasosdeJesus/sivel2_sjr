@@ -1,0 +1,31 @@
+<p>
+<table border=1 width="100%">
+  <thead>
+    <tr><th colspan='6'>Listado de casos (grupos familiares) beneficiarios</th></tr>
+    <tr><th rowspan='2' width='6em'>Número de Caso</th>
+      <th colspan='4' style='text-align: center'>Contacto</th>
+      <th rowspan='2'>Acciones</th>
+    </tr>
+    <tr>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th widht='6em'>Tipo Id.</th>
+      <th>Número .Id</th>
+    </tr>
+  </thead>
+  <tbody id="actividad_casosjr">
+    <%= f.simple_fields_for :actividad_casosjr do |ac| %>
+      <%= render 'actividad_casosjr_campos', f: ac %>
+    <% end %>
+  </tbody>
+</table>
+<div class="links">
+  <%= link_to_add_association 'Añadir Caso Beneficiario', f, 
+    :actividad_casosjr,
+    :"data-association-insertion-node" => "tbody#actividad_casosjr", 
+    :"data-association-insertion-method" => "append", 
+    partial: 'actividad_casosjr_campos',
+    :class => 'btn-primary'
+  %>
+</div>
+</p>

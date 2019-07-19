@@ -53,6 +53,55 @@
       nh = nh + ">" + tx + "</option>" )
     s.html(nh)
 
+
+# Elije un contacto en autocompletación
+@sivel2_sjr_autocompleta_contacto = (label, id, divcp, root) ->
+  sip_arregla_puntomontaje(root)
+  cs = id.split(";")
+  caso_id = cs[0]
+  pl = []
+  ini = 0
+  for i in [1..cs.length] by 1
+     t = parseInt(cs[i])
+     pl[i] = label.substring(ini, ini + t)
+     ini = ini + t + 1
+  # pl[1] cnom, pl[2] es cape, pl[3] es cdoc
+  #debugger
+  divcp.find('input[id^=actividad_actividad_casosjr_attributes_][id$=casosjr_id]').val(caso_id)
+  divcp.find('.nombres').text(pl[2])
+  divcp.find('.apellidos').text(pl[3])
+  divcp.find('.tipodocumento').text(pl[4])
+  divcp.find('.numerodocumento').text(pl[5])
+  return
+
+# Busca persona por nombre, apellido o identificación
+# s es objeto con foco donde se busca persona
+@sivel2_sjr_busca_contacto = (s) ->
+  root = window
+  sip_arregla_puntomontaje(root)
+  cnom = s.attr('id')
+  v = $("#" + cnom).data('autocompleta')
+  if (v != 1 && v != "no") 
+    $("#" + cnom).data('autocompleta', 1)
+    divcp = s.closest('.nested-fields')
+    if (typeof divcp == 'undefined')
+      alert('No se ubico .nested-fields')
+      return
+    idac = divcp.parent().find('.actividad_actividad_casosjr_id').find('input').val()
+    if (typeof idac == 'undefined')
+      alert('No se ubico actividad_actividad_casosjr_id')
+      return
+    $("#" + cnom).autocomplete({
+      source: root.puntomontaje + "/casos/busca.json",
+      minLength: 2,
+      select: ( event, ui ) -> 
+        if (ui.item) 
+          sivel2_sjr_autocompleta_contacto(ui.item.value, ui.item.id, divcp, root)
+          event.stopPropagation()
+          event.preventDefault()
+    })
+  return
+
 @sivel2_sjr_prepara_eventos_comunes = (root) ->
   # En actos, lista de desplazamientos se cálcula
   $(document).on('focusin', 'select[id^=caso_acto_][id$=desplazamiento_id]', (e) ->
@@ -232,6 +281,11 @@
     )
     return
   )
+
+  $(document).on('focusin', 'input[id^=actividad_actividad_casosjr_attributes][id$=_casosjr_id]', (e) ->
+    sivel2_sjr_busca_contacto($(this))
+  )
+
 
   return
 

@@ -223,6 +223,80 @@ module Sivel2Sjr
             sivel2_sjr_destroy
           end
 
+
+          def busca
+            if !params[:term]
+              respond_to do |format|
+                format.html { render inline: 'Falta variable term' }
+                format.json { render inline: 'Falta variable term' }
+              end
+            else
+              term = Sivel2Gen::Caso.connection.quote_string(params[:term])
+              consNom = term.downcase.strip #sin_tildes
+              consNom.gsub!(/ +/, ":* & ")
+              if consNom.length > 0
+                consNom += ":*"
+              end
+              where = " to_tsvector('spanish', id_caso " +
+                " || ' ' || unaccent(persona.nombres) " +
+                " || ' ' || unaccent(persona.apellidos) " +
+                " || ' ' || COALESCE(sip_tdocumento.sigla, '') " +
+                " || ' ' || COALESCE(persona.numerodocumento::TEXT, '')) @@ " +
+                "to_tsquery('spanish', '#{consNom}')";
+
+              partes = [
+                'id_caso::TEXT',
+                'nombres',
+                'apellidos',
+                'COALESCE(sip_tdocumento.sigla, \'\')',
+                'COALESCE(numerodocumento::TEXT, \'\')'
+              ]
+              s = "";
+              l = " id_caso ";
+              seps = "";
+              sepl = " || ';' || ";
+              partes.each do |p|
+                s += seps + p;
+                l += sepl + "char_length(#{p})";
+                seps = " || ' ' || ";
+              end
+              qstring = "SELECT TRIM(#{s}) AS value, #{l} AS id 
+                FROM public.sip_persona AS persona
+                JOIN sivel2_sjr_casosjr AS casosjr ON 
+                  persona.id=casosjr.contacto_id
+                LEFT JOIN sip_tdocumento ON
+                  persona.tdocumento_id=sip_tdocumento.id
+                WHERE #{where} ORDER BY 1";
+
+              #byebug
+              r = ActiveRecord::Base.connection.select_all qstring
+              respond_to do |format|
+                format.json { render :json, inline: r.to_json }
+                format.html { 
+                  render :json, inline: 'No responde con parametro term' 
+                }
+              end
+            end
+
+            return
+              # autocomplete de jquery requiere label, val
+#              consc = ActiveRecord::Base.send(:sanitize_sql_array, ["
+#                SELECT label, value FROM (
+#                  SELECT label, value, to_tsvector('spanish', unaccent(label)) AS i
+#                  FROM (SELECT id_caso || ' ' || nombres || ' ' || 
+#                    apellidos || ' ' || numerodocumento as label, 
+#                    id_caso as value FROM sivel2_sjr_casosjr JOIN sip_persona ON 
+#                      sip_persona.id=sivel2_sjr_casosjr.contacto_id) AS s) as ss 
+#                WHERE i @@ to_tsquery('spanish', ?) ORDER BY 1;",
+#                consNom
+#              ])
+#              r = ActiveRecord::Base.connection.select_all consc
+#              respond_to do |format|
+#                format.json { render :json, inline: r.to_json }
+#              end
+#            end
+          end
+
           def set_caso
             @caso = Sivel2Gen::Caso.find(params[:id].to_i)
             @caso.current_usuario = current_usuario
