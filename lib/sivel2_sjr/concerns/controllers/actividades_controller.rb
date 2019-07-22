@@ -39,13 +39,17 @@ module Sivel2Sjr
             ]
           end
 
-          def lista_params
+          def lista_params_sivel2_sjr
             lista_params_cor1440_gen  + [
               :actividad_casosjr_attributes => [
                 :casosjr_id,
                 :id,
                 :_destroy ]
             ]
+          end
+
+          def lista_param
+            lista_params_sivel2_sjr
           end
 
         end #included
