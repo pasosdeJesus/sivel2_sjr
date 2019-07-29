@@ -132,6 +132,5 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
   gem 'selenium-webdriver'
-  gem 'poltergeist'
 end
 
