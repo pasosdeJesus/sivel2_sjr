@@ -2169,7 +2169,8 @@ CREATE TABLE public.mr519_gen_campo (
     nombreinterno character varying(60),
     fila integer,
     columna integer,
-    ancho integer
+    ancho integer,
+    tablabasica character varying(32)
 );
 
 
@@ -9326,6 +9327,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190715083916'),
 ('20190715182611'),
 ('20190718032712'),
-('20190726203302');
+('20190726203302'),
+('20190804223012');
 
 
