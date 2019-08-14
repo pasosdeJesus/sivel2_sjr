@@ -35,7 +35,7 @@ gem 'prawnto_2',  :require => 'prawnto'
 gem 'prawn-table'
 
 # Plantilla ODT
-gem 'odf-report'
+gem 'odf-report', '>= 0.6.0'
 
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
@@ -48,7 +48,7 @@ gem 'uglifier'
 gem 'coffee-rails'
 
 # jquery como librería JavaScript
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.3.5'
 gem 'jquery-ui-rails'
 
 # Seguir enlaces más rápido. Ver: https://github.com/rails/turbolinks
@@ -59,7 +59,7 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap-datepicker-rails'
 
 # Facilita elegir colores en tema
-gem 'pick-a-color-rails'
+gem 'pick-a-color-rails', '>= 0.0.1'
 gem 'tiny-color-rails'
 
 # Formularios simples 
