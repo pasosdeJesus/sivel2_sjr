@@ -48,7 +48,7 @@ module Sivel2Sjr
             ]
           end
 
-          def lista_param
+          def lista_params
             lista_params_sivel2_sjr
           end
 
