@@ -15,7 +15,8 @@ module Sivel2Sjr
             class_name: 'Sivel2Sjr::ActividadCasosjr',
             foreign_key: 'actividad_id'
 
-          has_many :casosjr, through: :actividad_casosjr, class_name: 'Sivel2Sjr::Casosjr'
+          has_many :casosjr, through: :actividad_casosjr, 
+            class_name: 'Sivel2Sjr::Casosjr'
           accepts_nested_attributes_for :casosjr, reject_if: :all_blank
           accepts_nested_attributes_for :actividad_casosjr,
             allow_destroy: true, reject_if: :all_blank
