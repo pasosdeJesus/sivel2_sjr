@@ -1,0 +1,5 @@
+<% if can?(:create, Sivel2Gen::Caso) && Sivel2Gen::Victima.where(id_persona: registro.id).count == 0 %>
+  <%= link_to 'Crear Caso',
+    sivel2_sjr.new_caso_path({contacto: registro.id}), 
+    :class => 'btn btn-xs' %>
+<% end %>
