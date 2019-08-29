@@ -112,11 +112,16 @@ module Sivel2Sjr
             @caso.casosjr.asesor = current_usuario.id
             @caso.casosjr.oficina_id= current_usuario.oficina_id.nil? ?  
               1 : current_usuario.oficina_id
-            per = Sip::Persona.new
-            per.nombres = ''
-            per.apellidos = ''
-            per.sexo = 'S'
-            per.save!(validate: false)
+            if params[:contacto] && 
+              Sip::Persona.where(id: params[:contacto].to_i).count == 1
+              per = Sip::Persona.find(params[:contacto])
+            else
+              per = Sip::Persona.new
+              per.nombres = ''
+              per.apellidos = ''
+              per.sexo = 'S'
+              per.save!(validate: false)
+            end
             vic = Sivel2Gen::Victima.new
             vic.persona = per
             @caso.victima<<vic
