@@ -334,6 +334,10 @@ module Sivel2Sjr
             []
           end
 
+          def otros_params_persona
+            []
+          end
+
           def lista_params
             lp = [
               :bienes, 
@@ -422,7 +426,7 @@ module Sivel2Sjr
                   :nombres, 
                   :sexo, 
                   :tdocumento_id
-                ],
+                ] + otros_params_persona,
                 :victimasjr_attributes => [
                   :asisteescuela, 
                   :cabezafamilia, 
