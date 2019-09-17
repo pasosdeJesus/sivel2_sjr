@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 8d5a990abd0191882b92b1855a95ea45eb6b32f1
+  revision: d9e0b8feb6b5533e2ae186dab3eac822d3da0ed9
   specs:
     cor1440_gen (1.0b3)
       devise
@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 0d2d5e356a189c751c25cd315a8556edb15267ef
+  revision: 52d4f2b1e542b974a60df2c2bbe4bde0a848bebb
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: d0e6c7f61ea568ac6208e0999d6d955f12cd8a1a
+  revision: 78474590caa6b33efa2e1ef9218d8d12a520a9c1
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -55,7 +55,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 971cfa54fd386fa8e12e565e024943baf8a847ae
+  revision: 7126ea3528d46ddb53dc88f204d386e8b4c4c201
   specs:
     sivel2_gen (2.0b9)
       devise
@@ -318,7 +318,7 @@ GEM
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    simplecov (0.17.0)
+    simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)

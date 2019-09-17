@@ -44,8 +44,13 @@ module Sivel2Sjr
 
 
           def atributos_form
-            a = atributos_show - [:id] +
-              [:datosbio, :caracterizaciones]
+            a = atributos_show - [:id] + [:caracterizaciones]
+            # Cambia fechanac por dia, mes, año
+            p = a.index(:fechanac)
+            a.insert(p, :dianac)
+            a.insert(p, :mesnac)
+            a[p] = :anionac
+            byebug
             return a
           end
 
