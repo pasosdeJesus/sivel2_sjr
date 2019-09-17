@@ -47,10 +47,9 @@ module Sivel2Sjr
             a = atributos_show - [:id] + [:caracterizaciones]
             # Cambia fechanac por dia, mes, año
             p = a.index(:fechanac)
-            a.insert(p, :dianac)
-            a.insert(p, :mesnac)
             a[p] = :anionac
-            byebug
+            a.insert(p, :mesnac)
+            a.insert(p, :dianac)
             return a
           end
 
