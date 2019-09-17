@@ -131,6 +131,8 @@ module Sivel2Sjr
                     :id
                   ]
               ] ]
+            ] + [
+              'proyectofinanciero_ids' => []
             ]
           end
 
