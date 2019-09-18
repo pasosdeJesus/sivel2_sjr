@@ -104,7 +104,22 @@ module Sivel2Sjr
           end
 
           def remplazar_antes_salvar_v
-            byebug
+            ce = Sivel2Sjr::Casosjr.where(contacto: @persona.id)
+            if ce.count > 0
+              render json: "Ya es contacto en el caso #{ce.take.id_caso}.",
+                status: :unprocessable_entity
+              return false
+            end
+            ve = Sivel2Sjr::Victimasjr.joins('JOIN sivel2_gen_victima ' +
+              ' ON sivel2_gen_victima.id = sivel2_sjr_victimasjr.id_victima').
+              where('sivel2_gen_victima.id_persona' => @persona.id).
+              where(fechadesagregacion: nil)
+            if ve.count > 0
+              render json: "Está en núcleo familiar sin desagregar " +
+                "en el caso #{ve.take.victima.id_caso}", status: :unprocessable_entity
+              return false
+            end
+            return true
           end
 
           def remplazar_despues_salvar_v
@@ -115,6 +130,7 @@ module Sivel2Sjr
                 @caso.save
               end
             end
+            return true
           end
 
           def lista_params
