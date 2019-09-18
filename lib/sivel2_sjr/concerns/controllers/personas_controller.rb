@@ -103,6 +103,10 @@ module Sivel2Sjr
             end
           end
 
+          def remplazar_antes_salvar_v
+            byebug
+          end
+
           def remplazar_despues_salvar_v
             if @caso.casosjr.contacto.id == @personaant.id
               @caso.casosjr.contacto = @persona

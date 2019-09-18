@@ -55,7 +55,7 @@
 
 
 # Elije un contacto en autocompletación
-@sivel2_sjr_autocompleta_contacto = (label, id, divcp, root) ->
+@sivel2_sjr_autocompleta_contacto_actividad = (label, id, divcp, root) ->
   sip_arregla_puntomontaje(root)
   cs = id.split(";")
   caso_id = cs[0]
@@ -76,7 +76,7 @@
 
 # Busca persona por nombre, apellido o identificación
 # s es objeto con foco donde se busca persona
-@sivel2_sjr_busca_contacto = (s) ->
+@sivel2_sjr_busca_contacto_actividad = (s) ->
   root = window
   sip_arregla_puntomontaje(root)
   cnom = s.attr('id')
@@ -96,7 +96,7 @@
       minLength: 2,
       select: ( event, ui ) -> 
         if (ui.item) 
-          sivel2_sjr_autocompleta_contacto(ui.item.value, ui.item.id, divcp, root)
+          sivel2_sjr_autocompleta_contacto_actividad(ui.item.value, ui.item.id, divcp, root)
           event.stopPropagation()
           event.preventDefault()
     })
@@ -283,9 +283,8 @@
   )
 
   $(document).on('focusin', 'input[id^=actividad_actividad_casosjr_attributes][id$=_casosjr_id]', (e) ->
-    sivel2_sjr_busca_contacto($(this))
+    sivel2_sjr_busca_contacto_actividad($(this))
   )
-
 
   return
 
