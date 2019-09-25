@@ -106,10 +106,10 @@
         <%= Sivel2Gen::Caso.human_attribute_name(:asesor) %>
       </div>
       <div class="col-sm-offset-0 col-sm-7">
-        <%= f.input :usuario_id,
+        <%= f.input :nusuario,
           collection: ::Usuario.habilitados,
           label_method: :nombre,
-          value_method: :id,
+          value_method: :nusuario,
           label: false,
           include_blank: '-- Asesor'
         %>

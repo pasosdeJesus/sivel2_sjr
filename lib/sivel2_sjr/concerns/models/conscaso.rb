@@ -23,6 +23,10 @@ module Sivel2Sjr
             where('sivel2_gen_conscaso.fecharec <= ?', f)
           }
 
+          scope :filtro_nusuario, lambda { |n|
+            where('sivel2_gen_conscaso.nusuario = ?', n)
+          }
+
           scope :filtro_ultimaatencion_fechaini, lambda { |f|
             where('sivel2_gen_conscaso.ultimaatencion_fecha >= ?', f)
           }

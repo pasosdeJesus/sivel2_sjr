@@ -18,12 +18,29 @@ module Sivel2Sjr
           load_and_authorize_resource class: Sivel2Gen::Caso
           helper Sip::UbicacionHelper
 
+          def atributos_show
+            [
+              # basicos
+              :id,
+              :fecharec,
+              :oficina,
+              :fecha,
+              :memo,
+              :created_at,
+              :asesor,
+              :contacto,
+              :direccion,
+              :telefono,
+              :atenciones
+            ]
+          end
+
           # Campos en filtro
           def campos_filtro1
             [:codigo,
               :fechaini, :fechafin, 
               :fecharecini, :fecharecfin, 
-              :oficina_id, :usuario_id,
+              :oficina_id, :nusuario,
               :ultimaatencion_fechaini, :ultimaatencion_fechafin,
               :statusmigratorio_id,
               :nombressp, :apellidossp,
@@ -89,7 +106,7 @@ module Sivel2Sjr
                 raise CanCan::AccessDenied.new("Invitado no autorizado!", :read, Caso)
               end
             end
-            render layout: 'application'
+            show_sivel2_gen
           end
 
           # GET /casos/new
