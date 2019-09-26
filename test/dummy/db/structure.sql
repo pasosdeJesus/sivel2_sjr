@@ -7103,6 +7103,55 @@ CREATE UNIQUE INDEX index_usuario_on_reset_password_token ON public.usuario USIN
 
 
 --
+-- Name: indice_sivel2_sjr_casosjr_on_asesor; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX indice_sivel2_sjr_casosjr_on_asesor ON public.sivel2_sjr_casosjr USING btree (asesor);
+
+
+--
+-- Name: indice_sivel2_sjr_casosjr_on_caso_contacto; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX indice_sivel2_sjr_casosjr_on_caso_contacto ON public.sivel2_sjr_casosjr USING btree (id_caso, contacto_id);
+
+
+--
+-- Name: indice_sivel2_sjr_casosjr_on_oficina_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX indice_sivel2_sjr_casosjr_on_oficina_id ON public.sivel2_sjr_casosjr USING btree (oficina_id);
+
+
+--
+-- Name: indice_sivel2_sjr_desplazamiento_on_fechaexpulsion; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX indice_sivel2_sjr_desplazamiento_on_fechaexpulsion ON public.sivel2_sjr_desplazamiento USING btree (fechaexpulsion);
+
+
+--
+-- Name: indice_sivel2_sjr_desplazamiento_on_id_caso; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX indice_sivel2_sjr_desplazamiento_on_id_caso ON public.sivel2_sjr_desplazamiento USING btree (id_caso);
+
+
+--
+-- Name: indice_sivel2_sjr_desplazamiento_on_id_llegada; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX indice_sivel2_sjr_desplazamiento_on_id_llegada ON public.sivel2_sjr_desplazamiento USING btree (id_llegada);
+
+
+--
+-- Name: indice_sivel2_sjr_respuesta_on_fechaatencion; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX indice_sivel2_sjr_respuesta_on_fechaatencion ON public.sivel2_sjr_respuesta USING btree (fechaatencion);
+
+
+--
 -- Name: sip_busca_mundep; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8932,6 +8981,14 @@ ALTER TABLE ONLY public.sip_ubicacion
 
 
 --
+-- Name: sivel2_sjr_casosjr vcontacto_lfor; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_sjr_casosjr
+    ADD CONSTRAINT vcontacto_lfor FOREIGN KEY (id_caso, contacto_id) REFERENCES public.sivel2_gen_victima(id_caso, id_persona);
+
+
+--
 -- Name: sivel2_gen_victima victima_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9380,6 +9437,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190804223012'),
 ('20190818013251'),
 ('20190924013712'),
-('20190924112646');
+('20190924112646'),
+('20190926165901'),
+('20190926170423');
 
 
