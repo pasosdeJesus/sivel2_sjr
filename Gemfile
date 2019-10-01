@@ -63,7 +63,7 @@ gem 'pick-a-color-rails'
 gem 'tiny-color-rails'
 
 # Formularios simples 
-gem 'simple_form'
+gem 'simple_form', '>= 5.0.0'
 
 # Formularios anidados (algunos con ajax)
 gem 'cocoon', git: 'https://github.com/vtamara/cocoon.git', branch: 'new_id_with_ajax'
