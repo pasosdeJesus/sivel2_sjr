@@ -41,6 +41,7 @@ class Ability  < Sivel2Sjr::Ability
 
     if !usuario.nil? && !usuario.rol.nil? then
       can :read, Sip::Persona
+      can :read, Heb412Gen::Doc
       case usuario.rol 
       when Ability::ROLINV
         cannot :buscar, Sivel2Gen::Caso

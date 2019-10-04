@@ -3578,7 +3578,10 @@ CREATE MATERIALIZED VIEW public.sivel2_gen_consexpcaso AS
     caso.updated_at
    FROM (public.sivel2_gen_conscaso conscaso
      JOIN public.sivel2_gen_caso caso ON ((caso.id = conscaso.caso_id)))
-  WHERE (true = false)
+  WHERE (conscaso.caso_id IN ( SELECT sivel2_gen_conscaso.caso_id
+           FROM public.sivel2_gen_conscaso
+          ORDER BY sivel2_gen_conscaso.fecharec DESC, sivel2_gen_conscaso.caso_id))
+  ORDER BY conscaso.fecha, conscaso.caso_id
   WITH NO DATA;
 
 

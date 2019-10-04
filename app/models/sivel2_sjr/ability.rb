@@ -88,10 +88,30 @@ module Sivel2Sjr
     end
 
 
+    CAMPOS_PLANTILLAS_PROPIAS = {
+      'Caso' => {
+        campos: [
+          :caso_id,
+          :contacto,
+          :fecharec,
+          :oficina,
+          :nusuario,
+          :fecha,
+          :statusmigratorio,
+          :ultimaatencion_fecha,
+          :memo,
+          :victimas
+        ],
+        controlador: 'Sivel2Gen::CasosController',
+        ruta: '/casos'
+      }
+    }
+
     def campos_plantillas 
       Heb412Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.
         clone.merge(Cor1440Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone.merge(
-        Sivel2Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone
+          Sivel2Gen::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone.merge(
+            Sivel2Sjr::Ability::CAMPOS_PLANTILLAS_PROPIAS.clone)
       ))
     end
 
