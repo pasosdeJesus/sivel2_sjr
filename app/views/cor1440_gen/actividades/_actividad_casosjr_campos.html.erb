@@ -52,7 +52,7 @@
         totsexo = {}
         if f.object && 
             f.object.casosjr && f.object.casosjr.caso && 
-            f.object.casosjr.caso.victima
+            f.object.casosjr.caso.victima && f.object.actividad.fecha
           Sivel2Gen::RangoedadHelper.poblacion_por_rangos(
             f.object.casosjr.caso.id, f.object.actividad.fecha.year,
             f.object.actividad.fecha.month,
