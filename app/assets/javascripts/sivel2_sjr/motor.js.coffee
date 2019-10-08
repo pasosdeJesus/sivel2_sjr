@@ -54,6 +54,38 @@
     s.html(nh)
 
 
+# Aumenta una fila a tabla de población y completa idrf
+# Será fila que tendrá rango con id idrango
+@sivel2_sjr_aumenta_fila_poblacion = (idrf, idrango) ->
+  # Agregar rango y actualizar idrf
+  $('a[data-association-insertion-node$=actividad_rangoedadac]').click()              
+  uf = $('#actividad_rangoedadac').children().last()
+  e = uf.find('[id^=actividad_actividad_rangoedadac_attributes][id$=_rangoedadac_id]')
+  idrf[idrango] = /actividad_actividad_rangoedadac_attributes_(.*)_rangoedadac_id/.exec(e.attr('id'))[1]
+  $('select[id^=actividad_actividad_rangoedadac_attributes_' + idrf[idrango] + '_rangoedadac_id]').val(idrango)
+
+
+# Recibe rangos de edad y los presenta
+@sivel2_sjr_completa_rangosedadac = (root, e) ->
+  divcp = root.sivel2_sjr_autocompleta_contacto_actividad_divcp 
+  for sexo, s of e
+    totsexo = 0
+    for rango, re of s
+      eh = divcp.find('[id^=actividad_actividad_casosjr_attributes_][id$=_rangoedad_' + sexo + '_' + rango + ']')
+      eh.val(re)
+      totsexo += re
+    if sexo == 'F'
+      cls = '.fam_mujeres'
+    else if sexo == 'M'
+      cls = '.fam_hombres'
+    else
+      cls = '.fam_sinsexo'
+    et = divcp.find(cls).text(totsexo)
+
+  if typeof jrs_recalcula_poblacion == 'function'
+    jrs_recalcula_poblacion()
+  return
+
 # Elije un contacto en autocompletación
 @sivel2_sjr_autocompleta_contacto_actividad = (label, id, divcp, root) ->
   sip_arregla_puntomontaje(root)
@@ -66,12 +98,19 @@
      pl[i] = label.substring(ini, ini + t)
      ini = ini + t + 1
   # pl[1] cnom, pl[2] es cape, pl[3] es cdoc
-  #debugger
   divcp.find('input[id^=actividad_actividad_casosjr_attributes_][id$=casosjr_id]').val(caso_id)
+  divcp.find('input[id^=actividad_actividad_casosjr_attributes_][id$=casosjr_id]').parent().html("<a href='casos/" + pl[1] + "' target=_blank>" + pl[1] + "</a>")
   divcp.find('.nombres').text(pl[2])
   divcp.find('.apellidos').text(pl[3])
   divcp.find('.tipodocumento').text(pl[4])
   divcp.find('.numerodocumento').text(pl[5])
+  root.sivel2_sjr_autocompleta_contacto_actividad_divcp = divcp
+  ruta = root.puntomontaje +  "actividades/poblacion_sexo_rangoedadac"
+  if ruta[0] == '/'
+    ruta = ruta.substr(1)
+  sip_ajax_recibe_json(root, ruta,
+    {id_caso: pl[1], fecha: $('#actividad_fecha_localizada').val() }, 
+    sivel2_sjr_completa_rangosedadac)
   return
 
 # Busca persona por nombre, apellido o identificación
