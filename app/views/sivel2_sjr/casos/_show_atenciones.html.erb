@@ -1,0 +1,9 @@
+  <% if @caso.casosjr && @caso.casosjr.respuesta && @caso.casosjr.respuesta.count > 0 %>
+    <dt><strong>Atenciones:</strong></dt>
+    <dd>
+      <% @caso.casosjr.respuesta.each do |r| %>
+        <strong><%= r.fechaatencion %></strong>: <%= r.detallear %><br/>
+      <% end %>
+    </dd>
+  <% end %>
+
