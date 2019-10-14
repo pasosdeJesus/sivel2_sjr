@@ -177,7 +177,7 @@
 # Recalcula tabla poblacion en actividad a partir de listado de 
 # personas beneficiarias  y de casos beneficiarios
 @jrs_recalcula_poblacion = () ->
-  if $('[id^=actividad_asistencia_attributes]').length > 0  || $('#actividad_casosjr').children().length > 1  
+  if $('[id^=actividad_asistencia_attributes]').length > 0  || $('#actividad_casosjr').children().length > 0  
 
     # No permitiria añadir manualmente a población 
     # $('a[data-association-insertion-node$=actividad_rangoedadac]').hide()
@@ -203,7 +203,7 @@
     diaref  = +fap[2]
 
     # Recorre listado de personas
-    $('[id^=actividad_asistencia_attributes][id$=_persona_attributes_anionac]').each((i, v) ->
+    $('[id^=actividad_asistencia_attributes][id$=_persona_attributes_anionac]:visible').each((i, v) ->
       ida = /actividad_asistencia_attributes_(.*)_persona_attributes_anionac/.exec($(this).attr('id'))[1]
       anionac = $(this).val()
       mesnac = $('[id=actividad_asistencia_attributes_' + ida + '_persona_attributes_mesnac]').val()
@@ -222,7 +222,7 @@
       if idran == -1
         idran = ransin
       
-      sexo = $(this).parent().parent().parent().find('[id^=actividad_asistencia_attributes][id$=_persona_attributes_sexo]').val()
+      sexo = $(this).parent().parent().parent().find('[id^=actividad_asistencia_attributes][id$=_persona_attributes_sexo]:visible').val()
       if idran < 0
         alert('No pudo ponerse en un rango de edad')
       else
@@ -231,7 +231,7 @@
 
     # Recorre listado de casos
     #debugger
-    $('#actividad_casosjr').children().find('[id^=actividad_actividad_casosjr_attributes_][id*=_rangoedad]').each( (i, h) -> 
+    $('#actividad_casosjr').children().find('[id^=actividad_actividad_casosjr_attributes_][id*=_rangoedad]:visible').each( (i, h) -> 
       pid = $(this).attr('id').match(/.*_([MSF])_([0-9]*)$/)
       if pid.length<3
         alert('Problema para extraer informacion de id=' + $(this).attr('id'))
@@ -256,7 +256,8 @@
      ini = ini + t + 1
   # pl[1] cnom, pl[2] es cape, pl[3] es cdoc
   divcp.find('input[id^=actividad_actividad_casosjr_attributes_][id$=casosjr_id]').val(caso_id)
-  divcp.find('input[id^=actividad_actividad_casosjr_attributes_][id$=casosjr_id]').parent().html("<a href='casos/" + pl[1] + "' target=_blank>" + pl[1] + "</a>")
+  divcp.find('input[id^=actividad_actividad_casosjr_attributes_][id$=casosjr_id]').prop('readonly', true).attr('type', 'hidden')
+  divcp.find('input[id^=actividad_actividad_casosjr_attributes_][id$=casosjr_id]').parent().append("<a href='/casos/" + pl[1] + "' target=_blank>" + pl[1] + "</a>")
   divcp.find('.nombres').text(pl[2])
   divcp.find('.apellidos').text(pl[3])
   divcp.find('.tipodocumento').text(pl[4])
@@ -482,6 +483,18 @@
     sivel2_sjr_busca_contacto_actividad($(this))
   )
 
+  # En actividad tras eliminar caso beneficiario recalcular población
+  $('#actividad_casosjr').on('cocoon:after-remove', (e, papa) ->
+    if typeof jrs_recalcula_poblacion == 'function'
+      jrs_recalcula_poblacion()
+  )
+ 
+  # En actividad tras eliminar asistencia recalcular población
+  $('#asistencia').on('cocoon:after-remove', (e, papa) ->
+    if typeof jrs_recalcula_poblacion == 'function'
+      jrs_recalcula_poblacion()
+  )
+ 
   return
 
 

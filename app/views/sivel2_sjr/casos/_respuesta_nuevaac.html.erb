@@ -1,0 +1,14 @@
+<% @comp_nuevaresp = { 
+  ahumanitaria: 'Asistenia humanitaria', 
+  ojuridica: 'Orientación jurídica',
+  ajuridica: 'Accion Jurídica',
+  oservicios: 'Otros servicios y asesorias'} %>
+<% @datos_nuevaresp = { 
+  nombre: "Seguimiento/Respuesta a caso #{f.object.id}",
+  oficina_id: f.object.casosjr.oficina_id,
+  caso_id: f.object.id, 
+  proyecto_id: 101,
+  usuario_id: controller.current_usuario.id } %>
+
+<%= render partial: 'respuesta_nuevaac_2', locals: {f: f} %>
+

@@ -173,6 +173,16 @@ module Sivel2Sjr
           # GET /casos/1/edit
           def edit
             edit_sivel2_sjr
+            idseg = Cor1440Gen::Actividadpf.where(
+              proyectofinanciero_id: 10,
+              titulo: 'SEGUIMIENTO A CASO')
+            if idseg.count == 1
+              idseg = idseg.take.id
+            else
+              flash[:error] << 'No se identifico id de seguimiento a caso'
+              idseg = -1
+            end   
+            @actividadpf_seguimiento_id = idseg
             if session[:capturacaso_acordeon]
               render 'editv', layout: 'application'
             else

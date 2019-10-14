@@ -1,0 +1,31 @@
+<div class='row'>
+  <% @comp_nuevaresp.each do |idc, nomc| %>
+    <div class="col-md-2">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="<%= idc %>">
+        <label class="form-check-label" for="<%= idc %>"><%= nomc %></label>
+      </div>
+    </div>
+  <% end %>
+  <div class="col-md-2">
+    <%= select_tag('nsegresp_proyectofinanciero_id', 
+                   options_from_collection_for_select(
+                     Cor1440Gen::Proyectofinanciero.all, 
+                     'id', 'nombre'), class: 'chosen-select' ) %>
+  </div>
+  <div class="col-md-2">
+    <% if can?(:edit, f.object) %>
+      <% elem = @comp_nuevaresp.keys + 
+        ['nsegresp_proyectofinanciero_id'] %>
+      <% lfun = "jrs_agrega_paramscv(this,  [" +
+        elem.map {|cv| "'#{cv}'"}.join(", ") + "], " + 
+        @datos_nuevaresp.to_json + ")" %>
+      <%= link_to 'Nueva respuesta/seguimiento',
+        cor1440_gen.new_actividad_path,
+        target: '_blank',
+        class: 'btn btn-xs',
+        onclick: lfun %>
+    <% end %>
+  </div>
+</div> <!-- row -->
+
