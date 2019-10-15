@@ -39,6 +39,34 @@ module Sivel2Sjr
             ]
           end
 
+          def self.posibles_nuevaresp
+            return {
+              ahumanitaria: ['Asistencia humanitaria', 11],
+              apsicosocial: ['Asistencia psicosocial', 13],
+              alegal: ['Asistencia legal', 14],
+            } 
+          end
+
+          # Retorna datos por enviar a nuevo de este controlador
+          # desde javascript cuando se añade una respuesta a un caso
+          def self.datos_nuevaresp(caso, controller)
+            return {
+              nombre: "Seguimiento/Respuesta a caso #{caso.id}",
+              oficina_id: caso.casosjr.oficina_id,
+              caso_id: caso.id, 
+              #proyecto_id: 101,
+              usuario_id: controller.current_usuario.id 
+            } 
+          end
+
+          def self.pf_planest_id
+            10
+          end
+
+          def self.actividadpf_segcas_id
+            10
+          end
+
           def new_ac_sivel2_sjr
             new_cor1440_gen
             @registro.fecha = Date.today
@@ -75,29 +103,22 @@ module Sivel2Sjr
                 @registro.id, @registro.casosjr_ids[0], @registro.fecha.year, 
                 @registro.fecha.month, @registro.fecha.day)
             end
-          end
 
-          def new_particular
-            @registro.proyectofinanciero_ids += [10]
-
-            if params[:ahumanitaria] == "true"
-              @registro.actividadpf_ids |=  [10, 11] # SEGCAS, ASHUM
-            end
-            if params[:emprendimiento] == "true"
-              @registro.actividadpf_ids |=  [10, 12] # SEGCAS, EMP
-            end
-            if params[:apsicosocial] == "true"
-              @registro.actividadpf_ids |=  [10, 13] # SEGCAS, ASPSI
-            end
-            if params[:alegal] == "true"
-              @registro.actividadpf_ids |=  [10, 14] # SEGCAS, ASLEG
+            @registro.proyectofinanciero_ids += 
+              [Cor1440Gen::ActividadesController.pf_planest_id]
+            Cor1440Gen::ActividadesController.posibles_nuevaresp.
+              each do |s, lnumacpf|
+              if params[s] && params[s] == "true"
+                @registro.actividadpf_ids |=  
+                  [Cor1440Gen::ActividadesController.actividadpf_segcas_id,
+                   lnumacpf[1]] 
+              end
             end
             @registro.save!(validate: false)
           end
 
           def new
             new_ac_sivel2_sjr
-            new_particular
 
             redirect_to cor1440_gen.edit_actividad_path(@registro)
           end

@@ -1,14 +1,32 @@
-<% @comp_nuevaresp = { 
-  ahumanitaria: 'Asistenia humanitaria', 
-  ojuridica: 'Orientación jurídica',
-  ajuridica: 'Accion Jurídica',
-  oservicios: 'Otros servicios y asesorias'} %>
-<% @datos_nuevaresp = { 
-  nombre: "Seguimiento/Respuesta a caso #{f.object.id}",
-  oficina_id: f.object.casosjr.oficina_id,
-  caso_id: f.object.id, 
-  proyecto_id: 101,
-  usuario_id: controller.current_usuario.id } %>
-
-<%= render partial: 'respuesta_nuevaac_2', locals: {f: f} %>
+<div class='row'>
+  <% Cor1440Gen::ActividadesController.posibles_nuevaresp.each do |idc, lnomc| %>
+    <div class="col-md-2">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="<%= idc %>">
+        <label class="form-check-label" for="<%= idc %>"><%= lnomc[0] %></label>
+      </div>
+    </div>
+  <% end %>
+  <div class="col-md-2">
+    <%= select_tag('nsegresp_proyectofinanciero_id', 
+                   options_from_collection_for_select(
+                     Cor1440Gen::Proyectofinanciero.all, 
+                     'id', 'nombre'), class: 'chosen-select' ) %>
+  </div>
+  <div class="col-md-2">
+    <% if can?(:edit, f.object) %>
+      <% elem = Cor1440Gen::ActividadesController.posibles_nuevaresp.keys + 
+        ['nsegresp_proyectofinanciero_id'] %>
+      <% lfun = "jrs_agrega_paramscv(this,  [" +
+        elem.map {|cv| "'#{cv}'"}.join(", ") + "], " + 
+        Cor1440Gen::ActividadesController.datos_nuevaresp(
+          f.object, controller).to_json + ")" %>
+      <%= link_to 'Nueva respuesta/seguimiento',
+        cor1440_gen.new_actividad_path,
+        target: '_blank',
+        class: 'btn btn-xs',
+        onclick: lfun %>
+    <% end %>
+  </div>
+</div> <!-- row -->
 

@@ -177,7 +177,7 @@
 # Recalcula tabla poblacion en actividad a partir de listado de 
 # personas beneficiarias  y de casos beneficiarios
 @jrs_recalcula_poblacion = () ->
-  if $('[id^=actividad_asistencia_attributes]').length > 0  || $('#actividad_casosjr').children().length > 0  
+  if $('[id^=actividad_asistencia_attributes]:visible').length > 0  || $('#actividad_casosjr').find('tr:visible').length > 0  
 
     # No permitiria añadir manualmente a población 
     # $('a[data-association-insertion-node$=actividad_rangoedadac]').hide()
@@ -189,49 +189,59 @@
     $('input[id^=actividad_actividad_rangoedadac_attributes_][id$=_mr]').each((i, v) ->
       $(this).val(0)
       $(this).prop('readonly', true);
+    ) 
+  else
+    $('input[id^=actividad_actividad_rangoedadac_attributes_][id$=_fr]').each((i, v) ->
+      $(this).prop('readonly', false);
     )
+    $('input[id^=actividad_actividad_rangoedadac_attributes_][id$=_mr]').each((i, v) ->
+      $(this).val(0)
+      $(this).prop('readonly', false);
+    ) 
 
-    # Identifica rangos de edad en base y en tabla resumiendo tabla si hace falta
-    idrf={}
-    rangos = {}
-    jrs_identifica_ids_rangoedad(rangos, idrf)
 
-    # Fecha del caso
-    fap = $('#actividad_fecha_localizada').val().split('-')
-    anioref  = +fap[0]
-    mesref  = +fap[1]
-    diaref  = +fap[2]
+  # Identifica rangos de edad en base y en tabla resumiendo tabla si hace falta
+  idrf={}
+  rangos = {}
+  jrs_identifica_ids_rangoedad(rangos, idrf)
 
-    # Recorre listado de personas
-    $('[id^=actividad_asistencia_attributes][id$=_persona_attributes_anionac]:visible').each((i, v) ->
-      ida = /actividad_asistencia_attributes_(.*)_persona_attributes_anionac/.exec($(this).attr('id'))[1]
-      anionac = $(this).val()
-      mesnac = $('[id=actividad_asistencia_attributes_' + ida + '_persona_attributes_mesnac]').val()
-      dianac = $('[id=actividad_asistencia_attributes_' + ida + '_persona_attributes_dianac]').val()
+  # Fecha del caso
+  fap = $('#actividad_fecha_localizada').val().split('-')
+  anioref  = +fap[0]
+  mesref  = +fap[1]
+  diaref  = +fap[2]
 
-      e = +sivel2_gen_edadDeFechaNacFechaRef(anionac, mesnac, dianac, anioref, mesref, diaref)
-      idran = -1  # id del rango en el que está e
-      ransin = -1 # id del rango SIN INFORMACION
-      for i, r of rangos
-        if (r[0] <= e || r[0]=='') && (e <= r[1] || r[1] == '')
-          idran = i
+  # Recorre listado de personas
+  $('[id^=actividad_asistencia_attributes][id$=_persona_attributes_anionac]:visible').each((i, v) ->
+    ida = /actividad_asistencia_attributes_(.*)_persona_attributes_anionac/.exec($(this).attr('id'))[1]
+    anionac = $(this).val()
+    mesnac = $('[id=actividad_asistencia_attributes_' + ida + '_persona_attributes_mesnac]').val()
+    dianac = $('[id=actividad_asistencia_attributes_' + ida + '_persona_attributes_dianac]').val()
+
+    e = +sivel2_gen_edadDeFechaNacFechaRef(anionac, mesnac, dianac, anioref, mesref, diaref)
+    idran = -1  # id del rango en el que está e
+    ransin = -1 # id del rango SIN INFORMACION
+    for i, r of rangos
+      if (r[0] <= e || r[0]=='') && (e <= r[1] || r[1] == '')
+        idran = i
 #          if idrf[i] == -1
 #            sivel2_sjr_aumenta_fila_poblacion(idrf, i)
-        else if r[0] == -1
-          ransin = i
-      if idran == -1
-        idran = ransin
-      
-      sexo = $(this).parent().parent().parent().find('[id^=actividad_asistencia_attributes][id$=_persona_attributes_sexo]:visible').val()
-      if idran < 0
-        alert('No pudo ponerse en un rango de edad')
-      else
-        jrs_aumenta_poblacion(idrf, sexo, idran, 1)
-    )
+      else if r[0] == -1
+        ransin = i
+    if idran == -1
+      idran = ransin
+    
+    sexo = $(this).parent().parent().parent().find('[id^=actividad_asistencia_attributes][id$=_persona_attributes_sexo]:visible').val()
+    if idran < 0
+      alert('No pudo ponerse en un rango de edad')
+    else
+      jrs_aumenta_poblacion(idrf, sexo, idran, 1)
+  )
 
-    # Recorre listado de casos
-    #debugger
-    $('#actividad_casosjr').children().find('[id^=actividad_actividad_casosjr_attributes_][id*=_rangoedad]:visible').each( (i, h) -> 
+  # Recorre listado de casos
+  #debugger
+  $('#actividad_casosjr').children().find('[id^=actividad_actividad_casosjr_attributes_][id*=_rangoedad]').each( (i, h) -> 
+    if $(this).parent().is(':visible')
       pid = $(this).attr('id').match(/.*_([MSF])_([0-9]*)$/)
       if pid.length<3
         alert('Problema para extraer informacion de id=' + $(this).attr('id'))
@@ -239,7 +249,7 @@
         sexo = pid[1]
         idran = pid[2]
         jrs_aumenta_poblacion(idrf, sexo, idran, $(this).val())
-    )
+  )
 
 
 
