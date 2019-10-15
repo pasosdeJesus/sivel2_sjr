@@ -1,3 +1,3 @@
 module Sivel2Sjr
-  VERSION = "2.0.b1"
+  VERSION = "2.0b10"
 end
