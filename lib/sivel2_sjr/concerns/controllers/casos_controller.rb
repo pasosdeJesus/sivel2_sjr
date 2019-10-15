@@ -179,7 +179,7 @@ module Sivel2Sjr
             if idseg.count == 1
               idseg = idseg.take.id
             else
-              flash[:error] << 'No se identifico id de seguimiento a caso'
+              flash[:error] = 'No se identifico id de seguimiento a caso'
               idseg = -1
             end   
             @actividadpf_seguimiento_id = idseg
