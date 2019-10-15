@@ -10,7 +10,7 @@
           <% res += " por #{ac.responsable.nusuario}" %>
         <% end %>
         <% pfs = ac.proyectofinanciero_ids - 
-          [Cor1440::ActividadesController.pf_planest_id] %>
+          [Cor1440Gen::ActividadesController.pf_planest_id] %>
         <% if pfs != [] %>
           <% res += " financiado por " %>
           <% res += pfs.inject('') {|memo, p| 
@@ -24,13 +24,12 @@
 
   <div id="colapsara<%= ac.id %>" class="panel-collapse collapse">
     <div class="panel-body">
-        <% if can?(:edit, ac) %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-            cor1440_gen.edit_actividad_path(ac),
-            target: '_blank',
-            :class => 'btn btn-xs' %>
-        <% end %>
-      <% end %><!-- false -->
+      <% if can?(:edit, ac) %>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          cor1440_gen.edit_actividad_path(ac),
+          target: '_blank',
+          :class => 'btn btn-xs' %>
+      <% end %>
     </div> <!-- panel-body respuesta -->
   </div> <!-- panel collapsable -->
 </div> <!-- panel respuesta -->
