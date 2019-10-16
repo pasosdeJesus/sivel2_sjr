@@ -51,7 +51,7 @@ gem 'mr519_gen', git: 'https://github.com/pasosdeJesus/mr519_gen.git'
 #gem 'mr519_gen', path: '../mr519_gen'
 #
 
-gem 'odf-report', git: 'https://github.com/vtamara/odf-report.git', branch: 'rubyzip-1.3' # Genera ODT
+gem 'odf-report' # Genera ODT
 
 gem 'paperclip' # Maneja adjuntos
 
@@ -73,7 +73,7 @@ gem 'rails-i18n'
 
 gem 'rspreadsheet'
 
-gem 'rubyzip', '~>1.2'
+gem 'rubyzip', '>=2.0'
 
 gem 'sass' # Unifica CSSsp
 
