@@ -23,19 +23,11 @@ gem 'coffee-rails' # CoffeeScript para recuersos .js.coffee y vistas
 
 gem 'colorize' # Colores en terminal
 
-# Motor Cor1440
-gem 'cor1440_gen', git: 'https://github.com/pasosdeJesus/cor1440_gen.git'
-#gem 'cor1440_gen', path: '../cor1440_gen'
-
 gem 'devise' # Autenticación 
 
 gem 'devise-i18n'
 
 gem 'font-awesome-rails' 
-
-# Motor con nubre y exportacion a documento y hoja de calculo
-gem 'heb412_gen', git: 'https://github.com/pasosdeJesus/heb412_gen.git'
-#gem 'heb412_gen', path: '../heb412_gen'
 
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem 'jbuilder'
@@ -45,11 +37,6 @@ gem 'jquery-rails' # jquery como librería JavaScript
 gem 'jquery-ui-rails'
 
 gem 'libxml-ruby'
-
-# Motor de formularios
-gem 'mr519_gen', git: 'https://github.com/pasosdeJesus/mr519_gen.git'
-#gem 'mr519_gen', path: '../mr519_gen'
-#
 
 gem 'odf-report' # Genera ODT
 
@@ -79,14 +66,6 @@ gem 'sass' # Unifica CSSsp
 
 gem 'simple_form' # Formularios simples 
 
-# Motor SIP
-gem 'sip', git: 'https://github.com/pasosdeJesus/sip.git'
-#gem 'sip', path: '../sip'
-
-# Motor de SIVeL 2
-gem 'sivel2_gen', git: 'https://github.com/pasosdeJesus/sivel2_gen.git'
-#gem 'sivel2_gen', path: '../sivel2_gen'
-
 gem 'tiny-color-rails'
 
 gem 'turbolinks' # Seguir enlaces más rápido. 
@@ -102,6 +81,29 @@ gem 'uglifier' # Uglifier comprime recursos Javascript
 gem 'webpacker'
 
 gem 'will_paginate' # Pagina listados
+
+
+#####
+# Motores que se sobrecargan vistas (deben ponerse en orden de apilamiento 
+# lógico y no alfabetico como las gemas anteriores) 
+
+gem 'sip', # Motor generico
+  git: 'https://github.com/pasosdeJesus/sip.git'
+#gem 'sip', path: '../sip'
+
+gem 'mr519_gen', # Motor de gestion de formularios y encuestas
+  git: 'https://github.com/pasosdeJesus/mr519_gen.git'
+#gem 'mr519_gen', path: '../mr519_gen'
+
+gem 'heb412_gen',  # Motor de nube y llenado de plantillas
+  git: 'https://github.com/pasosdeJesus/heb412_gen.git'
+#gem 'heb412_gen', path: '../heb412_gen'
+
+gem 'cor1440_gen',  # Motor de convenios con marco lógico y actividades
+  git: 'https://github.com/pasosdeJesus/cor1440_gen.git'
+
+gem 'sivel2_gen',  # Motor de SIVeL 2
+  git: 'https://github.com/pasosdeJesus/sivel2_gen.git'
 
 
 
