@@ -11,8 +11,6 @@ gem 'bigdecimal'
 
 gem 'bootsnap', '>=1.1.0', require: false
 
-gem 'bootstrap-datepicker-rails'
-
 gem 'cancancan'
 
 gem 'chosen-rails', git: 'https://github.com/vtamara/chosen-rails.git', branch: 'several-fixes'
@@ -72,8 +70,6 @@ gem 'turbolinks' # Seguir enlaces más rápido.
 
 gem 'twitter_cldr' # ICU con CLDR
  
-gem 'twitter-bootstrap-rails'# Ambiente de CSS 
-
 gem 'tzinfo' # Zonas horarias
 
 gem 'uglifier' # Uglifier comprime recursos Javascript
@@ -88,23 +84,22 @@ gem 'will_paginate' # Pagina listados
 # lógico y no alfabetico como las gemas anteriores) 
 
 gem 'sip', # Motor generico
-  git: 'https://github.com/pasosdeJesus/sip.git'
+  git: 'https://github.com/pasosdeJesus/sip.git', branch: :bs4
 #gem 'sip', path: '../sip'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
-  git: 'https://github.com/pasosdeJesus/mr519_gen.git'
+  git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: :bs4
 #gem 'mr519_gen', path: '../mr519_gen'
 
 gem 'heb412_gen',  # Motor de nube y llenado de plantillas
-  git: 'https://github.com/pasosdeJesus/heb412_gen.git'
+  git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: :bs4
 #gem 'heb412_gen', path: '../heb412_gen'
 
 gem 'cor1440_gen',  # Motor de convenios con marco lógico y actividades
-  git: 'https://github.com/pasosdeJesus/cor1440_gen.git'
+  git: 'https://github.com/pasosdeJesus/cor1440_gen.git', branch: :bs4
 
 gem 'sivel2_gen',  # Motor de SIVeL 2
-  git: 'https://github.com/pasosdeJesus/sivel2_gen.git'
-
+  git: 'https://github.com/pasosdeJesus/sivel2_gen.git', branch: :bs4
 
 
 group :development do

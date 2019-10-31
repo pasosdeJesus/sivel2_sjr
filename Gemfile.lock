@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 46a98a7ccf245377f6cd606977941f905392f232
+  revision: 9e97957b0261bb09c9622de7ab14d317a8834a9f
+  branch: bs4
   specs:
     cor1440_gen (1.0b3)
       devise
@@ -13,7 +14,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 94bdd978eac7df790a864bc746e1880b134ad02a
+  revision: 38f39f139138809b8152ab592dde9130e29becbd
+  branch: bs4
   specs:
     heb412_gen (1.0.b6)
       chosen-rails
@@ -25,7 +27,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 8ac2f61bb455bb02e9fbc8d4a70e12b20fc9c199
+  revision: 6b7d8eeee137e888edfb456fad253d3fec755223
+  branch: bs4
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -33,10 +36,10 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 4525a5d46328b81dd013419939d0d1cf63ed7175
+  revision: bfee41829fe25a02b9a1147ef840d40bdeeaa13a
+  branch: bs4
   specs:
     sip (2.0.b6)
-      bootstrap-datepicker-rails
       cancancan
       chosen-rails
       colorize
@@ -49,13 +52,13 @@ GIT
       rails
       rails-i18n
       simple_form
-      twitter-bootstrap-rails
       twitter_cldr
       will_paginate
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: f62e6779969a028d2519008756bebe7526dba4d8
+  revision: d7d1e3aac6f665ede109b6e8c3208ec7427b4a05
+  branch: bs4
   specs:
     sivel2_gen (2.0b10)
       devise
@@ -150,8 +153,6 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
-    bootstrap-datepicker-rails (1.8.0.1)
-      railties (>= 3.0)
     builder (3.2.3)
     camertron-eprun (1.1.1)
     cancancan (3.0.1)
@@ -166,7 +167,6 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     colorize (0.8.1)
-    commonjs (0.2.7)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     devise (4.7.1)
@@ -196,12 +196,6 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     json (2.2.0)
-    less (2.6.0)
-      commonjs (~> 0.2.7)
-    less-rails (4.0.0)
-      actionpack (>= 4)
-      less (~> 2.6.0)
-      sprockets (>= 2)
     libxml-ruby (3.1.0)
     loofah (2.3.1)
       crass (~> 1.0.2)
@@ -339,11 +333,6 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    twitter-bootstrap-rails (3.2.2)
-      actionpack (>= 3.1)
-      execjs (>= 2.2.2, >= 2.2)
-      less-rails (>= 2.5.0)
-      railties (>= 3.1)
     twitter_cldr (5.0.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.0)
@@ -376,7 +365,6 @@ DEPENDENCIES
   bcrypt
   bigdecimal
   bootsnap (>= 1.1.0)
-  bootstrap-datepicker-rails
   cancancan
   chosen-rails!
   cocoon!
@@ -414,7 +402,6 @@ DEPENDENCIES
   spring
   tiny-color-rails
   turbolinks
-  twitter-bootstrap-rails
   twitter_cldr
   tzinfo
   uglifier

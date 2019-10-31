@@ -12,7 +12,6 @@
  *= require mr519_gen/application.css
  *= require sivel2_gen/application.css
  *= require jquery-ui
- *= require bootstrap-datepicker
  *= require_tree .
  */
 
