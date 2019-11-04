@@ -1,7 +1,6 @@
 # encoding: UTF-8
 
 require 'sivel2_gen/engine'
-require 'font-awesome-rails'
 
 module Sivel2Sjr
   class Engine < ::Rails::Engine
