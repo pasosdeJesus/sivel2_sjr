@@ -13,26 +13,16 @@ gem 'bootsnap', '>=1.1.0', require: false
 
 gem 'cancancan'
 
-gem 'chosen-rails', git: 'https://github.com/vtamara/chosen-rails.git', branch: 'several-fixes'
-
 gem 'cocoon', git: 'https://github.com/vtamara/cocoon.git', branch: 'new_id_with_ajax' # Formularios anidados (algunos con ajax)
 
 gem 'coffee-rails' # CoffeeScript para recuersos .js.coffee y vistas
-
-gem 'colorize' # Colores en terminal
 
 gem 'devise' # Autenticación 
 
 gem 'devise-i18n'
 
-gem 'font-awesome-rails' 
-
 # API JSON facil. Ver: https://github.com/rails/jbuilder
 gem 'jbuilder'
-
-gem 'jquery-rails' # jquery como librería JavaScript
-
-gem 'jquery-ui-rails'
 
 gem 'libxml-ruby'
 
@@ -41,8 +31,6 @@ gem 'odf-report' # Genera ODT
 gem 'paperclip' # Maneja adjuntos
 
 gem 'pg' # Postgresql
-
-gem 'pick-a-color-rails'
 
 gem 'prawn' # Generación de PDF
 
@@ -60,19 +48,13 @@ gem 'rspreadsheet'
 
 gem 'rubyzip', '>=2.0'
 
-gem 'sass' # Unifica CSSsp
+gem 'sassc-rails' # Unifica CSSsp
 
 gem 'simple_form' # Formularios simples 
-
-gem 'tiny-color-rails'
-
-gem 'turbolinks' # Seguir enlaces más rápido. 
 
 gem 'twitter_cldr' # ICU con CLDR
  
 gem 'tzinfo' # Zonas horarias
-
-gem 'uglifier' # Uglifier comprime recursos Javascript
 
 gem 'webpacker'
 
@@ -105,7 +87,9 @@ gem 'sivel2_gen',  # Motor de SIVeL 2
 group :development do
 
   #gem 'byebug' # Depurar
-  
+
+  gem 'colorize' # Colores en terminal
+
   gem 'web-console' # Consola irb en páginas 
 
 end

@@ -6,7 +6,6 @@
 
 #//= require sivel2_gen/motor
 #//= require cor1440_gen/motor
-#//= require jquery-ui/widgets/autocomplete
 #//= require cocoon
 
 # Regenera lista de selección de desplazamientos

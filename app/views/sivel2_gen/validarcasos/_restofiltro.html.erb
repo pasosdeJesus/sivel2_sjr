@@ -1,8 +1,8 @@
 <div class="row filtro-fila">
-  <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+  <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
     Oficina
   </div>
-  <div class="col-sm-offset-0 col-sm-4">
+  <div class="offset-sm-0 col-sm-4">
     <%= f.input :oficina_id,
       collection: Sip::Oficina.habilitados,
       label_method: :nombre,
@@ -13,10 +13,10 @@
         params[:validarcaso][:oficina_id] : nil
     %>
   </div>
-  <div class="col-sm-offset-0 col-sm-2 col-md-offset-1 col-md-1">
+  <div class="offset-sm-0 col-sm-2 offset-md-1 col-md-1">
     Excluir por etiqueta
   </div>
-  <div class="col-sm-offset-0 col-sm-4">
+  <div class="offset-sm-0 col-sm-4">
     <%= f.input :etiqueta_id,
       collection: Sip::Etiqueta.habilitados,
       label_method: :nombre,
