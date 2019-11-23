@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 0fe94b17c0ba660b5d519f64406a5320b3294ed0
-  branch: bs4
+  revision: b05dcb2c90eb65e0b665d558a349caca8e26ea95
   specs:
     cor1440_gen (1.0b3)
       devise
@@ -14,8 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 43d69c6d91e4b8bad515851483d9d7538f7f98c5
-  branch: bs4
+  revision: a9db9071b45c6077a56030d7225ebbb1aec7835e
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -25,8 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: eef4f445922e2e1ffd1716b5bf0b5e3073bad051
-  branch: bs4
+  revision: edf83c22a608a4b850ce7833db7d167e9bf55570
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -34,8 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 04c249fc370a254d2730ae31abe0a653ade7023a
-  branch: bs4
+  revision: 5d018c7206397bb19d0a361af04e45254911c9b5
   specs:
     sip (2.0.b7)
       cancancan
@@ -53,8 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 5a96704d4cf49fcc0a869fdfa2f4d4345116d642
-  branch: bs4
+  revision: deda5f93da1d40b2b78da3a3824d24d8602f27de
   specs:
     sivel2_gen (2.0b10)
       devise
@@ -302,7 +297,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.10)
     ttfunk (1.5.1)
-    twitter_cldr (5.0.0)
+    twitter_cldr (5.1.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.0)
       tzinfo
