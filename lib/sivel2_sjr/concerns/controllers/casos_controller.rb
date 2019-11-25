@@ -173,16 +173,18 @@ module Sivel2Sjr
           # GET /casos/1/edit
           def edit
             edit_sivel2_sjr
-            idseg = Cor1440Gen::Actividadpf.where(
-              proyectofinanciero_id: 10,
-              titulo: 'SEGUIMIENTO A CASO')
-            if idseg.count == 1
-              idseg = idseg.take.id
-            else
-              flash[:error] = 'No se identifico actividad de convenio SEGUIMIENTO A CASO'
-              idseg = -1
-            end   
-            @actividadpf_seguimiento_id = idseg
+            if Cor1440Gen::Proyectofinanciero.where(id: 10).count == 1 then
+              idseg = Cor1440Gen::Actividadpf.where(
+                proyectofinanciero_id: 10,
+                titulo: 'SEGUIMIENTO A CASO')
+              if idseg.count == 1
+                idseg = idseg.take.id
+              else
+                flash[:error] = 'No se identifico actividad de convenio SEGUIMIENTO A CASO'
+                idseg = -1
+              end   
+              @actividadpf_seguimiento_id = idseg
+            end
             if session[:capturacaso_acordeon]
               render 'editv', layout: 'application'
             else
