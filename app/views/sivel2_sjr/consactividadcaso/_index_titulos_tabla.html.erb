@@ -1,0 +1,11 @@
+<% atributos_index.each do |atr| %>
+  <% if atr.to_s == 'tipos_actividad' %>
+    <% @actipos.each do |p| %>
+      <% id = p[0]; nombre= p[1] %>
+      <th><%= nombre %></th>
+    <% end %>
+  <% else %>
+    <th><%= Sivel2Gen::Victima.human_attribute_name(atr) %></th>
+  <%end %>
+<% end %>
+

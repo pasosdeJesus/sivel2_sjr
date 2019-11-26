@@ -49,6 +49,8 @@ es:
         telefono: Teléfono
         Ubicacion: Sitios geográficos
         usuario: Asesor SJR
+      "sivel2_sjr/consactividadcaso":
+        Consactividadcaso: Reporte actividad con caso
       "sivel2_sjr/comosupo":
         Comosupo: Como supo del SJR
         Comosupos: Como supo del SJR

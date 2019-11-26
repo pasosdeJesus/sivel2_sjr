@@ -15,6 +15,7 @@
 #   inflect.acronym 'RESTful'
 # end
 ActiveSupport::Inflector.inflections do |inflect|
+	inflect.irregular 'consactividadcaso', 'consactividadcaso'
 	inflect.irregular 'actosjr', 'actosjr'
 	inflect.irregular 'aslegalrespuesta', 'aslegalrespuesta'
 	inflect.irregular 'aspsicosocialrespuesta', 'aspsicosocialrespuesta'

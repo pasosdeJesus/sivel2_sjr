@@ -1,0 +1,15 @@
+<!-- Ya viene un <td> abierto de index.html -->
+<% total = @actipos.count %>
+<% i = 0 %>
+<% @actipos.each do |p| %>
+  <% id = p[0]; nombre = p[1] %>
+  <% if registro && registro.actividad && registro.actividad.actividadpf.where(
+      actividadtipo_id: id).count > 0 %>
+      1
+  <% end %>
+  <% i+= 1 %>
+  <% if i < total %>
+    </td><td>
+  <%end %>
+<% end %>
+<!-- El </td> final esta en index.html -->
