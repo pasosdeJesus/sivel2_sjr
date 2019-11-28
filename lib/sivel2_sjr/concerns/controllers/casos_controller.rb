@@ -113,11 +113,7 @@ module Sivel2Sjr
           def new
             @registro = @caso = Sivel2Gen::Caso.new
             new_sivel2_sjr
-            if session[:capturacaso_acordeon] 
-              render 'newv', layout: 'application'
-            else
-              render 'new', layout: 'application'
-            end
+            redirect_to edit_caso_path(@registro)
           end
 
           def new_sivel2_sjr
