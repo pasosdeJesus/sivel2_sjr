@@ -15,6 +15,14 @@ module Sivel2Sjr
           belongs_to :actividad, 
             class_name: 'Cor1440Gen::Actividad', foreign_key: 'actividad_id'
 
+          scope :filtro_actividad_fechaini, lambda { |f|
+            where('actividad_fecha >= ?', f)
+          }
+
+          scope :filtro_actividad_fechafin, lambda { |f|
+            where('actividad_fecha <= ?', f)
+          }
+
         end
 
         module ClassMethods
