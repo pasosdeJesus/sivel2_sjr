@@ -65,6 +65,8 @@ class Ability  < Sivel2Sjr::Ability
           casosjr: { asesor: usuario.id, oficina_id:usuario.oficina_id }
         can :new, Sivel2Gen::Caso 
 
+        can :read, Sivel2Sjr::Consactividadcaso
+
       when Ability::ROLANALI
         can :read, Cor1440Gen::Actividad
         can :new, Cor1440Gen::Actividad
@@ -83,6 +85,7 @@ class Ability  < Sivel2Sjr::Ability
         can [:update, :create, :destroy], Sivel2Gen::Caso, 
           casosjr: { oficina_id: usuario.oficina_id }
         
+        can :read, Sivel2Sjr::Consactividadcaso
 
       when Ability::ROLCOOR
         can [:read, :manage], Usuario, oficina: { id: usuario.oficina_id}
@@ -103,6 +106,7 @@ class Ability  < Sivel2Sjr::Ability
         can [:update, :create, :destroy, :poneretcomp], Sivel2Gen::Caso, 
           casosjr: { oficina_id: usuario.oficina_id }
 
+        can :read, Sivel2Sjr::Consactividadcaso
 
       when Ability::ROLADMIN, Ability::ROLDIR
         can :manage, ::Usuario
@@ -122,6 +126,9 @@ class Ability  < Sivel2Sjr::Ability
 
         can :manage, Sivel2Gen::Acto
         can :manage, Sivel2Gen::Caso
+
+        can :read, Sivel2Sjr::Consactividadcaso
+
         can :manage, :tablasbasicas
         tablasbasicas.each do |t|
           c = Ability.tb_clase(t)
