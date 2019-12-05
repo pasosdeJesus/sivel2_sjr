@@ -17,6 +17,7 @@ module Sivel2Sjr
             [:caso_id,
              :actividad_id,
              :actividad_fecha,
+             :actividad_proyectofinanciero,
              :persona_nombres,
              :persona_apellidos,
              :tipos_actividad

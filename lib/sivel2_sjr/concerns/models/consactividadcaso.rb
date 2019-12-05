@@ -15,6 +15,15 @@ module Sivel2Sjr
           belongs_to :actividad, 
             class_name: 'Cor1440Gen::Actividad', foreign_key: 'actividad_id'
 
+          def presenta(atr)
+            case atr.to_sym
+            when :actividad_proyectofinanciero
+              self.actividad.proyectofinanciero.map(&:nombre).join('; ')
+            else
+              presenta_gen(atr)
+            end
+          end
+
           scope :filtro_actividad_fechaini, lambda { |f|
             where('actividad_fecha >= ?', f)
           }
@@ -23,9 +32,17 @@ module Sivel2Sjr
             where('actividad_fecha <= ?', f)
           }
 
+          scope :filtro_actividad_proyectofinanciero, lambda { |pf|
+            where('actividad_id IN (SELECT actividad_id ' +
+                  'FROM  cor1440_gen_actividad_proyectofinanciero WHERE ' +
+                  'proyectofinanciero_id=?)', pf)
+          }
+
+
         end
 
         module ClassMethods
+
 
           def interpreta_ordenar_por(campo)
             critord = ""
