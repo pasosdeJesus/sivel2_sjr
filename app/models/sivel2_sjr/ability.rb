@@ -104,7 +104,28 @@ module Sivel2Sjr
         ],
         controlador: 'Sivel2Gen::CasosController',
         ruta: '/casos'
+      },
+      'Consactividadcaso' => {
+        campos: [
+          :caso_id,
+          :actividad_id,
+          :victima_id,
+          :es_contacto,
+          :persona_id,
+          :actividad_fecha,
+          :actividad_convenios,
+          :actividad_oficina,
+          :actividad_responsable,
+          :persona_nombres,
+          :persona_apellidos,
+          :persona_sexo,
+          :caso_memo,
+          :caso_fecharec
+        ],
+        controlador: 'Sivel2Sjr::ConsactividadcasoController',
+        ruta: '/consactividadcasos'
       }
+
     }
 
     def campos_plantillas 

@@ -75,7 +75,7 @@ gem 'mr519_gen', # Motor de gestion de formularios y encuestas
 
 gem 'heb412_gen',  # Motor de nube y llenado de plantillas
   git: 'https://github.com/pasosdeJesus/heb412_gen.git'
-#gem 'heb412_gen', path: '../heb412_gen'
+  #path: '../heb412_gen'
 
 gem 'cor1440_gen',  # Motor de convenios con marco lógico y actividades
   git: 'https://github.com/pasosdeJesus/cor1440_gen.git'

@@ -35,8 +35,9 @@ module Sivel2Sjr
             c.reorder([:caso_id, :actividad_id])
           end 
             
-          def index_plantillas
-          end 
+          def vistas_manejadas
+            ['Consactividadcaso']
+          end
 
           # Genera conteo por caso/beneficiario y tipo de actividad de convenio
           # #caso #act fechaact nom ap id gen edadfact rangoedad_fact etnia tipoac1 tipoac2 tipoac3 tipoac4 ... oficina asesoract 
