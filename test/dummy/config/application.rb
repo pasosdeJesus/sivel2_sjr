@@ -13,7 +13,7 @@ require 'sivel2_sjr'
 module Dummy
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.0
+    config.load_defaults 6.0
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -37,6 +37,10 @@ module Dummy
     config.x.sal7711_presencia_fecha = true
     config.x.sal7711_presencia_pagina = false
 
+    config.railties_order = [:main_app, Sivel2Sjr::Engine, 
+                             Cor1440Gen::Engine, Sivel2Gen::Engine,
+                             Heb412Gen::Engine, Mr519Gen::Engine, 
+                             Sip::Engine, :all]
     config.hosts << ENV['CONFIG_HOSTS'] || '127.0.0.1'
 
   end

@@ -39,34 +39,6 @@ module Sivel2Sjr
             ]
           end
 
-          def self.posibles_nuevaresp
-            return {
-              ahumanitaria: ['Asistencia humanitaria', 11],
-              apsicosocial: ['Asistencia psicosocial', 13],
-              alegal: ['Asistencia legal', 14],
-            } 
-          end
-
-          # Retorna datos por enviar a nuevo de este controlador
-          # desde javascript cuando se añade una respuesta a un caso
-          def self.datos_nuevaresp(caso, controller)
-            return {
-              nombre: "Seguimiento/Respuesta a caso #{caso.id}",
-              oficina_id: caso.casosjr.oficina_id,
-              caso_id: caso.id, 
-              #proyecto_id: 101,
-              usuario_id: controller.current_usuario.id 
-            } 
-          end
-
-          def self.pf_planest_id
-            10
-          end
-
-          def self.actividadpf_segcas_id
-            10
-          end
-
           def new_ac_sivel2_sjr
             new_cor1440_gen
             @registro.fecha = Date.today
@@ -169,6 +141,39 @@ module Sivel2Sjr
           end
 
         end #included
+
+        
+        class_methods do
+
+          def posibles_nuevaresp
+            return {
+              ahumanitaria: ['Asistencia humanitaria', 11],
+              apsicosocial: ['Asistencia psicosocial', 13],
+              alegal: ['Asistencia legal', 14],
+            } 
+          end
+
+          # Retorna datos por enviar a nuevo de este controlador
+          # desde javascript cuando se añade una respuesta a un caso
+          def datos_nuevaresp(caso, controller)
+            return {
+              nombre: "Seguimiento/Respuesta a caso #{caso.id}",
+              oficina_id: caso.casosjr.oficina_id,
+              caso_id: caso.id, 
+              #proyecto_id: 101,
+              usuario_id: controller.current_usuario.id 
+            } 
+          end
+
+          def pf_planest_id
+            10
+          end
+
+          def actividadpf_segcas_id
+            10
+          end
+
+        end
 
       end
     end

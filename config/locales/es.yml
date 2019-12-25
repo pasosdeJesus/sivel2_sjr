@@ -7,6 +7,7 @@ es:
     attributes:
       "cor1440_gen/proyectofinanciero":
         "{:oficina_ids=>[]}": Oficinas
+        "{:proyecto_ids=>[]}": Área de actividad
       "sivel2_gen/caso":
         fecha: F. desplazamiento emblemático
         fecharec: Fecha recepción

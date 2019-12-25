@@ -1,16 +1,13 @@
 #!/bin/sh
 # Hace pruebas, pruebas de regresión y envia a github
 
-grep "^ *gem.*sip.*,.*path:" Gemfile > /dev/null 2> /dev/null
+
+s=`grep -B 1 "^ *path" Gemfile 2> /dev/null`
 if (test "$?" = "0") then {
-	echo "Gemfile incluye un sip cableado al sistema de archivos"
-	exit 1;
+  echo "Gemfile incluye gema cableada al sistema de archivos ($s)"
+  exit 1;
 } fi;
-grep "^ *gem.*sivel2_gen.*,.*path:" Gemfile > /dev/null 2> /dev/null
-if (test "$?" = "0") then {
-	echo "Gemfile incluye un sivel2_gen cableado al sistema de archivos"
-	exit 1;
-} fi;
+
 grep "^ *gem.*debugger" Gemfile > /dev/null 2> /dev/null
 if (test "$?" = "0") then {
 	echo "Gemfile incluye debugger que heroku no quiere"

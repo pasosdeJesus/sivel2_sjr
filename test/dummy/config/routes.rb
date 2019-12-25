@@ -45,10 +45,10 @@ Rails.application.routes.draw do
     end
   end
 
+  mount Sivel2Sjr::Engine, at: "/sivel2sjr", as: "sivel2_sjr"
   mount Cor1440Gen::Engine, at: "/sivel2sjr", as: "cor1440_gen"
+  mount Sivel2Gen::Engine, at: "/sivel2sjr", as: "sivel2_gen"
   mount Heb412Gen::Engine, at: "/sivel2sjr", as: "heb412_gen"
   mount Mr519Gen::Engine, at: "/sivel2sjr", as: "mr519_gen"
-  mount Sivel2Sjr::Engine, at: "/sivel2sjr", as: "sivel2_sjr"
-  mount Sivel2Gen::Engine, at: "/sivel2sjr", as: "sivel2_gen"
   mount Sip::Engine, at: "/sivel2sjr", as: "sip"
 end
