@@ -168,10 +168,14 @@
     fr = +$(pref + '_fr').val()
     $(pref + '_fr').val(fr + (+cantidad))
     cor1440_gen_rangoedadac($(pref + '_fr'))
-  else    
+  else if sexo == 'M'    
     mr = +$(pref + '_mr').val()
     $(pref + '_mr').val(mr + (+cantidad))
     cor1440_gen_rangoedadac($(pref + '_mr'))
+  else    
+    sr = +$(pref + '_s').val()
+    $(pref + '_s').val(sr + (+cantidad))
+    cor1440_gen_rangoedadac($(pref + '_s'))
 
 # Recalcula tabla poblacion en actividad a partir de listado de 
 # personas beneficiarias  y de casos beneficiarios
@@ -189,11 +193,19 @@
       $(this).val(0)
       $(this).prop('readonly', true);
     ) 
+    $('input[id^=actividad_actividad_rangoedadac_attributes_][id$=_s]').each((i, v) ->
+      $(this).val(0)
+      $(this).prop('readonly', true);
+    ) 
   else
     $('input[id^=actividad_actividad_rangoedadac_attributes_][id$=_fr]').each((i, v) ->
       $(this).prop('readonly', false);
     )
     $('input[id^=actividad_actividad_rangoedadac_attributes_][id$=_mr]').each((i, v) ->
+      $(this).val(0)
+      $(this).prop('readonly', false);
+    ) 
+    $('input[id^=actividad_actividad_rangoedadac_attributes_][id$=_s]').each((i, v) ->
       $(this).val(0)
       $(this).prop('readonly', false);
     ) 
