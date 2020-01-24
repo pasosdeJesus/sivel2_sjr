@@ -17,6 +17,9 @@
     <%= f.number_field :mr, size: "2", readonly: desr %>
   </td>
   <td>
+    <%= f.number_field :s, size: "2", readonly: desr %>
+  </td>
+  <td>
     <%= 
       f.input :id, as: :hidden %><%= link_to_remove_association "Eliminar", f, 
         :class => 'btn-danger' 
