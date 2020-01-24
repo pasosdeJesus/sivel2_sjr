@@ -17,7 +17,7 @@ module Sivel2Sjr
             foreign_key: "id_escolaridad", validate: true, optional: true
           belongs_to :estadocivil, class_name: "Sivel2Gen::Estadocivil", 
             foreign_key: "id_estadocivil", validate: true, optional: true
-          belongs_to :maternidad, class_name: "Sivel2Sjr::Maternidad", 
+          belongs_to :maternidad, class_name: "Sivel2Gen::Maternidad", 
             foreign_key: "id_maternidad", validate: true, optional: true
           belongs_to :municipio, class_name: "Sip::Municipio", 
             foreign_key: "id_municipio", validate: true, optional: true

@@ -9,22 +9,83 @@ module Sivel2Sjr
         included do
           include Sip::Modelo
 
-          belongs_to :caso, 
-            class_name: 'Sivel2Gen::Caso', foreign_key: 'caso_id'
-          
           belongs_to :actividad, 
             class_name: 'Cor1440Gen::Actividad', foreign_key: 'actividad_id'
+          
+          belongs_to :caso, 
+            class_name: 'Sivel2Gen::Caso', foreign_key: 'caso_id'
+
+          belongs_to :persona,
+            class_name: 'Sip::Persona', foreign_key: 'persona_id'
+
+          belongs_to :victima,
+            class_name: 'Sivel2Gen::Victima', foreign_key: 'victima_id'
+          
+          belongs_to :victimasjr,
+            class_name: 'Sivel2Sjr::Victimasjr', foreign_key: 'victima_id'
 
           def presenta(atr)
-            case atr.to_sym
-            when :actividad_proyectofinanciero
-              self.actividad.proyectofinanciero.map(&:nombre).join('; ')
-            when :actividad_id
-              self.actividad_id
-            when :persona_sexo
-              Sip::Persona.find(self.persona_id).sexo
+            puts atr
+            m =/^edad_([^_]*)_r_(.*)/.match(atr.to_s)
+            if (m && ((m[1] == 'mujer' && self.persona.sexo == 'F') ||
+                (m[1] == 'hombre' && self.persona.sexo == 'M') ||
+                (m[1] == 'sin' && self.persona.sexo == 'S'))) then
+              edad = Sivel2Gen::RangoedadHelper::edad_de_fechanac_fecha(
+                self.persona.anionac,
+                self.persona.mesnac,
+                self.persona.dianac,
+                self.actividad.fecha.year,
+                self.actividad.fecha.month,
+                self.actividad.fecha.day
+              )
+              if (m[2] == '0_5' && 0 <= edad && edad <= 5) ||
+                  (m[2] == '6_12' && 6 <= edad && edad <= 12) ||
+                  (m[2] == '13_17' && 13 <= edad && edad <= 17) ||
+                  (m[2] == '18_26' && 18 <= edad && edad <= 26) ||
+                  (m[2] == '27_59' && 27 <= edad && edad <= 59) ||
+                  (m[2] == '60_' && 60 <= edad) ||
+                  (m[2] == 'SIN' && edad == -1) then
+                1
+              else
+                ''
+              end
             else
-              presenta_gen(atr)
+              case atr.to_sym
+              when :actividad_nombre
+                self.actividad.nombre
+              when :actividad_id
+                self.actividad_id
+              when :actividad_fecha_mes
+                self.actividad.fecha ? self.actividad.fecha.month : ''
+              when :actividad_proyectofinanciero
+                self.actividad.proyectofinanciero ? 
+                  self.actividad.proyectofinanciero.map(&:nombre).join('; ') : ''
+
+              when :persona_edad_en_atencion
+                Sivel2Gen::RangoedadHelper::edad_de_fechanac_fecha(
+                  self.persona.anionac,
+                  self.persona.mesnac,
+                  self.persona.dianac,
+                  self.actividad.fecha.year,
+                  self.actividad.fecha.month,
+                  self.actividad.fecha.day
+                )
+              when :persona_etnia
+                self.victima.etnia ? self.victima.etnia.nombre : ''
+              when :persona_id
+                self.persona.id
+              when :persona_numerodocumento
+                self.persona.numerodocumento
+              when :persona_sexo
+                Sip::Persona.find(self.persona_id).sexo
+              when :persona_tipodocumento
+                self.persona.tdocumento ? self.persona.tdocumento.sigla : ''
+              when :victima_maternidad
+                self.victimasjr.maternidad ? self.victimasjr.maternidad.nombre :
+                  ''
+              else
+                presenta_gen(atr)
+              end
             end
           end
 
