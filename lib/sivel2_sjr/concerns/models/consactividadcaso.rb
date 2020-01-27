@@ -132,7 +132,7 @@ module Sivel2Sjr
           end
 
           def consulta
-            "SELECT actividad_id*500000+persona.id AS id,
+            "SELECT actividad_id*50000+persona.id AS id,
               casosjr_id AS caso_id, 
               actividad_id,
               victima.id AS victima_id,
