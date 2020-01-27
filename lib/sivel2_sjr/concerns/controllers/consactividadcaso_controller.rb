@@ -56,7 +56,6 @@ module Sivel2Sjr
           def valor_campo_compuesto(registro, campo)
             puts "registro=#{registro}"
             puts "campo=#{campo}"
-            #byebug
             p = campo.split('.')
             if Mr519Gen::Formulario.where(nombreinterno: p[0]).count == 0
               return "No se encontró formulario con nombreinterno #{p[0]}"
@@ -95,7 +94,7 @@ module Sivel2Sjr
               end
             end
             if rf.valorcampo.where(campo_id: campo.id).count == 0
-              return "En respuesta a formularoi #{rf.id} no se encontró valor para el campo #{campo.id}"
+              return "En respuesta a formulario #{rf.id} no se encontró valor para el campo #{campo.id}"
             end
 
             vc = rf.valorcampo.where(campo_id: campo.id).take
