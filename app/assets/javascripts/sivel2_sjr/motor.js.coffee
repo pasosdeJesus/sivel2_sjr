@@ -452,10 +452,9 @@
   # Antes de añadir desplazamiento verificar que haya al menos 2 ubicaciones
   $('#desplazamiento').on('click', '.add_fields', (e) ->
     lcg = $('#ubicacion .control-group[style!="display: none;"]')
-    if (lcg.size() < 2)
-      alert('Debe haber antes por lo menos dos sitios geograficos')
-      e.preventDefault()
-    return
+    if (lcg.length < 2)
+      alert('Debe haber antes por lo menos dos sitios geográficos')
+      return false
   )
 
 
