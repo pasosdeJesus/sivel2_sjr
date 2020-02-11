@@ -183,6 +183,15 @@ module Sivel2Sjr
               #{w} ;")
           end # def crea_consulta
 
+          def refresca_consulta(ordenar_por = nil)
+            if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_sjr_consactividadcaso'
+              crea_consulta(ordenar_por = nil)
+            else
+              ActiveRecord::Base.connection.execute(
+                "REFRESH MATERIALIZED VIEW sivel2_sjr_consactividadcaso")
+            end
+          end
+
         end # module ClassMethods
 
       end

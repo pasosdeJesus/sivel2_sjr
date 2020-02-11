@@ -44,7 +44,7 @@ module Sivel2Sjr
           #                 EDADES HOMBRES            EDADES MUJERES                    
           #                                 0-5 6-12  13-17 18-26 27-59 +60 0-5 6-12  13-17 18-26 27-59 +60         
           def index
-            Sivel2Sjr::Consactividadcaso.crea_consulta
+            Sivel2Sjr::Consactividadcaso.refresca_consulta
 
             index_sip(Sivel2Sjr::Consactividadcaso.all)
           end
