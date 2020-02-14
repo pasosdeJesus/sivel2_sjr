@@ -9,6 +9,7 @@ Sivel2Sjr::Engine.routes.draw do
   get '/actos/eliminar' => 'actos#eliminar'
 
   get '/casos/lista' => 'casos#lista'
+  get '/casos/mapaosm' => 'casos#mapaosm'
   get '/casos/nuevaubicacion' => 'casos#nueva_ubicacion'
   get '/casos/nuevavictima' => 'casos#nueva_victima'
   get '/casos/nuevopresponsable' => 'casos#nuevo_presponsable'
