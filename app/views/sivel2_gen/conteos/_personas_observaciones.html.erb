@@ -1,0 +1,9 @@
+<footer>
+  <ul>
+    <% vdes = Sivel2Sjr::Victimasjr.where('fechadesagregacion IS NOT NULL').
+      count %>
+    <% if vdes > 0 %>
+      <li>De este conteo se excluyen <%= vdes %> personas desagregadas de casos.</li>
+    <% end %>
+  </ul>
+</footer>

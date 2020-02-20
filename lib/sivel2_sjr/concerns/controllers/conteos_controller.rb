@@ -198,7 +198,8 @@ module Sivel2Sjr
             1 as npersona'
             tablas1 = 'public.sivel2_gen_caso AS caso, ' +
               'public.sivel2_sjr_casosjr AS casosjr, ' +
-              'public.sivel2_gen_victima AS victima'
+              'public.sivel2_gen_victima AS victima, ' +
+              'public.sivel2_sjr_victimasjr AS victimasjr'
 
             # Para la consulta final emplear arreglo que3, que tendrá parejas
             # (campo, titulo por presentar en tabla)
@@ -209,6 +210,11 @@ module Sivel2Sjr
             #    consulta_and(where1, 'caso.id', GLOBALS['idbus'], '<>')
             where1 = consulta_and_sinap(where1, "caso.id", "casosjr.id_caso")
             where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
+            where1 = consulta_and_sinap(where1, "victima.id", 
+                                        "victimasjr.id_victima")
+            where1 = consulta_and_sinap(where1, "victimasjr.fechadesagregacion", 
+                                        "NULL", " IS ")
+            puts "OJO where1=#{where1}"
 
             if (@pOficina != '') 
               where1 = consulta_and(where1, "casosjr.oficina_id", @pOficina)
@@ -221,10 +227,10 @@ module Sivel2Sjr
           def personas_segun_tipico_sjr(tabla, nomtabla, que1, tablas1, where1, que3, tablas3, where3)
               que1 = agrega_tabla(
                 que1, "victimasjr.id_#{tabla} AS id_#{tabla}")
-              tablas1 = agrega_tabla(
-                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
-              where1 = consulta_and_sinap(
-                where1, "victima.id", "victimasjr.id_victima")
+#              tablas1 = agrega_tabla(
+#                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
+#              where1 = consulta_and_sinap(
+#                where1, "victima.id", "victimasjr.id_victima")
               tablas3 = agrega_tabla(
                 tablas3, "public.sivel2_gen_#{tabla} AS #{tabla}")
               where3 = consulta_and_sinap(
@@ -250,10 +256,10 @@ module Sivel2Sjr
                 ELSE
                   'NO'
                 END AS cabezafamilia")
-              tablas1 = agrega_tabla(
-                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
-              where1 = consulta_and_sinap(
-                where1, "victima.id", "victimasjr.id_victima")
+#              tablas1 = agrega_tabla(
+#                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
+#              where1 = consulta_and_sinap(
+#                where1, "victima.id", "victimasjr.id_victima")
               que3 << ["cabezafamilia", "Cabeza de Hogar"]
 
             when 'ESTADO CIVIL'
@@ -280,10 +286,10 @@ module Sivel2Sjr
             when 'RÉGIMEN DE SALUD'
               que1 = agrega_tabla(
                 que1, 'victimasjr.id_regimensalud AS id_regimensalud')
-              tablas1 = agrega_tabla(
-                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
-              where1 = consulta_and_sinap(
-                where1, "victima.id", "victimasjr.id_victima")
+#              tablas1 = agrega_tabla(
+#                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
+#              where1 = consulta_and_sinap(
+#                where1, "victima.id", "victimasjr.id_victima")
               tablas3 = agrega_tabla(
                 tablas3, 'public.sivel2_sjr_regimensalud AS regimensalud')
               where3 = consulta_and_sinap(
@@ -301,6 +307,17 @@ module Sivel2Sjr
           def personas_procesa_segun(que1, tablas1, where1, que3, tablas3, where3)
             return personas_procesa_segun_omsjr(que1, tablas1, where1, que3, tablas3, where3)
           end
+
+
+          def personas_inicializa1(where1)
+            que1 = 'caso.id AS id_caso, victima.id AS id_victima, ' +
+              'victima.id_persona AS id_persona, 1 AS npersona'
+            tablas1 = 'public.sivel2_gen_caso AS caso, ' +
+              'public.sivel2_gen_victima AS victima ' 
+            where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
+            return que1, tablas1, where1
+          end
+
 
           def personas_vista_geo(que3, tablas3, where3)
             ActiveRecord::Base.connection.execute(
