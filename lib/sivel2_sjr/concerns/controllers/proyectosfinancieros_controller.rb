@@ -12,20 +12,6 @@ module Sivel2Sjr
 
           include Cor1440Gen::Concerns::Controllers::ProyectosfinancierosController
 
-          def index(c = nil)
-            if c == nil
-              c = Cor1440Gen::Proyectofinanciero.all
-            end
-            if current_usuario.rol != Ability::ROLADMIN &&
-              current_usuario.rol != Ability::ROLDIR
-              c = c.where('cor1440_gen_proyectofinanciero.id IN 
-              (SELECT proyectofinanciero_id 
-              FROM public.sivel2_sjr_oficina_proyectofinanciero 
-              WHERE oficina_id=?)', current_usuario.oficina_id)
-            end
-            super(c)
-          end
-
           def atributos_index
             [ 
               :id, 
