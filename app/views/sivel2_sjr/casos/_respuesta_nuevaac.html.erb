@@ -10,7 +10,7 @@
   <div class="col-md-2">
     <%= select_tag('nsegresp_proyectofinanciero_id', 
                    options_from_collection_for_select(
-                     Cor1440Gen::Proyectofinanciero.where("DATE(fechacierre) > ?", Date.today), 
+                     Cor1440Gen::Proyectofinanciero.where("DATE(fechacierre) > ?", Date.today).where('fechainicio < ?', Date.today), 
                      'id', 'nombre'), class: 'chosen-select' ) %>
   </div>
   <div class="col-md-2">
