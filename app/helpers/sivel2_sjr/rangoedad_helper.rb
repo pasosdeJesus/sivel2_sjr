@@ -13,7 +13,6 @@ module Sivel2Sjr
     #   totsexo ={}
     # @return true sii puede calcular poblacion por sexo y rangos de edad
     def poblacion_por_sexo_rango(caso_id, anio, mes, dia, modelorango, rangoedad, totsexo)
-      byebug
       casosjr = Sivel2Sjr::Casosjr.where(id_caso: caso_id)
 
       if casosjr.count < 1 
