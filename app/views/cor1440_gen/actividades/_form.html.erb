@@ -59,23 +59,12 @@
   </div>
 
   <div class='row'> <!-- 3 -->
-    <div class='col-sm-2'>
-      <label for="actividad_proyectofinanciero">
+    <div class='col-sm-12'>
+      <h4 for="actividad_proyectofinanciero">
         <%= @actividad.class.human_attribute_name(:proyectofinanciero) %>
-      </label>
-    </div>
-    <div class='col-sm-4'>
+      </h4>
       <%= render partial: 'campo_proyectofinanciero',
         locals: {f: f, con_label: false} %>
-    </div>
-    <div class='col-sm-2'>
-      <label for="actividad_actividadpf">
-        <%= @actividad.class.human_attribute_name(:actividadpf) %>
-      </label>
-    </div>
-    <div class='col-sm-4'>
-      <%= render partial: 'campo_actividadpf', 
-        locals: {f: f, con_label: false } %>
     </div>
   </div>
 
