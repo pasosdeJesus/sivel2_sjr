@@ -9,6 +9,9 @@
         <%= despliega_abajo "Casos" do %>
           <%= opcion_menu "Listado", sivel2_gen.casos_path,
             desplegable: true %>
+          <%= opcion_menu "Casos sobre Open Street Maps",
+            sivel2_sjr.casos_mapaosm_path, 
+            desplegable: true %>
           <%= opcion_menu "Nuevo", sivel2_gen.new_caso_path,
             desplegable: true %>
           <%= opcion_menu "Conteo Demografía Víctimas", 
@@ -101,7 +104,7 @@
 
 <% content_for :piedepagina do %>
   <p><span class='derechos'>Dominio Público de acuerdo a Legislación Colombiana<br/>
-    Desarrollado por <a href="http://www.pasosdeJesus.org" target="_blank">Pasos de Jesús</a>. 2014. 
+    Desarrollado por <a href="http://www.pasosdeJesus.org" target="_blank">Pasos de Jesús</a>. 2020
   </span></p>
 <% end %>
 

@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require sivel2_sjr/application
+//= require sivel2_gen/mapaosm
 //= require_tree .

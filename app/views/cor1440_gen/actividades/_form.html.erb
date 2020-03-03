@@ -60,9 +60,6 @@
 
   <div class='row'> <!-- 3 -->
     <div class='col-sm-12'>
-      <h4 for="actividad_proyectofinanciero">
-        <%= @actividad.class.human_attribute_name(:proyectofinanciero) %>
-      </h4>
       <%= render partial: 'campo_proyectofinanciero',
         locals: {f: f, con_label: false} %>
     </div>

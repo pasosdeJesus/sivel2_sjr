@@ -28,3 +28,6 @@ import 'bootstrap-datepicker'
 import 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js'
 import 'jquery-ui'
 import 'jquery-ui/ui/widgets/autocomplete'
+
+var L = require('leaflet')
+var mc= require('leaflet.markercluster')
