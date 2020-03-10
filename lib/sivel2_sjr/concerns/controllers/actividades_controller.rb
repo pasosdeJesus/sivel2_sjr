@@ -95,6 +95,10 @@ module Sivel2Sjr
             redirect_to cor1440_gen.edit_actividad_path(@registro)
           end
 
+          def rangosedadac
+            rangoedad = Cor1440Gen::Rangoedadac.all
+            render json: rangoedad, status: :ok
+          end
 
           # API, retorna población por sexo y rango de edad (sin modificar
           # base de datos)
