@@ -120,7 +120,7 @@ module Sivel2Sjr
             end
             rangoedad = {'S' => {}, 'M' => {}, 'F' => {}}
             totsexo = {}
-            Sivel2Gen::RangoedadHelper.poblacion_por_sexo_rango(
+            Sivel2Sjr::RangoedadHelper.poblacion_por_sexo_rango(
               casosjr.take.id_caso, fecha.year, fecha.month, fecha.day,
               'Cor1440Gen::Rangoedadac', rangoedad, totsexo)
             render json: rangoedad, status: :ok
