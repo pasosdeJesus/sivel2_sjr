@@ -57,7 +57,7 @@
 # Será fila que tendrá rango con id idrango
 @sivel2_sjr_aumenta_fila_poblacion = (idrf, idrango) ->
   # Agregar rango y actualizar idrf
-  $('a[data-association-insertion-node$=actividad_rangoedadac]').click()              
+  $('a[data-association-insertion-node$=actividad_rangoedadac]').click()
   uf = $('#actividad_rangoedadac').children().last()
   e = uf.find('[id^=actividad_actividad_rangoedadac_attributes][id$=_rangoedadac_id]')
   idrf[idrango] = /actividad_actividad_rangoedadac_attributes_(.*)_rangoedadac_id/.exec(e.attr('id'))[1]
@@ -66,7 +66,7 @@
 
 # Recibe rangos de edad y los presenta
 @sivel2_sjr_completa_rangosedadac = (root, e) ->
-  divcp = root.sivel2_sjr_autocompleta_contacto_actividad_divcp 
+  divcp = root.sivel2_sjr_autocompleta_contacto_actividad_divcp
   for sexo, s of e
     totsexo = 0
     for rango, re of s
@@ -163,6 +163,7 @@
     return
   if idrf[idran] == -1 
     sivel2_sjr_aumenta_fila_poblacion(idrf, idran)
+  
   pref = '#actividad_actividad_rangoedadac_attributes_' + idrf[idran]
   if sexo == 'F'
     fr = +$(pref + '_fr').val()
@@ -176,6 +177,9 @@
     sr = +$(pref + '_s').val()
     $(pref + '_s').val(sr + (+cantidad))
     cor1440_gen_rangoedadac($(pref + '_s'))
+  $('#actividad_rangoedadac').find('input[id^=actividad_actividad_rangoedadac_attributes]').each () ->
+    if +$(this).val() == 0
+      cor1440_gen_rangoedadac($(this))
 
 # Recalcula tabla poblacion en actividad a partir de listado de 
 # personas beneficiarias  y de casos beneficiarios
@@ -199,6 +203,7 @@
     ) 
   else
     $('input[id^=actividad_actividad_rangoedadac_attributes_][id$=_fr]').each((i, v) ->
+      $(this).val(0)
       $(this).prop('readonly', false);
     )
     $('input[id^=actividad_actividad_rangoedadac_attributes_][id$=_mr]').each((i, v) ->
@@ -241,7 +246,6 @@
         ransin = i
     if idran == -1
       idran = ransin
-    
     sexo = $(this).parent().parent().parent().find('[id^=actividad_asistencia_attributes][id$=_persona_attributes_sexo]:visible').val()
     if idran < 0
       alert('No pudo ponerse en un rango de edad')
