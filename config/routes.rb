@@ -27,7 +27,10 @@ Sivel2Sjr::Engine.routes.draw do
   get '/victimas' => 'victimas#index', as: :victimas
   get '/victimas/nuevo' => 'victimas#nuevo'
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
-  
+ 
+  get "/api/sivel2sjr/poblacion_sexo_rangoedadac" => 'casos#poblacion_sexo_rangoedadac',
+    as: :sivel2sjr_poblacion_sexo_rangoedadac
+
   resources :casos, path_names: { new: 'nuevo', edit: 'edita' }
 
   namespace :admin do

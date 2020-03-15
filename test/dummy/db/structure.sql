@@ -3571,6 +3571,26 @@ CREATE VIEW public.sivel2_gen_conscaso1 AS
 
 
 --
+-- Name: sivel2_gen_conscaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
+ SELECT sivel2_gen_conscaso1.caso_id,
+    sivel2_gen_conscaso1.contacto,
+    sivel2_gen_conscaso1.fecharec,
+    sivel2_gen_conscaso1.oficina,
+    sivel2_gen_conscaso1.nusuario,
+    sivel2_gen_conscaso1.fecha,
+    sivel2_gen_conscaso1.statusmigratorio,
+    sivel2_gen_conscaso1.ultimaatencion_fecha,
+    sivel2_gen_conscaso1.memo,
+    sivel2_gen_conscaso1.victimas,
+    to_tsvector('spanish'::regconfig, public.unaccent(((((((((((((((((((sivel2_gen_conscaso1.caso_id || ' '::text) || sivel2_gen_conscaso1.contacto) || ' '::text) || replace(((sivel2_gen_conscaso1.fecharec)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || (sivel2_gen_conscaso1.oficina)::text) || ' '::text) || (sivel2_gen_conscaso1.nusuario)::text) || ' '::text) || replace(((sivel2_gen_conscaso1.fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || (sivel2_gen_conscaso1.statusmigratorio)::text) || ' '::text) || replace(((sivel2_gen_conscaso1.ultimaatencion_fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || sivel2_gen_conscaso1.memo) || ' '::text) || sivel2_gen_conscaso1.victimas))) AS q
+   FROM public.sivel2_gen_conscaso1
+  WITH NO DATA;
+
+
+--
 -- Name: sivel2_gen_contexto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -6995,6 +7015,13 @@ ALTER TABLE ONLY public.sivel2_gen_vinculoestado
 
 
 --
+-- Name: busca_conscaso; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX busca_conscaso ON public.sivel2_gen_conscaso USING gin (q);
+
+
+--
 -- Name: cor1440_gen_actividad_oficina_id_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9670,6 +9697,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200224134339'),
 ('20200228235200'),
 ('20200229005951'),
-('20200302194744');
+('20200302194744'),
+('20200314033958');
 
 

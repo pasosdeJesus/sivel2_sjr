@@ -37,6 +37,7 @@ module Sivel2Sjr
             reject_if: :all_blank
 
           validate :rol_usuario
+
         end
 
 

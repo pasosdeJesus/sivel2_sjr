@@ -96,37 +96,6 @@ module Sivel2Sjr
           end
 
 
-          # API, retorna población por sexo y rango de edad (sin modificar
-          # base de datos)
-          def poblacion_sexo_rangoedadac
-            caso_id = params[:id_caso].to_i
-            fecha = Sip::FormatoFechaHelper.fecha_local_estandar(
-              params[:fecha])
-            if !fecha
-              render json: "No se pudo convertir fecha #{params[:fecha]}",
-                status: :unprocessable_entity 
-              return
-            end
-            fecha = Date.strptime(fecha, '%Y-%m-%d')
-
-            anio = fecha.year
-            mes = fecha.month
-            dia = fecha.day
-            casosjr = Sivel2Sjr::Casosjr.where(id_caso: caso_id)
-            if casosjr.count == 0
-              render json: "No se encontró caso #{caso_id}",
-                status: :unprocessable_entity 
-              return
-            end
-            rangoedad = {'S' => {}, 'M' => {}, 'F' => {}}
-            totsexo = {}
-            Sivel2Sjr::RangoedadHelper.poblacion_por_sexo_rango(
-              casosjr.take.id_caso, fecha.year, fecha.month, fecha.day,
-              'Cor1440Gen::Rangoedadac', rangoedad, totsexo)
-            render json: rangoedad, status: :ok
-          end
-
-
           def lista_params_sivel2_sjr
             lista_params_cor1440_gen  + [
               :actividad_casosjr_attributes => [
