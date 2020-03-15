@@ -8,6 +8,8 @@ module Sivel2Sjr
 
         included do
           
+          self.primary_key = :id_caso
+
           has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
             validate: true, foreign_key: "id_caso"#, dependent: :destroy
 
@@ -43,7 +45,6 @@ module Sivel2Sjr
             class_name: "Sivel2Sjr::Statusmigratorio", 
             foreign_key: "id_statusmigratorio", validate: true, optional: true
 
-          self.primary_key = :id_caso
 
           validates_presence_of :fecharec
           validates_presence_of :asesor
@@ -95,7 +96,21 @@ module Sivel2Sjr
               errors.add(:oficina, "Solo puede editar casos de su oficina")
             end
           end
-  
+
+          before_destroy do
+            no_borra_con_actividades 
+            if errors.present?
+              throw(:abort) 
+            end
+          end
+
+          def no_borra_con_actividades
+            if actividad_casosjr.count > 0
+              errors.add(:base, 'Beneficiario de actividades ('+
+                         actividad_casosjr.pluck(:actividad_id).join(', ') + ')') 
+            end
+          end
+
         end
 
         module ClassMethods
