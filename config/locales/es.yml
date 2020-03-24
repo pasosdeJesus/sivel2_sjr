@@ -11,7 +11,7 @@ es:
       "sivel2_gen/caso":
         fecha: F. desplazamiento emblemático
         fecharec: Fecha recepción
-        nusuario: Asesor SJR
+        nusuario: Asesor JRS
         id: Código
         memo: Descripción
         statusmigratorio: Estatus migratorio
@@ -34,13 +34,13 @@ es:
         Ayudaestado: Ayuda del Estado
         Ayudasestado: Ayudas del Estado
       "sivel2_sjr/ayudasjr": 
-        Ayudasjr: Ayuda del SJR
-        Ayudassjr: Ayudas del SJR
+        Ayudasjr: Ayuda del JRS
+        Ayudassjr: Ayudas del JRS
       "sivel2_sjr/casosjr":
-        comosupo: Como supo del SJR
+        comosupo: Como supo del JRS
         contacto: Solicitante principal
         concentimientobd: Consentimiento Informado compartir BD CINEP
-        concentimientosjr: Consentimiento Informado compartir SJR
+        concentimientosjr: Consentimiento Informado compartir JRS
         direccion: Dirección actual
         fecharec: Fecha de recepción
         proteccion: Necesidad de protección internacional
@@ -49,13 +49,13 @@ es:
         statusmigratorio: Estatus migratorio
         telefono: Teléfono
         Ubicacion: Sitios geográficos
-        usuario: Asesor SJR
+        usuario: Asesor JRS
       "sivel2_sjr/consactividadcaso":
         Consactividadcaso: Reporte actividad con caso
         actividad_proyectofinanciero: Convenio financiado
       "sivel2_sjr/comosupo":
-        Comosupo: Como supo del SJR
-        Comosupos: Como supo del SJR
+        Comosupo: Como supo del JRS
+        Comosupos: Como supo del JRS
       "sivel2_sjr/emprendimiento":
         Emprendimiento: Emprendimiento
         Emprendimientos: Emprendimientos
@@ -91,7 +91,7 @@ es:
         detallear: Detalle A. humanitaria
         detalleal: Detalle A. legal
         fechaatencion: Fecha de atención
-        gestionessjr:  Compromisos del SJR
+        gestionessjr:  Compromisos del JRS
         montoar: Monto A. humanitaria
         montoal: Monto A. legal
         observaciones:  Observaciones
