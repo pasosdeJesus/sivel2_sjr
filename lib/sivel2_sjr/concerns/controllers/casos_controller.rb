@@ -11,11 +11,12 @@ module Sivel2Sjr
         include Sivel2Gen::Concerns::Controllers::CasosController
 
         included do
+          # Las sisguientes deben estar solo en la clase final
+          #before_action :set_caso, only: [:show, :edit, :update, :destroy]
+          #load_and_authorize_resource class: Sivel2Gen::Caso
           # Tuve que repetir las siguientes que tambien estan en 
           # Sivel2Gen::Concerns::Controllers::CasosController 
           # pero que no son llamadas 
-          before_action :set_caso, only: [:show, :edit, :update, :destroy]
-          load_and_authorize_resource class: Sivel2Gen::Caso
           helper Sip::UbicacionHelper
 
           def atributos_show
