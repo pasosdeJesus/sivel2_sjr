@@ -81,14 +81,19 @@ module Sivel2Sjr
             Cor1440Gen::ActividadesController.posibles_nuevaresp.
               each do |s, lnumacpf|
               if params[s] && params[s] == "true"
-                tipo = Cor1440Gen::Actividadpf.
-                  find(lnumacpf[1]).actividadtipo_id
-                presente_otros = Cor1440Gen::Actividadpf.
-                  where(actividadtipo_id: tipo).pluck(:id)
                 @registro.actividadpf_ids |= 
                   [Cor1440Gen::ActividadesController.actividadpf_segcas_id,
                    lnumacpf[1]]
-                @registro.actividadpf_ids |= presente_otros
+                tipo = Cor1440Gen::Actividadpf.
+                  find(lnumacpf[1]).actividadtipo_id
+                presente_otros = Cor1440Gen::Actividadpf.
+                  where(actividadtipo_id: tipo)
+                presente_otros.each do |ac|
+                  pr = ac.proyectofinanciero_id
+                  if @registro.proyectofinanciero_ids.include? pr
+                    @registro.actividadpf_ids |= [ac.id]
+                  end
+                end
               end
 
             end
