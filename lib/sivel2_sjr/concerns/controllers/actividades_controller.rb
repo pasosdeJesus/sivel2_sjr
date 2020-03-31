@@ -87,15 +87,10 @@ module Sivel2Sjr
                 tipo = Cor1440Gen::Actividadpf.
                   find(lnumacpf[1]).actividadtipo_id
                 presente_otros = Cor1440Gen::Actividadpf.
-                  where(actividadtipo_id: tipo)
-                presente_otros.each do |ac|
-                  pr = ac.proyectofinanciero_id
-                  if @registro.proyectofinanciero_ids.include? pr
-                    @registro.actividadpf_ids |= [ac.id]
-                  end
-                end
+                  where(actividadtipo_id: tipo).
+                  where(proyectofinanciero_id: @registro.proyectofinanciero_ids)
+                @registro.actividadpf_ids |= presente_otros.pluck(:id).uniq
               end
-
             end
             @registro.save!(validate: false)
           end
