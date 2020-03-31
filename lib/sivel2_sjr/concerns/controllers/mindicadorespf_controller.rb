@@ -85,8 +85,8 @@ module Sivel2Sjr
               end
 
               return [ resind, urlevrind, 
-                       benef_dir, urlevdir, 
-                       benef_indir, urlevindir, 
+                       benef_dir.count, urlevdir, 
+                       benef_indir.count, urlevindir, 
                        -1, '#' ]
             end
             return mideindicador_cor1440_gen(mind, ind, fini, ffin)
