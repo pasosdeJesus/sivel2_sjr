@@ -895,6 +895,16 @@ ALTER SEQUENCE public.cor1440_gen_actividadpf_id_seq OWNED BY public.cor1440_gen
 
 
 --
+-- Name: cor1440_gen_actividadpf_mindicadorpf; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cor1440_gen_actividadpf_mindicadorpf (
+    actividadpf_id integer,
+    mindicadorpf_id integer
+);
+
+
+--
 -- Name: cor1440_gen_actividadtipo; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1639,7 +1649,11 @@ CREATE TABLE public.cor1440_gen_tipoindicador (
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
     created_at date,
-    updated_at date
+    updated_at date,
+    descd1 character varying(32),
+    descd2 character varying(32),
+    descd3 character varying(32),
+    descd4 character varying(32)
 );
 
 
@@ -3658,6 +3672,50 @@ CREATE TABLE public.sivel2_gen_contexto (
 
 
 --
+-- Name: sivel2_gen_contextovictima; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_contextovictima (
+    id bigint NOT NULL,
+    nombre character varying(100) NOT NULL,
+    observaciones character varying(5000),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sivel2_gen_contextovictima_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_gen_contextovictima_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_gen_contextovictima_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sivel2_gen_contextovictima_id_seq OWNED BY public.sivel2_gen_contextovictima.id;
+
+
+--
+-- Name: sivel2_gen_contextovictima_victima; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_contextovictima_victima (
+    contextovictima_id integer,
+    victima_id integer
+);
+
+
+--
 -- Name: sivel2_gen_escolaridad_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -5579,6 +5637,13 @@ ALTER TABLE ONLY public.sivel2_gen_combatiente ALTER COLUMN id SET DEFAULT nextv
 
 
 --
+-- Name: sivel2_gen_contextovictima id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_contextovictima ALTER COLUMN id SET DEFAULT nextval('public.sivel2_gen_contextovictima_id_seq'::regclass);
+
+
+--
 -- Name: sivel2_gen_resagresion id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6845,6 +6910,14 @@ ALTER TABLE ONLY public.sivel2_gen_combatiente
 
 
 --
+-- Name: sivel2_gen_contextovictima sivel2_gen_contextovictima_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_contextovictima
+    ADD CONSTRAINT sivel2_gen_contextovictima_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sivel2_gen_resagresion sivel2_gen_resagresion_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7111,6 +7184,20 @@ CREATE INDEX index_cor1440_gen_actividad_sip_anexo_on_anexo_id ON public.cor1440
 
 
 --
+-- Name: index_cor1440_gen_actividadpf_mindicadorpf_on_actividadpf_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cor1440_gen_actividadpf_mindicadorpf_on_actividadpf_id ON public.cor1440_gen_actividadpf_mindicadorpf USING btree (actividadpf_id);
+
+
+--
+-- Name: index_cor1440_gen_actividadpf_mindicadorpf_on_mindicadorpf_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cor1440_gen_actividadpf_mindicadorpf_on_mindicadorpf_id ON public.cor1440_gen_actividadpf_mindicadorpf USING btree (mindicadorpf_id);
+
+
+--
 -- Name: index_heb412_gen_doc_on_tdoc_type_and_tdoc_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7199,6 +7286,20 @@ CREATE INDEX index_sivel2_gen_antecedente_combatiente_on_id_antecedente ON publi
 --
 
 CREATE INDEX index_sivel2_gen_antecedente_combatiente_on_id_combatiente ON public.sivel2_gen_antecedente_combatiente USING btree (id_combatiente);
+
+
+--
+-- Name: index_sivel2_gen_contextovictima_victima_on_contextovictima_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_contextovictima_victima_on_contextovictima_id ON public.sivel2_gen_contextovictima_victima USING btree (contextovictima_id);
+
+
+--
+-- Name: index_sivel2_gen_contextovictima_victima_on_victima_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_contextovictima_victima_on_victima_id ON public.sivel2_gen_contextovictima_victima USING btree (victima_id);
 
 
 --
@@ -8119,6 +8220,14 @@ ALTER TABLE ONLY public.mr519_gen_encuestausuario
 
 
 --
+-- Name: sivel2_gen_contextovictima_victima fk_rails_1b81b1ccd7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_contextovictima_victima
+    ADD CONSTRAINT fk_rails_1b81b1ccd7 FOREIGN KEY (contextovictima_id) REFERENCES public.sivel2_gen_contextovictima(id);
+
+
+--
 -- Name: heb412_gen_formulario_plantillahcr fk_rails_1bdf79898c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8375,6 +8484,14 @@ ALTER TABLE ONLY public.cor1440_gen_plantillahcm_proyectofinanciero
 
 
 --
+-- Name: sivel2_gen_contextovictima_victima fk_rails_6322164389; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_contextovictima_victima
+    ADD CONSTRAINT fk_rails_6322164389 FOREIGN KEY (victima_id) REFERENCES public.sivel2_gen_victima(id);
+
+
+--
 -- Name: sivel2_gen_combatiente fk_rails_6485d06d37; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8420,6 +8537,14 @@ ALTER TABLE ONLY public.cor1440_gen_caracterizacionpersona
 
 ALTER TABLE ONLY public.heb412_gen_formulario_plantillahcm
     ADD CONSTRAINT fk_rails_6e214a7168 FOREIGN KEY (formulario_id) REFERENCES public.mr519_gen_formulario(id);
+
+
+--
+-- Name: cor1440_gen_actividadpf_mindicadorpf fk_rails_6e9cbecf02; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_actividadpf_mindicadorpf
+    ADD CONSTRAINT fk_rails_6e9cbecf02 FOREIGN KEY (mindicadorpf_id) REFERENCES public.cor1440_gen_mindicadorpf(id);
 
 
 --
@@ -8764,6 +8889,14 @@ ALTER TABLE ONLY public.cor1440_gen_indicadorpf
 
 ALTER TABLE ONLY public.sivel2_sjr_progestado_derecho
     ADD CONSTRAINT fk_rails_cff2ad554d FOREIGN KEY (derecho_id) REFERENCES public.sivel2_sjr_derecho(id);
+
+
+--
+-- Name: cor1440_gen_actividadpf_mindicadorpf fk_rails_cfff77ad98; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_actividadpf_mindicadorpf
+    ADD CONSTRAINT fk_rails_cfff77ad98 FOREIGN KEY (actividadpf_id) REFERENCES public.cor1440_gen_actividadpf(id);
 
 
 --
@@ -9761,6 +9894,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200229005951'),
 ('20200302194744'),
 ('20200314033958'),
-('20200319183515');
+('20200319183515'),
+('20200320152017'),
+('20200324164130'),
+('20200326212919'),
+('20200327004702'),
+('20200330174434'),
+('20200330180854'),
+('20200331210411');
 
 
