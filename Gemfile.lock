@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: c3fdde175983c48357be1d1706857b8a0a6af0cd
+  revision: 83d62dab5e7043ff880b917b1a06b6b25a1d6e1a
   specs:
     cor1440_gen (1.0b3)
       devise
@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: d5abf6e49cb18942cb36392b70280fa257286ccc
+  revision: 35ae7a63d8c62de1a6b04c7575941c5c70f4cef2
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: ba97bb89a9387d338a43ca6defc22c66281f65df
+  revision: e4fa1f55043b7ed7d432d15ba977b6cb6a372bb7
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 96cb656bf025ec113b015340d537df8e48d0b2df
+  revision: 7f3186fac1e58dd7c0f71e1a20f9cf441a77b985
   specs:
     sip (2.0.b10)
       cancancan
@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 078b4c8640a2cc495caaad8edc2c0076002c1810
+  revision: 1d6228e3a4bf2e2dc36c36d006ee080b44e98082
   specs:
     sivel2_gen (2.0b10)
       devise
@@ -179,7 +179,7 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     libxml-ruby (3.1.0)
-    loofah (2.4.0)
+    loofah (2.5.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
