@@ -3,11 +3,46 @@ es:
     departamento: Departamento/Estado/Cantón 
     fechacreacion: Creación
     fechadeshabilitacion: Deshabilitación 
+    proyectosfinancieros: Convenios financiados
+    proyectofinanciero: Convenio financiado
   activerecord:
+    models:
+      "cor1440_gen/proyectofinanciero": 
+        one: "Convenio financiado"
+        other: "Convenios financiados"
     attributes:
+      "cor1440_gen/actividad":
+        proyectofinanciero: Convenio financiado
+      "cor1440_gen/mindicadorpf":
+        proyectofinanciero: Convenio financiado
+        proyectofinanciero_id: Convenio financiado
+      "cor1440_gen/informe":
+        filtroproyectofinanciero: Convenio financiado
       "cor1440_gen/proyectofinanciero":
         "{:oficina_ids=>[]}": Oficinas
         "{:proyecto_ids=>[]}": Área de actividad
+        Proyectofinanciero: Convenio financiado
+        proyectofinanciero: Convenio financiado
+        Proyectosfinancieros: Convenios financiados
+        proyectosfinancieros: Convenios financiados
+      "heb412_gen/plantillahcm":
+        proyectofinanciero: Convenios financiados que exportan/importan con la plantilla
+      'mr519_gen/formulario':
+        caracterizacion: Caracterización en convenios financiados
+      "sip/persona":
+        proyectofinanciero_ids: Convenios financiados que caracterizan
+        proyectofinanciero: Convenios financiados que caracterizan
+      "sip/ubicacion":
+        clase: Centro poblado
+        departamento: Estado/Departamento/Provincia
+        latitud: Latitud
+        longitud: Longitud
+        lugar: Lugar
+        municipio: Municipio/Cantón
+        pais: País
+        sitio: Sitio
+        tsitio: Tipo de sitio
+        Ubicacion: Sitio geográfico
       "sivel2_gen/caso":
         fecha: F. desplazamiento emblemático
         fecharec: Fecha recepción
@@ -108,15 +143,4 @@ es:
         Tipodesp: Tipo de desplazamiento
         Tiposdesp: Tipos de desplazamiento
       "sivel2_sjr/ubicacion":
-        Ubicacion: Sitio geográfico
-      "sip/ubicacion":
-        clase: Centro poblado
-        departamento: Estado/Departamento/Provincia
-        latitud: Latitud
-        longitud: Longitud
-        lugar: Lugar
-        municipio: Municipio/Cantón
-        pais: País
-        sitio: Sitio
-        tsitio: Tipo de sitio
         Ubicacion: Sitio geográfico
