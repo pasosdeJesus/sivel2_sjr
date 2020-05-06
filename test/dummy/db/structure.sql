@@ -3502,6 +3502,16 @@ CREATE TABLE public.sivel2_gen_caso_region (
 
 
 --
+-- Name: sivel2_gen_caso_respuestafor; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_caso_respuestafor (
+    caso_id bigint NOT NULL,
+    respuestafor_id bigint NOT NULL
+);
+
+
+--
 -- Name: sivel2_gen_caso_usuario; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8463,6 +8473,22 @@ ALTER TABLE ONLY public.cor1440_gen_actividad_proyecto
 
 
 --
+-- Name: sivel2_gen_caso_respuestafor fk_rails_3aa0de8b93; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_respuestafor
+    ADD CONSTRAINT fk_rails_3aa0de8b93 FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
+
+
+--
+-- Name: sivel2_gen_caso_respuestafor fk_rails_3fd971983e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_caso_respuestafor
+    ADD CONSTRAINT fk_rails_3fd971983e FOREIGN KEY (respuestafor_id) REFERENCES public.mr519_gen_respuestafor(id);
+
+
+--
 -- Name: cor1440_gen_informe fk_rails_40cb623d50; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10029,6 +10055,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200411095105'),
 ('20200411100013'),
 ('20200415021859'),
-('20200415102103');
+('20200415102103'),
+('20200422103916'),
+('20200427091939'),
+('20200430101709');
 
 
