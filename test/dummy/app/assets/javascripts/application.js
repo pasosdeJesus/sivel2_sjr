@@ -11,5 +11,6 @@
 // about supported directives.
 //
 //= require sivel2_sjr/application
+//= require mr519_gen/motor
 //= require sivel2_gen/mapaosm
 //= require_tree .
