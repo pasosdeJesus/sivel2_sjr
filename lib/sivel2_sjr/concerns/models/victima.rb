@@ -16,6 +16,11 @@ module Sivel2Sjr
           has_one :victimasjr, class_name: 'Sivel2Sjr::Victimasjr', 
             foreign_key: "id_victima", dependent: :destroy, validate: true, 
             inverse_of: :victima
+          has_many :anexo_victima, foreign_key: 'id_victima', validate: true, dependent: :destroy, class_name: 'Sivel2Gen::AnexoVictima',
+            inverse_of: :victima
+          has_many :sip_anexo, :through => :anexo_victima, 
+            class_name: 'Sip::Anexo'
+
           accepts_nested_attributes_for :victimasjr, reject_if: :all_blank,
             update_only: true
         end
