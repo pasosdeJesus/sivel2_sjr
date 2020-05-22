@@ -471,7 +471,19 @@ module Sivel2Sjr
                 :id_rangoedad, 
                 :id_vinculoestado, 
                 :orientacionsexual, 
-                :_destroy 
+                :_destroy, 
+                :anexo_victima_attributes => [
+                  :fecha_localizada,
+                  :id, 
+                  :id_victima,
+                  :_destroy,
+                  :sip_anexo_attributes => [
+                    :adjunto, 
+                    :descripcion, 
+                    :id, 
+                    :_destroy
+                  ]
+                ],
               ] + otros_params_victima + [
                 :persona_attributes => [
                   :apellidos, 
@@ -490,7 +502,8 @@ module Sivel2Sjr
                   :tdocumento_id
                 ] + otros_params_persona,
                 :victimasjr_attributes => [
-                  :asisteescuela, 
+                  :asisteescuela,
+                  :actualtrabajando, 
                   :cabezafamilia, 
                   :enfermedad, 
                   :eps, 

@@ -21,6 +21,8 @@ module Sivel2Sjr
           has_many :sip_anexo, :through => :anexo_victima, 
             class_name: 'Sip::Anexo'
 
+          accepts_nested_attributes_for :anexo_victima, reject_if: :all_blank,
+            update_only: true
           accepts_nested_attributes_for :victimasjr, reject_if: :all_blank,
             update_only: true
         end
