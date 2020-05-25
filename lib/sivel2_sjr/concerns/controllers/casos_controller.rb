@@ -189,9 +189,7 @@ module Sivel2Sjr
             end
           end
 
-          # PATCH/PUT /casos/1
-          # PATCH/PUT /casos/1.json
-          def update
+          def update_sivel2_sjr
             # No deben venir validaciones en controlador
             respond_to do |format|
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
@@ -220,6 +218,12 @@ module Sivel2Sjr
               end
               Sivel2Gen::Conscaso.refresca_conscaso
             end
+          end
+
+          # PATCH/PUT /casos/1
+          # PATCH/PUT /casos/1.json
+          def update
+            update_sivel2_sjr
           end
 
           # DELETE /casos/1.json
