@@ -138,7 +138,7 @@
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-      cor1440_gen.actividades_path, :class => 'btn' 
+      cor1440_gen.actividades_path, :class => 'btn', action: @actividad.destroy!
     %>
   </div>
 <% end %>
