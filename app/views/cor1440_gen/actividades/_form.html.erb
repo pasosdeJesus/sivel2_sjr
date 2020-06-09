@@ -136,12 +136,7 @@
   <%= render partial: 'campo_anexos', locals: {f: f} %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <% if @actividad.save %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-        cor1440_gen.actividades_path, :class => 'btn' %>
-    <% else %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-        cor1440_gen.actividades_path, :class => 'btn', action: @actividad.destroy! %>
-    <% end %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      cor1440_gen.actividades_path, :class => 'btn', action: cancelar(@actividad) %>
   </div>
 <% end %>
