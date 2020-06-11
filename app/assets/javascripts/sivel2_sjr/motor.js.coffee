@@ -647,7 +647,7 @@
 
   return
 
-@saludar = (actividad) ->
+@validar_act_poromision = (actividad) ->
   nombre=$('#actividad_nombre').val()
   fecha = $('#actividad_fecha_localizada').val()
   objetivo = $('#actividad_objetivo').val()
