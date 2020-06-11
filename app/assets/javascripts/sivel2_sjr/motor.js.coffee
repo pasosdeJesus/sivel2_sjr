@@ -662,10 +662,10 @@
     purl = root.puntomontaje
     if purl == '/'
       purl = ''
-    $('#cancelbtn').attr('data-method', 'delete')
-    $('#cancelbtn').attr('href', purl + '/actividades/' + actividadId)
+    $('#cancel_act_btn').attr('data-method', 'delete')
+    $('#cancel_act_btn').attr('href', purl + '/actividades/' + actividadId)
   else
-    $('#cancelbtn').attr('href', purl + '/actividades')
+    $('#cancel_act_btn').attr('href', purl + '/actividades')
 
 @sivel2_sjr_prepara_eventos_unicos = (root) ->
   # Envia formulario al presionar enlaces con clase fichacambia 
