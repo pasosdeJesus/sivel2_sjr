@@ -10,6 +10,7 @@
 
 # Regenera lista de selección de desplazamientos
 # s es un select jquery
+
 @actualiza_desplazamientos = (s) ->
     sel = s.val()
     nh = '<option value=""></option>'
@@ -646,6 +647,25 @@
 
   return
 
+@saludar = (actividad) ->
+  nombre=$('#actividad_nombre').val()
+  fecha = $('#actividad_fecha_localizada').val()
+  objetivo = $('#actividad_objetivo').val()
+  resultado = $('#actividad_resultado').val()
+  observaciones = $('#actividad_observaciones').val()
+  oficinaid = $('#actividad_oficina_id').val()
+  lugar = $('#actividad_lugar').val()
+  hoy = new Date().toJSON().slice(0,10);
+  if (nombre == '' && objetivo == '' && resultado == '' && fecha == hoy && observaciones == '' && oficinaid == "1" && lugar == '')
+    actividadId = actividad
+    root = window
+    purl = root.puntomontaje
+    if purl == '/'
+      purl = ''
+    $('#cancelbtn').attr('data-method', 'delete')
+    $('#cancelbtn').attr('href', purl + '/actividades/' + actividadId)
+  else
+    $('#cancelbtn').attr('href', purl + '/actividades')
 
 @sivel2_sjr_prepara_eventos_unicos = (root) ->
   # Envia formulario al presionar enlaces con clase fichacambia 
