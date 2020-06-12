@@ -651,15 +651,13 @@
   fechacierre = $('#proyectofinanciero_fechacierre_localizada').val()
   monto = $('#proyectofinanciero_monto').val()
   proyectoId = proyectofinanciero
+  root = window
+  purl = root.puntomontaje
+  if purl == '/'
+    purl = ''
   if (nombre == 'N' && fechainicio == '' && fechacierre == '' && monto == '1')
-    root = window
-    purl = root.puntomontaje
-    if purl == '/'
-      purl = ''
     $('#cancel-pf-btn').attr('data-method', 'delete')
     $('#cancel-pf-btn').attr('href', purl + '/proyectosfinancieros/' + proyectoId)
-  else
-    $('#cancelbtn').attr('href', purl + '/proyectosfinancieros')
 
 @sivel2_sjr_prepara_eventos_unicos = (root) ->
   # Envia formulario al presionar enlaces con clase fichacambia 
