@@ -656,16 +656,14 @@
   oficinaid = $('#actividad_oficina_id').val()
   lugar = $('#actividad_lugar').val()
   hoy = new Date().toJSON().slice(0,10);
+  root = window
+  purl = root.puntomontaje
+  if purl == '/'
+    purl = ''
   if (nombre == '' && objetivo == '' && resultado == '' && fecha == hoy && observaciones == '' && oficinaid == "1" && lugar == '')
     actividadId = actividad
-    root = window
-    purl = root.puntomontaje
-    if purl == '/'
-      purl = ''
     $('#cancel_act_btn').attr('data-method', 'delete')
     $('#cancel_act_btn').attr('href', purl + '/actividades/' + actividadId)
-  else
-    $('#cancel_act_btn').attr('href', purl + '/actividades')
 
 @sivel2_sjr_prepara_eventos_unicos = (root) ->
   # Envia formulario al presionar enlaces con clase fichacambia 
