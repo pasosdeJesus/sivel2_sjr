@@ -10,6 +10,7 @@
 
 # Regenera lista de selección de desplazamientos
 # s es un select jquery
+
 @actualiza_desplazamientos = (s) ->
     sel = s.val()
     nh = '<option value=""></option>'
@@ -659,6 +660,25 @@
     $('#cancel-pf-btn').attr('data-method', 'delete')
     $('#cancel-pf-btn').attr('href', purl + '/proyectosfinancieros/' + proyectoId)
 
+@validar_act_poromision = (actividad) ->
+  nombre=$('#actividad_nombre').val()
+  fecha = $('#actividad_fecha_localizada').val()
+  objetivo = $('#actividad_objetivo').val()
+  resultado = $('#actividad_resultado').val()
+  observaciones = $('#actividad_observaciones').val()
+  oficinaid = $('#actividad_oficina_id').val()
+  lugar = $('#actividad_lugar').val()
+  hoy = new Date().toJSON().slice(0,10);
+  root = window
+  purl = root.puntomontaje
+  if purl == '/'
+    purl = ''
+  if (nombre == '' && objetivo == '' && resultado == '' && fecha == hoy && observaciones == '' && oficinaid == "1" && lugar == '')
+    actividadId = actividad
+    $('#cancel_act_btn').attr('data-method', 'delete')
+    $('#cancel_act_btn').attr('href', purl + '/actividades/' + actividadId)
+
+    
 @sivel2_sjr_prepara_eventos_unicos = (root) ->
   # Envia formulario al presionar enlaces con clase fichacambia 
   # con más de 5 segundos de diferencia entre un click y el siguiente

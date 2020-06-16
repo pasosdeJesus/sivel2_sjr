@@ -89,15 +89,14 @@ module Sivel2Sjr
                 l += sepl + "char_length(#{p})";
                 seps = " || ' ' || ";
               end
-              qstring = "SELECT TRIM(#{s}) AS value, #{l} AS id 
-        FROM public.sip_persona AS persona
-        WHERE #{where} ORDER BY 1";
-
-        r = ActiveRecord::Base.connection.select_all qstring
-        respond_to do |format|
-          format.json { render :json, inline: r.to_json }
-          format.html { render :json, inline: 'No responde con parametro term' }
-        end
+              qstring = "SELECT TRIM(#{s}) AS value, #{l} AS id " +
+                "FROM public.sip_persona AS persona " +
+                "WHERE #{where} ORDER BY 1"
+              r = ActiveRecord::Base.connection.select_all qstring
+              respond_to do |format|
+                format.json { render :json, inline: r.to_json }
+                format.html { render :json, inline: 'No responde con parametro term' }
+              end
             else
               super(c)
             end
@@ -116,9 +115,28 @@ module Sivel2Sjr
               where(fechadesagregacion: nil)
             if ve.count > 0
               render json: "Está en núcleo familiar sin desagregar " +
-                "en el caso #{ve.take.victima.id_caso}", status: :unprocessable_entity
+                "en el caso #{ve.take.victima.id_caso}", 
+                status: :unprocessable_entity
               return false
             end
+            if @caso.casosjr.contacto 
+              if @caso.casosjr.contacto.nombres != ""
+                render json: "Ya hay una persona asociada, no es posible remplazar",
+                  status: :unprocessable_entity
+              else
+                ppb=@caso.casosjr.contacto_id
+                @caso.casosjr.contacto_id = nil
+                @caso.casosjr.save!(validate: false)
+                vic = @caso.victima.where(id_persona: ppb).take
+                vic.id_persona=@persona.id
+                vic.save(validate: false)
+                @caso.casosjr.contacto_id = @persona.id
+                @caso.casosjr.save!(validate: false)
+                #redirect_to sivel2_gen.edit_caso_path(@caso)
+                return false # buscar obligar el redirect_to
+              end
+            end
+
             return true
           end
 
