@@ -134,11 +134,10 @@
     locals: {f: f} %>
 
   <%= render partial: 'campo_anexos', locals: {f: f} %>
- 
   <div class="form-actions">
+    <% idact = @actividad.id.to_s %>
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-      cor1440_gen.actividades_path, :class => 'btn' 
-    %>
+      cor1440_gen.actividades_path, :class => 'btn', :id => 'cancel_act_btn', onclick: 'javascript: validar_act_poromision('+ idact +')' %>
   </div>
 <% end %>
