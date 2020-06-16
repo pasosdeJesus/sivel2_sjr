@@ -236,7 +236,6 @@
   $('[id^=actividad_asistencia_attributes][id$=_persona_attributes_anionac]').each((i, v) ->
     # excluye eliminadas
     if $(this).parent().parent().parent().css('display') != 'none'
-      debugger
       ida = /actividad_asistencia_attributes_(.*)_persona_attributes_anionac/.exec($(this).attr('id'))[1]
       anionac = $(this).val()
       mesnac = $('[id=actividad_asistencia_attributes_' + ida + '_persona_attributes_mesnac]').val()
@@ -647,6 +646,20 @@
 
   return
 
+@validar_pf_poromision = (proyectofinanciero) ->
+  nombre=$('#proyectofinanciero_nombre').val()
+  fechainicio = $('#proyectofinanciero_fechainicio_localizada').val()
+  fechacierre = $('#proyectofinanciero_fechacierre_localizada').val()
+  monto = $('#proyectofinanciero_monto').val()
+  proyectoId = proyectofinanciero
+  root = window
+  purl = root.puntomontaje
+  if purl == '/'
+    purl = ''
+  if (nombre == 'N' && fechainicio == '' && fechacierre == '' && monto == '1')
+    $('#cancel-pf-btn').attr('data-method', 'delete')
+    $('#cancel-pf-btn').attr('href', purl + '/proyectosfinancieros/' + proyectoId)
+
 @validar_act_poromision = (actividad) ->
   nombre=$('#actividad_nombre').val()
   fecha = $('#actividad_fecha_localizada').val()
@@ -665,6 +678,7 @@
     $('#cancel_act_btn').attr('data-method', 'delete')
     $('#cancel_act_btn').attr('href', purl + '/actividades/' + actividadId)
 
+    
 @sivel2_sjr_prepara_eventos_unicos = (root) ->
   # Envia formulario al presionar enlaces con clase fichacambia 
   # con más de 5 segundos de diferencia entre un click y el siguiente
