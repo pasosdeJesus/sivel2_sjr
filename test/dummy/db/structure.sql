@@ -3448,7 +3448,7 @@ CREATE TABLE public.sivel2_gen_caso_fotra (
     id_fotra integer,
     anotacion character varying(200),
     fecha date NOT NULL,
-    ubicacionfisica character varying(100),
+    ubicacionfisica character varying(1024),
     tfuente character varying(25),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -3490,7 +3490,7 @@ CREATE TABLE public.sivel2_gen_caso_fuenteprensa (
     fecha date NOT NULL,
     ubicacion character varying(100),
     clasificacion character varying(100),
-    ubicacionfisica character varying(100),
+    ubicacionfisica character varying(1024),
     fuenteprensa_id integer NOT NULL,
     id_caso integer NOT NULL,
     created_at timestamp without time zone,
@@ -10121,6 +10121,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200422103916'),
 ('20200427091939'),
 ('20200430101709'),
-('20200522142932');
+('20200522142932'),
+('20200622193241');
 
 
