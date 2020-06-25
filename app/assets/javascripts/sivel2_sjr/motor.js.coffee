@@ -32,7 +32,7 @@
 @actualiza_ubicaciones = (s) ->
     sel = s.val()
     nh = ''
-    lcg = $('#ubicacion .control-group[style!="display: none;"]')
+    lcg = $('#ubicaciones .control-group[style!="display: none;"]')
     lcg.each((k, v) ->
       # id: ubicacion
       id = $(v).find('.caso_ubicacion_id input').val()
@@ -441,7 +441,7 @@
   )
 
   # Antes de eliminar ubicacion confirmar si se eliminan dependientes
-  $('#ubicacion').on('cocoon:before-remove', (e, papa) ->
+  $('#ubicaciones').on('cocoon:before-remove', (e, papa) ->
     # Si ingresa más de una vez se evita duplicar
     if (root.elempe && root.elempe.length>0) 
       return
@@ -487,7 +487,7 @@
   )
 
   # Tras eliminar ubicacion, eliminar dependientes
-  $('#ubicacion').on('cocoon:after-remove', (e, papa) ->
+  $('#ubicaciones').on('cocoon:after-remove', (e, papa) ->
     elimina_pendientes(root.elempe);
     root.elempe = []
     if (root.elimrefugiosalida) 
@@ -545,7 +545,7 @@
  
   # Antes de añadir desplazamiento verificar que haya al menos 2 ubicaciones
   $('#desplazamiento').on('click', '.add_fields', (e) ->
-    lcg = $('#ubicacion .control-group[style!="display: none;"]')
+    lcg = $('#ubicaciones .control-group[style!="display: none;"]')
     if (lcg.length < 2)
       alert('Debe haber antes por lo menos dos sitios geográficos')
       return false
