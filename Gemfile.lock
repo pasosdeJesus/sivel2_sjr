@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 0425d1638ca0dfb144966b26217ccdc4323ab0c3
+  revision: c73d0cad75f5cd8db0629088dd42b9fe54e50403
   specs:
     cor1440_gen (1.0b3)
       devise
@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 948a46a0a69f3290ce338a354eb0f252c2fdf87b
+  revision: c614288de359f8429ef6ab9a0e574e92ef5ab216
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 31d6f006588fb203e109bf2946ad0deb9c78c4bb
+  revision: 9ff1c2959aa93b59e36802130fea31e2dde9423a
   specs:
     mr519_gen (0.2.0)
       rails (~> 6.0.0.rc1, >= 6.0.0.rc1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 62415e62a6e0c308a50219ba3dc02a2ec1df50ae
+  revision: 8dcd983dd8febbbb0f00ba43f9f7dde447036fbd
   specs:
     sip (2.0.b10)
       cancancan
@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 28b55ceddfde530fa2b685305f0a94c2222989c1
+  revision: 1c73167b15a9d073e978183c35a43fc10a979aab
   specs:
     sivel2_gen (2.0b11)
       devise
@@ -319,7 +319,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.0)
-    zeitwerk (2.3.0)
+    zeitwerk (2.3.1)
 
 PLATFORMS
   ruby
