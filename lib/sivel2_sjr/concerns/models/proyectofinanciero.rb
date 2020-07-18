@@ -20,7 +20,8 @@ module Sivel2Sjr
             join_table: 'sivel2_sjr_oficina_proyectofinanciero'
 
           scope :filtro_oficina_ids, lambda { |o|
-            joins(:oficina_proyectofinanciero).
+            joins('JOIN sivel2_sjr_oficina_proyectofinanciero ON ' +
+                  'sivel2_sjr_oficina_proyectofinanciero.proyectofinanciero_id=cor1440_gen_proyectofinanciero.id').
               where('sivel2_sjr_oficina_proyectofinanciero.oficina_id=?', o)
           }
 
