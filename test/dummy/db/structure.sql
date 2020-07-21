@@ -3936,6 +3936,16 @@ CREATE TABLE public.sivel2_gen_etnia (
 
 
 --
+-- Name: sivel2_gen_etnia_victimacolectiva; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_etnia_victimacolectiva (
+    etnia_id integer,
+    victimacolectiva_id integer
+);
+
+
+--
 -- Name: sivel2_gen_filiacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4383,6 +4393,16 @@ CREATE TABLE public.sivel2_gen_sectorsocial_victimacolectiva (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     victimacolectiva_id integer
+);
+
+
+--
+-- Name: sivel2_gen_sectorsocialsec_victima; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_gen_sectorsocialsec_victima (
+    sectorsocial_id integer,
+    victima_id integer
 );
 
 
@@ -7505,6 +7525,34 @@ CREATE INDEX index_sivel2_gen_contextovictima_victima_on_victima_id ON public.si
 
 
 --
+-- Name: index_sivel2_gen_etnia_victimacolectiva_on_etnia_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_etnia_victimacolectiva_on_etnia_id ON public.sivel2_gen_etnia_victimacolectiva USING btree (etnia_id);
+
+
+--
+-- Name: index_sivel2_gen_etnia_victimacolectiva_on_victimacolectiva_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_etnia_victimacolectiva_on_victimacolectiva_id ON public.sivel2_gen_etnia_victimacolectiva USING btree (victimacolectiva_id);
+
+
+--
+-- Name: index_sivel2_gen_sectorsocialsec_victima_on_sectorsocial_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_sectorsocialsec_victima_on_sectorsocial_id ON public.sivel2_gen_sectorsocialsec_victima USING btree (sectorsocial_id);
+
+
+--
+-- Name: index_sivel2_gen_sectorsocialsec_victima_on_victima_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sivel2_gen_sectorsocialsec_victima_on_victima_id ON public.sivel2_gen_sectorsocialsec_victima USING btree (victima_id);
+
+
+--
 -- Name: index_sivel2_sjr_casosjr_on_comosupo_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8406,6 +8454,14 @@ ALTER TABLE ONLY public.cor1440_gen_mindicadorpf
 
 
 --
+-- Name: sivel2_gen_sectorsocialsec_victima fk_rails_0feb0e70eb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_sectorsocialsec_victima
+    ADD CONSTRAINT fk_rails_0feb0e70eb FOREIGN KEY (sectorsocial_id) REFERENCES public.sivel2_gen_sectorsocial(id);
+
+
+--
 -- Name: sivel2_gen_caso_presponsable fk_rails_118837ae4c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8667,6 +8723,14 @@ ALTER TABLE ONLY public.cor1440_gen_efecto
 
 ALTER TABLE ONLY public.cor1440_gen_valorcampotind
     ADD CONSTRAINT fk_rails_4f2fc96457 FOREIGN KEY (campotind_id) REFERENCES public.cor1440_gen_campotind(id);
+
+
+--
+-- Name: sivel2_gen_etnia_victimacolectiva fk_rails_4fafec807e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_etnia_victimacolectiva
+    ADD CONSTRAINT fk_rails_4fafec807e FOREIGN KEY (etnia_id) REFERENCES public.sivel2_gen_etnia(id);
 
 
 --
@@ -9054,6 +9118,14 @@ ALTER TABLE ONLY public.cor1440_gen_anexo_efecto
 
 
 --
+-- Name: sivel2_gen_etnia_victimacolectiva fk_rails_be1aa8ff16; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_etnia_victimacolectiva
+    ADD CONSTRAINT fk_rails_be1aa8ff16 FOREIGN KEY (victimacolectiva_id) REFERENCES public.sivel2_gen_victimacolectiva(id);
+
+
+--
 -- Name: sivel2_gen_combatiente fk_rails_bfb49597e1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9187,6 +9259,14 @@ ALTER TABLE ONLY public.cor1440_gen_informe
 
 ALTER TABLE ONLY public.cor1440_gen_proyectofinanciero_usuario
     ADD CONSTRAINT fk_rails_dc664c3eaf FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
+
+
+--
+-- Name: sivel2_gen_sectorsocialsec_victima fk_rails_e04ef7c3e5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sivel2_gen_sectorsocialsec_victima
+    ADD CONSTRAINT fk_rails_e04ef7c3e5 FOREIGN KEY (victima_id) REFERENCES public.sivel2_gen_victima(id);
 
 
 --
@@ -10186,6 +10266,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200430101709'),
 ('20200522142932'),
 ('20200622193241'),
-('20200706113547');
+('20200706113547'),
+('20200720005020'),
+('20200720013144');
 
 
