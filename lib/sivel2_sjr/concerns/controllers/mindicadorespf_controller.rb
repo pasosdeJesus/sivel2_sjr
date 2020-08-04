@@ -45,7 +45,8 @@ module Sivel2Sjr
           end
 
 
-          # Auxiliar que resume medición de indicadores tipos 30 y 31          
+          # Auxiliar que resume medición de indicadores tipos 30 y 31
+          # i.e contar personas en listados de casos en actividades
           def medir_indicador_personas_casos(idacs, mind, fini, ffin, unicos)
             datosint = []
             hombrescasos = calcula_benef_por_sexo(idacs, 'M', ffin, unicos)
