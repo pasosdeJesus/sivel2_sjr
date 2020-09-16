@@ -46,7 +46,8 @@
       </label>
     </div>
     <div class='col-sm-4'>
-      <%= f.input_field :lugar %>
+      <%= render partial: 'campo_lugar', 
+        locals: {f: f, con_label: false} %>
     </div>
     <div class='col-sm-2'>
       <%= render partial: 'campo_proyectos_etiqueta', 
