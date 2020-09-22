@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 78be08bfc61e31c3e7b0ba21b6cf4caf409f4422
+  revision: 2a4c07eba95e357295452d7fd1d82983500dd0ee
   specs:
     cor1440_gen (1.0b3)
       devise
@@ -154,7 +154,7 @@ GEM
     colorize (0.8.1)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
-    devise (4.7.2)
+    devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
