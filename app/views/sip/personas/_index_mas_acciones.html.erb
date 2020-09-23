@@ -1,5 +1,15 @@
-<% if can?(:create, Sivel2Gen::Caso) && Sivel2Gen::Victima.where(id_persona: registro.id).count == 0 %>
-  <%= link_to 'Crear Caso',
-    sivel2_sjr.new_caso_path({contacto: registro.id}), 
-    :class => 'btn btn-sm' %>
+<% if can?(:create, Sivel2Gen::Caso) %>
+  <% if Sivel2Gen::Victima.where(id_persona: registro.id).count == 0 %>
+    <%= link_to 'Crear Caso',
+      sivel2_sjr.new_caso_path({contacto: registro.id}), 
+      :class => 'btn btn-sm' %>
+  <% elsif Sivel2Gen::Victima.where(id_persona: registro.id).count > 1 %> 
+    En varios casos: <%= Sivel2Gen::Victima.where(id_persona: registro.id).
+      map(&:id_caso).join("; ") %>
+  <% else %>
+    <% idc = Sivel2Gen::Victima.where(id_persona: registro.id).take.id_caso %>
+    En caso <%= link_to idc.to_s,
+      sivel2_gen.caso_path(idc),
+      target: '_blank' %>
+  <% end %>
 <% end %>
