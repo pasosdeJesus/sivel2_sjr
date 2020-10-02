@@ -69,9 +69,7 @@
     else
       cls = '.fam_sinsexo'
     et = divcp.find(cls).text(totsexo)
-
-  if typeof jrs_recalcula_poblacion == 'function'
-    jrs_recalcula_poblacion()
+  $(document).trigger('sivel2sjr:autocompletado-contactoactividad')
   return
 
 
@@ -162,6 +160,9 @@
         idran = pid[2]
         cor1440_gen_aumenta_poblacion(idrf, sexo, idran, $(this).val())
   )
+  if typeof jrs_refresca_posibles_beneficiarios_casos == 'function'
+    setTimeout(jrs_refresca_posibles_beneficiarios_casos, 500);
+
 
 
 # Recalcula tabla poblacion en actividad a partir de listado de 
@@ -442,7 +443,7 @@
     if typeof jrs_recalcula_poblacion == 'function'
       jrs_recalcula_poblacion()
   )
- 
+
   # En actividad tras eliminar asistencia recalcular población
   $('#asistencia').on('cocoon:after-remove', (e, papa) ->
     if typeof jrs_recalcula_poblacion == 'function'
@@ -455,10 +456,15 @@
       jrs_recalcula_poblacion()
   )
 
+  # Tras autocompletar contacto de un caso beneficiario
+  $(document).on('sivel2sjr:autocompletado-contactoactividad', (e, papa) ->
+    if typeof jrs_recalcula_poblacion == 'function'
+      jrs_recalcula_poblacion()
+  )
 
   return
 
-    
+
 @sivel2_sjr_prepara_eventos_unicos = (root) ->
   # Envia formulario al presionar enlaces con clase fichacambia 
   # con más de 5 segundos de diferencia entre un click y el siguiente
