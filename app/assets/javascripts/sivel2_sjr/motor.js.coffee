@@ -161,7 +161,7 @@
         cor1440_gen_aumenta_poblacion(idrf, sexo, idran, $(this).val())
   )
   if typeof jrs_refresca_posibles_beneficiarios_casos == 'function'
-    setTimeout(jrs_refresca_posibles_beneficiarios_casos, 500);
+    jrs_refresca_posibles_beneficiarios_casos
 
 
 
