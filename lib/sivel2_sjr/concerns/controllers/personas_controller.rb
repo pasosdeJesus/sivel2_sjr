@@ -14,7 +14,7 @@ module Sivel2Sjr
           include Sivel2Gen::Concerns::Controllers::PersonasController
           include Cor1440Gen::Concerns::Controllers::PersonasController
 
-          def atributos_show
+          def atributos_show_sivel2_sjr
             a = atributos_show_sip - [
               :mesnac, :dianac
             ] + [ 
@@ -24,6 +24,9 @@ module Sivel2Sjr
             a
           end
 
+          def atributos_show
+            atributos_show_sivel2_sjr
+          end
 
           def atributos_index
             [ :id, 
