@@ -13,8 +13,10 @@ module Sivel2Sjr
           has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
             validate: true, foreign_key: "id_caso"#, dependent: :destroy
 
-          has_many :actividad_casosjr, class_name: 'Sivel2Sjr::ActividadCasosjr',
-            validate: true, foreign_key: :casosjr_id
+          has_many :actividad_casosjr, 
+            class_name: 'Sivel2Sjr::ActividadCasosjr',
+            validate: true, 
+            foreign_key: :casosjr_id
           has_many :actividad, through: :actividad_casosjr
           accepts_nested_attributes_for :actividad_casosjr, 
             reject_if: :all_blank

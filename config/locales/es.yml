@@ -32,6 +32,7 @@ es:
       "sip/persona":
         proyectofinanciero_ids: Convenios financiados que caracterizan
         proyectofinanciero: Convenios financiados que caracterizan
+        actividadcasobeneficiario_ids: Actividades en las que está por un caso beneficiario
       "sip/ubicacion":
         clase: Centro poblado
         departamento: Estado/Departamento/Provincia

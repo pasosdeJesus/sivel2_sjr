@@ -14,6 +14,17 @@ module Sivel2Sjr
           include Sivel2Gen::Concerns::Controllers::PersonasController
           include Cor1440Gen::Concerns::Controllers::PersonasController
 
+          def atributos_show
+            a = atributos_show_sip - [
+              :mesnac, :dianac
+            ] + [ 
+              :caso_ids, :actividad_ids, :actividadcasobeneficiario_ids 
+            ]
+            a[a.index(:anionac)] = :fechanac 
+            a
+          end
+
+
           def atributos_index
             [ :id, 
               :nombres,
@@ -22,29 +33,22 @@ module Sivel2Sjr
               :numerodocumento,
               :fechanac,
               :sexo,
-              :municipio
-            ]
-          end
-
-          def atributos_show
-            [ :id, 
-              :nombres,
-              :apellidos,
-              :fechanac,
-              :sexo,
-              :pais,
-              :departamento,
               :municipio,
-              :clase,
-              :nacionalde,
-              :tdocumento,
-              :numerodocumento
+              :actividad_ids,
+              :actividadcasobeneficiario_ids
             ]
           end
 
 
           def atributos_form
-            a = atributos_show - [:id] + [:caracterizaciones]
+            a = atributos_show - [
+              :id, 
+              :caso_ids, 
+              :actividad_ids, 
+              :actividadcasobeneficiario_ids
+            ] + [
+              :caracterizaciones
+            ]
             # Cambia fechanac por dia, mes, año
             p = a.index(:fechanac)
             a[p] = :anionac
