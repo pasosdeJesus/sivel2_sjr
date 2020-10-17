@@ -10,8 +10,8 @@
 
     <div id="colapsa_acbdids" class="panel-collapse collapse">
       <div class="panel-body table-responsive" style="overflow-x:scroll;">
-        <table class='table table-bordered'>
-          <thead>
+        <table class='table table-bordered table-sm'>
+          <thead class='thead-light'>
             <tr>
               <th>Id Actividad</th><th>Id Caso</th><th>Fecha</th><th>Nombre</th>
               <th>
@@ -29,7 +29,7 @@
               <% end %>
               <% idacs += ids %>
             <% end %>
-            <% Cor1440Gen::Actividad.where(id: idacs).each do |a| %>
+            <% Cor1440Gen::Actividad.where(id: idacs).order(:fecha).each do |a| %>
               <tr>
                 <td>
                   <%= link_to a.id, cor1440_gen.actividad_path(a), target: '_blank' %>

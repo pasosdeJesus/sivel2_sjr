@@ -16,9 +16,12 @@ module Sivel2Sjr
 
           def atributos_show_sivel2_sjr
             a = atributos_show_sip - [
-              :mesnac, :dianac
+              :mesnac, 
+              :dianac
             ] + [ 
-              :caso_ids, :actividad_ids, :actividadcasobeneficiario_ids 
+              :caso_ids, 
+              :actividad_ids, 
+              :actividadcasobeneficiario_ids 
             ]
             a[a.index(:anionac)] = :fechanac 
             a
@@ -28,7 +31,7 @@ module Sivel2Sjr
             atributos_show_sivel2_sjr
           end
 
-          def atributos_index
+          def atributos_index_sivel2_sjr
             [ :id, 
               :nombres,
               :apellidos,
@@ -42,8 +45,11 @@ module Sivel2Sjr
             ]
           end
 
+          def atributos_index
+            atributos_index_sivel2_sjr
+          end
 
-          def atributos_form
+          def atributos_form_sivel2_sjr
             a = atributos_show - [
               :id, 
               :caso_ids, 
@@ -58,6 +64,10 @@ module Sivel2Sjr
             a.insert(p, :mesnac)
             a.insert(p, :dianac)
             return a
+          end
+
+          def atributos_form
+            atributos_form_sivel2_sjr
           end
 
           def vistas_manejadas
