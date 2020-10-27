@@ -1,0 +1,20 @@
+<div class='row'> <!-- lugar -->
+  <div class='col-sm-2'>
+    <label for="actividad_lugar">
+      <%= @actividad.class.human_attribute_name(:lugar) %>
+    </label>
+  </div>
+  <div class='col-sm-4'>
+    <%= render partial: 'campo_lugar', 
+      locals: {f: f, con_label: false} %>
+  </div>
+  <div class='col-sm-2'>
+    <%= render partial: 'campo_proyectos_etiqueta', 
+      locals: {f: f, con_label: false} %>
+  </div>
+  <div class='col-sm-4'>
+    <%= render partial: 'campo_proyectos', 
+      locals: {f: f, con_label: false} %>
+  </div>
+</div> <!-- lugar -->
+
