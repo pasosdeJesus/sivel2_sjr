@@ -44,7 +44,6 @@ module Sivel2Sjr
             r
           end
 
-          private
           def lista_params
             [
              :id, :nusuario, :password, 
