@@ -106,6 +106,7 @@ module Sivel2Sjr
         ruta: '/casos'
       },
       'Consactividadcaso' => {
+        solo_multiple: true,
         campos: [
           :actividad_convenios,
           :actividad_nombre,
