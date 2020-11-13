@@ -20,6 +20,7 @@ module Sivel2Sjr
               :dianac
             ] + [ 
               :caso_ids, 
+              :proyectofinanciero_ids, 
               :actividad_ids, 
               :actividadcasobeneficiario_ids 
             ]
