@@ -89,6 +89,23 @@ module Sivel2Sjr
             end
           end
 
+          scope :filtro_caso_id, lambda { |f|
+              where(caso_id: f)
+          }
+
+          scope :filtro_actividad_id, lambda { |f|
+              where(actividad_id: f)
+          }
+
+          scope :filtro_persona_nombres, lambda { |d|
+            where("persona_nombres ILIKE '%" + 
+                  ActiveRecord::Base.connection.quote_string(d) + "%'")
+          }
+
+          scope :filtro_persona_apellidos, lambda { |d|
+            where("persona_apellidos ILIKE '%" + 
+                  ActiveRecord::Base.connection.quote_string(d) + "%'")
+          }
           scope :filtro_actividad_fechaini, lambda { |f|
             where('actividad_fecha >= ?', f)
           }
