@@ -368,6 +368,15 @@ module Sivel2Sjr
 #            end
           end
 
+
+          # GET casos/mapaosm
+          def mapaosm
+            @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
+            @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today - 182)
+            render 'sivel2_gen/casos/mapaosm', layout: 'application'
+          end
+
+
           def set_caso
             @caso = Sivel2Gen::Caso.find(params[:id].to_i)
             @caso.current_usuario = current_usuario
