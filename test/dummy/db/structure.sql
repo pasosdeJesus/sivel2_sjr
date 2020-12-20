@@ -1654,7 +1654,8 @@ CREATE TABLE public.cor1440_gen_proyectofinanciero (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     compromisos character varying(5000),
-    monto integer
+    monto integer,
+    sectorapc_id integer
 );
 
 
@@ -1775,6 +1776,40 @@ CREATE SEQUENCE public.cor1440_gen_resultadopf_id_seq
 --
 
 ALTER SEQUENCE public.cor1440_gen_resultadopf_id_seq OWNED BY public.cor1440_gen_resultadopf.id;
+
+
+--
+-- Name: cor1440_gen_sectorapc; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cor1440_gen_sectorapc (
+    id bigint NOT NULL,
+    nombre character varying(500) NOT NULL,
+    observaciones character varying(5000),
+    fechacreacion date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: cor1440_gen_sectorapc_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cor1440_gen_sectorapc_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cor1440_gen_sectorapc_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cor1440_gen_sectorapc_id_seq OWNED BY public.cor1440_gen_sectorapc.id;
 
 
 --
@@ -3850,6 +3885,7 @@ CREATE TABLE public.usuario (
     tema_id integer,
     observadorffechaini date,
     observadorffechafin date,
+    fincontrato date,
     CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
     CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
 );
@@ -5741,6 +5777,13 @@ ALTER TABLE ONLY public.cor1440_gen_resultadopf ALTER COLUMN id SET DEFAULT next
 
 
 --
+-- Name: cor1440_gen_sectorapc id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_sectorapc ALTER COLUMN id SET DEFAULT nextval('public.cor1440_gen_sectorapc_id_seq'::regclass);
+
+
+--
 -- Name: cor1440_gen_tipoindicador id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6490,6 +6533,14 @@ ALTER TABLE ONLY public.cor1440_gen_proyectofinanciero_usuario
 
 ALTER TABLE ONLY public.cor1440_gen_resultadopf
     ADD CONSTRAINT cor1440_gen_resultadopf_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cor1440_gen_sectorapc cor1440_gen_sectorapc_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_sectorapc
+    ADD CONSTRAINT cor1440_gen_sectorapc_pkey PRIMARY KEY (id);
 
 
 --
@@ -8827,6 +8878,14 @@ ALTER TABLE ONLY public.sivel2_sjr_oficina_proyectofinanciero
 
 
 --
+-- Name: cor1440_gen_proyectofinanciero fk_rails_3792591d9e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cor1440_gen_proyectofinanciero
+    ADD CONSTRAINT fk_rails_3792591d9e FOREIGN KEY (sectorapc_id) REFERENCES public.cor1440_gen_sectorapc(id);
+
+
+--
 -- Name: sivel2_sjr_aspsicosocial_respuesta fk_rails_389ca79c21; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10533,9 +10592,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200919003430'),
 ('20200921123831'),
 ('20201009004421'),
+('20201031182132'),
 ('20201119125643'),
 ('20201121162913'),
 ('20201130020715'),
-('20201201015501');
+('20201201015501'),
+('20201205041350'),
+('20201214215209');
 
 
