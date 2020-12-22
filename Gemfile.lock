@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: d14b9f3be8e95cd11358b1fde896dd318762b655
-  branch: rails6.1
+  revision: 41619474837112422c024c899d8fe6182ef19f9a
   specs:
     cor1440_gen (1.0b3)
       devise
@@ -14,8 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 9021cd606ca06f8e8426724b7e418b5136b5407c
-  branch: rails6.1
+  revision: fdaa4bbe91655b79841ba78c2fb3e83ee3daedb9
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -25,8 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 92873014ad4e6c3829e2c328bb53db8a43026a09
-  branch: rails6.1
+  revision: f5c8add3a3a5c3e33617bae8fdf280adc69ce7f9
   specs:
     mr519_gen (0.2.0)
       rails
@@ -34,8 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 7162fbb2b0d6cbbdc4ac3e763709ad9108547dc0
-  branch: rails6.1
+  revision: 6fa794880f43a123a3d7fb766f7ad61ce429006b
   specs:
     sip (2.0.b10)
       cancancan
@@ -53,8 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: dfe886e99ea43f61bf98a96a9c8cc85d1039e203
-  branch: rails6.1
+  revision: 0c6ef20e12a68ec41f84585cfb603e6dfa41fd36
   specs:
     sivel2_gen (2.0b13)
       devise
@@ -174,7 +169,7 @@ GEM
     docile (1.3.3)
     erubi (1.10.0)
     execjs (2.7.0)
-    ffi (1.14.1)
+    ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.5)
@@ -187,7 +182,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    json (2.4.1)
+    json (2.5.0)
     libxml-ruby (3.2.1)
     loofah (2.8.0)
       crass (~> 1.0.2)
