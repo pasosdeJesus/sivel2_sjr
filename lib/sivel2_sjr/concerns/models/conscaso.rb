@@ -11,9 +11,27 @@ module Sivel2Sjr
         include Sivel2Gen::Concerns::Models::Conscaso
 
         included do
-        
+
           has_one :casosjr, class_name: 'Sivel2Sjr::Casosjr',
             foreign_key: "id_caso", primary_key: 'caso_id'
+
+          scope :filtro_atenciones_fechaini, lambda { |fecha|
+            where('caso_id IN (SELECT casosjr_id FROM 
+              sivel2_sjr_actividad_casosjr JOIN cor1440_gen_actividad
+              ON sivel2_sjr_actividad_casosjr.actividad_id =
+                cor1440_gen_actividad.id
+              WHERE
+                cor1440_gen_actividad.fecha >= ?)', fecha)
+          }
+
+          scope :filtro_atenciones_fechafin, lambda { |fecha|
+            where('caso_id IN (SELECT casosjr_id FROM 
+              sivel2_sjr_actividad_casosjr JOIN cor1440_gen_actividad
+              ON sivel2_sjr_actividad_casosjr.actividad_id =
+                cor1440_gen_actividad.id
+              WHERE
+                cor1440_gen_actividad.fecha <= ?)', fecha)
+          }
 
           scope :filtro_fecharecini, lambda { |f|
             where('sivel2_gen_conscaso.fecharec >= ?', f)
