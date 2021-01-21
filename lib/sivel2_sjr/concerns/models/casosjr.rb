@@ -10,18 +10,6 @@ module Sivel2Sjr
           
           self.primary_key = :id_caso
 
-          has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
-            validate: true, foreign_key: "id_caso"#, dependent: :destroy
-
-          has_many :actividad_casosjr, 
-            class_name: 'Sivel2Sjr::ActividadCasosjr',
-            validate: true, 
-            foreign_key: :casosjr_id
-          has_many :actividad, through: :actividad_casosjr
-          accepts_nested_attributes_for :actividad_casosjr, 
-            reject_if: :all_blank
-          accepts_nested_attributes_for :actividad, reject_if: :all_blank
-
           # Ordenados por foreign_key para comparar con esquema en base
           belongs_to :usuario, class_name: "Usuario", 
             foreign_key: "asesor", validate: true
@@ -47,6 +35,23 @@ module Sivel2Sjr
             class_name: "Sivel2Sjr::Statusmigratorio", 
             foreign_key: "id_statusmigratorio", validate: true, optional: true
 
+          has_many :actividad_casosjr, 
+            class_name: 'Sivel2Sjr::ActividadCasosjr',
+            validate: true, 
+            foreign_key: :casosjr_id
+          has_many :actividad, through: :actividad_casosjr
+          accepts_nested_attributes_for :actividad_casosjr, 
+            reject_if: :all_blank
+          accepts_nested_attributes_for :actividad, reject_if: :all_blank
+
+          has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
+            validate: true, foreign_key: "id_caso"#, dependent: :destroy
+
+          has_many :victima, class_name: 'Sivel2Gen::Victima',
+            through: :caso
+
+          has_many :victimasjr, class_name: 'Sivel2Sjr::Victimasjr',
+            through: :victima
 
           validates_presence_of :fecharec
           validates_presence_of :asesor
@@ -111,6 +116,25 @@ module Sivel2Sjr
               errors.add(:base, 'Beneficiario de actividades ('+
                          actividad_casosjr.pluck(:actividad_id).join(', ') + ')') 
             end
+          end
+
+
+          # Funciones auxiliares
+
+          def beneficiarios_activos
+            self.victimasjr.where(fechadesagregacion: nil)
+          end
+
+          def actividades_con_beneficiarios_activos_en_asistencia_ids
+            bids = beneficiarios_activos.pluck(:id_persona)
+            Cor1440Gen::Asistencia.joins(:persona).
+              where("sip_persona.id IN (?)", bids).
+              pluck('actividad_id')
+          end
+
+          def actividades_con_caso_ids
+            t = self.actividad_ids |
+              actividades_con_beneficiarios_activos_en_asistencia_ids
           end
 
         end

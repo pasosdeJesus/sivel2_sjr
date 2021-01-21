@@ -11,6 +11,13 @@ module Sivel2Sjr
         include Sivel2Gen::Concerns::Models::Consexpcaso
 
         included do
+
+          belongs_to :casosjr, class_name: 'Sivel2Sjr::Casosjr',
+            primary_key: 'id_caso', foreign_key: 'caso_id'
+
+          has_many :victimasjr, through: :casosjr,
+            class_name: 'Sivel2Sjr::Victimasjr'
+
         end # included
 
         module ClassMethods
