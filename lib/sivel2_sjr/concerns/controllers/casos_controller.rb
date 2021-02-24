@@ -40,7 +40,8 @@ module Sivel2Sjr
           def campos_filtro1
             [:codigo,
               :fechaini, :fechafin, 
-              :fecharecini, :fecharecfin, 
+              :fecharecini, :fecharecfin,
+              :departamento_id,
               :oficina_id, :nusuario,
               :ultimaatencion_fechaini, :ultimaatencion_fechafin,
               :statusmigratorio_id,

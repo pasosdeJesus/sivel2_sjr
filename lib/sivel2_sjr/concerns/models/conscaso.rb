@@ -33,6 +33,11 @@ module Sivel2Sjr
                 cor1440_gen_actividad.fecha <= ?)', fecha)
           }
 
+          scope :filtro_departamento_id, lambda { |id|
+            where('caso_id IN (SELECT id_caso
+                    FROM public.sip_ubicacion
+                    WHERE sip_ubicacion.id_departamento = ?)', id)
+          }
           scope :filtro_fecharecini, lambda { |f|
             where('sivel2_gen_conscaso.fecharec >= ?', f)
           }
