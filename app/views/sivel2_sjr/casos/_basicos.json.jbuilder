@@ -1,13 +1,20 @@
 json.set! caso.id do
-  if caso.ubicacion[0]
-    ubi_prin = Sip::Ubicacion.find(caso.ubicacion[0].id)
-    json.latitud ubi_prin.latitud if ubi_prin.latitud
-    json.longitud ubi_prin.longitud if ubi_prin.longitud
-    if ubi_prin.departamento && params && params[:filtro] && 
-      params[:filtro][:inc_ubicaciones].to_i == 2
-      json.departamento ubi_prin.departamento.nombre
-      if ubi_prin.municipio
-        json.municipio ubi_prin.municipio.nombre
+  casosjr = Sivel2Sjr::Casosjr.find(caso.id)
+  if casosjr
+    mig = Sivel2Sjr::Migracion.where(caso_id: casosjr.id).order(:id)[0]
+    if caso.id == 522
+      byebug
+    end
+    if mig
+      if mig.salida_municipio
+        json.latitud mig.salida_municipio.latitud
+        json.longitud mig.salida_municipio.longitud
+      elsif mig.salida_departamento 
+        json.latitud mig.salida_departamento.latitud
+        json.longitud mig.salida_departamento.longitud
+      elsif mig.salida_pais
+        json.latitud mig.salida_pais.latitud
+        json.longitud mig.salida_pais.longitud
       end
     end
     json.titulo caso.titulo
