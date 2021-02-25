@@ -184,7 +184,8 @@ module Sivel2Sjr
                   "valorcampo_attributes" => [
                     :valor,
                     :campo_id,
-                    :id
+                    :id,
+                    :valor_ids => []
                   ]
               ] ]
             ] + [
