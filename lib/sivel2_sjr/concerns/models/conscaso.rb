@@ -33,6 +33,11 @@ module Sivel2Sjr
                 cor1440_gen_actividad.fecha <= ?)', fecha)
           }
 
+          scope :filtro_departamento_id, lambda { |id|
+            where('caso_id IN (SELECT caso_id
+                    FROM public.sivel2_sjr_migracion
+                    WHERE sivel2_sjr_migracion.salida_departamento_id = ?)', id)
+          }
           scope :filtro_fecharecini, lambda { |f|
             where('sivel2_gen_conscaso.fecharec >= ?', f)
           }
