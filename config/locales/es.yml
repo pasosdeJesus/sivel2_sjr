@@ -73,7 +73,7 @@ es:
         Ayudasjr: Ayuda del JRS
         Ayudassjr: Ayudas del JRS
       "sivel2_sjr/casosjr":
-        comosupo: Como supo del JRS
+        comosupo: ¿Cómo supo del JRS?
         contacto: Solicitante principal
         concentimientobd: Consentimiento Informado compartir BD CINEP
         concentimientosjr: Consentimiento Informado compartir JRS
@@ -90,8 +90,8 @@ es:
         Consactividadcaso: Reporte actividad con caso
         actividad_proyectofinanciero: Convenio financiado
       "sivel2_sjr/comosupo":
-        Comosupo: Como supo del JRS
-        Comosupos: Como supo del JRS
+        Comosupo: ¿Cómo supo del JRS?
+        Comosupos: ¿Cómo supo del JRS?
       "sivel2_sjr/emprendimiento":
         Emprendimiento: Emprendimiento
         Emprendimientos: Emprendimientos
