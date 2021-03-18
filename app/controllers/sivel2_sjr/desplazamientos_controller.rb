@@ -26,10 +26,18 @@ module Sivel2Sjr
           fex += 1
         end
         @desplazamiento.fechaexpulsion = fex
-        @desplazamiento.id_expulsion = Sip::Ubicacion.where(id_caso: cid).last.id
         @desplazamiento.fechallegada = fex+1
-        @desplazamiento.id_llegada = Sip::Ubicacion.where(
-          id_caso: cid).first.id
+        ubiex = Sip::Ubicacion.where(id_caso: cid).last
+        ubicacionpre = Sip::Ubicacionpre.where(
+          pais_id: ubiex.id_pais, departamento_id: ubiex.id_departamento, 
+          municipio_id: ubiex.id_municipio, clase_id: ubiex.id_clase)
+        @desplazamiento.expulsionubicacionpre_id = ubicacionpre[0].id
+        ubilleg = Sip::Ubicacion.where(
+          id_caso: cid).first
+        ubicacionpre = Sip::Ubicacionpre.where(
+          pais_id: ubilleg.id_pais, departamento_id: ubilleg.id_departamento, 
+          municipio_id: ubilleg.id_municipio, clase_id: ubilleg.id_clase)
+        @desplazamiento.llegadaubicacionpre_id = ubicacionpre[0].id 
         @desplazamiento.descripcion = ''
         if @desplazamiento.save
           h=@desplazamiento.as_json
