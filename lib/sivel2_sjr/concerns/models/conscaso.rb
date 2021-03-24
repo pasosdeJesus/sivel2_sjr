@@ -36,7 +36,9 @@ module Sivel2Sjr
           scope :filtro_departamento_id, lambda { |id|
             where('caso_id IN (SELECT caso_id
                     FROM public.sivel2_sjr_migracion
-                    WHERE sivel2_sjr_migracion.salida_departamento_id = ?)', id)
+                    JOIN public.sip_ubicacionpre ON
+                    sivel2_sjr_migracion.salidaubicacionpre_id=sip_ubicacionpre.id
+                    WHERE sip_ubicacionpre.departamento_id = ?)', id)
           }
           scope :filtro_fecharecini, lambda { |f|
             where('sivel2_gen_conscaso.fecharec >= ?', f)
