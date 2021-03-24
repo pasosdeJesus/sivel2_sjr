@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 050e8dbf66da9e353de2e5eb31035ea01d38206e
+  revision: c8a30ffada7f71dcac5dff96fbf117400512b51a
   branch: main
   specs:
     cor1440_gen (1.0b3)
@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 4cbc5e7cb94071a3c802306a502248053c17a630
+  revision: f3248590aa99d5b3c2defd599af4fc0d8b0d54d1
   branch: main
   specs:
     heb412_gen (1.0.b6)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 0057bea30297daa452e839b747a343e34ebc363a
+  revision: b6ee5537745365f9031dd0b357f8a6827bd5f094
   branch: main
   specs:
     mr519_gen (0.2.0)
@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: d9297c8f729e1d1e05a3c519871b7ea8122f456e
+  revision: 9f2c92efd4ddd23ca9075ddbd30b1d9f21d575e0
   branch: main
   specs:
     sip (2.0.b11)
@@ -53,7 +53,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: db88de3a65472e1ba25e2ccbd29e68bd90690c54
+  revision: b006edc5b188431b525ab4028a611c307a891b36
   branch: main
   specs:
     sivel2_gen (2.0b14)
@@ -63,7 +63,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: c0087645d77355ac9534ceb76868a79c16dd7a6f
+  revision: 22ecf6b48f8ca95f30da263fa4ddf1b10c3e3435
   branch: 6-1-stable
   specs:
     actioncable (6.1.3)
@@ -231,7 +231,7 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.0225)
-    mimemagic (0.3.5)
+    mimemagic (0.3.6)
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
     minitest (5.14.4)
