@@ -414,6 +414,43 @@ module Sivel2Sjr
             []
           end
 
+          def desplazamiento_params
+            [
+              :desplazamiento_attributes => [
+                :acompestado, 
+                :connacionaldeportado,
+                :connacionalretorno,
+                :declaro, 
+                :descripcion, 
+                :documentostierra,
+                :fechadeclaracion,
+                :fechadeclaracion_localizada,
+                :fechaexpulsion, 
+                :fechaexpulsion_localizada, 
+                :fechallegada, 
+                :fechallegada_localizada, 
+                :hechosdeclarados,
+                :id, 
+                :id_acreditacion, 
+                :id_clasifdesp, 
+                :id_declaroante, 
+                :id_expulsion, 
+                :id_inclusion,
+                :id_llegada, 
+                :id_modalidadtierra,
+                :id_tipodesp, 
+                :inmaterialesperdidos,
+                :materialesperdidos, 
+                :protegiorupta, 
+                :oficioantes, 
+                :otrosdatos,
+                :retornado,
+                :reubicado, 
+                :_destroy,
+                :categoria_ids => []
+              ]
+            ]
+          end
           def lista_params
             lp = [
               :bienes, 
@@ -536,39 +573,6 @@ module Sivel2Sjr
                 :sitio, 
                 :_destroy
               ],
-              :desplazamiento_attributes => [
-                :acompestado, 
-                :connacionaldeportado,
-                :connacionalretorno,
-                :declaro, 
-                :descripcion, 
-                :documentostierra,
-                :fechadeclaracion,
-                :fechadeclaracion_localizada,
-                :fechaexpulsion, 
-                :fechaexpulsion_localizada, 
-                :fechallegada, 
-                :fechallegada_localizada, 
-                :hechosdeclarados,
-                :id, 
-                :id_acreditacion, 
-                :id_clasifdesp, 
-                :id_declaroante, 
-                :id_expulsion, 
-                :id_inclusion,
-                :id_llegada, 
-                :id_modalidadtierra,
-                :id_tipodesp, 
-                :inmaterialesperdidos,
-                :materialesperdidos, 
-                :protegiorupta, 
-                :oficioantes, 
-                :otrosdatos,
-                :retornado,
-                :reubicado, 
-                :_destroy,
-                :categoria_ids => []
-              ],
               :caso_presponsable_attributes => [
                 :batallon, 
                 :bloque, 
@@ -668,7 +672,7 @@ module Sivel2Sjr
  
           # Never trust parameters from the scary internet, only allow the white list through.
           def caso_params
-            lp = lista_params + otros_params
+            lp = lista_params + otros_params + desplazamiento_params
             params.require(:caso).permit(lp)
           end
 
