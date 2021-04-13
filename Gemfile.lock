@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 05f98373642314c5fb7b7b2d6f22d2429564e5de
+  revision: 7051c2173b33554dec6bc6fee86f76a3542b6a60
   branch: main
   specs:
     cor1440_gen (1.0b3)
@@ -63,7 +63,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 7261f90a9a72e221a09a74973e9ff4361f715bff
+  revision: c2a7c8be3926a669b58d241939819f3843f986d0
   branch: 6-1-stable
   specs:
     actioncable (6.1.3.1)

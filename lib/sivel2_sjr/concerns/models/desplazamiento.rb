@@ -10,10 +10,14 @@ module Sivel2Sjr
           has_many :actosjr, class_name: "Sivel2Sjr::Actosjr", 
             validate: true
 
-          belongs_to :expulsion, class_name: "Sip::Ubicacion", 
-            foreign_key: "id_expulsion", validate: true, optional: true
-          belongs_to :llegada, class_name: "Sip::Ubicacion", 
-            foreign_key: "id_llegada", validate: true, optional: true
+          if Sivel2Sjr::Desplazamiento.has_attribute?(:id_expulsion)
+            belongs_to :expulsion, class_name: "Sip::Ubicacion", 
+              foreign_key: "id_expulsion", validate: true, optional: true
+          end
+          if Sivel2Sjr::Desplazamiento.has_attribute?(:id_llegada)
+            belongs_to :llegada, class_name: "Sip::Ubicacion", 
+              foreign_key: "id_llegada", validate: true, optional: true
+          end
           belongs_to :clasifdesp, class_name: "Sivel2Sjr::Clasifdesp", 
             foreign_key: "id_clasifdesp", validate: true, optional: true
           belongs_to :tipodesp, class_name: "Sivel2Sjr::Tipodesp", 
@@ -54,11 +58,13 @@ module Sivel2Sjr
           end
 
           validate :sitios_diferentes
-          def sitios_diferentes
-            if llegada.present? && expulsion.present? && 
-              id_llegada == id_expulsion
-              errors.add(:llegada, 
-                         " debe ser diferente al sitio de expulsion")
+          if Sivel2Sjr::Desplazamiento.has_attribute?(:id_expulsion)
+            def sitios_diferentes
+              if llegada.present? && expulsion.present? && 
+                  id_llegada == id_expulsion
+                errors.add(:llegada, 
+                           " debe ser diferente al sitio de expulsion")
+              end
             end
           end
 
