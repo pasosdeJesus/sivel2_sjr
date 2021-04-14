@@ -12,10 +12,10 @@ module Sivel2Sjr
         respond_to do |format|
           format.html { render inline: 'Falta identificacion del caso' }
         end
-      elsif Sip::Ubicacion.where(id_caso: params[:caso_id].to_i).count < 2
-        respond_to do |format|
-          format.html { render inline: 'Debe tener al menos 2 ubicaciones' }
-        end
+#      elsif Sip::Ubicacion.where(id_caso: params[:caso_id].to_i).count < 2
+#        respond_to do |format|
+#          format.html { render inline: 'Debe tener al menos 2 ubicaciones' }
+#        end
       else
         @desplazamiento = Sivel2Sjr::Desplazamiento.new
         cid = params[:caso_id].to_i
@@ -26,10 +26,10 @@ module Sivel2Sjr
           fex += 1
         end
         @desplazamiento.fechaexpulsion = fex
-        @desplazamiento.id_expulsion = Sip::Ubicacion.where(id_caso: cid).last.id
+        #@desplazamiento.id_expulsion = Sip::Ubicacion.where(id_caso: cid).last.id
         @desplazamiento.fechallegada = fex+1
-        @desplazamiento.id_llegada = Sip::Ubicacion.where(
-          id_caso: cid).first.id
+        #@desplazamiento.id_llegada = Sip::Ubicacion.where(
+          #id_caso: cid).first.id
         @desplazamiento.descripcion = ''
         if @desplazamiento.save
           h=@desplazamiento.as_json
@@ -41,9 +41,9 @@ module Sivel2Sjr
           end
         else
           respond_to do |format|
-            format.html { render action: "error" }
+            format.html { render inline: "errores: #{@desplazamiento.errors.messages}" }
             format.json { 
-              render json: @desplazamiento.errors, 
+              render json: @desplazamiento.errors.messages, 
               status: :unprocessable_entity
             }
           end

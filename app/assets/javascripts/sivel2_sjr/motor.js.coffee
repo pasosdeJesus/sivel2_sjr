@@ -357,12 +357,12 @@
   )
  
   # Antes de añadir desplazamiento verificar que haya al menos 2 ubicaciones
-  $('#desplazamiento').on('click', '.add_fields', (e) ->
-    lcg = $('#ubicaciones .control-group[style!="display: none;"]')
-    if (lcg.length < 2)
-      alert('Debe haber antes por lo menos dos sitios geográficos')
-      return false
-  )
+  #$('#desplazamiento').on('click', '.add_fields', (e) ->
+  #  lcg = $('#ubicaciones .control-group[style!="display: none;"]')
+  #  if (lcg.length < 2)
+  #    alert('Debe haber antes por lo menos dos sitios geográficos')
+  #    return false
+  #)
 
 
   # Al cambiar fecha del hecho cambiar fecha de salida si no se ha 

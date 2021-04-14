@@ -41,8 +41,7 @@ module Sivel2Sjr
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true
 
-          validates_presence_of :fechaexpulsion, :expulsion, 
-            :fechallegada, :llegada
+          validates_presence_of :fechaexpulsion, :fechallegada
           validates :fechaexpulsion, uniqueness: 
             { scope: :id_caso,
               message: " ya existe otro desplazamiento con la misma fecha de expulsión" 
