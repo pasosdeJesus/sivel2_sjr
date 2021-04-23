@@ -1,4 +1,4 @@
-<%= f.simple_fields_for :desplazamiento do |desplazamiento| %>
+<%= f.simple_fields_for :desplazamiento, f.object.desplazamiento.order(:id) do |desplazamiento| %>
   <%= render 'desplazamiento_fields', f: desplazamiento %>
 <% end %>
 <div class="links">
