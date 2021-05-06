@@ -2151,6 +2151,38 @@ ALTER SEQUENCE public.heb412_gen_campoplantillahcr_id_seq OWNED BY public.heb412
 
 
 --
+-- Name: heb412_gen_carpetaexclusiva; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.heb412_gen_carpetaexclusiva (
+    id bigint NOT NULL,
+    carpeta character varying(2048),
+    grupo_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: heb412_gen_carpetaexclusiva_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.heb412_gen_carpetaexclusiva_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: heb412_gen_carpetaexclusiva_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.heb412_gen_carpetaexclusiva_id_seq OWNED BY public.heb412_gen_carpetaexclusiva.id;
+
+
+--
 -- Name: heb412_gen_doc; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4416,7 +4448,7 @@ CREATE SEQUENCE public.sivel2_gen_presponsable_id_seq
 CREATE TABLE public.sivel2_gen_presponsable (
     id integer DEFAULT nextval('public.sivel2_gen_presponsable_id_seq'::regclass) NOT NULL,
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    papa integer,
+    papa_id integer,
     fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
     fechadeshabilitacion date,
     created_at timestamp without time zone,
@@ -5874,6 +5906,13 @@ ALTER TABLE ONLY public.heb412_gen_campoplantillahcr ALTER COLUMN id SET DEFAULT
 
 
 --
+-- Name: heb412_gen_carpetaexclusiva id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.heb412_gen_carpetaexclusiva ALTER COLUMN id SET DEFAULT nextval('public.heb412_gen_carpetaexclusiva_id_seq'::regclass);
+
+
+--
 -- Name: heb412_gen_doc id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6757,6 +6796,14 @@ ALTER TABLE ONLY public.heb412_gen_campoplantillahcm
 
 ALTER TABLE ONLY public.heb412_gen_campoplantillahcr
     ADD CONSTRAINT heb412_gen_campoplantillahcr_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: heb412_gen_carpetaexclusiva heb412_gen_carpetaexclusiva_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.heb412_gen_carpetaexclusiva
+    ADD CONSTRAINT heb412_gen_carpetaexclusiva_pkey PRIMARY KEY (id);
 
 
 --
@@ -9710,6 +9757,14 @@ ALTER TABLE ONLY public.cor1440_gen_actividad_valorcampotind
 
 
 --
+-- Name: heb412_gen_carpetaexclusiva fk_rails_ea1add81e6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.heb412_gen_carpetaexclusiva
+    ADD CONSTRAINT fk_rails_ea1add81e6 FOREIGN KEY (grupo_id) REFERENCES public.sip_grupo(id);
+
+
+--
 -- Name: sip_ubicacionpre fk_rails_eba8cc9124; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9914,7 +9969,7 @@ ALTER TABLE ONLY public.sip_persona_trelacion
 --
 
 ALTER TABLE ONLY public.sivel2_gen_presponsable
-    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa) REFERENCES public.sivel2_gen_presponsable(id);
+    ADD CONSTRAINT presponsable_papa_fkey FOREIGN KEY (papa_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -10694,6 +10749,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210401210102'),
 ('20210414201956'),
 ('20210417152053'),
-('20210419161145');
+('20210419161145'),
+('20210428143811'),
+('20210430160739');
 
 
