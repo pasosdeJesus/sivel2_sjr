@@ -55,7 +55,7 @@ class Ability  < Sivel2Sjr::Ability
 
         can :manage, Sip::Persona
         can [:new, :read, :edit, :update, :create], 
-          Sip::Actorsocial
+          Sip::Orgsocial
         can :manage, Sip::Persona
 
         can :manage, Sivel2Gen::Acto
@@ -76,7 +76,7 @@ class Ability  < Sivel2Sjr::Ability
         can [:index, :read], Cor1440Gen::Proyectofinanciero
 
         can [:new, :read, :edit, :update, :create], 
-          Sip::Actorsocial
+          Sip::Orgsocial
         can :manage, Sip::Persona
 
         can :manage, Sivel2Gen::Acto
@@ -97,7 +97,7 @@ class Ability  < Sivel2Sjr::Ability
         can [:update, :create, :destroy], Cor1440Gen::Actividad, 
           oficina: { id: usuario.oficina_id}
         
-        can :manage, Sip::Actorsocial
+        can :manage, Sip::Orgsocial
         can :manage, Sip::Persona
         
         can :manage, Sivel2Gen::Acto
@@ -121,7 +121,7 @@ class Ability  < Sivel2Sjr::Ability
         
         can :manage, Mr519Gen::Formulario
 
-        can :manage, Sip::Actorsocial
+        can :manage, Sip::Orgsocial
         can :manage, Sip::Persona
 
         can :manage, Sivel2Gen::Acto

@@ -32,7 +32,7 @@ module Sivel2Sjr
               :objetivo,
               :resultado, 
               :listadocasosjr,
-              :actorsocial,
+              :orgsocial,
               :listadoasistencia,
               :poblacion,
               :anexos
