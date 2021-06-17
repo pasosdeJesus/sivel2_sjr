@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: c11411c264ef33132aa6043bcea63d3b296128a1
+  revision: 675369b349bb0347057bcd3350658e632a18f7f2
   branch: orgsocial
   specs:
     cor1440_gen (1.0b4)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 724260407be0e2c509cca0651be8c99d19a813ce
+  revision: 04afc987890c7be94c29c3370de073ee5413ee35
   branch: orgsocial
   specs:
     heb412_gen (1.0.b6)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: eca7e6327ccbf75038f94f0e31dcf9ee9077eb12
+  revision: c27bbcafb5460fa15f1b565d2f133c85d54cc904
   branch: orgsocial
   specs:
     mr519_gen (0.2.0)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 53489070757b7cc166556d182df45caf2b28b212
+  revision: e2278cdd5263bca4f406d71ec4ce0cee368f8f15
   branch: orgsocial
   specs:
     sip (2.0.b11)
@@ -64,7 +64,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 76092fb56bc98b0b52e6331d075879acf12c5246
+  revision: 8b56c55ae66cf6a81551c33963b212136d9f2eea
   branch: orgsocial
   specs:
     sivel2_gen (2.0b15)
@@ -74,7 +74,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 2fd45e472c619b2b77814cbf3c073c55bfe19c89
+  revision: 447502ec93446349de75e6a43224095129144eba
   branch: 6-1-stable
   specs:
     actioncable (6.1.3.2)
