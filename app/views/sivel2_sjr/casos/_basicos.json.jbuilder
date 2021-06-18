@@ -2,9 +2,6 @@ json.set! caso.id do
   casosjr = Sivel2Sjr::Casosjr.find(caso.id)
   if casosjr
     mig = Sivel2Sjr::Migracion.where(caso_id: casosjr.id).order(:id)[0]
-    if caso.id == 522
-      byebug
-    end
     if mig
       if mig.salida_municipio
         json.latitud mig.salida_municipio.latitud
