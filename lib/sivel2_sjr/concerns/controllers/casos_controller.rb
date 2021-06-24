@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require_dependency 'sivel2_gen/concerns/controllers/casos_controller'
 
 module Sivel2Sjr
@@ -209,6 +207,13 @@ module Sivel2Sjr
               end
               @caso.current_usuario = current_usuario
               if @caso.update(caso_params)
+                if registrar_en_bitacora
+                  Sip::Bitacora.agregar_actualizar(
+                    request, :caso, :bitacora_cambio, 
+                    current_usuario.id, params, 'Sivel2Sjr::Casosjr',
+                    @caso.id
+                  )
+                end
                 format.html { redirect_to @caso, notice: 'Caso actualizado.' }
                 format.json { head :no_content }
                 format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
