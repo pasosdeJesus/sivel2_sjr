@@ -210,7 +210,7 @@ module Sivel2Sjr
                 if registrar_en_bitacora
                   Sip::Bitacora.agregar_actualizar(
                     request, :caso, :bitacora_cambio, 
-                    current_usuario.id, params, 'Sivel2Sjr::Casosjr',
+                    current_usuario.id, params, 'Sivel2Gen::Caso',
                     @caso.id
                   )
                 end
