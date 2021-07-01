@@ -206,6 +206,7 @@ module Sivel2Sjr
                 }
               end
               @caso.current_usuario = current_usuario
+              byebug
               if @caso.update(caso_params)
                 if registrar_en_bitacora
                   Sip::Bitacora.agregar_actualizar(

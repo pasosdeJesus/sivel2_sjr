@@ -120,6 +120,12 @@ module Sivel2Sjr
             end
           end
 
+          # Están listas @persona, @victima, @personaant, @caso
+          # Y está listo para salvar la nueva persona @persona en
+          # @victima --remplazando @personaant.
+          # Continúa si esta función retorna true, de lo contrario
+          # se espera que la función haga render json con el error
+          # y que retorne false.
           def remplazar_antes_salvar_v
             ce = Sivel2Sjr::Casosjr.where(contacto: @persona.id)
             if ce.count > 0
@@ -137,10 +143,15 @@ module Sivel2Sjr
                 status: :unprocessable_entity
               return false
             end
-            if @caso.casosjr.contacto 
+            # Si se está remplazando el contacto, borra la persona
+            # vacía que era contacto --y por lo mismo sólo permite 
+            # cuando es un contacto vacío.
+            if @caso.casosjr.contacto && @personaant &&
+                @caso.casosjr.contacto_id == @personaant.id 
               if @caso.casosjr.contacto.nombres != ""
-                render json: "Ya hay una persona asociada, no es posible remplazar",
+                render json: "Ya hay una persona asociada. No se remplaza,",
                   status: :unprocessable_entity
+                return false
               else
                 ppb=@caso.casosjr.contacto_id
                 @caso.casosjr.contacto_id = nil
@@ -151,6 +162,10 @@ module Sivel2Sjr
                 @caso.casosjr.contacto_id = @persona.id
                 @caso.casosjr.save!(validate: false)
                 #redirect_to sivel2_gen.edit_caso_path(@caso)
+                begin
+                  @personaant.destroy
+                rescue e
+                end
                 return false # buscar obligar el redirect_to
               end
             end
