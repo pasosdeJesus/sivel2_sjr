@@ -11,8 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: ef40e25ccca2ab9c3e95e33d6b244e92b0410147
-  branch: webpacker6
+  revision: e32099190e288f04df381ec1f204e3f9e0bec304
+  branch: main
   specs:
     cor1440_gen (1.0b4)
       devise
@@ -25,8 +25,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 02c7808763dadec8151cea738431ab03ac7b90b8
-  branch: webpacker6
+  revision: c4a680fd3270ef376ca1699e0ef40a83a740011e
+  branch: main
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -36,8 +36,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 21c74b4f07b5e3edf113fd66af70d780751c8b1f
-  branch: webpacker6
+  revision: b7a0f7d266eb1cb9c00971440e201862e82f4522
+  branch: main
   specs:
     mr519_gen (0.2.0)
       rails
@@ -45,8 +45,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: d5d373d3038be7a4080f84d54320326bab629aea
-  branch: webpacker6
+  revision: e35094edba13b6fdf0a24ceaa70ac1504751dea5
+  branch: main
   specs:
     sip (2.0.b12)
       cancancan
@@ -64,8 +64,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 51f4a96e7c85adf85f12240e6aaaa9b2a219b5a1
-  branch: webpacker6
+  revision: 01525d1a383c4337af21663add1878d7d19f4050
+  branch: main
   specs:
     sivel2_gen (2.0b15)
       devise
