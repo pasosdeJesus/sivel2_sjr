@@ -188,6 +188,10 @@ module Sivel2Sjr
             end
           end
 
+          def validar_params
+            return true
+          end
+
           def update_sivel2_sjr
             # No deben venir validaciones en controlador
             respond_to do |format|
@@ -216,16 +220,16 @@ module Sivel2Sjr
                   @caso.id
                 )
               end
-              if casovalido
+              if validar_params && casovalido 
                 format.html { redirect_to @caso, notice: 'Caso actualizado.' }
                 format.json { head :no_content }
                 format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
+                Sivel2Gen::Conscaso.refresca_conscaso
               else
                 format.html { render action: 'edit', layout: 'application' }
                 format.json { render json: @caso.errors, status: :unprocessable_entity }
                 format.js   { render action: 'edit' }
               end
-              Sivel2Gen::Conscaso.refresca_conscaso
             end
           end
 
