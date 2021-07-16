@@ -15,7 +15,7 @@ module Sivel2Sjr
         @persona.nombres = 'N'
         @persona.apellidos = 'N'
         @persona.sexo = 'S'
-        if !@persona.save
+        if !@persona.save(validate: false)
           respond_to do |format|
             format.html { render inline: 'No pudo crear persona' }
           end
@@ -24,7 +24,7 @@ module Sivel2Sjr
         @victima.id_caso = params[:caso_id]
         @victima.id_persona = @persona.id
         @victima.victimasjr = @victimasjr
-        if @victima.save
+        if @victima.save(validate: false)
           respond_to do |format|
             format.js { render json: {'victima' => @victima.id.to_s,
               'persona' => @persona.id.to_s} }

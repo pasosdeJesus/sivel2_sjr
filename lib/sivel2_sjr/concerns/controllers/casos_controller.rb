@@ -206,14 +206,17 @@ module Sivel2Sjr
                 }
               end
               @caso.current_usuario = current_usuario
-              if @caso.update(caso_params)
-                if registrar_en_bitacora
-                  Sip::Bitacora.agregar_actualizar(
-                    request, :caso, :bitacora_cambio, 
-                    current_usuario.id, params, 'Sivel2Gen::Caso',
-                    @caso.id
-                  )
-                end
+              @caso.assign_attributes(caso_params)
+              casovalido = @caso.valid?
+              @caso.save(validate: false)
+              if registrar_en_bitacora
+                Sip::Bitacora.agregar_actualizar(
+                  request, :caso, :bitacora_cambio, 
+                  current_usuario.id, params, 'Sivel2Gen::Caso',
+                  @caso.id
+                )
+              end
+              if casovalido
                 format.html { redirect_to @caso, notice: 'Caso actualizado.' }
                 format.json { head :no_content }
                 format.js   { redirect_to @caso, notice: 'Caso actualizado.' }

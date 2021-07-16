@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'sivel2_gen/concerns/models/persona'
 require 'cor1440_gen/concerns/models/persona'
 
