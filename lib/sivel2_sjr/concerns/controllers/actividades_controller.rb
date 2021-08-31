@@ -86,10 +86,12 @@ module Sivel2Sjr
                    lnumacpf[1]]
                 tipo = Cor1440Gen::Actividadpf.
                   find(lnumacpf[1]).actividadtipo_id
-                presente_otros = Cor1440Gen::Actividadpf.
-                  where(actividadtipo_id: tipo).
-                  where(proyectofinanciero_id: @registro.proyectofinanciero_ids)
-                @registro.actividadpf_ids |= presente_otros.pluck(:id).uniq
+                if tipo
+                  presente_otros = Cor1440Gen::Actividadpf.
+                    where(actividadtipo_id: tipo).
+                    where(proyectofinanciero_id: @registro.proyectofinanciero_ids)
+                  @registro.actividadpf_ids |= presente_otros.pluck(:id).uniq
+                end
               end
             end
             @registro.save!(validate: false)
