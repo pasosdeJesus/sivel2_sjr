@@ -11,8 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: a391b5a4af456ee751c797fc83291ff8a51e6c2d
-  branch: main
+  revision: 74bdb33eb09cd3194c9a34ed49e5c1448695d04e
+  branch: bs5
   specs:
     cor1440_gen (1.0b4)
       devise
@@ -25,8 +25,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 6e5b3d14381fd2f5141164adc01e97750ead6f07
-  branch: main
+  revision: b6465bee508b1e877f429b20609faf2bd9294256
+  branch: bs5
   specs:
     heb412_gen (1.0.b6)
       mr519_gen
@@ -36,8 +36,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 0a5b922b45b972f509e58db31066b20bd5eaa9af
-  branch: main
+  revision: d523a296af7915f8e24eee286af6a6d53076def0
+  branch: bs5
   specs:
     mr519_gen (0.2.0)
       rails
@@ -45,8 +45,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 8555a0a937f7f1bfbe74057a0e57ea316eb0640e
-  branch: main
+  revision: 8ef8dd05f8de25e84c45c3c32db1909a7da898f8
+  branch: bs5
   specs:
     sip (2.0.b12)
       cancancan
@@ -64,8 +64,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 514e3dc3d0c7b389ae4f78292ca9c43eda0bc880
-  branch: main
+  revision: 046b3c5239993b2a3cb03427f7e7b8df793c1452
+  branch: bs5
   specs:
     sivel2_gen (2.0b15)
       devise
@@ -179,7 +179,7 @@ GEM
     bcrypt (3.1.16)
     bigdecimal (3.0.2)
     bindex (0.8.1)
-    bootsnap (1.7.7)
+    bootsnap (1.8.1)
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -249,7 +249,7 @@ GEM
     minitest (5.14.4)
     msgpack (1.4.2)
     nio4r (2.5.8)
-    nokogiri (1.12.3)
+    nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     odf-report (0.7.2)
@@ -345,7 +345,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webpacker (6.0.0.rc.1)
+    webpacker (6.0.0.rc.5)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)

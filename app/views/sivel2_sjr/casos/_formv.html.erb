@@ -1,5 +1,5 @@
 <%- if current_usuario.nil?  %>
-  <li><a href="usuarios/sign_in">Iniciar Sesión</a>
+  <li><a data-bs-target="usuarios/sign_in">Iniciar Sesión</button>
 <%- else  %>
   <article>
   <script>
@@ -10,148 +10,71 @@
   <%= simple_form_for @caso, :html => { :class => 'form-horizontal' } do |f| %>
     <div data-role="content" class="form-inputs">
 
-      <%= render partial: 'sip/hogar/errores', locals: { f: f } %> 
+      <%= render partial: 'sip/hogar/errores', locals: { f: f } %>
       <%= render partial: 'sivel2_gen/casos/datos_interjs', locals: { f: f } %>
 
-      <div class="accordion" id="acordeon">
+      <div class="accordion" id="acordeon-formv">
 
         <%= f.simple_fields_for :casosjr do |s| %>
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" 
-                href="#basicos">Datos Básicos</a>
-            </div>
-            <div id="basicos" class="accordion-body collapse in">
-              <div class="accordion-inner">
-                <%= render 'basicos', f: f, s: s %>
-              </div>
-            </div> 
-          </div> <! -- accordion-group -->
+          <%= item_acordeon_bs(
+            'acordeon-formv', 'basicos', 'Datos Básicos', true) do %>
+            <%= render 'basicos', f: f, s: s %>
+          <% end %>
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" 
-                href="#contacto">Solicitante Principal</a>
-            </div>
-            <div id="contacto" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= render 'contacto', f: f, s: s %>
-              </div>
-            </div>
-          </div> <! -- accordion-group -->
+          <%= item_acordeon_bs(
+            'acordeon-formv', 'contacto', 'Solicitante Principal') do %>
+            <%= render 'contacto', f: f, s: s %>
+          <% end %>
 
+          <%= item_acordeon_bs(
+            'acordeon-formv', 'victimas', 'Núcleo Familiar') do %>
+            <%= render 'victimas', f: f, s: s %>
+          <% end %>
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" 
-                href="#victimas">Núcleo Familiar</a>
-            </div>
-            <div id="victimas" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= render 'victimas', f: f, s: s %>
-              </div>
-            </div>
-          </div> <! -- accordion-group -->
+          <%= item_acordeon_bs(
+            'acordeon-formv', 'ubicaciones', 
+            'Sitios geográficos de refugio y desplazamiento') do %>
+            <%= render 'victimas', f: f, s: s %>
+          <% end %>
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" 
-                href="#ubicacion">Sitios geográficos de refugios 
-                y desplazamientos</a>
-            </div>
-            <div id="ubicacion" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= render 'ubicaciones', f: f, s: s %>
-              </div>
-            </div>
-          </div> <! -- accordion-group -->
-
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" 
-                href="#refugio">Refugio</a>
-            </div>
-            <div id="refugio" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= render 'refugio', f: f, s: s %>
-              </div>
-            </div>
-          </div> <! -- accordion-group -->
+          <%= item_acordeon_bs(
+            'acordeon-formv', 'refugio', 
+            'Refugio') do %>
+            <%= render 'refugio', f: f, s: s %>
+          <% end %>
 
         <% end %> <!-- simple_fields_for :casosjr -->
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" 
-              href="#desplazamiento">Desplazamientos</a>
-          </div>
-          <div id="desplazamiento" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'desplazamientos', f: f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group -->
+        <%= item_acordeon_bs(
+          'acordeon-vic', 'desplazamientos', 'Desplazamientos') do %>
+          <%= render 'desplazamientos', f: f %>
+        <% end %>
+  
+        <%= item_acordeon_bs(
+          'acordeon-vic', 'presponsables', 'Agentes de Persecución') do %>
+          <%= render 'sivel2_gen/casos/presponsables', f: f %>
+        <% end %>
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" 
-              href="#presponsables">Agentes de Persecución</a>
-          </div>
-          <div id="presponsables" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'sivel2_gen/casos/presponsables', f: f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group -->
+        <%= item_acordeon_bs(
+          'acordeon-vic', 'antecedentes', 'Causas/Antecedentes') do %>
+          <%= render 'sivel2_gen/casos/presponsables', f: f %>
+        <% end %>
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" 
-              href="#antecedentes">Causas/Antecedentes</a>
-          </div>
-          <div id="antecedentes" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'antecedentes', f: f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group -->
+        <%= item_acordeon_bs(
+          'acordeon-vic', 'respuestas', 'Sesiones de Atención') do %>
+          <%= render 'respuestas', f: f %>
+        <% end %>
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" 
-              href="#atencion">Sesiones de Atención</a>
-          </div>
-          <div id="atencion" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'respuestas', f: f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group -->
+        <%= item_acordeon_bs(
+          'acordeon-vic', 'anexos', 'Anexos') do %>
+          <%= render 'sivel2_gen/casos/anexos', f: f %>
+        <% end %>
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" 
-              href="#anexo">Anexos</a>
-          </div>
-          <div id="anexo" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'sivel2_gen/casos/anexos', f: f %>
-            </div>
-          </div>
-        </div> <! -- accordion-group -->
+        <%= item_acordeon_bs(
+          'acordeon-vic', 'etiquetas', 'Etiquetas') do %>
+          <%= render 'sivel2_gen/casos/etiquetas', f: f %>
+        <% end %>
 
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" 
-              href="#etiquetas">Etiquetas</a>
-          </div>
-          <div id="etiquetas" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render 'sivel2_gen/casos/etiquetas', f: f %>
-      </div>
-            </div>
-          </div>
-        </div> <! -- accordion-group -->
 
       </div> <!-- accordion -->
     </div> <!-- form-inputs -->
@@ -162,7 +85,7 @@
         onclick: 'window.sivel2_detenerEnviarCada60()'
       } %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-        casos_path, :class => 'btn' 
+        casos_path, :class => 'btn'
       %>
     </div> <!-- form-action -->
 

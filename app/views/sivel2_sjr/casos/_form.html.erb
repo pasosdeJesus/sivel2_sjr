@@ -13,93 +13,91 @@
       <%= render partial: 'sip/hogar/errores', locals: { f: f } %> 
       <%= render partial: 'sivel2_gen/casos/datos_interjs', locals: { f: f } %>
 
-      <div role="tabpanel">       
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="nav-item"><a href="#basicos" 
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="nav-item"><a href="#basicos" 
             class="fichacambia nav-link active" aria-selected="true" aria-controls="basicos" role="tab" 
             data-toggle="tab">Datos Básicos</a></li>
-          <li role="presentation" class="nav-item"><a href="#contacto" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#contacto" class="fichacambia nav-link" 
             aria-controls="contacto" role="tab" 
             data-toggle="tab">Solicitante Principal</a></li>
-          <li role="presentation" class="nav-item"><a href="#victimas" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#victimas" class="fichacambia nav-link" 
             aria-controls="victimas" role="tab" 
             data-toggle="tab">Núcleo Familiar</a></li>
-          <li role="presentation" class="nav-item"><a href="#ubicacion" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#ubicacion" class="fichacambia nav-link" 
             aria-controls="ubicacion" role="tab" 
             data-toggle="tab"><%= Sivel2Sjr::Casosjr.human_attribute_name(:Ubicacion) %></a></li>
-          <li role="presentation" class="nav-item"><a href="#refugio" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#refugio" class="fichacambia nav-link" 
             aria-controls="refugio" role="tab" 
             data-toggle="tab"><%= Sivel2Sjr::Casosjr.human_attribute_name(:Refugio) %></a></li>
-          <li role="presentation" class="nav-item"><a href="#desplazamiento" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#desplazamiento" class="fichacambia nav-link" 
             aria-controls="desplazamiento" role="tab" 
             data-toggle="tab">Desplazamientos</a></li>
-          <li role="presentation" class="nav-item"><a href="#presponsables" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#presponsables" class="fichacambia nav-link" 
             aria-controls="presponsables" role="tab" 
             data-toggle="tab">Agentes de Persecución</a></li>
-          <li role="presentation" class="nav-item"><a href="#antecedentes" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#antecedentes" class="fichacambia nav-link" 
             aria-controls="antecedentes" role="tab" 
             data-toggle="tab">Causas/Antecedentes</a></li>
-          <li role="presentation" class="nav-item"><a href="#atencion" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#atencion" class="fichacambia nav-link" 
             aria-controls="atencion" role="tab" 
             data-toggle="tab"><%= Sivel2Sjr::Respuesta.human_attribute_name(:Sesionesatencion) %></a></li>
-          <li role="presentation" class="nav-item"><a href="#anexos" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#anexos" class="fichacambia nav-link" 
             aria-controls="anexos" role="tab" 
             data-toggle="tab">Anexos</a></li>
-          <li role="presentation" class="nav-item"><a href="#etiquetas" class="fichacambia nav-link" 
+        <li role="presentation" class="nav-item"><a href="#etiquetas" class="fichacambia nav-link" 
             aria-controls="etiquetas" role="tab" 
             data-toggle="tab">Etiquetas</a></li>
-          <%= render 'form_maspes', f: f %>
-        </ul>
-        <div class="tab-content">
-          <%= f.simple_fields_for :casosjr do |s| %>
-            <div role="tabpanel" class="tab-pane fade active show" id="basicos" > 
-              <%= render 'basicos', f: f, s: s %>
-            </div> 
+        <%= render 'form_maspes', f: f %>
+      </ul>
+      <div class="tab-content">
+        <%= f.simple_fields_for :casosjr do |s| %>
+          <div role="tabpanel" class="tab-pane fade active show" id="basicos" > 
+            <%= render 'basicos', f: f, s: s %>
+          </div> 
 
-            <div role="tabpanel" class="tab-pane fade" id="contacto" > 
-              <%= render 'contacto', f: f, s: s %>
-            </div>
+          <div role="tabpanel" class="tab-pane fade" id="contacto" > 
+            <%= render 'contacto', f: f, s: s %>
+          </div>
 
-            <div role="tabpanel" class="tab-pane fade" id="victimas" > 
-              <%= render 'victimas', f: f, s: s %>
-            </div> 
+          <div role="tabpanel" class="tab-pane fade" id="victimas" > 
+            <%= render 'victimas', f: f, s: s %>
+          </div> 
 
-            <div role="tabpanel" class="tab-pane fade" id="ubicacion" > 
-              <%= render 'ubicaciones', f: f, s: s %>
-            </div>
+          <div role="tabpanel" class="tab-pane fade" id="ubicacion" > 
+            <%= render 'ubicaciones', f: f, s: s %>
+          </div>
 
-            <div role="tabpanel" class="tab-pane fade" id="refugio" > 
-              <%= render 'refugio', f: f, s: s %>
-            </div> 
+          <div role="tabpanel" class="tab-pane fade" id="refugio" > 
+            <%= render 'refugio', f: f, s: s %>
+          </div> 
 
-            <div role="tabpanel" class="tab-pane fade" id="desplazamiento" > 
-              <%= render 'desplazamientos', f: f %>
-            </div>
+          <div role="tabpanel" class="tab-pane fade" id="desplazamiento" > 
+            <%= render 'desplazamientos', f: f %>
+          </div>
 
-            <div role="tabpanel" class="tab-pane fade" id="presponsable"> 
-              <%= render 'sivel2_gen/casos/presponsables', f: f %>
-            </div> 
+          <div role="tabpanel" class="tab-pane fade" id="presponsable"> 
+            <%= render 'sivel2_gen/casos/presponsables', f: f %>
+          </div> 
 
-            <div role="tabpanel" class="tab-pane fade" id="antecedentes" > 
-              <%= render 'antecedentes', f: f %>
-            </div>
+          <div role="tabpanel" class="tab-pane fade" id="antecedentes" > 
+            <%= render 'antecedentes', f: f %>
+          </div>
 
-            <div role="tabpanel" class="tab-pane fade" id="atencion" > 
-              <%= render 'respuestas', f: f %>
-            </div> 
+          <div role="tabpanel" class="tab-pane fade" id="atencion" > 
+            <%= render 'respuestas', f: f %>
+          </div> 
 
-            <div role="tabpanel" class="tab-pane fade" id="anexos"> 
-              <%= render 'sivel2_gen/casos/anexos', f: f  %>
-            </div>
+          <div role="tabpanel" class="tab-pane fade" id="anexos"> 
+            <%= render 'sivel2_gen/casos/anexos', f: f  %>
+          </div>
 
-            <div role="tabpanel" class="tab-pane fade" id="etiquetas"> 
-              <%= render 'sivel2_gen/casos/etiquetas', f: f  %>
-            </div> 
+          <div role="tabpanel" class="tab-pane fade" id="etiquetas"> 
+            <%= render 'sivel2_gen/casos/etiquetas', f: f  %>
+          </div> 
 
-            <%= render 'form_maspes_panel', f: f, s: s %>
-          <% end %>
-        </div> <!-- tab-content -->
-      </div> <!-- tabpanel -->
+          <%= render 'form_maspes_panel', f: f, s: s %>
+        <% end %>
+      </div> <!-- tab-content -->
     </div> <!-- form-inputs -->
 
     <div class="form-actions">
