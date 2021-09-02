@@ -25,8 +25,10 @@
       <label for="actividad_fecha_localizada"><%= @actividad.class.human_attribute_name(:fecha_localizada) %></label>
     </div>
     <div class='col-sm-4'>
-      <%= f.input_field :fecha_localizada, input_html: { 
-        "data-behaviour" => "datepicker" }, 
+      <%= f.input :fecha_localizada, 
+        label: false,
+        input_html: { "data-behaviour" => "datepicker" }, 
+        class: 'form-control',
         :as => :string %>
     </div>
     <div class='col-sm-2'>
@@ -76,7 +78,9 @@
       </label>
     </div>
     <div class='col-sm-10'>
-      <%= f.input_field :nombre %>
+      <%= f.input :nombre, 
+        label: false
+      %>
     </div>
   </div>
 
@@ -84,9 +88,11 @@
   <%= render partial: 'cor1440_gen/actividades/form_intermedio_1', 
     locals: {f: f} %>
 
+ 
   <%= render partial: 'cor1440_gen/actividades/campo_respuestafor', 
     locals: {f: f} %>
 
+  
   <%= render partial: 'cor1440_gen/actividades/campo_orgsocial', 
     locals: {f: f} %>
 
@@ -109,7 +115,9 @@
       </label>
     </div>
     <div class='col-sm-10'>
-      <%= f.input_field :observaciones %>
+      <%= f.input :observaciones,
+        label: false
+      %>
     </div>
   </div>
 

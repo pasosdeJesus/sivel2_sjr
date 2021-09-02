@@ -1,52 +1,42 @@
-<div class="panel panel-default">
-  <div id="acordeon_listadocasos">
-    <div class="card">
-      <div class="card-header" id="listadocasos">
-        <h6 class="mb-0" style='text-align: center'>
-          <a class="collapsed" data-toggle="collapse" data-target="#colapsa_listadocasos" aria-expanded= "false" aria-controls="colapsa_listadocasos">
-            Listado de casos (grupos familiares) beneficiarios
-          </a>
-        </h6>
-      </div>
-      <div id="colapsa_listadocasos" class="collapse" aria-labelledby="encabezado_listadocasos" data-parent="#acordeon_listadocasos">
-        <div class="card-body">
-          <div class="panel-body table-responsive" style="overflow-x:scroll;">
-            <table class="tablalistadocasos table  table-bordered table-sm ">
-              <thead class="thead-light">
-                <tr><th rowspan='2' width='6em'>Número de Caso</th>
-                  <th colspan='4' style='text-align: center'>Contacto</th>
-                  <th colspan='3' style='text-align: center'>Familia</th>
-                  <th rowspan='2'>Acciones</th>
-                </tr>
-                <tr>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th widht='6em'>Tipo Id.</th>
-                  <th>Número .Id</th>
-                  <th>Mujeres</th>
-                  <th>Hombres</th>
-                  <th>Sexo Sin Inf</th>
-                </tr>
-              </thead>
-              <tbody id="actividad_casosjr">
-                <%= f.simple_fields_for :actividad_casosjr do |ac| %>
-                  <%= render 'actividad_casosjr_campos', f: ac %>
-                <% end %>
-              </tbody>
-            </table>
-            <div class="links">
-              <%= link_to_add_association 'Añadir Caso Beneficiario', f, 
-                :actividad_casosjr,
-                :"data-association-insertion-node" => "tbody#actividad_casosjr", 
-                :"data-association-insertion-method" => "append", 
-                partial: 'actividad_casosjr_campos',
-                :class => 'btn-primary'
-              %>
-            </div>
-
-          </div> <!-- panel-body -->
-        </div> <!-- card-body-->
-      </div> <!-- colapsa-listadocasos-->
-    </div> <!-- card -->
-  </div> <!-- acordeon_listadocasos -->
-</div> <!-- panel -->
+<div class="accordion" id="acordeon_listadocasos">
+  <%= item_acordeon_bs(
+    'acordeon-listadocasos', 'listadocasos', 
+    'Listado de casos (grupos familiares) beneficiarios', false, {
+      'estilo_accordion-header': 'text-align: center',
+      'clase_accordion-body': 'table-responsive',
+      'estilo_accordion-body': 'overflow-x:scroll'
+    }) do %>
+    <table class="tablalistadocasos table  table-bordered table-sm ">
+      <thead class="thead-light">
+        <tr><th rowspan='2' width='6em'>Número de Caso</th>
+          <th colspan='4' style='text-align: center'>Contacto</th>
+          <th colspan='3' style='text-align: center'>Familia</th>
+          <th rowspan='2'>Acciones</th>
+        </tr>
+        <tr>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th widht='6em'>Tipo Id.</th>
+          <th>Número .Id</th>
+          <th>Mujeres</th>
+          <th>Hombres</th>
+          <th>Sexo Sin Inf</th>
+        </tr>
+      </thead>
+      <tbody id="actividad_casosjr">
+        <%= f.simple_fields_for :actividad_casosjr do |ac| %>
+          <%= render 'actividad_casosjr_campos', f: ac %>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="links">
+      <%= link_to_add_association 'Añadir Caso Beneficiario', f, 
+        :actividad_casosjr,
+        :"data-association-insertion-node" => "tbody#actividad_casosjr", 
+        :"data-association-insertion-method" => "append", 
+        partial: 'actividad_casosjr_campos',
+        :class => 'btn-primary'
+      %>
+    </div>
+  <% end %>
+</div> <!-- accordion -->
