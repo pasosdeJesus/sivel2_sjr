@@ -4748,7 +4748,6 @@ CREATE SEQUENCE public.sivel2_gen_rangoedad_id_seq
 CREATE TABLE public.sivel2_gen_rangoedad (
     id integer DEFAULT nextval('public.sivel2_gen_rangoedad_id_seq'::regclass) NOT NULL,
     nombre character varying(20) NOT NULL COLLATE public.es_co_utf_8,
-    rango character varying(20),
     limiteinferior integer DEFAULT 0 NOT NULL,
     limitesuperior integer DEFAULT 0 NOT NULL,
     fechacreacion date NOT NULL,
@@ -11149,6 +11148,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210619191706'),
 ('20210727111355'),
 ('20210728214424'),
-('20210730120340');
+('20210730120340'),
+('20210823162357');
 
 
