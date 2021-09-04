@@ -1,59 +1,52 @@
-<div class="panel-group" id="acordeon_acbdids">
-  <div class="panel panel-default" id="panel_acbdids">
-    <div class="panel-heading">
-      <div class="panel-title" style='text-align: center'>
-        <a data-toggle="collapse" data-target="#colapsa_acbdids" href="#colapsa_acbdids">
-          Expandir / colapsar
-        </a>
-      </div> <!-- panel-title -->
-    </div> <!-- panel-heading -->
-
-    <div id="colapsa_acbdids" class="panel-collapse collapse">
-      <div class="panel-body table-responsive" style="overflow-x:scroll;">
-        <table class='table table-bordered table-sm'>
-          <thead class='thead-light'>
-            <tr>
-              <th>Id Actividad</th><th>Id Caso</th><th>Fecha</th><th>Nombre</th>
-              <th>
-                <%= Cor1440Gen::Actividad.human_attribute_name(:proyectofinanciero) %>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <% idacs = [] # actividades en las que esta %>
-            <% cpac = {} # relaciona los casos de la actividad donde esta %>
-            <% @registro.caso.each do |c| %>
-              <% ids = c.casosjr.actividad.pluck(:id) %>
-              <% ids.each  do |idac| %>
-                <% cpac[idac] = cpac[idac] ? cpac[idac] + [c.id] : [c.id] %>
-              <% end %>
-              <% idacs += ids %>
-            <% end %>
-            <% Cor1440Gen::Actividad.where(id: idacs).order(:fecha).each do |a| %>
-              <tr>
-                <td>
-                  <%= link_to a.id, cor1440_gen.actividad_path(a), target: '_blank' %>
-                </td>
-                <td>
-                  <%= cpac[a.id].map{|idc|
-                    link_to(idc.to_s, sivel2_gen.caso_path(idc), 
-                            target: '_blank').html_safe 
-                  }.join(', '.html_safe).html_safe %>
-                </td>
-                <td>
-                  <%= a.fecha %>
-                </td>
-                <td>
-                  <%= a.nombre %>
-                </td>
-                <td>
-                  <%= a.proyectofinanciero.map(&:nombre).join("; ") %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div> 
-    </div>
-  </div>
+<div class="accordion" id="acordeon_acbdids">
+  <%= item_acordeon_bs(
+    'acordeon_acbdids', 'colapsa_acbdids', 
+    'Expandir / colapsar',
+    false, {"clase_accordion-body" => 'table-responsive',
+            "estilo_accordion-body" => 'overflow-x:scroll'
+    }) do %>
+    <table class='table table-bordered table-sm'>
+      <thead class='thead-light'>
+        <tr>
+          <th>Id Actividad</th><th>Id Caso</th><th>Fecha</th><th>Nombre</th>
+          <th>
+            <%= Cor1440Gen::Actividad.human_attribute_name(:proyectofinanciero) %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% idacs = [] # actividades en las que esta %>
+        <% cpac = {} # relaciona los casos de la actividad donde esta %>
+        <% @registro.caso.each do |c| %>
+          <% ids = c.casosjr.actividad.pluck(:id) %>
+          <% ids.each  do |idac| %>
+            <% cpac[idac] = cpac[idac] ? cpac[idac] + [c.id] : [c.id] %>
+          <% end %>
+          <% idacs += ids %>
+        <% end %>
+        <% Cor1440Gen::Actividad.where(id: idacs).order(:fecha).each do |a| %>
+          <tr>
+            <td>
+              <%= link_to a.id, cor1440_gen.actividad_path(a), target: '_blank' %>
+            </td>
+            <td>
+              <%= cpac[a.id].map{|idc|
+                link_to(idc.to_s, sivel2_gen.caso_path(idc), 
+                        target: '_blank').html_safe 
+              }.join(', '.html_safe).html_safe %>
+            </td>
+            <td>
+              <%= a.fecha %>
+            </td>
+            <td>
+              <%= a.nombre %>
+            </td>
+            <td>
+              <%= a.proyectofinanciero.map(&:nombre).join("; ") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>
