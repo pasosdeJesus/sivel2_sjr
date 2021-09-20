@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 504c7f7a0f511c40643355705f4a4e4f335fd7b7
+  revision: 7211adc72ccfc9e9099b310fc700476fee248224
   branch: main
   specs:
     cor1440_gen (1.0b5)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 56f002c22a9d41947618d32b5733f9b2544fa138
+  revision: e34f0df4f923e7bcd563d8f8a8b9abffdbccff6a
   branch: main
   specs:
     heb412_gen (1.0.b7)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: db065c5355f2d1d36ecfd251ee83c5d0ea263f4f
+  revision: 2f63819bf42d971a96612b2b698f44fedbd52f14
   branch: main
   specs:
     mr519_gen (0.2.1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 637813e3d4870a0401fbfdea729120ec2483ae7a
+  revision: a285c8b4828b727cbcef760d3394a4a8a8185aee
   branch: main
   specs:
     sip (2.0.b12)
@@ -60,11 +60,10 @@ GIT
       rails-i18n
       simple_form
       twitter_cldr
-      will_paginate
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 149b0839b46252526f7e235b869780da35482f7b
+  revision: 3c35aa436f989dd4f6f9aafa607912fabb28fe03
   branch: main
   specs:
     sivel2_gen (2.0b16)
@@ -74,7 +73,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 0c3e02cb520a1a7a913dd76d631bea03d6dd9764
+  revision: e4ad4a2234afd23ec4d3c597085d80d175605184
   branch: 6-1-stable
   specs:
     actioncable (6.1.4.1)
@@ -128,7 +127,7 @@ GIT
       activejob (= 6.1.4.1)
       activerecord (= 6.1.4.1)
       activesupport (= 6.1.4.1)
-      marcel (~> 1.0.0)
+      marcel (~> 1.0)
       mini_mime (>= 1.1.0)
     activesupport (6.1.4.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -179,7 +178,7 @@ GEM
     bcrypt (3.1.16)
     bigdecimal (3.0.2)
     bindex (0.8.1)
-    bootsnap (1.8.1)
+    bootsnap (1.9.1)
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -236,7 +235,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    marcel (1.0.1)
+    marcel (1.0.2)
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
@@ -274,7 +273,7 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    puma (5.4.0)
+    puma (5.5.0)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
