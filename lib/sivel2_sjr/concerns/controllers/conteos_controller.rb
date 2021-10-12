@@ -40,72 +40,85 @@ module Sivel2Sjr
             #    por información por desplegar
 
             # Para la vista personas_cons1 emplear que1, tablas1 y where1
-            que1 = 'caso.id AS id_caso, respuesta.fechaatencion AS fechaatencion'
-            tablas1 = 'public.sivel2_gen_caso AS caso, public.sivel2_sjr_casosjr AS casosjr, ' +
-              'public.sivel2_sjr_respuesta AS respuesta'
-            where1 = ''
-
+            where1 = ""
             # Para la consulta final emplear arreglo que3, que tendrá parejas
             # (campo, titulo por presentar en tabla)
             que3 = []
             tablas3 = personas_cons1
             where3 = ''
 
-            # where1 = consulta_and(where1, 'caso.id', GLOBALS['idbus'], '<>')
-            where1 = consulta_and_sinap(where1, "caso.id", "casosjr.id_caso")
-            where1 = consulta_and_sinap(where1, "caso.id", "respuesta.id_caso")
             if (pFaini != '') 
               pfechaini = DateTime.strptime(pFaini, '%Y-%m-%d')
               @fechaini = pfechaini.strftime('%Y-%m-%d')
               where1 = consulta_and(
-                where1, "respuesta.fechaatencion", @fechaini, ">="
+                where1, "sub.fecha", @fechaini, ">="
               )
             end
             if (pFafin != '') 
               pfechafin = DateTime.strptime(pFafin, '%Y-%m-%d')
               @fechafin = pfechafin.strftime('%Y-%m-%d')
               where1 = consulta_and(
-                where1, "respuesta.fechaatencion", @fechafin, "<="
+                where1, "sub.fecha", @fechafin, "<="
               )
             end
 
             if (pOficina != '') 
-              where1 = consulta_and(where1, "casosjr.oficina_id", pOficina)
+              where1 = consulta_and(where1, "sub.oficina_id", pOficina)
             end
-            que1 = agrega_tabla(que1, "casosjr.oficina_id AS oficina_id")
 
-            trel = "#{pContar}_respuesta"
-            idrel = "id_#{pContar}"
+            id_basica = "id_#{pContar}"
+            basica = "sivel2_sjr_#{pContar}"
+            basica_id = "#{pContar}_id"
+            tablas3 = agrega_tabla(tablas3, "public.sivel2_sjr_#{pContar} AS #{pContar}")
+            where3 = consulta_and_sinap(where3, "#{basica_id}::integer", 
+                                        "#{pContar}.id")
+            que3 << ["#{pContar}.nombre", @pque[pContar]]
+
             case (pContar) 
-            when 'ayudasjr', 'ayudaestado', 'derecho', 'motivosjr', 'progestado', 'aslegal'
-              que1 = agrega_tabla(que1, "#{trel}.#{idrel} AS #{idrel}")
-              where1 = consulta_and_sinap(
-                where1, "respuesta.id", "#{trel}.id_respuesta"
-              )
-              #where1 = consulta_and_sinap( where1, "respuesta.fechaatencion", 
-              #"#{trel}.fechaatencion")
-              tablas1 = agrega_tabla(tablas1, "public.sivel2_sjr_#{trel} AS #{trel}")
-              tablas3 = agrega_tabla(tablas3, "public.sivel2_sjr_#{pContar} AS #{pContar}")
-              where3 = consulta_and_sinap(where3, idrel, "#{pContar}.id")
-              que3 << ["#{pContar}.nombre", @pque[pContar]]
-            when 'remision'
-              que1 = agrega_tabla(
-                que1, "(CASE WHEN remision IS NOT NULL AND TRIM(remision)<>'' 
-                  THEN 'SI' ELSE 'NO' END) AS remitido"
-              )
-              que3 << ["remitido",  @pque[pContar]]
+            when 'ayudasjr'
+              campoid = 110
+            when 'ayudaestado'
+              campoid = 103
+            when 'derecho'
+              campoid = 100
+            when 'motivosjr'
+              campoid = 150
+            when 'progestado'
+              campoid = 106
+            when 'aslegal'
+              campoid = 130
             else
+              basica = "loca"
+              basica_id = "loca_id"
+              tabla3 = "local"
+              que3 = "loca"
+              where3 = "loca"
               puts "opción desconocida #{pContar}"
             end
+            where1 += ((where1 == "") ? "" : " AND ") + 
+              "sub.#{basica_id} IS NOT NULL AND sub.#{basica_id}<>''"
 
-            ActiveRecord::Base.connection.execute "DROP VIEW  IF EXISTS #{personas_cons1}"
+            ActiveRecord::Base.connection.execute(
+              "DROP VIEW  IF EXISTS #{personas_cons1}"
+            )
+            que1="sub.actividad_id, sub.fecha, sub.oficina_id, sub.#{basica_id}"
+            tablas1="(SELECT DISTINCT a.id AS actividad_id, 
+                a.fecha, a.oficina_id, 
+                json_array_elements_text(v.valorjson) AS #{basica_id}
+              FROM mr519_gen_valorcampo AS v 
+              JOIN cor1440_gen_actividad_respuestafor AS ar 
+                ON ar.respuestafor_id=v.respuestafor_id 
+              JOIN cor1440_gen_actividad AS a
+                ON a.id=ar.actividad_id
+              WHERE campo_id=#{campoid}) AS sub"
 
             # Filtrar 
             q1="CREATE VIEW #{personas_cons1} AS 
               SELECT #{que1}
-              FROM #{tablas1} WHERE #{where1}
+              FROM #{tablas1} 
+              WHERE #{where1}
             "
-            #puts "q1 es #{q1}"
+            puts "q1 es #{q1}"
             ActiveRecord::Base.connection.execute q1
 
             #puts que3
@@ -129,8 +142,8 @@ module Sivel2Sjr
             que3 << ["", "Cantidad atenciones"]
             twhere3 = where3 == "" ? "" : "WHERE " + where3
             q3 = "SELECT #{qc}
-              COUNT(cast(#{personas_cons1}.id_caso as text) || ' '
-              || cast(#{personas_cons1}.fechaatencion as text))
+              COUNT(cast(#{personas_cons1}.actividad_id as text) || ' '
+              || cast(#{personas_cons1}.fecha as text))
               FROM #{tablas3}
               #{twhere3}
               #{gb} 
@@ -147,7 +160,7 @@ module Sivel2Sjr
             respond_to do |format|
               format.html { }
               format.json { head :no_content }
-              format.js   { render 'sivel2_gen/conteos/resultado' }
+              format.js   { render 'sivel2_sjr/conteos/resultado_respuestas' }
             end
           end # def respuesta
   
