@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 399b587195930e81ddd697d045e0fc29b9027fcc
+  revision: 38fdcd0028ea78721a0c4048b51d947ceb674ac3
   branch: main
   specs:
     cor1440_gen (1.0b5)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: ffdc181db37843b7be4afc5fbd7fb0d3a736e02c
+  revision: d1ceb2bf3773612289a9e7303a8f25de8b7a09eb
   branch: main
   specs:
     heb412_gen (1.0.b7)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 35f8f5270bee0c59fb68941669905b137fbeb003
+  revision: c15d5dbc57e25e58c573341db434e084fbb8bec4
   branch: main
   specs:
     mr519_gen (0.2.1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 6d73352f61c4220cf8ec8b9ab14648561ac6e4c7
+  revision: 41e63cfc9a7d82c35e93f34371c408ae4cbabccf
   branch: main
   specs:
     sip (2.0.b12)
@@ -63,7 +63,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: bd9c396043ec23aa3f36ce404adc52358badca6a
+  revision: 23f373c4edf8b5c4285ebff615e467a30d577152
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -73,7 +73,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 0e4e64dde081814a2a8d2b8c2fed5c3f70fa41ee
+  revision: 711b241dfd45a56323c647fc82ad7e574e3282c3
   branch: 6-1-stable
   specs:
     actioncable (6.1.4.1)
@@ -183,7 +183,7 @@ GEM
     builder (3.2.4)
     camertron-eprun (1.1.1)
     cancancan (3.3.0)
-    childprocess (3.0.0)
+    childprocess (4.1.0)
     chosen-rails (1.9.0)
       coffee-rails (>= 3.2)
       railties (>= 3.0)
@@ -228,7 +228,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    json (2.5.1)
+    json (2.6.0)
     libxml-ruby (3.2.1)
     loofah (2.12.0)
       crass (~> 1.0.2)
@@ -294,6 +294,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.5)
     rspreadsheet (0.5.3)
       andand (>= 1.3)
       rubyzip (>= 1.3)
@@ -306,8 +307,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (3.142.7)
-      childprocess (>= 0.5, < 4.0)
+    selenium-webdriver (4.0.0)
+      childprocess (>= 0.5, < 5.0)
+      rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
     simple_form (5.1.0)
