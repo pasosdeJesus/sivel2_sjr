@@ -89,7 +89,7 @@ module Sivel2Sjr
                 if tipo
                   presente_otros = Cor1440Gen::Actividadpf.
                     where(actividadtipo_id: tipo).
-                    where(proyectofinanciero_id: @registro.proyectofinanciero_ids)
+                    where(proyectofinanciero_id: Cor1440Gen::ActividadesController.pf_planest_id)  # Limitamos a proyecto de tipos de actividades comunes
                   @registro.actividadpf_ids |= presente_otros.pluck(:id).uniq
                 end
               end
