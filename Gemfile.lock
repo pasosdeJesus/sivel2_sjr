@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 13a4d83eb3f3568124891dda3d0d38e7aed5b1d9
+  revision: 8524572a220b3fa2e8f659b5a0353b6f3ab1351d
   branch: main
   specs:
     cor1440_gen (1.0b5)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: cbb393fe587761697aa80b4fb30d3988ce93cb0a
+  revision: 0aa27860fe73592ff58f61fdac419e0b4b8f859a
   branch: main
   specs:
     heb412_gen (1.0.b7)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: a41fa673b7c1b01629a560b7288e5f51beacec7d
+  revision: 563d87e5a729442db722aa901d655fe32cc07832
   branch: main
   specs:
     mr519_gen (0.2.1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: e9ad2ec6e86800db83d7cd189abc397240cc2600
+  revision: 5f69b2b6b725a5febe46d2ec5287ed85f1f230b6
   branch: main
   specs:
     sip (2.0.b12)
@@ -63,7 +63,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: e1373d1f97befaa767cd5f6313511f3819ec34fc
+  revision: af38967da1b224d25a2235b788b8542bb16c8ed2
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -73,7 +73,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 711b241dfd45a56323c647fc82ad7e574e3282c3
+  revision: 5c7314754c11bf96211752c00f37114868c3c9bf
   branch: 6-1-stable
   specs:
     actioncable (6.1.4.1)
@@ -307,7 +307,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.0.1)
+    selenium-webdriver (4.0.3)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
@@ -355,7 +355,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.1)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   ruby
