@@ -98,7 +98,7 @@ module Sivel2Sjr
               "sub.#{basica_id} IS NOT NULL AND sub.#{basica_id}<>''"
 
             ActiveRecord::Base.connection.execute(
-              "DROP VIEW  IF EXISTS #{personas_cons1}"
+              "DROP MATERIALIZED VIEW  IF EXISTS #{personas_cons1}"
             )
             que1="sub.actividad_id, sub.fecha, sub.oficina_id, sub.#{basica_id}"
             tablas1="(SELECT DISTINCT a.id AS actividad_id, 
@@ -112,7 +112,7 @@ module Sivel2Sjr
               WHERE campo_id=#{campoid}) AS sub"
 
             # Filtrar 
-            q1="CREATE VIEW #{personas_cons1} AS 
+            q1="CREATE MATERIALIZED VIEW #{personas_cons1} AS 
               SELECT #{que1}
               FROM #{tablas1} 
               WHERE #{where1}
@@ -162,7 +162,16 @@ module Sivel2Sjr
               format.js   { render 'sivel2_sjr/conteos/resultado_respuestas' }
             end
           end # def respuesta
-  
+ 
+          def personas_cons1
+            'public.mcben1'
+          end
+
+          def personas_cons2
+            'public.mcben2'
+          end
+
+
           def personas_filtros_especializados
             @filtrosegun = personas_arma_filtros()
             @opsegun =  [''] + @filtrosegun.keys
@@ -392,7 +401,7 @@ module Sivel2Sjr
 
           def personas_vista_geo(que3, tablas3, where3)
             ActiveRecord::Base.connection.execute(
-              "CREATE OR REPLACE VIEW  ultimodesplazamiento AS 
+              "CREATE OR REPLACE MATERIALIZED VIEW  ultimodesplazamiento AS 
             (SELECT sivel2_sjr_desplazamiento.id, s.id_caso, s.fechaexpulsion, 
               sivel2_sjr_desplazamiento.id_expulsion 
               FROM public.sivel2_sjr_desplazamiento, 
@@ -409,7 +418,7 @@ module Sivel2Sjr
               que3 << ["municipio_nombre", "Último Municipio Expulsor"]
             end
 
-            return ["CREATE VIEW #{personas_cons2} AS SELECT #{personas_cons1}.*,
+            return ["CREATE OR REPLACE MATERIALIZED VIEW #{personas_cons2} AS SELECT #{personas_cons1}.*,
             ubicacion.id_departamento, 
             departamento.nombre AS departamento_nombre, 
             ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
