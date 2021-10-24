@@ -18,6 +18,7 @@ Sivel2Sjr::Engine.routes.draw do
   post '/casos/filtro' => 'casos#index', as: :envia_casos_filtro
 
   get '/conteos/personas' => 'conteos#personas', as: :conteos_personas
+  post "/conteos/personas" => 'conteos#personas', as: :post_conteos_personas
   get '/conteos/respuestas' => 'conteos#respuestas', as: :conteos_respuestas
 
   get '/desplazamientos/nuevo' => 'desplazamientos#nuevo'

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 
 require_dependency 'sivel2_gen/concerns/controllers/conteos_controller'
 
@@ -165,15 +164,67 @@ module Sivel2Sjr
           end # def respuesta
   
           def personas_filtros_especializados
-            @opsegun =  [
-              "", "ACTIVIDAD / OFICIO", "AÑO DE NACIMIENTO",
-              "CABEZA DE HOGAR", "ESTADO CIVIL", 
-              "ETNIA", "MES RECEPCIÓN", "NIVEL ESCOLAR", "RANGO DE EDAD", 
-              "SEXO"
-            ]
+            @filtrosegun = personas_arma_filtros()
+            @opsegun =  [''] + @filtrosegun.keys
             @titulo_personas = 'Personas atendidas'
             @titulo_personas_fecha = 'Fecha de Recepción'
             @pOficina = param_escapa([:filtro, 'oficina_id'])
+          end
+
+          def personas_arma_filtros_sivel2_sjr
+            cmesesrecepcion = Sivel2Sjr::Casosjr.all.
+              pluck('distinct fecharec').
+              map { |f| "#{f.year}-#{f.month.to_s.rjust(2, '0')}"}.uniq.sort
+
+            f = personas_arma_filtros_sivel2_gen
+            g = {
+              'ACTIVIDAD / OFICIO' => {
+                nomfiltro: :actividadesoficios,
+                coleccion: Sivel2Gen::Actividadoficio.all.order(:nombre),
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victimasjr.id_actividadoficio'
+              },
+              'AÑO DE NACIMIENTO' => f['AÑO DE NACIMIENTO'],
+              'CABEZA DE HOGAR' => {
+                nomfiltro: :cabezasdehogar,
+                coleccion: [['SI', 't'],['NO', 'f']],
+                metodo_etiqueta: false,
+                metodo_id: false,
+                campocons: 'victimasjr.cabezafamilia'
+              },
+              'ESTADO CIVIL' => {
+                nomfiltro: :estadosciviles,
+                coleccion: Sivel2Gen::Estadocivil.all.order(:nombre),
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victimasjr.id_estadocivil'
+              },
+              'ETNIA' => f['ETNIA'],
+              'MES RECEPCIÓN' => {
+                nomfiltro: :mesesrecepcion,
+                coleccion: cmesesrecepcion.map {|m| [m, m]},
+                metodo_etiqueta: false,
+                metodo_id: false,
+                campocons: "EXTRACT(YEAR FROM casosjr.fecharec)::text || "\
+                "'-' || "\
+                "LPAD(EXTRACT(MONTH FROM casosjr.fecharec)::text, 2, '0')"
+              },
+              'NIVEL ESCOLAR' => {
+                nomfiltro: :nivelesescolares,
+                coleccion: Sivel2Gen::Escolaridad.all.order(:nombre),
+                metodo_etiqueta: :nombre,
+                metodo_id: :id,
+                campocons: 'victimasjr.id_escolaridad'
+              },
+              'RANGO DE EDAD' => f['RANGO DE EDAD'],
+              'SEXO' => f['SEXO']
+            }
+            return g
+          end
+
+          def personas_arma_filtros
+            return personas_arma_filtros_sivel2_sjr
           end
 
           def personas_fecha_inicial(where1)
@@ -212,6 +263,7 @@ module Sivel2Sjr
             tablas1 = 'public.sivel2_gen_caso AS caso, ' +
               'public.sivel2_sjr_casosjr AS casosjr, ' +
               'public.sivel2_gen_victima AS victima, ' +
+              'public.sip_persona AS persona, ' +
               'public.sivel2_sjr_victimasjr AS victimasjr'
 
             # Para la consulta final emplear arreglo que3, que tendrá parejas
@@ -223,6 +275,8 @@ module Sivel2Sjr
             #    consulta_and(where1, 'caso.id', GLOBALS['idbus'], '<>')
             where1 = consulta_and_sinap(where1, "caso.id", "casosjr.id_caso")
             where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
+            where1 = consulta_and_sinap(where1, "persona.id", 
+                                        "victima.id_persona")
             where1 = consulta_and_sinap(where1, "victima.id", 
                                         "victimasjr.id_victima")
             where1 = consulta_and_sinap(where1, "victimasjr.fechadesagregacion", 
@@ -232,7 +286,11 @@ module Sivel2Sjr
             if (@pOficina != '') 
               where1 = consulta_and(where1, "casosjr.oficina_id", @pOficina)
             end
-           
+         
+            que1, tablas1, where1, que3, tablas3, where3 = 
+              personas_procesa_filtros_sivel2_gen(que1, tablas1, where1, 
+                                                  que3, tablas3, where3)
+
             return [que1, tablas1, where1, que3, tablas3, where3] 
           end
 
