@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Sjr
   class AslegalRespuesta < ActiveRecord::Base
     belongs_to :aslegal, class_name: "Sivel2Sjr::Aslegal", 

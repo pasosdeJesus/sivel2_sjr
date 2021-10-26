@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'sivel2_gen/concerns/models/estadocivil'
 
 module Sivel2Sjr

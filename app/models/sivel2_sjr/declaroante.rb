@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Sivel2Sjr
   class Declaroante < ActiveRecord::Base
     include Sip::Basica

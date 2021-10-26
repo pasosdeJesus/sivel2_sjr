@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Sjr
   class Rolfamilia < ActiveRecord::Base
     include Sip::Basica

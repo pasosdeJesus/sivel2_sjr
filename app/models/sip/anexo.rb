@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'sivel2_gen/concerns/models/anexo'
 require 'cor1440_gen/concerns/models/anexo'
 

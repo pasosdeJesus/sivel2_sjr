@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require_dependency 'sivel2_gen/concerns/controllers/validarcasos_controller'
 
 module Sivel2Sjr

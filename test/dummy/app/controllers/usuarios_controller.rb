@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'sivel2_sjr/concerns/controllers/usuarios_controller'
 
 class UsuariosController < Sip::ModelosController

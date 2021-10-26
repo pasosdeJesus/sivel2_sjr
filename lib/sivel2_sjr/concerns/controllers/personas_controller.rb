@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'sivel2_gen/concerns/controllers/personas_controller'
 require 'cor1440_gen/concerns/controllers/personas_controller'
 

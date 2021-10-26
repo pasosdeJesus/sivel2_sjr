@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Sjr
   class MotivosjrDerecho < ActiveRecord::Base
     belongs_to :motivosjr, class_name: "Sivel2Sjr::Motivosjr", 

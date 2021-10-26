@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'sivel2_sjr/concerns/models/categoria'
 
 class Sivel2Gen::Categoria < ActiveRecord::Base

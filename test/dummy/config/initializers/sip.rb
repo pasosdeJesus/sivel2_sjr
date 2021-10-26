@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'sivel2_sjr/version'
 
 Sip.setup do |config|

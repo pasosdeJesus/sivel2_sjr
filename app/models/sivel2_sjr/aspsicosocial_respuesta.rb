@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Sivel2Sjr
   class AspsicosocialRespuesta < ActiveRecord::Base
     belongs_to :aspsicosocial, class_name: "Sivel2Sjr::Aspsicosocial", 

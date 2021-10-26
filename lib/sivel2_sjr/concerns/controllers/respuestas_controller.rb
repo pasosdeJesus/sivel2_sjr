@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Sivel2Sjr
   module Concerns
     module Controllers
@@ -7,8 +5,6 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
-
-          load_and_authorize_resource class: Sivel2Sjr::Respuesta
 
           # Crea un nuevo registro para el caso que recibe por parametro 
           # params[:caso_id].  Pone valores simples en los campos requeridos

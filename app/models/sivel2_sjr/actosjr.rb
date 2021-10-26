@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Sjr
   class Actosjr < ActiveRecord::Base
     belongs_to :acto, class_name: "Sivel2Gen::Acto", 

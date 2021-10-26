@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'sivel2_sjr/concerns/models/respuesta'
 module Sivel2Sjr
   class Respuesta < ActiveRecord::Base

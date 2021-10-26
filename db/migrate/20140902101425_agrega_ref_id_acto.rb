@@ -1,4 +1,3 @@
-#encoding: UTF-8
 class AgregaRefIdActo < ActiveRecord::Migration[4.2]
   def up
 

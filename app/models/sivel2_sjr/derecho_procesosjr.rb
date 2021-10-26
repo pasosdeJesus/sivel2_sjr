@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Sjr
   class DerechoProcesosjr < ActiveRecord::Base
   	belongs_to :procesosjr, class_name: "Sivel2Sjr::Procesosjr", 

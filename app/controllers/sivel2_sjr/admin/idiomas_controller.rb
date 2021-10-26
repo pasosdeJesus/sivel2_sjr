@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Sjr
   module Admin
     class IdiomasController < Sip::Admin::BasicasController

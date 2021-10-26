@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Sjr
   class DerechoRespuesta < ActiveRecord::Base
     belongs_to :derecho, class_name: "Sivel2Sjr::Derecho", 

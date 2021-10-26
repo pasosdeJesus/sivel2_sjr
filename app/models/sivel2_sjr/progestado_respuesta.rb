@@ -1,4 +1,3 @@
-# encoding: UTF-8
 module Sivel2Sjr
   class ProgestadoRespuesta < ActiveRecord::Base
     belongs_to :progestado, class_name: "Sivel2Sjr::Progestado", 

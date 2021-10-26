@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Sivel2Sjr
   module Concerns
     module Controllers

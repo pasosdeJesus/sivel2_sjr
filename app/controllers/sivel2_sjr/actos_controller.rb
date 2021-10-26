@@ -1,9 +1,10 @@
-# encoding: UTF-8
 require 'date'
 
 module Sivel2Sjr
   class ActosController < Sivel2Gen::ActosController
 
+    # Autorizaciones en funciones
+    
     # Crea nuevos actos procesando parámetros
     def agregar
       if params[:caso][:id].nil?
@@ -65,6 +66,7 @@ module Sivel2Sjr
     end
 
     def eliminar
+      authorize! :destroy, Sivel2Gen::Acto
       acto = Sivel2Gen::Acto.where(id: params[:id_acto].to_i).take
       if acto && acto.actosjr
         acto.actosjr.destroy!

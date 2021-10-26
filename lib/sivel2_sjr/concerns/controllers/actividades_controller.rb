@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require_dependency 'cor1440_gen/concerns/controllers/actividades_controller'
 
 module Sivel2Sjr

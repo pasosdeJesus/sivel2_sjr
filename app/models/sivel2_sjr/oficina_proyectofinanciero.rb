@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Sivel2Sjr
   class OficinaProyectofinanciero < ActiveRecord::Base
     belongs_to :oficina, class_name: 'Sip::Oficina',
