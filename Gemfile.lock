@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 93e2cebdc8bd007a023a10b20cb69e7fe6b096d3
+  revision: 428fa51f6ac034e94de67f6d495c2b6c455963fb
   branch: main
   specs:
     cor1440_gen (1.0b5)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: aca5290e3b8a5af85add6f8e90afbb3dd4e6321e
+  revision: dc0e19cd43e760d303b2d36548077f8c0277320c
   branch: main
   specs:
     heb412_gen (1.0.b7)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 5e09a22d023f92a23fdac4a5d5deca1596a75397
+  revision: 5be7b03e93432fc1994f1f46ec36ed50829173a7
   branch: main
   specs:
     mr519_gen (0.2.1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 28e11fdb8fa2ace61435c495031efb0712db84e4
+  revision: c13e90196c7321167a61e459f5f8ac301a572aaf
   branch: main
   specs:
     sip (2.0.b12)
@@ -63,7 +63,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: ab7b1e1a99faf9875c57f5294e215471a51ebc49
+  revision: fcffc7a168efc5d4e53ed905c4956491e6809d57
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -73,7 +73,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: bf7dcf032778bf630f8549bbc2c1d50e5420d3fc
+  revision: 93b7bd5ce23a96548bf93667e416037dee40d90d
   branch: 6-1-stable
   specs:
     actioncable (6.1.4.1)
@@ -206,7 +206,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.10.0)
+    devise-i18n (1.10.1)
       devise (>= 4.8.0)
     docile (1.4.0)
     dotenv (2.7.6)
