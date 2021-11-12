@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: a1b6e1b0e0dd1eb9f05e68b5447bda3dc44c287e
+  revision: 4de4768a25b87fc93a020dc56feb43c7c7074d05
   branch: main
   specs:
     cor1440_gen (1.0b5)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 2c46b6daa111781e2a9f9bc08c15cf8aaf3f924c
+  revision: eb94bc6425515ddb1719c57b68aac4186031fcf1
   branch: main
   specs:
     heb412_gen (1.0.b7)
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: fc020a2b47ca4e1b3637d8840991d96973708c7a
+  revision: 5eac188c660718da9365dc83858cfb743b2032fa
   branch: main
   specs:
     mr519_gen (0.2.1)
@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 8d48911ae6209d6dbf830806a2c0615ae53260ae
+  revision: 317c720257276b1520f1f95f01bff99d60e1d5f7
   branch: main
   specs:
     sip (2.0.b12)
@@ -63,17 +63,18 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: cd30285a9299127544c9d838f28680380feaccd5
+  revision: 04c8412a0914513e797323c4f9515c6bfeaf5bda
   branch: main
   specs:
     sivel2_gen (2.1a1)
+      color
       devise
       jquery-rails
       rails
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 93b7bd5ce23a96548bf93667e416037dee40d90d
+  revision: 36b59dbb50486e570cf91380d29e0a67e1f35fc0
   branch: 6-1-stable
   specs:
     actioncable (6.1.4.1)
@@ -197,6 +198,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    color (1.8)
     colorize (0.8.1)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
@@ -324,16 +326,16 @@ GEM
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.2.2)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
+    sprockets-rails (3.3.0)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.1.0)
     tilt (2.0.10)
     ttfunk (1.7.0)
-    twitter_cldr (6.7.0)
+    twitter_cldr (6.8.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
