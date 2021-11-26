@@ -97,9 +97,18 @@ module Sivel2Sjr
             where1 += ((where1 == "") ? "" : " AND ") + 
               "sub.#{basica_id} IS NOT NULL AND sub.#{basica_id}<>''"
 
-            ActiveRecord::Base.connection.execute(
-              "DROP MATERIALIZED VIEW  IF EXISTS #{personas_cons1}"
-            )
+            begin
+              ActiveRecord::Base.connection.execute(
+                "DROP MATERIALIZED VIEW  IF EXISTS #{personas_cons1}"
+              )
+            rescue 
+              begin
+                ActiveRecord::Base.connection.execute(
+                  "DROP VIEW  IF EXISTS #{personas_cons1}"
+                )
+              rescue 
+              end
+            end
             que1="sub.actividad_id, sub.fecha, sub.oficina_id, sub.#{basica_id}"
             tablas1="(SELECT DISTINCT a.id AS actividad_id, 
                 a.fecha, a.oficina_id, 
