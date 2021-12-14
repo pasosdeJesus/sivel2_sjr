@@ -86,9 +86,7 @@ module Sivel2Sjr
               if consNomvic.length > 0
                 consNomvic += ":*"
               end
-              where = " to_tsvector('spanish', unaccent(persona.nombres) " +
-                " || ' ' || unaccent(persona.apellidos) " +
-                " || ' ' || COALESCE(persona.numerodocumento::TEXT, '')) @@ " +
+              where = " persona.buscable @@ "\
                 "to_tsquery('spanish', '#{consNomvic}')";
 
               partes = [
@@ -107,7 +105,7 @@ module Sivel2Sjr
               end
               qstring = "SELECT TRIM(#{s}) AS value, #{l} AS id " +
                 "FROM public.sip_persona AS persona " +
-                "WHERE #{where} ORDER BY 1"
+                "WHERE #{where} ORDER BY 1 LIMIT 20"
               r = ActiveRecord::Base.connection.select_all qstring
               respond_to do |format|
                 format.json { render :json, inline: r.to_json }
