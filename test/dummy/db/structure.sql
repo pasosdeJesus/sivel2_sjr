@@ -47,6 +47,17 @@ CREATE FUNCTION public.completa_obs(obs character varying, nuevaobs character va
 
 
 --
+-- Name: es_unaccent(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.es_unaccent(cadena text) RETURNS text
+    LANGUAGE sql IMMUTABLE
+    AS $_$
+          select unaccent($1);
+        $_$;
+
+
+--
 -- Name: f_unaccent(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -78,6 +89,23 @@ CREATE FUNCTION public.sip_edad_de_fechanac_fecharef(anionac integer, mesnac int
           ELSE 
             anioref-anionac
         END 
+      $$;
+
+
+--
+-- Name: sip_persona_buscable_trigger(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.sip_persona_buscable_trigger() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      begin
+        new.buscable := to_tsvector('spanish', 
+          es_unaccent(new.nombres) ||
+          ' ' || es_unaccent(new.apellidos) || 
+          ' ' || COALESCE(new.numerodocumento::TEXT, ''));
+        return new;
+      end
       $$;
 
 
@@ -3365,6 +3393,7 @@ CREATE TABLE public.sip_persona (
     id_departamento integer,
     id_municipio integer,
     id_clase integer,
+    buscable tsvector,
     CONSTRAINT persona_check CHECK (((dianac IS NULL) OR (((dianac >= 1) AND (((mesnac = 1) OR (mesnac = 3) OR (mesnac = 5) OR (mesnac = 7) OR (mesnac = 8) OR (mesnac = 10) OR (mesnac = 12)) AND (dianac <= 31))) OR (((mesnac = 4) OR (mesnac = 6) OR (mesnac = 9) OR (mesnac = 11)) AND (dianac <= 30)) OR ((mesnac = 2) AND (dianac <= 29))))),
     CONSTRAINT persona_mesnac_check CHECK (((mesnac IS NULL) OR ((mesnac >= 1) AND (mesnac <= 12)))),
     CONSTRAINT persona_sexo_check CHECK (((sexo = 'S'::bpchar) OR (sexo = 'F'::bpchar) OR (sexo = 'M'::bpchar)))
@@ -8455,6 +8484,13 @@ CREATE INDEX sip_persona_anionac_ind ON public.sip_persona USING btree (anionac)
 
 
 --
+-- Name: sip_persona_buscable_ind; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX sip_persona_buscable_ind ON public.sip_persona USING gin (buscable);
+
+
+--
 -- Name: sip_persona_sexo; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8599,6 +8635,13 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 --
 
 CREATE UNIQUE INDEX usuario_nusuario ON public.usuario USING btree (nusuario);
+
+
+--
+-- Name: sip_persona sip_persona_actualiza_buscable; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER sip_persona_actualiza_buscable BEFORE INSERT OR UPDATE ON public.sip_persona FOR EACH ROW EXECUTE FUNCTION public.sip_persona_buscable_trigger();
 
 
 --
@@ -11388,6 +11431,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211024105507'),
 ('20211117200456'),
 ('20211119085218'),
-('20211119110211');
+('20211119110211'),
+('20211214130956'),
+('20211216125250');
 
 
