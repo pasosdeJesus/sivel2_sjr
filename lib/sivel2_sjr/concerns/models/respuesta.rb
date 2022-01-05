@@ -5,8 +5,8 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
-          belongs_to :caso, class_name: "Sivel2Gen::Caso", optional: false
-            foreign_key: "id_caso"
+          belongs_to :caso, class_name: "Sivel2Gen::Caso", 
+            foreign_key: "id_caso", optional: false
 
           has_and_belongs_to_many :aslegal, 
             class_name: "Sivel2Sjr::Aslegal", 
