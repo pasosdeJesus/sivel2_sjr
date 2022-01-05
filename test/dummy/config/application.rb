@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Dummy
   class Application < Rails::Application
 
-    # config.load_defaults 6.0
+    config.load_defaults 7.0
 
     # Las configuraciones de config/environments/* tienen precedencia
     # sobre las especifciadas aquí.

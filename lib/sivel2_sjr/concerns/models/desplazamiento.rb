@@ -37,7 +37,7 @@ module Sivel2Sjr
           belongs_to :municipio, class_name: "Sip::Municipio", 
             foreign_key: "municipiodecl", validate: true, optional: true
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
-            foreign_key: "id_caso", validate: true
+            foreign_key: "id_caso", validate: true, optional: false
 
           validates_presence_of :fechaexpulsion, :fechallegada
           validates :fechaexpulsion, uniqueness: 

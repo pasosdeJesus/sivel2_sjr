@@ -8,19 +8,24 @@ module Sivel2Sjr
           include Sip::Modelo
 
           belongs_to :actividad, 
-            class_name: 'Cor1440Gen::Actividad', foreign_key: 'actividad_id'
+            class_name: 'Cor1440Gen::Actividad', foreign_key: 'actividad_id', 
+            optional: false
           
           belongs_to :caso, 
-            class_name: 'Sivel2Gen::Caso', foreign_key: 'caso_id'
+            class_name: 'Sivel2Gen::Caso', foreign_key: 'caso_id', 
+            optional: false
 
           belongs_to :persona,
-            class_name: 'Sip::Persona', foreign_key: 'persona_id'
+            class_name: 'Sip::Persona', foreign_key: 'persona_id', 
+            optional: false
 
           belongs_to :victima,
-            class_name: 'Sivel2Gen::Victima', foreign_key: 'victima_id'
+            class_name: 'Sivel2Gen::Victima', foreign_key: 'victima_id', 
+            optional: false
           
           belongs_to :victimasjr,
-            class_name: 'Sivel2Sjr::Victimasjr', foreign_key: 'victima_id'
+            class_name: 'Sivel2Sjr::Victimasjr', foreign_key: 'victima_id', 
+            optional: false
 
           def presenta(atr)
             puts atr

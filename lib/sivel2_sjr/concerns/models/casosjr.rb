@@ -10,13 +10,13 @@ module Sivel2Sjr
 
           # Ordenados por foreign_key para comparar con esquema en base
           belongs_to :usuario, class_name: "Usuario", 
-            foreign_key: "asesor", validate: true
+            foreign_key: "asesor", validate: true, optional: false
           belongs_to :comosupo, class_name: "Sivel2Sjr::Comosupo", 
             foreign_key: "comosupo_id", validate: true, optional: true
           belongs_to :contacto, class_name: "Sip::Persona",  
-            foreign_key: "contacto_id"
+            foreign_key: "contacto_id", optional: false
           belongs_to :caso, class_name: "Sivel2Gen::Caso", validate: true,
-            foreign_key: "id_caso", inverse_of: :casosjr
+            foreign_key: "id_caso", inverse_of: :casosjr, optional: false
           belongs_to :categoria, class_name: "Sivel2Gen::Categoria", 
             validate: true, foreign_key: "categoriaref", optional: true
           belongs_to :idioma, class_name: "Sivel2Sjr::Idioma", 
