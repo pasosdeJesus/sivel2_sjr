@@ -36,9 +36,9 @@ module Dummy
                              Heb412Gen::Engine, Mr519Gen::Engine, 
                              Sip::Engine, :all]
 
-    config.hosts <<  (ENV['CONFIG_HOSTS'] && ENV['CONFIG_HOSTS'] != '' ? 
-                      ENV['CONFIG_HOSTS'].downcase : 
-                      'defensor.info'.downcase)
+    puts "CONFIG_HOSTS="+ENV.fetch('CONFIG_HOSTS', 'defensor.info').to_s
+    config.hosts.concat(
+      ENV.fetch('CONFIG_HOSTS', 'defensor.info').downcase.split(";"))
 
     config.relative_url_root = ENV['RUTA_RELATIVA'] || "/anzorc/si"
 
