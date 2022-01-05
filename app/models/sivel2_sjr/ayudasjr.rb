@@ -7,13 +7,11 @@ module Sivel2Sjr
     has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
       :through => :ayudasjr_respuesta
 
-    has_many :ayudasjr_derecho, 
-      class_name: "Sivel2Sjr::AyudasjrDerecho", 
-      foreign_key: "ayudasjr_id", validate: true, dependent: :destroy
-    has_many :derecho, class_name: "Sivel2Sjr::Derecho", 
-      :through => :ayudasjr_derecho
-    accepts_nested_attributes_for :ayudasjr_derecho, reject_if: :all_blank, 
-      update_only: true
+    has_and_belongs_to_many :derecho,
+      class_name: 'Sivel2Sjr::Derecho',
+      foreign_key: 'ayudasjr_id',
+      association_foreign_key: 'derecho_id',
+      join_table: 'sivel2_sjr_ayudasjr_derecho'
 
     before_destroy :confirmar_ayudasjr_derecho
 
