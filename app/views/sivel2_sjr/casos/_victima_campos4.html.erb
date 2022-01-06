@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6">
-    <%= victimasjr.association :estadocivil,
+    <%= fvictimasjr.association :estadocivil,
       collection: Sivel2Gen::Estadocivil.habilitados,
       include_blank: false,
       label: "Estado Civil",
@@ -8,7 +8,7 @@
       value_method: :id %>
   </div>
   <div class="col-md-6">
-    <%= victimasjr.association :rolfamilia,
+    <%= fvictimasjr.association :rolfamilia,
       collection: Sivel2Sjr::Rolfamilia.habilitados,
       include_blank: false,
       label: "Rol en Familia",
@@ -20,7 +20,7 @@
       } %>
   </div>
   <div class="col-md-6">
-    <%= victimasjr.association :maternidad,
+    <%= fvictimasjr.association :maternidad,
       collection: Sivel2Gen::Maternidad.habilitados,
       include_blank: false,
       label: "Maternidad",

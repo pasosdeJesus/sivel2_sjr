@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6">
-    <%= victimasjr.association :actividadoficio,
+    <%= fvictimasjr.association :actividadoficio,
       collection: Sivel2Gen::Actividadoficio.habilitados,
       include_blank: false,
       label: "Actividad/Oficio actual",
@@ -8,7 +8,7 @@
       value_method: :id %>
   </div> 
   <div class="col-md-6">
-    <%= victima.association :profesion,
+    <%= fvictima.association :profesion,
       collection: Sivel2Gen::Profesion.habilitados,
       include_blank: false,
       label: "Profesión",
@@ -19,7 +19,7 @@
 
 <div class="row">
   <div class="col-md-6">
-    <%= victimasjr.association :escolaridad,
+    <%= fvictimasjr.association :escolaridad,
       collection: Sivel2Gen::Escolaridad.habilitados,
       include_blank: false,
       label: "Nivel Escolar",
@@ -27,7 +27,7 @@
       value_method: :id %>
   </div> 
   <div class="col-md-6">
-    <%= victimasjr.input :asisteescuela, 
+    <%= fvictimasjr.input :asisteescuela, 
       boolean_style: :nested,
       inline_label: "Asiste a Escuela" %>
   </div> 

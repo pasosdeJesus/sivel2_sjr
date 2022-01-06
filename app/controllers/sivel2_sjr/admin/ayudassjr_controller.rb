@@ -28,7 +28,7 @@ module Sivel2Sjr
       def destroy
         # No se ha logrado con before_destroy en modelo
         mens = ""
-        if @basica.ayudasjr_derecho
+        if @basica.derecho
           porb = Sivel2Sjr::AyudasjrDerecho.where(ayudasjr_id: @basica.id)
           cuenta = porb.count
           if cuenta > 0

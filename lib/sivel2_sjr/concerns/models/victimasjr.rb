@@ -28,7 +28,8 @@ module Sivel2Sjr
           # no validamos :victima porque el controlador crea nuevos 
           # (con persona en nombre vacio y victima no es valido)
           belongs_to :victima, class_name: "Sivel2Gen::Victima", 
-            foreign_key: "id_victima", inverse_of: :victimasjr, optional: false
+            foreign_key: "id_victima", inverse_of: :victimasjr, 
+            optional: false
         end
 
         module ClassMethods
