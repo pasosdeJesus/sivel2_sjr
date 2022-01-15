@@ -33,7 +33,8 @@
         %>
       </div>
       <div class="offset-md-0 col-md-1"> 
-        <%= f.button :submit, 'Filtrar', class: 'btn btn-default' %>
+        <%= f.button :submit, 'Filtrar', class: 'btn btn-default',
+          'data-turbo' => false %>
       </div>
       <div class="offset-md-0 col-md-1">
         <a class="btn btn-default btn-sm" role="button" data-toggle="collapse" 

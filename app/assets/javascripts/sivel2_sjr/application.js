@@ -17,10 +17,9 @@
 //= require mr519_gen/motor
 //= require_tree .
 
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener('turbo:load', function() {
 	var root;
-	root = typeof exports !== "undefined" && exports !== null ? 
-		exports : window;
+	root = window;
 	sip_prepara_eventos_comunes(root);
 	sivel2_gen_prepara_eventos_comunes(root,'antecedentes/causas');
 	sivel2_sjr_prepara_eventos_comunes(root);

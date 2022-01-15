@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gemspec
 
+gem 'babel-transpiler'
 
 gem 'bcrypt'
 
@@ -57,6 +58,10 @@ gem 'simple_form' # Formularios simples
 
 gem 'sprockets-rails'
 
+gem 'stimulus-rails'
+
+gem 'turbo-rails'
+
 gem 'twitter_cldr' # ICU con CLDR
  
 gem 'tzinfo' # Zonas horarias
@@ -106,12 +111,12 @@ end
 
 
 group :test do
+  gem 'cuprite'
 
   gem 'selenium-webdriver'
 
   gem 'simplecov', '<0.18' # Debido a https://github.com/codeclimate/test-reporter/issues/418
 
   gem 'spring'
-
 end
 

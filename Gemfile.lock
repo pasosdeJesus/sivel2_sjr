@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: c9e6f9d0018f3913b67fed5860a5d439ac72ac78
+  revision: a077561f75d6ef064dbd4f4806b519cb3df28c88
   specs:
     kt-paperclip (7.0.1)
       activemodel (>= 4.2.0)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: b2e066b114e2a567cf80bfdd8a44788317394ae7
+  revision: 80961e90366c73591537b41836f79876bd9be7d1
   branch: rails7jses
   specs:
     cor1440_gen (2.0a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 974821e0acfbcc3cb9742f1d91551c8d44c3a153
+  revision: a952bd11812d0aaa4dc05d70c9636215e5ba5fe6
   branch: rails7jses
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: fb37805d38e0253c4222b75d761d0ee69522e191
+  revision: eb59f1251335c0dd543f1c6bc2a0f46d5520703f
   branch: rails7jses
   specs:
     mr519_gen (2.1a1)
@@ -44,23 +44,25 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: c1571ff224c25d32d63166d5ad8b9092bb715c2e
+  revision: e4e2b995e1f67db1640c3140ee1f25951a4bccdb
   branch: rails7jses
   specs:
     sip (2.1a1)
       cancancan
+      coffee-rails
       devise
       devise-i18n
       kt-paperclip
       minitest
       rails
       rails-i18n
+      sassc-rails
       simple_form
       twitter_cldr
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: cfe22c35c29b7a9c596386118a3d52d204d0130e
+  revision: 55ff0fb57f4408bad74bf5eb555d04bb23ed5a0e
   branch: rails7jses
   specs:
     sivel2_gen (2.1a1)
@@ -144,18 +146,34 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     andand (1.3.3)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.16)
     bigdecimal (3.1.1)
     bindex (0.8.1)
-    bootsnap (1.9.3)
+    bootsnap (1.9.4)
       msgpack (~> 1.0)
     builder (3.2.4)
     camertron-eprun (1.1.1)
     cancancan (3.3.0)
+    capybara (3.36.0)
+      addressable
+      matrix
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      regexp_parser (>= 1.5, < 3.0)
+      xpath (~> 3.2)
     childprocess (4.1.0)
     cldr-plurals-runtime-rb (1.1.0)
     climate_control (0.2.0)
+    cliver (0.3.2)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 5.2.0)
@@ -167,6 +185,9 @@ GEM
     colorize (0.8.1)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    cuprite (0.13)
+      capybara (>= 2.1, < 4)
+      ferrum (~> 0.11.0)
     debug (1.4.0)
       irb (>= 1.3.6)
       reline (>= 0.2.7)
@@ -185,7 +206,12 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.8.1)
-    ffi (1.15.4)
+    ferrum (0.11)
+      addressable (~> 2.5)
+      cliver (~> 0.3)
+      concurrent-ruby (~> 1.1)
+      websocket-driver (>= 0.6, < 0.8)
+    ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.8.11)
@@ -206,17 +232,18 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    matrix (0.4.2)
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2021.1115)
+    mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
-    mini_portile2 (2.6.1)
+    mini_portile2 (2.7.1)
     minitest (5.15.0)
     msgpack (1.4.2)
     nio4r (2.5.8)
-    nokogiri (1.12.5)
-      mini_portile2 (~> 2.6.1)
+    nokogiri (1.13.1)
+      mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
     odf-report (0.7.2)
       mime-types
@@ -234,6 +261,7 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
+    public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -271,6 +299,7 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redcarpet (3.5.1)
+    regexp_parser (2.2.0)
     reline (0.3.1)
       io-console (~> 0.5)
     responders (3.0.1)
@@ -309,11 +338,15 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stimulus-rails (1.0.2)
+      railties (>= 6.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
     tilt (2.0.10)
     ttfunk (1.7.0)
+    turbo-rails (7.1.1)
+      rails (>= 6.0.0)
     twitter_cldr (6.11.0)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
@@ -331,12 +364,15 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.1)
+    xpath (3.2.0)
+      nokogiri (~> 1.8)
     zeitwerk (2.5.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  babel-transpiler
   bcrypt
   bigdecimal
   bootsnap (>= 1.1.0)
@@ -345,6 +381,7 @@ DEPENDENCIES
   coffee-rails
   colorize
   cor1440_gen!
+  cuprite
   debug
   devise
   devise-i18n
@@ -375,6 +412,8 @@ DEPENDENCIES
   sivel2_sjr!
   spring
   sprockets-rails
+  stimulus-rails
+  turbo-rails
   twitter_cldr
   tzinfo
   web-console
