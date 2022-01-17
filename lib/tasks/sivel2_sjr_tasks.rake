@@ -10,8 +10,8 @@ namespace :sivel2 do
   task vuelcabasicasn: :environment do
     puts "sivel2_sjr - vuelcabasicasn"
 		abcs = ActiveRecord::Base.configurations
-    set_psql_env(abcs[Rails.env])
-    search_path = abcs[Rails.env]['schema_search_path']
+    set_psql_env(abcs)
+    search_path = '' #abcs[Rails.env]['schema_search_path']
     connection = ActiveRecord::Base.connection()
   
     # Nuevas superbasicas
@@ -100,7 +100,7 @@ INSERT INTO public.regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, c
 INSERT INTO public.regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, created_at, updated_at) VALUES (102, 'TÁCHIRA', '2014-01-21', NULL, NULL, NULL); "
       tb.each do |t|
         command = "pg_dump -i -a -x -O --column-inserts -t #{t}  " +
-          "#{search_path} #{Shellwords.escape(abcs[Rails.env]['database'])} | " +
+          "#{search_path} #{Shellwords.escape(ENV['PGDB'])} | " +
           " sed -e \"s/SET lock_timeout = 0;//g\" > #{archt}"
         puts command
         raise "Error al volcar tabla #{t}" unless Kernel.system(command)
@@ -140,9 +140,9 @@ INSERT INTO public.regionsjr (id, nombre, fechacreacion, fechadeshabilitacion, c
 end
 
 # de https://github.com/opdemand/puppet-modules/blob/master/rails/files/databases.rake
-def set_psql_env(config)
-	ENV['PGHOST']     = config['host']          if config['host']
-	ENV['PGPORT']     = config['port'].to_s     if config['port']
-	ENV['PGPASSWORD'] = config['password'].to_s if config['password']
-	ENV['PGUSER']     = config['username'].to_s if config['username']
-end
+#def set_psql_env(config)
+#	ENV['PGHOST']     = config['host']          if config['host']
+#	ENV['PGPORT']     = config['port'].to_s     if config['port']
+#	ENV['PGPASSWORD'] = config['password'].to_s if config['password']
+#	ENV['PGUSER']     = config['username'].to_s if config['username']
+#end
