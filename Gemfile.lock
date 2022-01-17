@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: e4e2b995e1f67db1640c3140ee1f25951a4bccdb
+  revision: d3e1e3bc677513c641e800039653c9e74e1422a5
   branch: rails7jses
   specs:
     sip (2.1a1)
@@ -156,8 +156,8 @@ GEM
     bcrypt (3.1.16)
     bigdecimal (3.1.1)
     bindex (0.8.1)
-    bootsnap (1.9.4)
-      msgpack (~> 1.0)
+    bootsnap (1.10.1)
+      msgpack (~> 1.2)
     builder (3.2.4)
     camertron-eprun (1.1.1)
     cancancan (3.3.0)
