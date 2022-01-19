@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 80961e90366c73591537b41836f79876bd9be7d1
+  revision: 2dfc551f379169c1f9cb5df46ab67e1abd8b0298
   branch: rails7jses
   specs:
     cor1440_gen (2.0a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: a952bd11812d0aaa4dc05d70c9636215e5ba5fe6
+  revision: c545351d99a420c84c86b3a447d9a131a642cb77
   branch: rails7jses
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: eb59f1251335c0dd543f1c6bc2a0f46d5520703f
+  revision: 58aa4d417659da8e9deb535aca39d681b1c78070
   branch: rails7jses
   specs:
     mr519_gen (2.1a1)
@@ -154,7 +154,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.16)
-    bigdecimal (3.1.1)
+    bigdecimal (3.1.2)
     bindex (0.8.1)
     bootsnap (1.10.1)
       msgpack (~> 1.2)
@@ -347,7 +347,7 @@ GEM
     ttfunk (1.7.0)
     turbo-rails (7.1.1)
       rails (>= 6.0.0)
-    twitter_cldr (6.11.0)
+    twitter_cldr (6.11.1)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
