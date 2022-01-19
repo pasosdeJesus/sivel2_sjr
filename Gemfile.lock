@@ -11,8 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 2dfc551f379169c1f9cb5df46ab67e1abd8b0298
-  branch: rails7jses
+  revision: c26bbe3da8aa721064cc5264ba10f5b26a74cf15
+  branch: main
   specs:
     cor1440_gen (2.0a1)
       devise
@@ -24,8 +24,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: c545351d99a420c84c86b3a447d9a131a642cb77
-  branch: rails7jses
+  revision: 4dd47fb0bf946a5deafaa10cff98a6b7aa59a0cb
+  branch: main
   specs:
     heb412_gen (2.1a1)
       mr519_gen
@@ -35,8 +35,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 58aa4d417659da8e9deb535aca39d681b1c78070
-  branch: rails7jses
+  revision: 1f364d9e32047ed82fdaaf17ce603643b7fa66fe
+  branch: main
   specs:
     mr519_gen (2.1a1)
       rails
@@ -44,8 +44,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: d3e1e3bc677513c641e800039653c9e74e1422a5
-  branch: rails7jses
+  revision: f195f8c2ce1af3144ec15847e86b442fd44cfc63
+  branch: main
   specs:
     sip (2.1a1)
       cancancan
@@ -62,8 +62,8 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 55ff0fb57f4408bad74bf5eb555d04bb23ed5a0e
-  branch: rails7jses
+  revision: bd122192cac4f2a9c0e66ef6d144a9b7e9a28440
+  branch: main
   specs:
     sivel2_gen (2.1a1)
       color
