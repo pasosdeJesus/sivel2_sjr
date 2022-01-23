@@ -264,6 +264,11 @@ module Sivel2Sjr
               @caso.casosjr.respuesta.delete
               Sivel2Sjr::Respuesta.where(id_caso: @caso.id).delete_all
             end
+            Sivel2Sjr::Casosjr.connection.execute <<-SQL
+              DELETE FROM sivel2_sjr_actosjr 
+                WHERE id_acto IN (SELECT id FROM sivel2_gen_acto 
+                  WHERE id_caso='#{@caso.id}');
+            SQL
             @caso.casosjr.destroy if @caso.casosjr
             if !@caso.casosjr.errors.present?
               sivel2_gen_destroy
