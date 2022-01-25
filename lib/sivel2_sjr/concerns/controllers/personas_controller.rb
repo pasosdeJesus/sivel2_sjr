@@ -160,7 +160,8 @@ module Sivel2Sjr
                 #redirect_to sivel2_gen.edit_caso_path(@caso)
                 begin
                   @personaant.destroy
-                rescue e
+                  render partial: '/sip/personas/remplazar', layout: false
+                rescue
                 end
                 return false # buscar obligar el redirect_to
               end
