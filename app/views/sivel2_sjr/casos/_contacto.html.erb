@@ -1,9 +1,9 @@
 <%= f.simple_fields_for :victima, Sivel2Gen::Victima.
   where(id_caso: @caso.id).
-  where(id_persona: @caso.casosjr.contacto.id) do |victima| %>
-  <%= victima.input :id, as: :hidden %> 
-  <%= victima.simple_fields_for :persona do |p| %>
-    <%= render 'sip/personas/persona_campos', f: p, fvictima: victima %>
+  where(id_persona: @caso.casosjr.contacto.id) do |fvictima| %>
+  <%= fvictima.input :id, as: :hidden %> 
+  <%= fvictima.simple_fields_for :persona do |p| %>
+    <%= render 'sip/personas/persona_campos', f: p, fvictima: fvictima %>
 
     <%= s.input :direccion, 
       input_html: {
@@ -22,16 +22,14 @@
       value_method: :id 
     %>
   
-    <%= render 'contacto_campos2',
-      victima: victima,
-      casosjr: s
-    %>
+  <%= render partial: 'contacto_campos2',
+    locals: { fvictima: fvictima, casosjr: s} %>
   
-    <%= victima.simple_fields_for :victimasjr do |victimasjr| %>
+    <%= fvictima.simple_fields_for :victimasjr do |fvictimasjr| %>
       <% (1..7).each do |i| %>
         <%= render partial: 'victima_campos' + i.to_s, 
-          locals: { victima: victima, 
-                    victimasjr: victimasjr,
+          locals: { fvictima: fvictima, 
+                    fvictimasjr: fvictimasjr,
                     persona: p }
         %>
       <% end %>

@@ -3,7 +3,7 @@
     <% if f.object.persona.nil?
         f.object.persona = Sip::Persona.new(nombres: '')
         f.object.victimasjr = Sivel2Sjr::Victimasjr.new
-        f.object.victimasjr.victima_id = f.object
+        f.object.victimasjr.victima = f.object
        end %>
        
     <%= f.simple_fields_for :victimasjr do |fvictimasjr| %>
