@@ -22,10 +22,10 @@ module Sivel2Sjr
             authorize! :contar, Sivel2Gen::Caso
             @pque, pContarDef, @titulo_respuesta = respuestas_que
 
-            pFaini = param_escapa([:filtro, 'fechaini'])
-            pFafin = param_escapa([:filtro, 'fechafin'])
-            pContar = param_escapa([:filtro, 'contar'])
-            pOficina = param_escapa([:filtro, 'oficina_id'])
+            pFaini = escapar_param(params, [:filtro, 'fechaini'])
+            pFafin = escapar_param(params, [:filtro, 'fechafin'])
+            pContar = escapar_param(params, [:filtro, 'contar'])
+            pOficina = escapar_param(params, [:filtro, 'oficina_id'])
 
             if (pContar == '') 
               pContar = pContarDef
@@ -186,7 +186,7 @@ module Sivel2Sjr
             @opsegun =  [''] + @filtrosegun.keys
             @titulo_personas = 'Personas atendidas'
             @titulo_personas_fecha = 'Fecha de Recepción'
-            @pOficina = param_escapa([:filtro, 'oficina_id'])
+            @pOficina = escapar_param(params, [:filtro, 'oficina_id'])
           end
 
           def personas_arma_filtros_sivel2_sjr
