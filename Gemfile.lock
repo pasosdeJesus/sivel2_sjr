@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 52a99c1702c16ed2f022fe101ce7676c9cccbe60
+  revision: bed84921222604c65e906843ebd60606fe68ec0f
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 6be448aa3d1af27f80c84ae221f7ab39cd0f1b32
+  revision: 2e6bf964d48064718a526302a4244ccd340dd4a3
   branch: main
   specs:
     sivel2_gen (2.1a1)
