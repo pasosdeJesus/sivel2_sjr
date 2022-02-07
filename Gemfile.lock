@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: a077561f75d6ef064dbd4f4806b519cb3df28c88
+  revision: 64ac41e10af276524fbde358a57f9af0f50d5066
   specs:
-    kt-paperclip (7.0.1)
+    kt-paperclip (7.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       marcel (~> 1.0.1)
@@ -11,10 +11,10 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 8611091e3dc5ad99b110d6fdfa5895b923f7c1d2
+  revision: 52a99c1702c16ed2f022fe101ce7676c9cccbe60
   branch: main
   specs:
-    cor1440_gen (2.0a1)
+    cor1440_gen (2.1a1)
       devise
       heb412_gen
       kt-paperclip
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 4e5b4729d6948e60ca4fc88dbe7aada5e8a55803
+  revision: 385e57804181417b91112017efdee2981d667f51
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 5ce2757b0849344e6b26fe782bfe7505e9fd0384
+  revision: 3b91f89e6174a229380d40f87b4f7db6107ad596
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: fe6a248bde0daa98923c16c84f0e6fc10309fc1b
+  revision: 4d6980ef9f278986daac9f84f0ef70635fa28d5b
   branch: main
   specs:
     sip (2.1a1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 2b307491eb2e26d6a90c3e851bcfd2c83e5a503f
+  revision: 6be448aa3d1af27f80c84ae221f7ab39cd0f1b32
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -80,7 +80,7 @@ GIT
 PATH
   remote: .
   specs:
-    sivel2_sjr (2.0b11)
+    sivel2_sjr (2.1a1)
       rails
       sivel2_gen
 
@@ -156,7 +156,7 @@ GEM
     bcrypt (3.1.16)
     bigdecimal (3.1.2)
     bindex (0.8.1)
-    bootsnap (1.10.2)
+    bootsnap (1.10.3)
       msgpack (~> 1.2)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -252,7 +252,7 @@ GEM
     orm_adapter (0.5.0)
     parslet (2.0.0)
     pdf-core (0.9.0)
-    pg (1.3.0)
+    pg (1.3.1)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -345,8 +345,9 @@ GEM
     thor (1.2.1)
     tilt (2.0.10)
     ttfunk (1.7.0)
-    turbo-rails (7.1.1)
-      rails (>= 6.0.0)
+    turbo-rails (1.0.1)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     twitter_cldr (6.11.1)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
@@ -413,7 +414,7 @@ DEPENDENCIES
   spring
   sprockets-rails
   stimulus-rails
-  turbo-rails
+  turbo-rails (~> 1.0)
   twitter_cldr
   tzinfo
   web-console
