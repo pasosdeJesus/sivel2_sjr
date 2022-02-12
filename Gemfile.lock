@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kreeti/kt-paperclip.git
-  revision: 64ac41e10af276524fbde358a57f9af0f50d5066
+  revision: 6d3cfb9b2dae7a04111411172b803ee4884b56d0
   specs:
     kt-paperclip (7.1.0)
       activemodel (>= 4.2.0)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: bed84921222604c65e906843ebd60606fe68ec0f
+  revision: 8df8928c8c7648751baf9805de619a04ee82b4e1
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 385e57804181417b91112017efdee2981d667f51
+  revision: 9df0a3548933a9c47fd3bdc73eb93190b22c0bfa
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 3b91f89e6174a229380d40f87b4f7db6107ad596
+  revision: e7c743dcc173396a6a72d525dd1734567e6f7605
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 4d6980ef9f278986daac9f84f0ef70635fa28d5b
+  revision: 848a305cb0fde1d71351af3f2c46aa873eb72501
   branch: main
   specs:
     sip (2.1a1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 2e6bf964d48064718a526302a4244ccd340dd4a3
+  revision: bae16954bea6d23f4c5b3aee719632335bfb3053
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -226,7 +226,7 @@ GEM
       railties (>= 6.0.0)
     json (2.6.1)
     libxml-ruby (3.2.2)
-    loofah (2.13.0)
+    loofah (2.14.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -262,7 +262,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (4.0.6)
-    puma (5.6.1)
+    puma (5.6.2)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
@@ -287,7 +287,7 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
-    rails-i18n (7.0.1)
+    rails-i18n (7.0.2)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
     railties (7.0.0)
@@ -299,7 +299,7 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redcarpet (3.5.1)
-    regexp_parser (2.2.0)
+    regexp_parser (2.2.1)
     reline (0.3.1)
       io-console (~> 0.5)
     responders (3.0.1)
