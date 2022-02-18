@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 8df8928c8c7648751baf9805de619a04ee82b4e1
+  revision: e88ed21d0d4a11aa04fcab6688bac0638880bf27
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 9df0a3548933a9c47fd3bdc73eb93190b22c0bfa
+  revision: 556b1b7dc3fe4e75a4f167293e275fb2dfda51af
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: e7c743dcc173396a6a72d525dd1734567e6f7605
+  revision: 86ea29ff59b9ad0cc054d19f6743ec99923386e0
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 848a305cb0fde1d71351af3f2c46aa873eb72501
+  revision: 3cadd546bf03328e0ee506d3ed7c023863a0b9d4
   branch: main
   specs:
     sip (2.1a1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: bae16954bea6d23f4c5b3aee719632335bfb3053
+  revision: 094f921b4e695ed2086b597a5c626f0567a21858
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -214,7 +214,7 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    i18n (1.9.1)
+    i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
     irb (1.4.1)
@@ -240,7 +240,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.7.1)
     minitest (5.15.0)
-    msgpack (1.4.4)
+    msgpack (1.4.5)
     nio4r (2.5.8)
     nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
@@ -252,7 +252,7 @@ GEM
     orm_adapter (0.5.0)
     parslet (2.0.0)
     pdf-core (0.9.0)
-    pg (1.3.1)
+    pg (1.3.2)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -348,7 +348,7 @@ GEM
     turbo-rails (1.0.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
-    twitter_cldr (6.11.1)
+    twitter_cldr (6.11.2)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
