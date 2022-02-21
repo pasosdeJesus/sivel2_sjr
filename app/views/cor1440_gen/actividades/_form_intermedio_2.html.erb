@@ -6,8 +6,10 @@
   </div>
   <div class='col-sm-10'>
     <%= f.input :resultado,
-      label: false
-    %>
+      label: false,
+      input_html: {
+        'data-sip--cancelar-vacio-es-eliminar-target' => 'determinador'
+      } %>
   </div>
 </div>
 

@@ -16,7 +16,9 @@
   </div>
   <div class='col-sm-4'>
     <%= f.input :objetivo,
-      label: false
-    %>
+      label: false,
+      input_html: {
+        'data-sip--cancelar-vacio-es-eliminar-target' => 'determinador'
+      } %>
   </div>
 </div>
