@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 4a0c9db65d2863443d000b42116254740dbfb927
+  revision: 85d1b7ef126020e802977969f148ae31042669f8
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: daf9aed6993c2ae3a1520d419a777b70fc9ed68a
+  revision: d36d4913df61c7b60570fdd31c43506cbc04223e
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: d07ec1099ecebf99ef6811d2b8c7ef27e3e4f236
+  revision: 51a469fc445d079837a8da121e6cd0d4dd8a2da2
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 1513f4e13b1ee3e9f7a9465e428325638c937cdb
+  revision: 86f817b0cf7883f9655a0f79724723cd76ecfa09
   branch: main
   specs:
     sip (2.1a1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 8cf62978317d6a4a6bd0cd41728574fa60bd495a
+  revision: 54d0d94a399a51b8a6ec1a74be5c5384bbe20541
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -159,7 +159,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
-    bcrypt (3.1.16)
+    bcrypt (3.1.17)
     bigdecimal (3.1.2)
     bindex (0.8.1)
     bootsnap (1.11.1)
@@ -234,7 +234,7 @@ GEM
       railties (>= 6.0.0)
     json (2.6.1)
     libxml-ruby (3.2.2)
-    loofah (2.14.0)
+    loofah (2.15.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
