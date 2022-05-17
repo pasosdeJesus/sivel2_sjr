@@ -193,6 +193,7 @@ module Sivel2Sjr
           end
 
           def update_sivel2_sjr
+            @casovalido = true if @casovalido.nil? 
             # No deben venir validaciones en controlador
             respond_to do |format|
               if (!params[:caso][:caso_etiqueta_attributes].nil?)
@@ -211,7 +212,7 @@ module Sivel2Sjr
               end
               @caso.current_usuario = current_usuario
               @caso.assign_attributes(caso_params)
-              casovalido = @caso.valid?
+              @casovalido &= @caso.valid?
               @caso.save(validate: false)
               if registrar_en_bitacora
                 Sip::Bitacora.agregar_actualizar(
@@ -220,7 +221,7 @@ module Sivel2Sjr
                   @caso.id
                 )
               end
-              if validar_params && casovalido 
+              if validar_params && @casovalido 
                 format.html { redirect_to @caso, notice: 'Caso actualizado.' }
                 format.json { head :no_content }
                 format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
