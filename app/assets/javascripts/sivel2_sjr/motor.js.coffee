@@ -7,6 +7,7 @@
 #//= require sivel2_gen/motor
 #//= require cor1440_gen/motor
 #//= require cocoon
+#//= require sivel2_sjr/AutocompletaAjaxListadocasos
 
 # Regenera lista de selección de desplazamientos
 # s es un select jquery
@@ -59,8 +60,8 @@
   for sexo, s of e
     totsexo = 0
     for rango, re of s
-      eh = divcp.find('[id^=actividad_actividad_casosjr_attributes_][id$=_rangoedad_' + sexo + '_' + rango + ']')
-      eh.val(re)
+      eh = divcp.querySelector('[id^=actividad_actividad_casosjr_attributes_][id$=_rangoedad_' + sexo + '_' + rango + ']')
+      eh.value = re
       totsexo += re
     if sexo == 'F'
       cls = '.fam_mujeres'
@@ -68,7 +69,7 @@
       cls = '.fam_hombres'
     else
       cls = '.fam_sinsexo'
-    et = divcp.find(cls).text(totsexo)
+    et = divcp.querySelector(cls).innerText = totsexo
   $(document).trigger('sivel2sjr:autocompletado-contactoactividad')
   return
 
@@ -406,9 +407,12 @@
     return
   )
 
-  $(document).on('focusin', 'input[id^=actividad_actividad_casosjr_attributes][id$=_casosjr_id]', (e) ->
-    sivel2_sjr_busca_contacto_actividad($(this))
-  )
+  #$(document).on('focusin', 'input[id^=actividad_actividad_casosjr_attributes][id$=_casosjr_id]', (e) ->
+  #  sivel2_sjr_busca_contacto_actividad($(this))
+  #)
+
+  # En listado de casos permite autocompletar caso
+  Sivel2SjrAutocompletaAjaxListadocasos.iniciar()
 
   # En actividad si se cambia sexo de un asistente
   # recalcula tabla de población
@@ -455,6 +459,8 @@
     if typeof jrs_recalcula_poblacion == 'function'
       jrs_recalcula_poblacion()
   )
+
+  
 
   # Tras autocompletar contacto de un caso beneficiario
   $(document).on('sivel2sjr:autocompletado-contactoactividad', (e, papa) ->

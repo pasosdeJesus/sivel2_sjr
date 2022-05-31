@@ -2,20 +2,16 @@
 <tr class='nested-fields'>
   <td>
     <% if !f.object.casosjr_id %>
-      <% 
-          ph = 'Buscar No. Caso, contacto o identificacion del contacto'
-      ac = { 
-        #'data-autocompleta' => 'no' 
-      }
-    %>
-    <%= f.input :casosjr_id,  placeholder: ph,
-      label: false,
-      as: :string,
-      :input_html => ac %>
-  <% else %>
-    <%= link_to f.object.casosjr_id, sivel2_gen.caso_path(f.object.casosjr.caso), 
-      target: '_blank' %>
-  <% end %>
+      <% ph = 'Buscar No. Caso, contacto o identificacion del contacto' %>
+      <% ac = { list: 'fuente-listadocasos' } %>
+      <%= f.input :casosjr_id,  placeholder: ph,
+        label: false,
+        as: :string,
+        :input_html => ac %>
+    <% else %>
+      <%= link_to f.object.casosjr_id, sivel2_gen.caso_path(f.object.casosjr.caso), 
+        target: '_blank' %>
+    <% end %>
   </td>
   <td>
     <span class="nombres">
