@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: b0a451a470c32c387bd01ff08a8eada2d4fe07d2
+  revision: 87acbbc4e92a9d27af4cda4b2a8ecb6e39d00267
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 5b8d611c8b654df847859c2e00f4ca31f1da4a2d
+  revision: 1df2aa7caac3625606ec70cb15de1ae65816cb90
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 92aa3b3ec94e64b51d9af90133e4c7444981aa17
+  revision: 2a3a461c04bd15b8aad12222bb1d8ef3d1831753
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 35a41e1ebb9a8180266768ae3fd4ea7dfb843d32
+  revision: cdfed53c2ff8495e39cda2ddff9c9d385af1847c
   branch: main
   specs:
     sip (2.1a1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 1710009ce02aee91647e18684df88a637a8ac5c5
+  revision: 200e403f0fdc2b02c44da04fb99943e2a176315a
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -162,7 +162,7 @@ GEM
     bcrypt (3.1.18)
     bigdecimal (3.1.2)
     bindex (0.8.1)
-    bootsnap (1.11.1)
+    bootsnap (1.12.0)
       msgpack (~> 1.2)
     builder (3.2.4)
     camertron-eprun (1.1.1)
@@ -232,7 +232,7 @@ GEM
     jsbundling-rails (1.0.2)
       railties (>= 6.0.0)
     json (2.6.2)
-    libxml-ruby (3.2.2)
+    libxml-ruby (3.2.3)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -247,7 +247,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.15.0)
-    msgpack (1.5.1)
+    msgpack (1.5.2)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -286,7 +286,7 @@ GEM
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
-    rack (2.2.3)
+    rack (2.2.3.1)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.3)
@@ -320,7 +320,7 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redcarpet (3.5.1)
-    regexp_parser (2.4.0)
+    regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
     responders (3.0.1)
@@ -339,10 +339,11 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.1.0)
+    selenium-webdriver (4.2.1)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -366,10 +367,11 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
     tilt (2.0.10)
-    timeout (0.2.0)
+    timeout (0.3.0)
     ttfunk (1.7.0)
-    turbo-rails (1.0.1)
+    turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
       railties (>= 6.0.0)
     twitter_cldr (6.11.3)
       camertron-eprun
@@ -384,6 +386,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -444,4 +447,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.3.12
+   2.3.14
