@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: ae8c14d910a8dbfde20a1c612567c9df5de2d2d1
+  revision: da79513b07050c9fefe923ed2a7889632b0f7fe1
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: fab5a8f9fc78422bc54f931b205f8a57e35340dd
+  revision: 91a8984b847d7ef10d6c20bb6d4e4f6ea7b4189f
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: ee9545d40d151bd75e2331eabdb5642d717668a6
+  revision: acbc8d9bd85d81e0e9a2840ec3f5da421abe9ee1
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: b5c50d8641e12fd988779c4bc346fbc63324ade6
+  revision: e727be566e024da19e608f96de0092fe2a025ef2
   branch: main
   specs:
     sip (2.1a1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 80ed9b799a50778a6b0f1b5c726fb0582483aa6f
+  revision: aa6a4040e9c9973c0ca113476d180bd126a0fafe
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -306,7 +306,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.2)
+    rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
     rails-i18n (7.0.3)
       i18n (>= 0.7, < 2)
@@ -393,7 +393,7 @@ GEM
     will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.4)
+    zeitwerk (2.6.0)
 
 PLATFORMS
   x86_64-openbsd
