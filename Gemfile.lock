@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: e747ec54f6ca619e5c7a742b6525aff60351e30e
+  revision: 1230bd5dd85ee841963470434631c98d9eac0bb1
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 2badbc121a3da95d45fb48fbc8395b4ba23cdecc
+  revision: 65f9432be21e18299d3a4b70c3f572a0ac6e3aa0
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: c1132252bc358a35889ee8da6b0e3e2ce65adda8
+  revision: 68d437633c5d522b20ba7d0f60de261e9242fdbb
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 41a2340dacad812e9c8dfa6c62ea6767411ab75c
+  revision: 7ee65ec06f7d6a0dcab8789cb0d7db08d8b080ac
   branch: main
   specs:
     sip (2.1a1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 98b7dab50a883cbdfbba64d94f30075456494da1
+  revision: 35c90b53a55da05bce80a20eff691b48e0d90d05
   branch: main
   specs:
     sivel2_gen (2.1a1)
@@ -360,7 +360,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    stimulus-rails (1.0.4)
+    stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     strscan (3.0.3)
     terrapin (0.6.0)
