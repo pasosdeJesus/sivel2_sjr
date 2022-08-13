@@ -245,7 +245,7 @@ module Sivel2Sjr
           # y a repetir before_action :set_caso, only: [:show, :edit, :update, :destroy]
           # en el included do de este
           def sivel2_sjr_destroy
-            if @caso.casosjr.respuesta
+            if @caso.casosjr && @caso.casosjr.respuesta
               # No se logró hacer ni con dependente:destroy en
               # las relaciones ni borrando con delete 
               @caso.casosjr.respuesta.each do |r|
@@ -269,13 +269,18 @@ module Sivel2Sjr
               DELETE FROM sivel2_sjr_actosjr 
                 WHERE id_acto IN (SELECT id FROM sivel2_gen_acto 
                   WHERE id_caso='#{@caso.id}');
+              DELETE FROM sivel2_sjr_desplazamiento 
+                WHERE id_caso = #{@caso.id};
             SQL
             @caso.casosjr.destroy if @caso.casosjr
-            if !@caso.casosjr.errors.present?
+            if @caso.casosjr && @caso.casosjr.errors.present?
+              mens = 'No puede borrar caso: ' + @caso.casosjr.errors.messages.values.flatten.join('; ')
+              puts mens
+              redirect_to caso_path(@caso), alert: mens
+              return
+            else
               sivel2_gen_destroy
               Sivel2Gen::Conscaso.refresca_conscaso
-            else
-              redirect_to caso_path(@caso), alert: 'No puede borrar caso: ' + @caso.casosjr.errors.messages.values.flatten.join('; ')
             end
           end
 
