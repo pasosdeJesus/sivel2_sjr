@@ -173,7 +173,7 @@ module Sivel2Sjr
           def validar_sivel2_sjr
             valida_contactonull
             valida_sincontacto
-            valida_sinubicaciones
+            #valida_sinubicaciones
             valida_sinrefugionidesplazamiento
             valida_sinrespuesta
             valida_sinfechadesp
