@@ -5,6 +5,9 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
+
+          include Sip::Modelo
+
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", optional: false
 

@@ -5,9 +5,12 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
+
+          include Sip::Modelo
+
           # Orden de esquema en base
           belongs_to :actividadoficio, 
-            class_name: "Sivel2Sjr::Actividadoficio", 
+            class_name: "Sivel2Gen::Actividadoficio", 
             foreign_key: "id_actividadoficio", validate: true, optional: true
           belongs_to :departamento, class_name: "Sip::Departamento", 
             foreign_key: "id_departamento", validate: true, optional: true

@@ -411,7 +411,6 @@ module Sivel2Sjr
             end
           end
 
-          private
 
           def otros_params
             []
@@ -474,6 +473,8 @@ module Sivel2Sjr
               ]
             ]
           end
+
+
           def lista_params
             lp = [
               :bienes, 
@@ -689,13 +690,16 @@ module Sivel2Sjr
                 :observaciones, 
                 :_destroy
               ]
-           ] 
+           ] + otros_params  + desplazamiento_params
+
             lp
           end
- 
+
+          private
+
           # Never trust parameters from the scary internet, only allow the white list through.
           def caso_params
-            lp = lista_params + otros_params + desplazamiento_params
+            lp = lista_params 
             params.require(:caso).permit(lp)
           end
 

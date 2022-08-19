@@ -1,5 +1,8 @@
 module Sivel2Sjr
   class Actosjr < ActiveRecord::Base
+
+    include Sip::Modelo
+
     belongs_to :acto, class_name: "Sivel2Gen::Acto", 
       foreign_key: "id_acto", inverse_of: :actosjr,
       dependent: :delete, optional: false

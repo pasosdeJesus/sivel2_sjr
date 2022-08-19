@@ -5,6 +5,9 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
+
+          include Sip::Modelo
+
           has_many :actosjr, class_name: "Sivel2Sjr::Actosjr", 
             validate: true
 

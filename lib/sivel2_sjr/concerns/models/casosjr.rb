@@ -5,6 +5,8 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
+
+          include Sip::Modelo
           
           self.primary_key = :id_caso
 
