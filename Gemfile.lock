@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 643bcc22b55d10105aaf4cd3bc040a70bd8cbab2
+  revision: e1ae09a269a32337ca3827edf8aa1c8e51aa9ad3
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 046d30d050ae6998831c834c32d9c24fb477cf45
+  revision: af40b40abb9e3065cfd5a51c57161d809a69cbc5
   branch: main
   specs:
     heb412_gen (2.1a1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 3a44af73b38d1648daa07aebe52e656b877a915e
+  revision: 676aea4493fe86d8fb5d981b136b7ed73d2abc67
   branch: main
   specs:
     mr519_gen (2.1a1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 027ecb645b800f94be73f3c4643110b06122f87d
+  revision: e70ce2d2aa793c4ab208b7585f1cece0cce3f999
   branch: main
   specs:
     sip (2.1a2)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: fa25139f0982edb3874638d0e8e228653c21800a
+  revision: aad01dc15d265b666d31d53d52c55b9d315328f0
   branch: main
   specs:
     sivel2_gen (2.1a2)
@@ -265,7 +265,7 @@ GEM
     orm_adapter (0.5.0)
     parslet (2.0.0)
     pdf-core (0.9.0)
-    pg (1.4.3)
+    pg (1.4.4)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -360,7 +360,7 @@ GEM
     tilt (2.0.11)
     timeout (0.3.0)
     ttfunk (1.7.0)
-    turbo-rails (1.3.0)
+    turbo-rails (1.3.1)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
