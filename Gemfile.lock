@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 0183945c3448daabe00ed625a16d63fe78c786bb
+  revision: b1c915e78e3abfee026c556341eb892f3290f895
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: d17bfd3e6aad8ad25fa099d048cf03ba7e7d2e29
+  revision: 87e43427f178acc905fbb3be60698902b765f3b6
   branch: main
   specs:
     heb412_gen (2.1.0.beta1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: 8ac9ae4f68254f0640e24def4526dd64207f7a4d
+  revision: 947040d49f4bfe7b05152df616079c87a8d8a801
   branch: main
   specs:
     mr519_gen (2.1.0.beta1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: f6870e519c63ba8479e3f316349a660072b6ea94
+  revision: e6ed8907e324873b20372ff8821f8495be9d54a9
   branch: main
   specs:
     sip (2.1.0.beta1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: f797c4d7a7c43a6ce845cdfb75025d3e6e8b5053
+  revision: 7241a5794f4ce5a9fee3a385b240e35622b9462d
   branch: main
   specs:
     sivel2_gen (2.1.0.beta1)
@@ -72,7 +72,7 @@ GIT
 
 GIT
   remote: https://github.com/teamcapybara/capybara.git
-  revision: 2d05c203d79bca7b3b093c37f866ee41f294925b
+  revision: 48fe7018edbbf46c61f1c7632ff49fb8f1116f6c
   branch: master
   specs:
     capybara (3.38.0)
@@ -337,7 +337,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.5.0)
+    selenium-webdriver (4.6.1)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -358,7 +358,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    stimulus-rails (1.1.0)
+    stimulus-rails (1.1.1)
       railties (>= 6.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
@@ -370,7 +370,7 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
-    twitter_cldr (6.11.3)
+    twitter_cldr (6.11.4)
       camertron-eprun
       cldr-plurals-runtime-rb (~> 1.1)
       tzinfo
@@ -391,7 +391,7 @@ GEM
     will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.1)
+    zeitwerk (2.6.5)
 
 PLATFORMS
   x86_64-openbsd
@@ -446,4 +446,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.3.24
+   2.3.25

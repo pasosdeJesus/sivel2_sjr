@@ -34,7 +34,7 @@ module Sivel2Sjr
             [ :id, 
               :nombres,
               :apellidos,
-              :tdocumento,
+              :tdocumento_id,
               :numerodocumento,
               :fechanac,
               :sexo,
