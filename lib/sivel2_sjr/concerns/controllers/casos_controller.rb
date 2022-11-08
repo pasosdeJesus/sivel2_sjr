@@ -222,9 +222,27 @@ module Sivel2Sjr
                 )
               end
               if validar_params && @casovalido 
-                format.html { redirect_to @caso, notice: 'Caso actualizado.' }
-                format.json { head :no_content }
-                format.js   { redirect_to @caso, notice: 'Caso actualizado.' }
+                format.html { 
+                  if request.xhr?
+                    if request.params[:siguiente] == 'edit'
+                      render(action: 'edit', 
+                             layout: 'application', 
+                             notice: 'Caso actualizado.')
+                    else
+                      render(action: 'show', 
+                             layout: 'application', 
+                             notice: 'Caso actualizado.')
+                    end
+                  else
+                    redirect_to @caso, notice: 'Caso actualizado.'
+                  end
+                }
+                format.json { 
+                  head :no_content 
+                }
+                format.js   { 
+                  redirect_to @caso, notice: 'Caso actualizado.' 
+                }
                 Sivel2Gen::Conscaso.refresca_conscaso
               else
                 format.html { render action: 'edit', layout: 'application' }
@@ -404,6 +422,7 @@ module Sivel2Sjr
           def set_caso
             @caso = Sivel2Gen::Caso.find(params[:id].to_i)
             @caso.current_usuario = current_usuario
+            @registro = @caso
             pcs = Sivel2Sjr::Casosjr.where(id_caso: params[:id].to_i)
             @casosjr = nil
             if pcs.count > 0
