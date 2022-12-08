@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 35b3c30d6e82973a52e5195dbb60968b6027f1e7
+  revision: 83284fa39c5b1e22454918c31041e99ba3dc529c
   branch: main
   specs:
     cor1440_gen (2.1a1)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 2856178a6703552efdd1b900c4d9166d9ca0453f
+  revision: 0728394ca7e879c16e53a28b96a397bd991e59aa
   branch: main
   specs:
     heb412_gen (2.1.0.beta1)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: cb90995d0f5d346923097df5aa170518a6d74a70
+  revision: 5637c98668779f7749618ca1863c24fb6f656af6
   branch: main
   specs:
     mr519_gen (2.1.0.beta1)
@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sip.git
-  revision: 00280a7e51f4063b2a7e50a91b4ac58af45f8306
+  revision: 3d05638bc7d0caa1197a2e67f705bae564a069c3
   branch: main
   specs:
     sip (2.1.0.beta1)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: bd26503118ae53fabab69f900236bb386c7631aa
+  revision: 573076105319522d9d45c383f001bf34e9da84e0
   branch: main
   specs:
     sivel2_gen (2.1.0.beta1)
@@ -160,7 +160,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.18)
-    bigdecimal (3.1.2)
+    bigdecimal (3.1.3)
     bindex (0.8.1)
     bootsnap (1.15.0)
       msgpack (~> 1.2)
@@ -176,7 +176,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    childprocess (4.1.0)
     cldr-plurals-runtime-rb (1.1.0)
     climate_control (0.2.0)
     coffee-rails (5.0.0)
@@ -193,8 +192,8 @@ GEM
     cuprite (0.14.3)
       capybara (~> 3.0)
       ferrum (~> 0.13.0)
-    debug (1.6.3)
-      irb (>= 1.3.6)
+    debug (1.7.0)
+      irb (>= 1.5.0)
       reline (>= 0.3.1)
     devise (4.8.1)
       bcrypt (~> 3.0)
@@ -229,13 +228,16 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
-    json (2.6.2)
+    json (2.6.3)
     libxml-ruby (3.2.4)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.1)
+    mail (2.8.0)
       mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
@@ -250,12 +252,12 @@ GEM
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.1.3)
+    net-protocol (0.2.1)
       timeout
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.13.9)
+    nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     odf-report (0.7.3)
@@ -274,10 +276,10 @@ GEM
     prawnto_2 (0.3.1)
       prawn (>= 1.0.0)
       rails (>= 3.2)
-    public_suffix (5.0.0)
+    public_suffix (5.0.1)
     puma (6.0.0)
       nio4r (~> 2.0)
-    racc (1.6.0)
+    racc (1.6.1)
     rack (2.2.4)
     rack-test (2.0.2)
       rack (>= 1.3)
@@ -331,8 +333,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.6.1)
-      childprocess (>= 0.5, < 5.0)
+    selenium-webdriver (4.7.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -358,7 +359,7 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
     tilt (2.0.11)
-    timeout (0.3.0)
+    timeout (0.3.1)
     ttfunk (1.7.0)
     turbo-rails (1.3.2)
       actionpack (>= 6.0.0)
