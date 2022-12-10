@@ -15,13 +15,13 @@ module Sivel2Sjr
                                   atr = ['sivel2_gen_caso.id', 
                                          'sivel2_gen_caso.fecha', 
                                          'usuario.nusuario', 
-                                         'sip_oficina.nombre'],
+                                         'msip_oficina.nombre'],
                                   encabezado = [
                                          'Código', 'Fecha de Desp. Emb.', 
                                          'Asesor', 'Oficina'])
             res = casos.joins('JOIN usuario ON usuario.id=asesor').
-              joins('JOIN sip_oficina ON 
-                    sip_oficina.id=sivel2_sjr_casosjr.oficina_id').
+              joins('JOIN msip_oficina ON 
+                    msip_oficina.id=sivel2_sjr_casosjr.oficina_id').
               where(where).select(atr)
             puts "validacion_estandar: res.to_sql=", res.to_sql
             arr = ActiveRecord::Base.connection.select_all(res.to_sql)
@@ -76,16 +76,16 @@ module Sivel2Sjr
             casos = ini_filtro
             casos = casos.
               joins(
-                'INNER JOIN sip_persona
-                 ON sip_persona.id=sivel2_sjr_casosjr.contacto_id')
+                'INNER JOIN msip_persona
+                 ON msip_persona.id=sivel2_sjr_casosjr.contacto_id')
 #              joins(
 #                'INNER JOIN sivel2_gen_victima
 #                 ON sivel2_gen_victima.id_persona=sivel2_sjr_casosjr.contacto_id').
             validacion_estandar(
               casos, 
               'Casos con contacto de nombre muy corto', 
-              "length(sip_persona.nombres)<=1  
-              AND length(sip_persona.apellidos)<=1")
+              "length(msip_persona.nombres)<=1  
+              AND length(msip_persona.apellidos)<=1")
           end
 
           def valida_sinubicaciones
@@ -96,7 +96,7 @@ module Sivel2Sjr
               'id_caso NOT IN 
                (SELECT id_caso FROM 
                 (SELECT id_caso, count(id) AS cubi
-                 FROM public.sip_ubicacion GROUP BY 1) AS nubi 
+                 FROM public.msip_ubicacion GROUP BY 1) AS nubi 
                 WHERE cubi>=2)')
           end
 
@@ -141,16 +141,16 @@ module Sivel2Sjr
             casos = ini_filtro
             casos = casos.
               joins(
-                'INNER JOIN sip_persona
-                 ON sip_persona.id=sivel2_sjr_casosjr.contacto_id').
+                'INNER JOIN msip_persona
+                 ON msip_persona.id=sivel2_sjr_casosjr.contacto_id').
               joins(
                 'INNER JOIN sivel2_gen_victima
-                 ON sivel2_gen_victima.id_persona=sip_persona.id')
+                 ON sivel2_gen_victima.id_persona=msip_persona.id')
             validacion_estandar(
               casos, 
               'Casos con contacto sin documento de identidad', 
-              'sip_persona.numerodocumento IS NULL 
-               OR sip_persona.tdocumento_id IS NULL'
+              'msip_persona.numerodocumento IS NULL 
+               OR msip_persona.tdocumento_id IS NULL'
             )
           end
 

@@ -23,8 +23,8 @@ module Sivel2Sjr
       # después de la fecha de la actividad
       fechaac = anio.to_s + '-' + mes.to_s + '-' + dia.to_s
       casosjr.take.caso.victima.joins(
-        'JOIN sip_persona ' \
-        'ON sip_persona.id=sivel2_gen_victima.id_persona'
+        'JOIN msip_persona ' \
+        'ON msip_persona.id=sivel2_gen_victima.id_persona'
       ).joins(
         'JOIN sivel2_sjr_victimasjr ON ' \
         'sivel2_sjr_victimasjr.id_victima=sivel2_gen_victima.id'

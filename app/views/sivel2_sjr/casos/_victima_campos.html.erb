@@ -1,7 +1,7 @@
 <div class='control-group nested-fields'>
   <div class="controls">
     <% if f.object.persona.nil?
-        f.object.persona = Sip::Persona.new(nombres: '')
+        f.object.persona = Msip::Persona.new(nombres: '')
         f.object.victimasjr = Sivel2Sjr::Victimasjr.new
         f.object.victimasjr.victima = f.object
        end %>
@@ -10,7 +10,7 @@
       <%= f.simple_fields_for :persona do |fp| %>
         <div class='campos-persona-con-victima-id'>
           <%= f.input :id, as: :hidden %> 
-          <%= render 'sip/personas/persona_campos', f: fp, fvictima: f, 
+          <%= render 'msip/personas/persona_campos', f: fp, fvictima: f, 
             fvictimasjr: fvictimasjr %>
         </div>
 

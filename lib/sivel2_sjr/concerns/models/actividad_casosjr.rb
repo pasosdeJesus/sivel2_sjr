@@ -5,7 +5,7 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Modelo
+          include Msip::Modelo
 
           belongs_to :actividad, class_name: 'Cor1440Gen::Actividad',
             foreign_key: 'actividad_id', validate: true, optional: false

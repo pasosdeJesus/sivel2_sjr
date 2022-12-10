@@ -1,6 +1,6 @@
 module Sivel2Sjr
   class Progestado < ActiveRecord::Base
-    include Sip::Basica
+    include Msip::Basica
   
     has_many :progestado_respuesta, 
       class_name: "Sivel2Sjr::ProgestadoRespuesta",

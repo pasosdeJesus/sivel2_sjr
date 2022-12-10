@@ -37,7 +37,7 @@
       </div>
       <div class="col-sm-3">
         <%= f.input :oficina_id,
-          collection: Sip::Oficina.habilitados,
+          collection: Msip::Oficina.habilitados,
           label_method: :nombre,
           value_method: :id,
           label: false,

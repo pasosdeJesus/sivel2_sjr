@@ -6,7 +6,7 @@ module Sivel2Sjr
 
         included do
 
-          include Sip::Modelo
+          include Msip::Modelo
 
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", optional: false

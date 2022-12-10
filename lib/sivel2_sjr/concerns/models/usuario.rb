@@ -13,11 +13,11 @@ module Sivel2Sjr
             foreign_key: "asesor", validate: true
           has_many :etiqueta_usuario, class_name: 'Sivel2Sjr::EtiquetaUsuario',
             dependent: :delete_all
-          has_many :etiqueta, class_name: 'Sip::Etiqueta',
+          has_many :etiqueta, class_name: 'Msip::Etiqueta',
             through: :etiqueta_usuario
 
           belongs_to :oficina, foreign_key: "oficina_id", validate: true,
-            class_name: 'Sip::Oficina', optional: true
+            class_name: 'Msip::Oficina', optional: true
 
           validate :rol_usuario
           def rol_usuario

@@ -1,6 +1,6 @@
 module Sivel2Sjr
   class Ayudasjr < ActiveRecord::Base
-    include Sip::Basica
+    include Msip::Basica
   
   	has_many :ayudasjr_respuesta, class_name: "Sivel2Sjr::AyudasjrRespuesta", 
       foreign_key: "id_ayudasjr", validate: true, dependent: :destroy

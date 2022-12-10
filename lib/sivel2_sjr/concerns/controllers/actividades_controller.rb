@@ -45,7 +45,7 @@ module Sivel2Sjr
               @registro.usuario_id = params['usuario_id'].to_i
             end
             if params['oficina_id'] && 
-                Sip::Oficina.where(id: params['oficina_id'].to_i).count == 1
+                Msip::Oficina.where(id: params['oficina_id'].to_i).count == 1
               @registro.oficina_id = params['oficina_id'].to_i
             end
             if params['proyecto_id'] && 

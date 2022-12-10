@@ -4,7 +4,7 @@
   </div>
   <div class="offset-sm-0 col-sm-4">
     <%= f.input :oficina_id,
-      collection: Sip::Oficina.habilitados,
+      collection: Msip::Oficina.habilitados,
       label_method: :nombre,
       value_method: :id,
       label: false,
@@ -18,7 +18,7 @@
   </div>
   <div class="offset-sm-0 col-sm-4">
     <%= f.input :etiqueta_id,
-      collection: Sip::Etiqueta.habilitados,
+      collection: Msip::Etiqueta.habilitados,
       label_method: :nombre,
       value_method: :id,
       label: false,

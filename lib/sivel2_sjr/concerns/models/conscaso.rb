@@ -34,9 +34,9 @@ module Sivel2Sjr
           scope :filtro_departamento_id, lambda { |id|
             where('caso_id IN (SELECT caso_id
                     FROM public.sivel2_sjr_migracion
-                    JOIN public.sip_ubicacionpre ON
-                    sivel2_sjr_migracion.salidaubicacionpre_id=sip_ubicacionpre.id
-                    WHERE sip_ubicacionpre.departamento_id = ?)', id)
+                    JOIN public.msip_ubicacionpre ON
+                    sivel2_sjr_migracion.salidaubicacionpre_id=msip_ubicacionpre.id
+                    WHERE msip_ubicacionpre.departamento_id = ?)', id)
           }
           scope :filtro_fecharecini, lambda { |f|
             where('sivel2_gen_conscaso.fecharec >= ?', f)
@@ -65,15 +65,15 @@ module Sivel2Sjr
 
           scope :filtro_nombressp, lambda { |a|
             joins(:casosjr).joins(:persona).
-              where('sivel2_sjr_casosjr.contacto_id = sip_persona.id ' +
-                    'AND sip_persona.nombres ILIKE \'%' +
+              where('sivel2_sjr_casosjr.contacto_id = msip_persona.id ' +
+                    'AND msip_persona.nombres ILIKE \'%' +
                     ActiveRecord::Base.connection.quote_string(a) + '%\'')
           }
 
           scope :filtro_apellidossp, lambda { |a|
               joins(:casosjr).joins(:persona).
-              where('sivel2_sjr_casosjr.contacto_id = sip_persona.id ' +
-                    'AND sip_persona.apellidos ILIKE \'%' +
+              where('sivel2_sjr_casosjr.contacto_id = msip_persona.id ' +
+                    'AND msip_persona.apellidos ILIKE \'%' +
                     ActiveRecord::Base.connection.quote_string(a) + '%\'')
           }
 
@@ -124,7 +124,7 @@ module Sivel2Sjr
                 "CREATE OR REPLACE VIEW sivel2_gen_conscaso1 
         AS SELECT casosjr.id_caso as caso_id, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-          FROM public.sip_persona AS persona
+          FROM public.msip_persona AS persona
           WHERE persona.id=casosjr.contacto_id), ', ')
           AS contacto,
         casosjr.fecharec,
@@ -139,13 +139,13 @@ module Sivel2Sjr
           AS ultimaatencion_fecha,
         caso.memo AS memo,
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
-        FROM public.sip_persona AS persona, 
+        FROM public.msip_persona AS persona, 
         public.sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
         AND victima.id_caso=caso.id), ', ')
         AS victimas
         FROM public.sivel2_sjr_casosjr AS casosjr
         JOIN sivel2_gen_caso AS caso ON casosjr.id_caso = caso.id
-        JOIN sip_oficina AS oficina ON oficina.id=casosjr.oficina_id
+        JOIN msip_oficina AS oficina ON oficina.id=casosjr.oficina_id
         JOIN usuario ON usuario.id = casosjr.asesor
         LEFT JOIN sivel2_sjr_statusmigratorio AS statusmigratorio ON
           statusmigratorio.id = casosjr.id_statusmigratorio"

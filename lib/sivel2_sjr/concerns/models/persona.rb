@@ -14,7 +14,7 @@ module Sivel2Sjr
           has_many :casosjr, class_name: 'Sivel2Sjr::Casosjr',
             foreign_key: "contacto_id"
 
-          belongs_to :nacional, class_name: "Sip::Pais", 
+          belongs_to :nacional, class_name: "Msip::Pais", 
             foreign_key: "nacionalde", validate: true, optional: true
 
         end

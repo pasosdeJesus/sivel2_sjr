@@ -1,4 +1,4 @@
-require 'sip/concerns/controllers/usuarios_controller'
+require 'msip/concerns/controllers/usuarios_controller'
 
 module Sivel2Sjr
   module Concerns
@@ -8,7 +8,7 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Concerns::Controllers::UsuariosController
+          include Msip::Concerns::Controllers::UsuariosController
 
           def atributos_index
             [ :id,

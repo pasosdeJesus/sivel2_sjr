@@ -11,61 +11,63 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 455366f2cbce6a312ca4af39aefc934da3c27b23
-  branch: main
+  revision: 4e5e47c2b9c8f5ebe549c0b39e3e1240d188854c
+  branch: msip
   specs:
     cor1440_gen (2.1a1)
       devise
       heb412_gen
       kt-paperclip
       mr519_gen
+      msip
       rails
-      sip
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 3b7062dd0cbed0f7428387437488c47e9ad98394
-  branch: main
+  revision: 9ec4cafd764c2fafaba12a598b7cbba320aa42ef
+  branch: msip
   specs:
     heb412_gen (2.1.0.beta1)
       mr519_gen
+      msip
       redcarpet
       rspreadsheet
-      sip
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: a827f46c1600a36047f31a4c4fbb1d4b4ec13807
-  branch: main
+  revision: c7baab5d73d729ade208716dc225fc491da9973d
+  branch: msip
   specs:
     mr519_gen (2.1.0.beta1)
+      msip
       rails
-      sip
 
 GIT
-  remote: https://github.com/pasosdeJesus/sip.git
-  revision: 20b5646a730f8a8c174ab2bc252953e5feb9bd79
+  remote: https://github.com/pasosdeJesus/msip.git
+  revision: 4da83a1bb65be3d7d2446630be3c6d157a2f5855
   branch: main
   specs:
-    sip (2.1.0.beta1)
-      cancancan
-      coffee-rails
-      devise
-      devise-i18n
-      kt-paperclip
-      minitest
-      rails
-      rails-i18n
-      sassc-rails
-      simple_form
-      twitter_cldr
+    msip (2.2.0.alfa3)
+      cancancan (~> 3)
+      devise (~> 4)
+      devise-i18n (~> 1)
+      kt-paperclip (~> 7)
+      pg (~> 1)
+      rails (~> 7.0)
+      rails-i18n (~> 7)
+      sassc-rails (~> 2)
+      simple_form (~> 5)
+      sprockets-rails (~> 3)
+      stimulus-rails (~> 1)
+      twitter_cldr (~> 6)
+      will_paginate (~> 3)
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: ce0b2b092aa408be3d1cabbc81d4d781ebbbb95e
-  branch: main
+  revision: 2f4c0d55f5f2b87bf2751d5bac99f53d17ae2ac9
+  branch: msip
   specs:
-    sivel2_gen (2.1.0.beta1)
+    sivel2_gen (2.2.0.beta1)
       color
       devise
       rails
@@ -80,74 +82,74 @@ GIT
 PATH
   remote: .
   specs:
-    sivel2_sjr (2.1a1)
+    sivel2_sjr (2.2a1)
       rails
       sivel2_gen
 
 GEM
   remote: https://rubygems.org/
   specs:
-    actioncable (7.0.4)
-      actionpack (= 7.0.4)
-      activesupport (= 7.0.4)
+    actioncable (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
-    actionmailbox (7.0.4)
-      actionpack (= 7.0.4)
-      activejob (= 7.0.4)
-      activerecord (= 7.0.4)
-      activestorage (= 7.0.4)
-      activesupport (= 7.0.4)
+    actionmailbox (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activejob (= 7.0.4.1)
+      activerecord (= 7.0.4.1)
+      activestorage (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       mail (>= 2.7.1)
       net-imap
       net-pop
       net-smtp
-    actionmailer (7.0.4)
-      actionpack (= 7.0.4)
-      actionview (= 7.0.4)
-      activejob (= 7.0.4)
-      activesupport (= 7.0.4)
+    actionmailer (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      actionview (= 7.0.4.1)
+      activejob (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       mail (~> 2.5, >= 2.5.4)
       net-imap
       net-pop
       net-smtp
       rails-dom-testing (~> 2.0)
-    actionpack (7.0.4)
-      actionview (= 7.0.4)
-      activesupport (= 7.0.4)
+    actionpack (7.0.4.1)
+      actionview (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       rack (~> 2.0, >= 2.2.0)
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.2.0)
-    actiontext (7.0.4)
-      actionpack (= 7.0.4)
-      activerecord (= 7.0.4)
-      activestorage (= 7.0.4)
-      activesupport (= 7.0.4)
+    actiontext (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activerecord (= 7.0.4.1)
+      activestorage (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       globalid (>= 0.6.0)
       nokogiri (>= 1.8.5)
-    actionview (7.0.4)
-      activesupport (= 7.0.4)
+    actionview (7.0.4.1)
+      activesupport (= 7.0.4.1)
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    activejob (7.0.4)
-      activesupport (= 7.0.4)
+    activejob (7.0.4.1)
+      activesupport (= 7.0.4.1)
       globalid (>= 0.3.6)
-    activemodel (7.0.4)
-      activesupport (= 7.0.4)
-    activerecord (7.0.4)
-      activemodel (= 7.0.4)
-      activesupport (= 7.0.4)
-    activestorage (7.0.4)
-      actionpack (= 7.0.4)
-      activejob (= 7.0.4)
-      activerecord (= 7.0.4)
-      activesupport (= 7.0.4)
+    activemodel (7.0.4.1)
+      activesupport (= 7.0.4.1)
+    activerecord (7.0.4.1)
+      activemodel (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
+    activestorage (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activejob (= 7.0.4.1)
+      activerecord (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       marcel (~> 1.0)
       mini_mime (>= 1.1.0)
-    activesupport (7.0.4)
+    activesupport (7.0.4.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -217,7 +219,7 @@ GEM
       webrick (~> 1.7)
       websocket-driver (>= 0.6, < 0.8)
     ffi (1.15.5)
-    globalid (1.0.0)
+    globalid (1.0.1)
       activesupport (>= 5.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
@@ -234,7 +236,7 @@ GEM
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.8.0)
+    mail (2.8.0.1)
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -247,7 +249,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
-    minitest (5.16.3)
+    minitest (5.17.0)
     msgpack (1.6.0)
     net-imap (0.3.4)
       date
@@ -259,7 +261,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.13.10)
+    nokogiri (1.14.0)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     odf-report (0.7.3)
@@ -279,44 +281,44 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.1)
-    puma (6.0.1)
+    puma (6.0.2)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.5)
+    rack (2.2.6.2)
     rack-test (2.0.2)
       rack (>= 1.3)
-    rails (7.0.4)
-      actioncable (= 7.0.4)
-      actionmailbox (= 7.0.4)
-      actionmailer (= 7.0.4)
-      actionpack (= 7.0.4)
-      actiontext (= 7.0.4)
-      actionview (= 7.0.4)
-      activejob (= 7.0.4)
-      activemodel (= 7.0.4)
-      activerecord (= 7.0.4)
-      activestorage (= 7.0.4)
-      activesupport (= 7.0.4)
+    rails (7.0.4.1)
+      actioncable (= 7.0.4.1)
+      actionmailbox (= 7.0.4.1)
+      actionmailer (= 7.0.4.1)
+      actionpack (= 7.0.4.1)
+      actiontext (= 7.0.4.1)
+      actionview (= 7.0.4.1)
+      activejob (= 7.0.4.1)
+      activemodel (= 7.0.4.1)
+      activerecord (= 7.0.4.1)
+      activestorage (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       bundler (>= 1.15.0)
-      railties (= 7.0.4)
+      railties (= 7.0.4.1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.4)
+    rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
     rails-i18n (7.0.6)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
-    railties (7.0.4)
-      actionpack (= 7.0.4)
-      activesupport (= 7.0.4)
+    railties (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       method_source
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redcarpet (3.5.1)
-    regexp_parser (2.6.1)
+    regexp_parser (2.6.2)
     reline (0.3.2)
       io-console (~> 0.5)
     responders (3.0.1)
@@ -347,7 +349,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    spring (4.1.0)
+    spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -415,6 +417,7 @@ DEPENDENCIES
   kt-paperclip!
   libxml-ruby
   mr519_gen!
+  msip!
   odf-report
   parslet
   pg
@@ -430,7 +433,6 @@ DEPENDENCIES
   selenium-webdriver
   simple_form
   simplecov (< 0.18)
-  sip!
   sivel2_gen!
   sivel2_sjr!
   spring
@@ -443,4 +445,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.1
+   2.4.5

@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class AyudassjrController < Sip::Admin::BasicasController
+    class AyudassjrController < Msip::Admin::BasicasController
       before_action :set_ayudasjr, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Ayudasjr
 

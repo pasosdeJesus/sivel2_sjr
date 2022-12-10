@@ -13,7 +13,7 @@ module Sivel2Sjr
           include Cor1440Gen::Concerns::Controllers::PersonasController
 
           def atributos_show_sivel2_sjr
-            a = atributos_show_sip - [
+            a = atributos_show_msip - [
               :mesnac, 
               :dianac
             ] + [ 
@@ -77,7 +77,7 @@ module Sivel2Sjr
 
           def index(c = nil)
             if c == nil
-              c = Sip::Persona.all
+              c = Msip::Persona.all
             end
             if params[:term]
               term = Sivel2Gen::Caso.connection.quote_string(params[:term])
@@ -104,7 +104,7 @@ module Sivel2Sjr
                 seps = " || ' ' || ";
               end
               qstring = "SELECT TRIM(#{s}) AS value, #{l} AS id " +
-                "FROM public.sip_persona AS persona " +
+                "FROM public.msip_persona AS persona " +
                 "WHERE #{where} ORDER BY 1 LIMIT 20"
               r = ActiveRecord::Base.connection.select_all qstring
               respond_to do |format|
@@ -160,7 +160,7 @@ module Sivel2Sjr
                 #redirect_to sivel2_gen.edit_caso_path(@caso)
                 begin
                   @personaant.destroy
-                  render partial: '/sip/personas/remplazar', layout: false
+                  render partial: '/msip/personas/remplazar', layout: false
                 rescue
                 end
                 return false # buscar obligar el redirect_to

@@ -4,7 +4,7 @@ module Sivel2Sjr
       module Statusmigratorio
         
         extend ActiveSupport::Concern
-        include Sip::Basica
+        include Msip::Basica
 
         included do
           has_many :casosjr, class_name: "Sivel2Sjr::Casosjr", 

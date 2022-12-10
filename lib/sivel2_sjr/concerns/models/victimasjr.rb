@@ -6,13 +6,13 @@ module Sivel2Sjr
 
         included do
 
-          include Sip::Modelo
+          include Msip::Modelo
 
           # Orden de esquema en base
           belongs_to :actividadoficio, 
             class_name: "Sivel2Gen::Actividadoficio", 
             foreign_key: "id_actividadoficio", validate: true, optional: true
-          belongs_to :departamento, class_name: "Sip::Departamento", 
+          belongs_to :departamento, class_name: "Msip::Departamento", 
             foreign_key: "id_departamento", validate: true, optional: true
           belongs_to :escolaridad, class_name: "Sivel2Gen::Escolaridad", 
             foreign_key: "id_escolaridad", validate: true, optional: true
@@ -20,9 +20,9 @@ module Sivel2Sjr
             foreign_key: "id_estadocivil", validate: true, optional: true
           belongs_to :maternidad, class_name: "Sivel2Gen::Maternidad", 
             foreign_key: "id_maternidad", validate: true, optional: true
-          belongs_to :municipio, class_name: "Sip::Municipio", 
+          belongs_to :municipio, class_name: "Msip::Municipio", 
             foreign_key: "id_municipio", validate: true, optional: true
-          belongs_to :pais, class_name: "Sip::Pais", 
+          belongs_to :pais, class_name: "Msip::Pais", 
             foreign_key: "id_pais", validate: true, optional: true
           #belongs_to :regimensalud, class_name: "Sivel2Sjr::Regimensalud", 
           #  foreign_key: "id_regimensalud", validate: true

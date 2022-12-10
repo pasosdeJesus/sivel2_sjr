@@ -44,7 +44,7 @@ module Sivel2Sjr
           def index
             Sivel2Sjr::Consactividadcaso.refresca_consulta
 
-            index_sip(Sivel2Sjr::Consactividadcaso.all)
+            index_msip(Sivel2Sjr::Consactividadcaso.all)
           end
 
         end #included

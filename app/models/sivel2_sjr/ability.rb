@@ -39,11 +39,11 @@ module Sivel2Sjr
       ['Sivel2Sjr', 'tipodesp'],
     ]
     def tablasbasicas 
-      Sip::Ability::BASICAS_PROPIAS + 
+      Msip::Ability::BASICAS_PROPIAS + 
         Cor1440Gen::Ability::BASICAS_PROPIAS +
         Sivel2Gen::Ability::BASICAS_PROPIAS + BASICAS_PROPIAS - [
-          ['Sip', 'fuenteprensa'],
-          ['Sip', 'grupo'],
+          ['Msip', 'fuenteprensa'],
+          ['Msip', 'grupo'],
           ['Sivel2Gen', 'filiacion'],
           ['Sivel2Gen', 'frontera'],
           ['Sivel2Gen', 'intervalo'],
@@ -56,13 +56,13 @@ module Sivel2Sjr
 
     BASICAS_ID_NOAUTO = []
     def basicas_id_noauto 
-      Sip::Ability::BASICAS_ID_NOAUTO +
+      Msip::Ability::BASICAS_ID_NOAUTO +
         Sivel2Gen::Ability::BASICAS_ID_NOAUTO 
     end
 
     NOBASICAS_INDSEQID =  []
     def nobasicas_indice_seq_con_id 
-      Sip::Ability::NOBASICAS_INDSEQID +
+      Msip::Ability::NOBASICAS_INDSEQID +
         Sivel2Gen::Ability::NOBASICAS_INDSEQID 
     end
 
@@ -82,7 +82,7 @@ module Sivel2Sjr
       ['Sivel2Sjr', 'motivosjr']
     ]
     def tablasbasicas_prio 
-      Sip::Ability::BASICAS_PRIO + BASICAS_PRIO
+      Msip::Ability::BASICAS_PRIO + BASICAS_PRIO
     end
 
 
@@ -166,7 +166,7 @@ module Sivel2Sjr
     # Autorizaciones con CanCanCan
     def initialize_sivel2_sjr(usuario = nil)
       # Sin autenticación puede consultarse información geográfica 
-      can :read, [Sip::Pais, Sip::Departamento, Sip::Municipio, Sip::Clase]
+      can :read, [Msip::Pais, Msip::Departamento, Msip::Municipio, Msip::Clase]
       if !usuario || usuario.fechadeshabilitacion
         return
       end
@@ -174,9 +174,9 @@ module Sivel2Sjr
       can :read, Heb412Gen::Plantillahcr
       can :read, Heb412Gen::Plantilladoc
 
-      can :descarga_anexo, Sip::Anexo
-      can :contar, Sip::Ubicacion
-      can :nuevo, Sip::Ubicacion
+      can :descarga_anexo, Msip::Anexo
+      can :contar, Msip::Ubicacion
+      can :nuevo, Msip::Ubicacion
 
       can :contar, Sivel2Gen::Caso
       can :buscar, Sivel2Gen::Caso
@@ -188,7 +188,7 @@ module Sivel2Sjr
       can :nuevo, Sivel2Sjr::Respuesta
 
       if !usuario.nil? && !usuario.rol.nil? then
-        can :read, Sip::Persona
+        can :read, Msip::Persona
         can :read, Heb412Gen::Doc
         case usuario.rol 
         when Ability::ROLINV
@@ -201,10 +201,10 @@ module Sivel2Sjr
           can [:read, :new], Cor1440Gen::Actividad
           can [:index, :read], Cor1440Gen::Proyectofinanciero
 
-          can :manage, Sip::Persona
+          can :manage, Msip::Persona
           can [:new, :read, :edit, :update, :create], 
-            Sip::Orgsocial
-          can :manage, Sip::Persona
+            Msip::Orgsocial
+          can :manage, Msip::Persona
 
           can :manage, Sivel2Gen::Acto
           can :read, Sivel2Gen::Caso, 
@@ -224,8 +224,8 @@ module Sivel2Sjr
           can [:index, :read], Cor1440Gen::Proyectofinanciero
 
           can [:new, :read, :edit, :update, :create], 
-            Sip::Orgsocial
-          can :manage, Sip::Persona
+            Msip::Orgsocial
+          can :manage, Msip::Persona
 
           can :manage, Sivel2Gen::Acto
           can :read, Sivel2Gen::Caso
@@ -245,8 +245,8 @@ module Sivel2Sjr
           can [:update, :create, :destroy], Cor1440Gen::Actividad, 
             oficina: { id: usuario.oficina_id}
 
-          can :manage, Sip::Orgsocial
-          can :manage, Sip::Persona
+          can :manage, Msip::Orgsocial
+          can :manage, Msip::Persona
 
           can :manage, Sivel2Gen::Acto
           can :read, Sivel2Gen::Caso
@@ -269,8 +269,8 @@ module Sivel2Sjr
 
           can :manage, Mr519Gen::Formulario
 
-          can :manage, Sip::Orgsocial
-          can :manage, Sip::Persona
+          can :manage, Msip::Orgsocial
+          can :manage, Msip::Persona
 
           can :manage, Sivel2Gen::Acto
           can :manage, Sivel2Gen::Caso

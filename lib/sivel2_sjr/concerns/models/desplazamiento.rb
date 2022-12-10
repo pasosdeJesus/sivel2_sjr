@@ -6,17 +6,17 @@ module Sivel2Sjr
 
         included do
 
-          include Sip::Modelo
+          include Msip::Modelo
 
           has_many :actosjr, class_name: "Sivel2Sjr::Actosjr", 
             validate: true
 
           if Sivel2Sjr::Desplazamiento.has_attribute?(:id_expulsion)
-            belongs_to :expulsion, class_name: "Sip::Ubicacion", 
+            belongs_to :expulsion, class_name: "Msip::Ubicacion", 
               foreign_key: "id_expulsion", validate: true, optional: true
           end
           if Sivel2Sjr::Desplazamiento.has_attribute?(:id_llegada)
-            belongs_to :llegada, class_name: "Sip::Ubicacion", 
+            belongs_to :llegada, class_name: "Msip::Ubicacion", 
               foreign_key: "id_llegada", validate: true, optional: true
           end
           belongs_to :clasifdesp, class_name: "Sivel2Sjr::Clasifdesp", 
@@ -33,11 +33,11 @@ module Sivel2Sjr
           belongs_to :modalidadtierra, 
             class_name: "Sivel2Sjr::Modalidadtierra", 
             foreign_key: "id_modalidadtierra", validate: true, optional: true
-          belongs_to :pais, class_name: "Sip::Pais", 
+          belongs_to :pais, class_name: "Msip::Pais", 
             foreign_key: "paisdecl", validate: true, optional: true
-          belongs_to :departamento, class_name: "Sip::Departamento", 
+          belongs_to :departamento, class_name: "Msip::Departamento", 
             foreign_key: "departamentodecl", validate: true, optional: true
-          belongs_to :municipio, class_name: "Sip::Municipio", 
+          belongs_to :municipio, class_name: "Msip::Municipio", 
             foreign_key: "municipiodecl", validate: true, optional: true
           belongs_to :caso, class_name: "Sivel2Gen::Caso", 
             foreign_key: "id_caso", validate: true, optional: false

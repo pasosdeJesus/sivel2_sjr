@@ -27,8 +27,8 @@
   </div>
   <div class="col-md-6">
     <% colof= current_usuario.oficina_id ? 
-      Sip::Oficina.habilitados.where(id: current_usuario.oficina_id) :
-      Sip::Oficina.habilitados %>
+      Msip::Oficina.habilitados.where(id: current_usuario.oficina_id) :
+      Msip::Oficina.habilitados %>
     <%= s.association :oficina,
       collection: colof,
       include_blank: false,

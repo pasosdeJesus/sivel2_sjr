@@ -11,7 +11,7 @@ module Sivel2Sjr
         respond_to do |format|
           format.html { render inline: 'Falta identificacion del caso' }
         end
-#      elsif Sip::Ubicacion.where(id_caso: params[:caso_id].to_i).count < 2
+#      elsif Msip::Ubicacion.where(id_caso: params[:caso_id].to_i).count < 2
 #        respond_to do |format|
 #          format.html { render inline: 'Debe tener al menos 2 ubicaciones' }
 #        end
@@ -25,9 +25,9 @@ module Sivel2Sjr
           fex += 1
         end
         @desplazamiento.fechaexpulsion = fex
-        #@desplazamiento.id_expulsion = Sip::Ubicacion.where(id_caso: cid).last.id
+        #@desplazamiento.id_expulsion = Msip::Ubicacion.where(id_caso: cid).last.id
         @desplazamiento.fechallegada = fex+1
-        #@desplazamiento.id_llegada = Sip::Ubicacion.where(
+        #@desplazamiento.id_llegada = Msip::Ubicacion.where(
           #id_caso: cid).first.id
         @desplazamiento.descripcion = ''
         if @desplazamiento.save

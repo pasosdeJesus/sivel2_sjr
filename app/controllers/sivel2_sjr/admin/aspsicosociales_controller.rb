@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class AspsicosocialesController < Sip::Admin::BasicasController
+    class AspsicosocialesController < Msip::Admin::BasicasController
       before_action :set_aspsicosocial, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Aspsicosocial
 

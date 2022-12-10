@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class StatusmigratoriosController < Sip::Admin::BasicasController
+    class StatusmigratoriosController < Msip::Admin::BasicasController
       before_action :set_statusmigratorio, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Statusmigratorio
 

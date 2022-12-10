@@ -10,7 +10,7 @@
   <%= simple_form_for @caso, :html => { :class => 'form-horizontal' } do |f| %>
     <div data-role="content" class="form-inputs">
 
-      <%= render partial: 'sip/hogar/errores', locals: { f: f } %>
+      <%= render partial: 'msip/hogar/errores', locals: { f: f } %>
       <%= render partial: 'sivel2_gen/casos/datos_interjs', locals: { f: f } %>
 
       <div class="accordion" id="acordeon-formv">

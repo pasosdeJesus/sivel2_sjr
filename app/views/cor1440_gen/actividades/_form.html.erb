@@ -2,7 +2,7 @@
   :url => cor1440_gen.actividades_path(@actividad).sub(/\./,"/"), 
   :html => { 
     class: 'form-horizontal',
-    'data-controller' => 'sip--cancelar-vacio-es-eliminar'
+    'data-controller' => 'msip--cancelar-vacio-es-eliminar'
   } do |f| 
 %>
 <div data-role="content" class="form-inputs">
@@ -84,7 +84,7 @@
       <%= f.input :nombre, 
         label: false,
         input_html: {
-          'data-sip--cancelar-vacio-es-eliminar-target' => 'determinador'
+          'data-msip--cancelar-vacio-es-eliminar-target' => 'determinador'
         } %>
     </div>
   </div>

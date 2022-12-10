@@ -281,7 +281,7 @@ module Sivel2Sjr
             tablas1 = 'public.sivel2_gen_caso AS caso, ' +
               'public.sivel2_sjr_casosjr AS casosjr, ' +
               'public.sivel2_gen_victima AS victima, ' +
-              'public.sip_persona AS persona, ' +
+              'public.msip_persona AS persona, ' +
               'public.sivel2_sjr_victimasjr AS victimasjr'
 
             # Para la consulta final emplear arreglo que3, que tendrá parejas
@@ -435,13 +435,13 @@ module Sivel2Sjr
             ultimodesplazamiento.fechaexpulsion FROM
             #{personas_cons1} LEFT JOIN public.ultimodesplazamiento ON
             (#{personas_cons1}.id_caso = ultimodesplazamiento.id_caso)
-            LEFT JOIN sip_ubicacion AS ubicacion ON 
+            LEFT JOIN msip_ubicacion AS ubicacion ON 
               (ultimodesplazamiento.id_expulsion = ubicacion.id) 
-            LEFT JOIN sip_departamento AS departamento ON 
+            LEFT JOIN msip_departamento AS departamento ON 
               (ubicacion.id_departamento=departamento.id) 
-            LEFT JOIN sip_municipio AS municipio ON 
+            LEFT JOIN msip_municipio AS municipio ON 
               (ubicacion.id_municipio=municipio.id)
-            LEFT JOIN sip_clase AS clase ON 
+            LEFT JOIN msip_clase AS clase ON 
               (ubicacion.id_clase=clase.id)
             ", que3, tablas3, where3]
           end

@@ -29,11 +29,11 @@ es:
         proyectofinanciero: Convenios financiados que exportan/importan con la plantilla
       'mr519_gen/formulario':
         caracterizacion: Caracterización en convenios financiados
-      "sip/persona":
+      "msip/persona":
         proyectofinanciero_ids: Convenios financiados que caracterizan
         proyectofinanciero: Convenios financiados que caracterizan
         actividadcasobeneficiario_ids: Actividades en las que está por un caso beneficiario
-      "sip/ubicacion":
+      "msip/ubicacion":
         clase: Centro poblado
         departamento: Estado/Departamento/Provincia
         latitud: Latitud
