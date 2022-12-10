@@ -12,7 +12,7 @@ module Sivel2Sjr
           attr_accessor :current_usuario
 
           has_and_belongs_to_many :oficina, 
-            class_name: 'Sip::Oficina',
+            class_name: 'Msip::Oficina',
             foreign_key: 'proyectofinanciero_id',
             association_foreign_key: "oficina_id",
             join_table: 'sivel2_sjr_oficina_proyectofinanciero'

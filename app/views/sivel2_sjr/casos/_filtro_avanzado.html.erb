@@ -83,7 +83,7 @@
       </div>
       <div class="offset-sm-0 col-sm-7">
         <%= f.input :oficina_id,
-          collection: Sip::Oficina.habilitados,
+          collection: Msip::Oficina.habilitados,
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -283,7 +283,7 @@
 
       <div class="offset-sm-0 col-sm-4 col-md-3">
         <%= f.input :sexo, 
-          collection: ::Sip::Persona::sexo_opciones,
+          collection: ::Msip::Persona::sexo_opciones,
           label: false,
           include_blank: '-- Sexo'
         %>
@@ -339,7 +339,7 @@
       </div>
       <div class="offset-sm-0 col-sm-2">
         <%= f.input :etiqueta1,
-          collection: Sip::Etiqueta.habilitados,
+          collection: Msip::Etiqueta.habilitados,
           label_method: :nombre,
           value_method: :id,
           label: false,
@@ -355,7 +355,7 @@
       </div>
       <div class="offset-sm-0 col-sm-2">
         <%= f.input :etiqueta2,
-          collection: Sip::Etiqueta.habilitados,
+          collection: Msip::Etiqueta.habilitados,
           label_method: :nombre,
           value_method: :id,
           label: false,

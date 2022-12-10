@@ -4,7 +4,7 @@ export default class Sivel2SjrAutocompletaAjaxListadocasos {
   // Elije un caso en auto-completación
   static operarElegida (eorig, cadgrupo, id, otrosop) {
     let root = window
-    sip_arregla_puntomontaje(root)
+    msip_arregla_puntomontaje(root)
     if (typeof otrosop['data-idorig'] == 'undefined') {
       alert('Datos en formato no esperado');
       return;
@@ -36,7 +36,7 @@ export default class Sivel2SjrAutocompletaAjaxListadocasos {
     divcp.querySelector('.numerodocumento').innerText = pl[5];
     root.sivel2_sjr_autocompleta_contacto_actividad_divcp = divcp
     ruta = "api/sivel2sjr/poblacion_sexo_rangoedadac"
-    sip_ajax_recibe_json(root, ruta,
+    msip_ajax_recibe_json(root, ruta,
       {id_caso: pl[1], fecha: $('#actividad_fecha_localizada').val() }, 
       sivel2_sjr_completa_rangosedadac)
     return

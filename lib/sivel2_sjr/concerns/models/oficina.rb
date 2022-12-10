@@ -1,11 +1,11 @@
-require 'sip/concerns/models/oficina'
+require 'msip/concerns/models/oficina'
 
 module Sivel2Sjr
   module Concerns
     module Models
       module Oficina
         extend ActiveSupport::Concern
-        include Sip::Concerns::Models::Oficina
+        include Msip::Concerns::Models::Oficina
 
         included do
           has_many :casosjr, class_name: 'Sivel2Sjr::Casosjr',

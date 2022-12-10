@@ -6,7 +6,7 @@ module Sivel2Sjr
 
         included do
 
-          include Sip::Modelo
+          include Msip::Modelo
           
           self.primary_key = :id_caso
 
@@ -15,7 +15,7 @@ module Sivel2Sjr
             foreign_key: "asesor", validate: true, optional: false
           belongs_to :comosupo, class_name: "Sivel2Sjr::Comosupo", 
             foreign_key: "comosupo_id", validate: true, optional: true
-          belongs_to :contacto, class_name: "Sip::Persona",  
+          belongs_to :contacto, class_name: "Msip::Persona",  
             foreign_key: "contacto_id", optional: false
           belongs_to :caso, class_name: "Sivel2Gen::Caso", validate: true,
             foreign_key: "id_caso", inverse_of: :casosjr, optional: false
@@ -23,13 +23,13 @@ module Sivel2Sjr
             validate: true, foreign_key: "categoriaref", optional: true
           belongs_to :idioma, class_name: "Sivel2Sjr::Idioma", 
             foreign_key: "id_idioma", validate: true, optional: true
-          belongs_to :llegada, class_name: "Sip::Ubicacion", validate: true,
+          belongs_to :llegada, class_name: "Msip::Ubicacion", validate: true,
             foreign_key: "id_llegada", optional: true
           belongs_to :proteccion, class_name: "Sivel2Sjr::Proteccion", 
             foreign_key: "id_proteccion", validate: true, optional: true
-          belongs_to :oficina, class_name: "Sip::Oficina", 
+          belongs_to :oficina, class_name: "Msip::Oficina", 
             foreign_key: "oficina_id", validate: true, optional: true
-          belongs_to :salida, class_name: "Sip::Ubicacion", validate: true,
+          belongs_to :salida, class_name: "Msip::Ubicacion", validate: true,
             foreign_key: "id_salida", optional: true
           belongs_to :statusmigratorio, 
             class_name: "Sivel2Sjr::Statusmigratorio", 
@@ -128,7 +128,7 @@ module Sivel2Sjr
           def actividades_con_beneficiarios_activos_en_asistencia_ids
             bids = beneficiarios_activos.pluck(:id_persona)
             Cor1440Gen::Asistencia.joins(:persona).
-              where("sip_persona.id IN (?)", bids).
+              where("msip_persona.id IN (?)", bids).
               pluck('actividad_id')
           end
 

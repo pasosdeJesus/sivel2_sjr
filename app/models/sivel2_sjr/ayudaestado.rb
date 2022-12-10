@@ -1,6 +1,6 @@
 module Sivel2Sjr
   class Ayudaestado < ActiveRecord::Base
-    include Sip::Basica
+    include Msip::Basica
   
   	has_many :ayudaestado_respuesta, 
       class_name: "Sivel2Sjr::AyudaestadoRespuesta", 

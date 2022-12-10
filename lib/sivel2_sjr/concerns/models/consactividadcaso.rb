@@ -5,7 +5,7 @@ module Sivel2Sjr
         extend ActiveSupport::Concern
 
         included do
-          include Sip::Modelo
+          include Msip::Modelo
 
           belongs_to :actividad, 
             class_name: 'Cor1440Gen::Actividad', foreign_key: 'actividad_id', 
@@ -16,7 +16,7 @@ module Sivel2Sjr
             optional: false
 
           belongs_to :persona,
-            class_name: 'Sip::Persona', foreign_key: 'persona_id', 
+            class_name: 'Msip::Persona', foreign_key: 'persona_id', 
             optional: false
 
           belongs_to :victima,
@@ -80,7 +80,7 @@ module Sivel2Sjr
               when :persona_numerodocumento
                 self.persona.numerodocumento
               when :persona_sexo
-                Sip::Persona.find(self.persona_id).sexo
+                Msip::Persona.find(self.persona_id).sexo
               when :persona_tipodocumento
                 self.persona.tdocumento ? self.persona.tdocumento.sigla : ''
               when :victima_maternidad
@@ -159,8 +159,8 @@ module Sivel2Sjr
               CASE WHEN casosjr.contacto_id=persona.id THEN 1 ELSE 0 END 
                 AS es_contacto,
               actividad.fecha AS actividad_fecha,
-              (SELECT nombre FROM sip_oficina 
-                WHERE sip_oficina.id=actividad.oficina_id LIMIT 1) 
+              (SELECT nombre FROM msip_oficina 
+                WHERE msip_oficina.id=actividad.oficina_id LIMIT 1) 
                 AS actividad_oficina,
               (SELECT nusuario FROM usuario 
                 WHERE usuario.id=actividad.usuario_id LIMIT 1)
@@ -177,12 +177,12 @@ module Sivel2Sjr
               FROM public.sivel2_sjr_actividad_casosjr AS ac
               INNER JOIN cor1440_gen_actividad AS actividad 
                 ON actividad_id=actividad.id
-              INNER JOIN sip_oficina AS oficinaac 
+              INNER JOIN msip_oficina AS oficinaac 
                 ON oficinaac.id=actividad.oficina_id
               INNER JOIN sivel2_gen_caso AS caso ON caso.id=casosjr_id
               INNER JOIN sivel2_sjr_casosjr AS casosjr ON casosjr.id_caso=casosjr_id
               INNER JOIN sivel2_gen_victima AS victima ON victima.id_caso=caso.id
-              INNER JOIN sip_persona AS persona ON persona.id=victima.id_persona
+              INNER JOIN msip_persona AS persona ON persona.id=victima.id_persona
               "
           end
 

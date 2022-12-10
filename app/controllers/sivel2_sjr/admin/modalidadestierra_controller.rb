@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class ModalidadestierraController < Sip::Admin::BasicasController
+    class ModalidadestierraController < Msip::Admin::BasicasController
       before_action :set_modalidadtierra, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Modalidadtierra
 

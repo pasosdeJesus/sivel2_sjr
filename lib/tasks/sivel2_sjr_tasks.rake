@@ -9,7 +9,7 @@ namespace :sivel2 do
   desc "Vuelca novedades a tablas básicas en orden"
   task vuelcabasicasn: :environment do
     puts "sivel2_sjr - vuelcabasicasn"
-    Sip::TareasrakeHelper::asegura_varambiente_bd
+    Msip::TareasrakeHelper::asegura_varambiente_bd
     search_path = '' #abcs[Rails.env]['schema_search_path']
     connection = ActiveRecord::Base.connection()
   

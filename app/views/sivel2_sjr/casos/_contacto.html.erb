@@ -3,7 +3,7 @@
   where(id_persona: @caso.casosjr.contacto.id) do |fvictima| %>
   <%= fvictima.input :id, as: :hidden %> 
   <%= fvictima.simple_fields_for :persona do |p| %>
-    <%= render 'sip/personas/persona_campos', f: p, fvictima: fvictima %>
+    <%= render 'msip/personas/persona_campos', f: p, fvictima: fvictima %>
 
     <%= s.input :direccion, 
       input_html: {

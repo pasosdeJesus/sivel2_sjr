@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class TiposdespController < Sip::Admin::BasicasController
+    class TiposdespController < Msip::Admin::BasicasController
       before_action :set_tipodesp, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Tipodesp
 

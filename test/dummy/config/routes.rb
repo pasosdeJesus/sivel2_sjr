@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     #get '/personas' => 'sivel2_sjr/personas#index'
     #get '/personas/remplazar' => 'sivel2_sjr/personas#remplazar'
 
-    root 'sip/hogar#index'
+    root 'msip/hogar#index'
     namespace :admin do
       ab = ::Ability.new
       ab.tablasbasicas.each do |t|
@@ -49,5 +49,5 @@ Rails.application.routes.draw do
   mount Sivel2Gen::Engine, at: rutarel, as: 'sivel2_gen'
   mount Heb412Gen::Engine, at: rutarel, as: 'heb412_gen'
   mount Mr519Gen::Engine, at: rutarel, as: 'mr519_gen'
-  mount Sip::Engine, at: rutarel, as: 'sip'
+  mount Msip::Engine, at: rutarel, as: 'msip'
 end

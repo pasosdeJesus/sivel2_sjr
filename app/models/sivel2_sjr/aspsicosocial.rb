@@ -1,6 +1,6 @@
 module Sivel2Sjr
   class Aspsicosocial < ActiveRecord::Base
-    include Sip::Basica
+    include Msip::Basica
 
     has_many :aspsicosocial_respuesta, 
       class_name: "Sivel2Sjr::AspsicosocialRespuesta", 

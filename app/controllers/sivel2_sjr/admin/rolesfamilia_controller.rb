@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class RolesfamiliaController < Sip::Admin::BasicasController
+    class RolesfamiliaController < Msip::Admin::BasicasController
       before_action :set_rolfamilia, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Rolfamilia
 

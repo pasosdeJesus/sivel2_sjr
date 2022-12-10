@@ -4,7 +4,7 @@ module Sivel2Sjr
       module Idioma
         
         extend ActiveSupport::Concern
-        include Sip::Basica
+        include Msip::Basica
 
       end
     end

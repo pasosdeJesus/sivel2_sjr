@@ -73,24 +73,24 @@ gem 'will_paginate' # Pagina listados
 # Motores que se sobrecargan vistas (deben ponerse en orden de apilamiento 
 # lógico y no alfabetico como las gemas anteriores) 
 
-gem 'sip', # Motor generico
-  git: 'https://github.com/pasosdeJesus/sip.git', branch: :main
-  #path: '../sip'
+gem 'msip', # Motor generico
+  #git: 'https://github.com/pasosdeJesus/msip.git', branch: :main
+  path: '../msip'
 
 gem 'mr519_gen', # Motor de gestion de formularios y encuestas
-  git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: :main
+  git: 'https://github.com/pasosdeJesus/mr519_gen.git', branch: :msip
   #path: '../mr519_gen'
 
 gem 'heb412_gen',  # Motor de nube y llenado de plantillas
-  git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: :main
+  git: 'https://github.com/pasosdeJesus/heb412_gen.git', branch: :msip
   #path: '../heb412_gen'
 
 gem 'cor1440_gen',  # Motor de convenios con marco lógico y actividades
-  git: 'https://github.com/pasosdeJesus/cor1440_gen.git', branch: :main
+  git: 'https://github.com/pasosdeJesus/cor1440_gen.git', branch: :msip
   #path: '../cor1440_gen'
 
 gem 'sivel2_gen',  # Motor de SIVeL 2
-  git: 'https://github.com/pasosdeJesus/sivel2_gen.git', branch: :main
+  git: 'https://github.com/pasosdeJesus/sivel2_gen.git', branch: :msip
   #path: '../sivel2_gen'
 
 

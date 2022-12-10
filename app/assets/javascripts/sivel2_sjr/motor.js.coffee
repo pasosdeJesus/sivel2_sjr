@@ -82,7 +82,7 @@
 @jrs_agrega_paramscv = (elema, veccv, datos) ->
 
   #root =  window;
-  #sip_arregla_puntomontaje(root)
+  #msip_arregla_puntomontaje(root)
   ruta = $(elema).attr('href') 
   sep = '?'
   veccv.forEach((v) ->
@@ -176,7 +176,7 @@
 
 # Elije un contacto en autocompletación
 @sivel2_sjr_autocompleta_contacto_actividad = (label, id, divcp, root) ->
-  sip_arregla_puntomontaje(root)
+  msip_arregla_puntomontaje(root)
   cs = id.split(";")
   caso_id = cs[0]
   pl = []
@@ -196,7 +196,7 @@
   root.sivel2_sjr_autocompleta_contacto_actividad_divcp = divcp
   ruta = "api/sivel2sjr/poblacion_sexo_rangoedadac"
   #debugger
-  sip_ajax_recibe_json(root, ruta,
+  msip_ajax_recibe_json(root, ruta,
     {id_caso: pl[1], fecha: $('#actividad_fecha_localizada').val() }, 
     sivel2_sjr_completa_rangosedadac)
   return
@@ -205,7 +205,7 @@
 # s es objeto con foco donde se busca persona
 @sivel2_sjr_busca_contacto_actividad = (s) ->
   root = window
-  sip_arregla_puntomontaje(root)
+  msip_arregla_puntomontaje(root)
   cnom = s.attr('id')
   v = $("#" + cnom).data('autocompleta')
   if (v != 1 && v != "no") 
@@ -482,7 +482,7 @@
     if (root.tfichacambia) 
       d = (tn - root.tfichacambia)/1000
     if (d == -1 || d>5) 
-      sip_enviarautomatico_formulario($('form'), 'POST', 'json', false)
+      msip_enviarautomatico_formulario($('form'), 'POST', 'json', false)
       elimina_destruidos()
       actualiza_presponsables($('#caso_acto_id_presponsable'))
       actualiza_victimas($('#caso_acto_id_persona'))

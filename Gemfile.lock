@@ -11,59 +11,41 @@ GIT
 
 GIT
   remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: adca637d054a5ec6dd3994a861c572293996688d
-  branch: main
+  revision: 1055eac0cfee79c87535b329bf3eae0477694c7e
+  branch: msip
   specs:
     cor1440_gen (2.1a1)
       devise
       heb412_gen
       kt-paperclip
       mr519_gen
+      msip
       rails
-      sip
 
 GIT
   remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 2068b368571b7c5ffe21e52ee76dd25607ace11c
-  branch: main
+  revision: 9af9e60f7009a764fa470462415cf070d6d81356
+  branch: msip
   specs:
     heb412_gen (2.1.0.beta1)
       mr519_gen
+      msip
       redcarpet
       rspreadsheet
-      sip
 
 GIT
   remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: bf34d591ac8f99a00110a50217a01615b175c974
-  branch: main
+  revision: 1ae9946e0950a46fa56492c4c5083195ec062311
+  branch: msip
   specs:
     mr519_gen (2.1.0.beta1)
+      msip
       rails
-      sip
-
-GIT
-  remote: https://github.com/pasosdeJesus/sip.git
-  revision: a3e756f998528ef6124c654a62f41498ebb7bc2e
-  branch: main
-  specs:
-    sip (2.1.0.beta1)
-      cancancan
-      coffee-rails
-      devise
-      devise-i18n
-      kt-paperclip
-      minitest
-      rails
-      rails-i18n
-      sassc-rails
-      simple_form
-      twitter_cldr
 
 GIT
   remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 5f884d6de8fc8a23035caa59f92efbfeb0565b2d
-  branch: main
+  revision: 145b454d843d8248d1471dad00896f23c340f811
+  branch: msip
   specs:
     sivel2_gen (2.1.0.beta1)
       color
@@ -76,6 +58,24 @@ GIT
   branch: new_id_with_ajax
   specs:
     cocoon (1.2.11)
+
+PATH
+  remote: ../msip
+  specs:
+    msip (2.2.0.alfa3)
+      cancancan (~> 3)
+      devise (~> 4)
+      devise-i18n (~> 1)
+      kt-paperclip (~> 7)
+      pg (~> 1)
+      rails (~> 7.0)
+      rails-i18n (~> 7)
+      sassc-rails (~> 2)
+      simple_form (~> 5)
+      sprockets-rails (~> 3)
+      stimulus-rails (~> 1)
+      twitter_cldr (~> 6)
+      will_paginate (~> 3)
 
 PATH
   remote: .
@@ -415,6 +415,7 @@ DEPENDENCIES
   kt-paperclip!
   libxml-ruby
   mr519_gen!
+  msip!
   odf-report
   parslet
   pg
@@ -430,7 +431,6 @@ DEPENDENCIES
   selenium-webdriver
   simple_form
   simplecov (< 0.18)
-  sip!
   sivel2_gen!
   sivel2_sjr!
   spring

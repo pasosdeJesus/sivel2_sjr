@@ -34,7 +34,7 @@ module Dummy
     config.railties_order = [:main_app, Sivel2Sjr::Engine, 
                              Cor1440Gen::Engine, Sivel2Gen::Engine,
                              Heb412Gen::Engine, Mr519Gen::Engine, 
-                             Sip::Engine, :all]
+                             Msip::Engine, :all]
 
     puts "CONFIG_HOSTS="+ENV.fetch('CONFIG_HOSTS', 'defensor.info').to_s
     config.hosts.concat(
@@ -43,7 +43,7 @@ module Dummy
     config.relative_url_root = ENV['RUTA_RELATIVA'] || "/anzorc/si"
 
 
-    # sip
+    # msip
     config.x.formato_fecha = ENV['FORMATO_FECHA'] || 'dd/M/yyyy'
 
 

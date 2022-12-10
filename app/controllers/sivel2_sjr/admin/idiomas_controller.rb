@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class IdiomasController < Sip::Admin::BasicasController
+    class IdiomasController < Msip::Admin::BasicasController
       before_action :set_idioma, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Idioma
 

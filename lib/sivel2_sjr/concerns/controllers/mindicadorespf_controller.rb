@@ -18,9 +18,9 @@ module Sivel2Sjr
           def calcula_benef_por_sexo(idacs, sexo, ffin, unicos = false)
             contactos =
               Sivel2Sjr::Casosjr.
-              joins('JOIN sip_persona ON sip_persona.id=sivel2_sjr_casosjr.contacto_id').
+              joins('JOIN msip_persona ON msip_persona.id=sivel2_sjr_casosjr.contacto_id').
               joins('JOIN sivel2_sjr_actividad_casosjr ON casosjr_id=sivel2_sjr_casosjr.id_caso').
-              where(:'sip_persona.sexo' => sexo).
+              where(:'msip_persona.sexo' => sexo).
               where(:'sivel2_sjr_actividad_casosjr.actividad_id' => idacs)
             idscontactos = contactos.pluck(:contacto_id)
             if unicos
@@ -29,12 +29,12 @@ module Sivel2Sjr
             benef_indir =
               Sivel2Gen::Victima.
               joins('JOIN sivel2_sjr_victimasjr ON sivel2_gen_victima.id=sivel2_sjr_victimasjr.id_victima').
-              joins('JOIN sip_persona ON sip_persona.id=sivel2_gen_victima.id_persona').
+              joins('JOIN msip_persona ON msip_persona.id=sivel2_gen_victima.id_persona').
               joins('JOIN sivel2_sjr_actividad_casosjr ON casosjr_id=sivel2_gen_victima.id_caso').
-              where(:'sip_persona.sexo' => sexo).
+              where(:'msip_persona.sexo' => sexo).
               where(:'sivel2_sjr_actividad_casosjr.actividad_id' => idacs).
               where('fechadesagregacion IS NULL OR fechadesagregacion > ?', ffin).
-              where.not(:'sip_persona.id' => idscontactos)
+              where.not(:'msip_persona.id' => idscontactos)
             idsbenefindir = benef_indir.pluck('id_persona')
             if unicos
               idsbenefindir = idsbenefindir.uniq
@@ -56,11 +56,11 @@ module Sivel2Sjr
             datosint << { valor: contactos.count, rutaevidencia: '#' }
             datosint << { valor: familiares.count, rutaevidencia: '#' }
             if contactos.count > 0
-              datosint[0][:rutaevidencia] = sip.personas_path + 
+              datosint[0][:rutaevidencia] = msip.personas_path + 
                 '?filtro[busid]=' + contactos.join(',')
             end
             if familiares.count > 0
-              datosint[1][:rutaevidencia] = sip.personas_path + 
+              datosint[1][:rutaevidencia] = msip.personas_path + 
                 '?filtro[busid]=' + familiares.join(',')
             end
 

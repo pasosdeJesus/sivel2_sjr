@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class ComosuposController <  Sip::Admin::BasicasController
+    class ComosuposController <  Msip::Admin::BasicasController
       before_action :set_comosupo, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Comosupo
 

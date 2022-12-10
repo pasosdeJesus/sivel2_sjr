@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class PersonadeseasController < Sip::Admin::BasicasController
+    class PersonadeseasController < Msip::Admin::BasicasController
       before_action :set_personadesea, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Personadesea
 

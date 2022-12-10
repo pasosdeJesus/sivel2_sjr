@@ -8,7 +8,7 @@
   as: :string, label: "Fecha de Salida"
 %>
 <%= s.association :salida,
-  collection: Sip::Ubicacion.where(:id_caso => @caso.id),
+  collection: Msip::Ubicacion.where(:id_caso => @caso.id),
   label: "Sitio de Salida",
   label_method: lambda { |t| formato_ubicacion(t) },
   value_method: :id,
@@ -28,7 +28,7 @@
   }
 %>
 <%= s.association :llegada,
-  collection: Sip::Ubicacion.where(:id_caso => @caso.id),
+  collection: Msip::Ubicacion.where(:id_caso => @caso.id),
   label: "Sitio de Llegada",
   label_method: lambda { |t| formato_ubicacion(t) },
   value_method: :id,

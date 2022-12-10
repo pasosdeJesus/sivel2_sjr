@@ -1,5 +1,5 @@
 <% content_for :titulo do %>
-    <%= Sip.titulo %>
+    <%= Msip.titulo %>
 <% end %>
 
 <% content_for :menu do %>
@@ -39,16 +39,16 @@
             desplegable: true %>
           <%= opcion_menu "Informes", cor1440_gen.informes_path,
             desplegable: true %>
-          <%= opcion_menu "Organizaciones sociales", sip.orgsociales_path,
+          <%= opcion_menu "Organizaciones sociales", msip.orgsociales_path,
             desplegable: true %>
-          <%= opcion_menu "Beneficiarios", sip.personas_path,
+          <%= opcion_menu "Beneficiarios", msip.personas_path,
             desplegable: true %>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
   <%= grupo_menus :pull => :right do %>
-    <%= opcion_menu "Documentacion", sip.acercade_path %>
+    <%= opcion_menu "Documentacion", msip.acercade_path %>
     <% if !current_usuario.nil? %>
       <%= despliega_abajo "Administrar" do %>
         <%= opcion_menu "Clave", main_app.editar_registro_usuario_path,
@@ -105,9 +105,9 @@
 <% content_for :piedepagina do %>
   <p><span class='derechos'>Sistema de información de 
     <a href='https://github.com/pasosdeJesus/sivel2_sjr'>código abierto</a> con 
-    <a href="https://github.com/pasosdeJesus/sip/blob/main/LICENCIA.md">licencia ISC</a>
+    <a href="https://github.com/pasosdeJesus/msip/blob/main/LICENCIA.md">licencia ISC</a>
     <br/>
     Desarrollado por <a id='pasosdeJesus' href="http://www.pasosdeJesus.org" target="_blank">Pasos de Jesús</a>. 2022. 
 <% end %>
 
-<%= render template: "layouts/sip/application" %>
+<%= render template: "layouts/msip/application" %>

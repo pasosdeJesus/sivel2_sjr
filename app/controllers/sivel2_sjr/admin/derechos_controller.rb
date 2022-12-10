@@ -1,6 +1,6 @@
 module Sivel2Sjr
   module Admin
-    class DerechosController < Sip::Admin::BasicasController
+    class DerechosController < Msip::Admin::BasicasController
       before_action :set_derecho, only: [:show, :edit, :update, :destroy]
       load_and_authorize_resource class: Sivel2Sjr::Derecho
 

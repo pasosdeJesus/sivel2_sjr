@@ -15,7 +15,7 @@ module Sivel2Sjr
           # Tuve que repetir las siguientes que tambien estan en 
           # Sivel2Gen::Concerns::Controllers::CasosController 
           # pero que no son llamadas 
-          helper Sip::UbicacionHelper
+          helper Msip::UbicacionHelper
 
           def atributos_show
             [
@@ -126,10 +126,10 @@ module Sivel2Sjr
             @caso.casosjr.oficina_id= current_usuario.oficina_id.nil? ?  
               1 : current_usuario.oficina_id
             if params[:contacto] && 
-              Sip::Persona.where(id: params[:contacto].to_i).count == 1
-              per = Sip::Persona.find(params[:contacto])
+              Msip::Persona.where(id: params[:contacto].to_i).count == 1
+              per = Msip::Persona.find(params[:contacto])
             else
-              per = Sip::Persona.new
+              per = Msip::Persona.new
               per.nombres = ''
               per.apellidos = ''
               per.sexo = 'S'
@@ -215,7 +215,7 @@ module Sivel2Sjr
               @casovalido &= @caso.valid?
               @caso.save(validate: false)
               if registrar_en_bitacora
-                Sip::Bitacora.agregar_actualizar(
+                Msip::Bitacora.agregar_actualizar(
                   request, :caso, :bitacora_cambio, 
                   current_usuario.id, params, 'Sivel2Gen::Caso',
                   @caso.id
@@ -310,7 +310,7 @@ module Sivel2Sjr
           # base de datos)
           def poblacion_sexo_rangoedadac
             caso_id = params[:id_caso].to_i
-            fecha = Sip::FormatoFechaHelper.fecha_local_estandar(
+            fecha = Msip::FormatoFechaHelper.fecha_local_estandar(
               params[:fecha])
             if !fecha
               render json: "No se pudo convertir fecha #{params[:fecha]}",
@@ -353,7 +353,7 @@ module Sivel2Sjr
               where = " to_tsvector('spanish', id_caso " +
                 " || ' ' || unaccent(persona.nombres) " +
                 " || ' ' || unaccent(persona.apellidos) " +
-                " || ' ' || COALESCE(sip_tdocumento.sigla, '') " +
+                " || ' ' || COALESCE(msip_tdocumento.sigla, '') " +
                 " || ' ' || COALESCE(persona.numerodocumento::TEXT, '')) @@ " +
                 "to_tsquery('spanish', '#{consNom}')";
 
@@ -361,7 +361,7 @@ module Sivel2Sjr
                 'id_caso::TEXT',
                 'nombres',
                 'apellidos',
-                'COALESCE(sip_tdocumento.sigla, \'\')',
+                'COALESCE(msip_tdocumento.sigla, \'\')',
                 'COALESCE(numerodocumento::TEXT, \'\')'
               ]
               s = "";
@@ -374,11 +374,11 @@ module Sivel2Sjr
                 seps = " || ' ' || ";
               end
               qstring = "SELECT TRIM(#{s}) AS value, #{l} AS id 
-                FROM public.sip_persona AS persona
+                FROM public.msip_persona AS persona
                 JOIN sivel2_sjr_casosjr AS casosjr ON 
                   persona.id=casosjr.contacto_id
-                LEFT JOIN sip_tdocumento ON
-                  persona.tdocumento_id=sip_tdocumento.id
+                LEFT JOIN msip_tdocumento ON
+                  persona.tdocumento_id=msip_tdocumento.id
                 WHERE #{where} ORDER BY 1";
 
               #byebug
@@ -398,8 +398,8 @@ module Sivel2Sjr
 #                  SELECT label, value, to_tsvector('spanish', unaccent(label)) AS i
 #                  FROM (SELECT id_caso || ' ' || nombres || ' ' || 
 #                    apellidos || ' ' || numerodocumento as label, 
-#                    id_caso as value FROM sivel2_sjr_casosjr JOIN sip_persona ON 
-#                      sip_persona.id=sivel2_sjr_casosjr.contacto_id) AS s) as ss 
+#                    id_caso as value FROM sivel2_sjr_casosjr JOIN msip_persona ON 
+#                      msip_persona.id=sivel2_sjr_casosjr.contacto_id) AS s) as ss 
 #                WHERE i @@ to_tsquery('spanish', ?) ORDER BY 1;",
 #                consNom
 #              ])
@@ -413,8 +413,8 @@ module Sivel2Sjr
 
           # GET casos/mapaosm
           def mapaosm
-            @fechadesde = Sip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
-            @fechahasta = Sip::FormatoFechaHelper.fin_semestre(Date.today - 182)
+            @fechadesde = Msip::FormatoFechaHelper.inicio_semestre(Date.today - 182)
+            @fechahasta = Msip::FormatoFechaHelper.fin_semestre(Date.today - 182)
             render 'sivel2_gen/casos/mapaosm', layout: 'application'
           end
 
@@ -694,7 +694,7 @@ module Sivel2Sjr
                 :id, 
                 :id_caso,
                 :_destroy,
-                :sip_anexo_attributes => [
+                :msip_anexo_attributes => [
                   :adjunto, 
                   :descripcion, 
                   :id, 
