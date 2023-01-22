@@ -47,151 +47,6 @@ CREATE FUNCTION public.completa_obs(obs character varying, nuevaobs character va
 
 
 --
--- Name: cor1440_gen_actividad_cambiada(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.cor1440_gen_actividad_cambiada() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-          BEGIN
-            ASSERT(TG_OP = 'UPDATE');
-            ASSERT(NEW.id = OLD.id);
-            CALL cor1440_gen_recalcular_poblacion_actividad(NEW.id);
-            RETURN NULL;
-          END ;
-        $$;
-
-
---
--- Name: cor1440_gen_asistencia_cambiada_creada_eliminada(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.cor1440_gen_asistencia_cambiada_creada_eliminada() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-          BEGIN
-            CASE
-              WHEN (TG_OP = 'UPDATE') THEN
-                ASSERT(NEW.id = OLD.id);
-                CALL cor1440_gen_recalcular_poblacion_actividad(NEW.actividad_id);
-              WHEN (TG_OP = 'INSERT') THEN
-                CALL cor1440_gen_recalcular_poblacion_actividad(NEW.actividad_id);
-              ELSE -- DELETE
-                CALL cor1440_gen_recalcular_poblacion_actividad(OLD.actividad_id);
-            END CASE;
-            RETURN NULL;
-          END;
-        $$;
-
-
---
--- Name: cor1440_gen_persona_cambiada(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.cor1440_gen_persona_cambiada() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-        DECLARE
-          aid INTEGER;
-        BEGIN
-          ASSERT(TG_OP = 'UPDATE');
-          ASSERT(NEW.id = OLD.id);
-          FOR aid IN 
-            SELECT actividad_id FROM cor1440_gen_asistencia 
-              WHERE persona_id=NEW.id
-          LOOP
-            CALL cor1440_gen_recalcular_poblacion_actividad(aid);
-          END LOOP;
-          RETURN NULL;
-        END ;
-        $$;
-
-
---
--- Name: cor1440_gen_recalcular_poblacion_actividad(bigint); Type: PROCEDURE; Schema: public; Owner: -
---
-
-CREATE PROCEDURE public.cor1440_gen_recalcular_poblacion_actividad(IN par_actividad_id bigint)
-    LANGUAGE plpgsql
-    AS $$
-        DECLARE
-          rangos INTEGER ARRAY;
-          idrangos INTEGER ARRAY;
-          i INTEGER;
-          a_dia INTEGER;
-          a_mes INTEGER;
-          a_anio INTEGER;
-          asistente RECORD;
-          edad INTEGER;
-          rango_id INTEGER;
-        BEGIN
-          RAISE NOTICE 'actividad_id es %', par_actividad_id;
-          SELECT EXTRACT(DAY FROM fecha) INTO a_dia FROM cor1440_gen_actividad
-            WHERE id=par_actividad_id LIMIT 1;
-          RAISE NOTICE 'a_dia es %', a_dia;
-          SELECT EXTRACT(MONTH FROM fecha) INTO a_mes FROM cor1440_gen_actividad
-            WHERE id=par_actividad_id;
-          RAISE NOTICE 'a_mes es %', a_mes;
-          SELECT EXTRACT(YEAR FROM fecha) INTO a_anio FROM cor1440_gen_actividad
-            WHERE id=par_actividad_id;
-          RAISE NOTICE 'a_anio es %', a_anio;
-
-          DELETE FROM cor1440_gen_actividad_rangoedadac
-            WHERE actividad_id=par_actividad_id
-          ;
-
-          FOR rango_id IN SELECT id FROM cor1440_gen_rangoedadac
-            WHERE fechadeshabilitacion IS NULL
-          LOOP
-            INSERT INTO cor1440_gen_actividad_rangoedadac
-              (actividad_id, rangoedadac_id, mr, fr, s, created_at, updated_at)
-              (SELECT par_actividad_id, rango_id, 0, 0, 0, NOW(), NOW());
-          END LOOP;
-
-          FOR asistente IN SELECT p.id, p.anionac, p.mesnac, p.dianac, p.sexo
-            FROM cor1440_gen_asistencia AS asi
-            JOIN cor1440_gen_actividad AS ac ON ac.id=asi.actividad_id
-            JOIN msip_persona AS p ON p.id=asi.persona_id
-            WHERE ac.id=par_actividad_id
-          LOOP
-            RAISE NOTICE 'persona_id es %', asistente.id;
-            edad = msip_edad_de_fechanac_fecharef(asistente.anionac, asistente.mesnac,
-              asistente.dianac, a_anio, a_mes, a_dia);
-            RAISE NOTICE 'edad es %', edad;
-            SELECT id INTO rango_id FROM cor1440_gen_rangoedadac WHERE
-              fechadeshabilitacion IS NULL AND
-              limiteinferior <= edad AND edad <= limitesuperior LIMIT 1;
-            IF rango_id IS NULL THEN
-              rango_id := 7;
-            END IF;
-            RAISE NOTICE 'rango_id es %', rango_id;
-
-            CASE asistente.sexo
-              WHEN 'F' THEN
-                UPDATE cor1440_gen_actividad_rangoedadac SET fr = fr + 1
-                  WHERE actividad_id=par_actividad_id
-                  AND rangoedadac_id=rango_id;
-              WHEN 'M' THEN
-                UPDATE cor1440_gen_actividad_rangoedadac SET mr = mr + 1
-                  WHERE actividad_id=par_actividad_id
-                  AND rangoedadac_id=rango_id;
-              ELSE
-                UPDATE cor1440_gen_actividad_rangoedadac SET s = s + 1
-                  WHERE actividad_id=par_actividad_id
-                  AND rangoedadac_id=rango_id;
-            END CASE;
-          END LOOP;
-
-          DELETE FROM cor1440_gen_actividad_rangoedadac
-            WHERE actividad_id = par_actividad_id
-            AND mr = 0 AND fr = 0 AND s = 0
-          ;
-          RETURN;
-        END;
-        $$;
-
-
---
 -- Name: es_unaccent(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -435,6 +290,18 @@ CREATE FUNCTION public.soundexespm(entrada text) RETURNS text
 
 
 --
+-- Name: acto_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.acto_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: anexo_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -460,6 +327,30 @@ CREATE TABLE public.ar_internal_metadata (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
+
+
+--
+-- Name: caso_etiqueta_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.caso_etiqueta_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: caso_presponsable_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.caso_presponsable_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
 --
@@ -498,10 +389,10 @@ CREATE TABLE public.sivel2_gen_caso (
 
 
 --
--- Name: sivel2_gen_victima_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: victima_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.sivel2_gen_victima_id_seq
+CREATE SEQUENCE public.victima_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -530,7 +421,7 @@ CREATE TABLE public.sivel2_gen_victima (
     orientacionsexual character(1) DEFAULT 'S'::bpchar NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id integer DEFAULT nextval('public.sivel2_gen_victima_id_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('public.victima_seq'::regclass) NOT NULL,
     CONSTRAINT victima_hijos_check CHECK (((hijos IS NULL) OR ((hijos >= 0) AND (hijos <= 100)))),
     CONSTRAINT victima_orientacionsexual_check CHECK (((orientacionsexual = 'L'::bpchar) OR (orientacionsexual = 'G'::bpchar) OR (orientacionsexual = 'B'::bpchar) OR (orientacionsexual = 'T'::bpchar) OR (orientacionsexual = 'O'::bpchar) OR (orientacionsexual = 'H'::bpchar) OR (orientacionsexual = 'S'::bpchar)))
 );
@@ -638,11 +529,6 @@ CREATE TABLE public.msip_clase (
     observaciones character varying(5000) COLLATE public.es_co_utf_8,
     ultvigenciaini date,
     ultvigenciafin date,
-    svgruta character varying,
-    svgcdx integer,
-    svgcdy integer,
-    svgcdancho integer,
-    svgcdalto integer,
     CONSTRAINT clase_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -680,11 +566,6 @@ CREATE TABLE public.msip_departamento (
     codreg integer,
     ultvigenciaini date,
     ultvigenciafin date,
-    svgruta character varying,
-    svgcdx integer,
-    svgcdy integer,
-    svgcdancho integer,
-    svgcdalto integer,
     CONSTRAINT departamento_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -721,11 +602,6 @@ CREATE TABLE public.msip_municipio (
     ultvigenciaini date,
     ultvigenciafin date,
     tipomun character varying(32),
-    svgruta character varying,
-    svgcdx integer,
-    svgcdy integer,
-    svgcdancho integer,
-    svgcdalto integer,
     CONSTRAINT municipio_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -2448,6 +2324,18 @@ CREATE VIEW public.cres1 AS
 
 
 --
+-- Name: fotra_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.fotra_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: heb412_gen_campohc; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3323,10 +3211,10 @@ CREATE TABLE public.msip_grupo (
 
 
 --
--- Name: mgrupo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: msip_grupo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.mgrupo_id_seq
+CREATE SEQUENCE public.msip_grupo_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -3335,10 +3223,10 @@ CREATE SEQUENCE public.mgrupo_id_seq
 
 
 --
--- Name: mgrupo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: msip_grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.mgrupo_id_seq OWNED BY public.msip_grupo.id;
+ALTER SEQUENCE public.msip_grupo_id_seq OWNED BY public.msip_grupo.id;
 
 
 --
@@ -3577,11 +3465,6 @@ CREATE TABLE public.msip_pais (
     nombreiso_frances character varying(512),
     ultvigenciaini date,
     ultvigenciafin date,
-    svgruta character varying,
-    svgcdx integer,
-    svgcdy integer,
-    svgcdancho integer,
-    svgcdalto integer,
     CONSTRAINT pais_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
 );
 
@@ -4132,6 +4015,18 @@ CREATE SEQUENCE public.regimensalud_seq
 
 
 --
+-- Name: resagresion_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.resagresion_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4169,18 +4064,6 @@ CREATE TABLE public.sivel2_gen_actividadoficio (
 
 
 --
--- Name: sivel2_gen_acto_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_acto_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: sivel2_gen_acto; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4191,7 +4074,7 @@ CREATE TABLE public.sivel2_gen_acto (
     id_caso integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id integer DEFAULT nextval('public.sivel2_gen_acto_id_seq'::regclass) NOT NULL
+    id integer DEFAULT nextval('public.acto_seq'::regclass) NOT NULL
 );
 
 
@@ -4374,18 +4257,6 @@ CREATE TABLE public.sivel2_gen_caso_contexto (
 
 
 --
--- Name: sivel2_gen_caso_etiqueta_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_caso_etiqueta_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
 -- Name: sivel2_gen_caso_etiqueta; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4397,15 +4268,15 @@ CREATE TABLE public.sivel2_gen_caso_etiqueta (
     observaciones character varying(5000),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id integer DEFAULT nextval('public.sivel2_gen_caso_etiqueta_id_seq'::regclass) NOT NULL
+    id integer DEFAULT nextval('public.caso_etiqueta_seq'::regclass) NOT NULL
 );
 
 
 --
--- Name: sivel2_gen_caso_fotra_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sivel2_gen_caso_fotra_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.sivel2_gen_caso_fotra_id_seq
+CREATE SEQUENCE public.sivel2_gen_caso_fotra_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -4427,7 +4298,7 @@ CREATE TABLE public.sivel2_gen_caso_fotra (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    id integer DEFAULT nextval('public.sivel2_gen_caso_fotra_id_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('public.sivel2_gen_caso_fotra_seq'::regclass) NOT NULL,
     anexo_caso_id integer
 );
 
@@ -4445,10 +4316,10 @@ CREATE TABLE public.sivel2_gen_caso_frontera (
 
 
 --
--- Name: sivel2_gen_caso_fuenteprensa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: sivel2_gen_caso_fuenteprensa_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.sivel2_gen_caso_fuenteprensa_id_seq
+CREATE SEQUENCE public.sivel2_gen_caso_fuenteprensa_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -4469,21 +4340,9 @@ CREATE TABLE public.sivel2_gen_caso_fuenteprensa (
     id_caso integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id integer DEFAULT nextval('public.sivel2_gen_caso_fuenteprensa_id_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('public.sivel2_gen_caso_fuenteprensa_seq'::regclass) NOT NULL,
     anexo_caso_id integer
 );
-
-
---
--- Name: sivel2_gen_caso_presponsable_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_caso_presponsable_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 
 --
@@ -4497,7 +4356,7 @@ CREATE TABLE public.sivel2_gen_caso_presponsable (
     bloque character varying(50),
     frente character varying(50),
     otro character varying(500),
-    id integer DEFAULT nextval('public.sivel2_gen_caso_presponsable_id_seq'::regclass) NOT NULL,
+    id integer DEFAULT nextval('public.caso_presponsable_seq'::regclass) NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     subdivision character varying
@@ -4981,23 +4840,11 @@ CREATE TABLE public.sivel2_gen_filiacion_victimacolectiva (
 --
 
 CREATE TABLE public.sivel2_gen_fotra (
-    id integer DEFAULT nextval(('sivel2_gen_fotra_id_seq'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval('public.fotra_seq'::regclass) NOT NULL,
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
-
-
---
--- Name: sivel2_gen_fotra_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_gen_fotra_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 
 
 --
@@ -6312,7 +6159,7 @@ CREATE TABLE public.sivel2_sjr_regimensalud (
 --
 
 CREATE TABLE public.sivel2_sjr_resagresion (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('public.resagresion_seq'::regclass) NOT NULL,
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
@@ -6828,7 +6675,7 @@ ALTER TABLE ONLY public.msip_estadosol ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: msip_grupo id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.msip_grupo ALTER COLUMN id SET DEFAULT nextval('public.mgrupo_id_seq'::regclass);
+ALTER TABLE ONLY public.msip_grupo ALTER COLUMN id SET DEFAULT nextval('public.msip_grupo_id_seq'::regclass);
 
 
 --
@@ -9339,27 +9186,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 --
 
 CREATE UNIQUE INDEX usuario_nusuario ON public.usuario USING btree (nusuario);
-
-
---
--- Name: cor1440_gen_actividad cor1440_gen_recalcular_tras_cambiar_actividad; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER cor1440_gen_recalcular_tras_cambiar_actividad AFTER UPDATE ON public.cor1440_gen_actividad FOR EACH ROW EXECUTE FUNCTION public.cor1440_gen_actividad_cambiada();
-
-
---
--- Name: cor1440_gen_asistencia cor1440_gen_recalcular_tras_cambiar_asistencia; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER cor1440_gen_recalcular_tras_cambiar_asistencia AFTER INSERT OR DELETE OR UPDATE ON public.cor1440_gen_asistencia FOR EACH ROW EXECUTE FUNCTION public.cor1440_gen_asistencia_cambiada_creada_eliminada();
-
-
---
--- Name: msip_persona cor1440_gen_recalcular_tras_cambiar_persona; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER cor1440_gen_recalcular_tras_cambiar_persona AFTER UPDATE ON public.msip_persona FOR EACH ROW EXECUTE FUNCTION public.cor1440_gen_persona_cambiada();
 
 
 --
@@ -12264,14 +12090,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221208173349'),
 ('20221209142327'),
 ('20221209165024'),
-('20221210145029'),
-('20221210155527'),
-('20221211005549'),
-('20221211012152'),
-('20221211141207'),
-('20221211141208'),
-('20221211141209'),
-('20221212021533'),
-('20230113133200');
+('20221210145029');
 
 
