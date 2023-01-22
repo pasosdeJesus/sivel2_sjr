@@ -10,9 +10,16 @@ GIT
       terrapin (~> 0.6.0)
 
 GIT
-  remote: https://github.com/pasosdeJesus/cor1440_gen.git
-  revision: 4e5e47c2b9c8f5ebe549c0b39e3e1240d188854c
-  branch: msip
+  remote: https://github.com/vtamara/cocoon.git
+  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
+  branch: new_id_with_ajax
+  specs:
+    cocoon (1.2.11)
+
+GIT
+  remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
+  revision: e6879fde31dc39e27c36afa71123e0b19c003917
+  branch: main
   specs:
     cor1440_gen (2.1a1)
       devise
@@ -23,9 +30,9 @@ GIT
       rails
 
 GIT
-  remote: https://github.com/pasosdeJesus/heb412_gen.git
-  revision: 9ec4cafd764c2fafaba12a598b7cbba320aa42ef
-  branch: msip
+  remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
+  revision: 2bae89116850b8f71432b3b6dc882f22a1108fac
+  branch: main
   specs:
     heb412_gen (2.1.0.beta1)
       mr519_gen
@@ -34,16 +41,16 @@ GIT
       rspreadsheet
 
 GIT
-  remote: https://github.com/pasosdeJesus/mr519_gen.git
-  revision: c7baab5d73d729ade208716dc225fc491da9973d
-  branch: msip
+  remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
+  revision: 2f178129e35681318e2c04162ce42fcfd7d7c33e
+  branch: main
   specs:
-    mr519_gen (2.1.0.beta1)
+    mr519_gen (2.2.0.beta1)
       msip
       rails
 
 GIT
-  remote: https://github.com/pasosdeJesus/msip.git
+  remote: https://gitlab.com/pasosdeJesus/msip.git
   revision: 4da83a1bb65be3d7d2446630be3c6d157a2f5855
   branch: main
   specs:
@@ -63,21 +70,14 @@ GIT
       will_paginate (~> 3)
 
 GIT
-  remote: https://github.com/pasosdeJesus/sivel2_gen.git
-  revision: 2f4c0d55f5f2b87bf2751d5bac99f53d17ae2ac9
-  branch: msip
+  remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
+  revision: c9178b24e098c237c6d2a6fcee89260f920946ce
+  branch: main
   specs:
     sivel2_gen (2.2.0.beta1)
       color
       devise
       rails
-
-GIT
-  remote: https://github.com/vtamara/cocoon.git
-  revision: 9f1892403c3dbdb8f7d457a06f237ff58e7dfb07
-  branch: new_id_with_ajax
-  specs:
-    cocoon (1.2.11)
 
 PATH
   remote: .
