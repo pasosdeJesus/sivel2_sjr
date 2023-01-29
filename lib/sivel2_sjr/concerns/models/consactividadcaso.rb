@@ -152,7 +152,7 @@ module Sivel2Sjr
           end
 
           def consulta
-            "SELECT actividad_id*50000+persona.id AS id,
+            "SELECT cast(actividad_id AS BIGINT)*50000 + persona.id AS id,
               casosjr_id AS caso_id, 
               actividad_id,
               victima.id AS victima_id,
@@ -197,10 +197,11 @@ module Sivel2Sjr
             if ordenar_por
               w += ' ORDER BY ' + self.interpreta_ordenar_por(ordenar_por)
             end
-            ActiveRecord::Base.connection.execute("CREATE 
+            c = "CREATE 
               MATERIALIZED VIEW sivel2_sjr_consactividadcaso AS
               #{self.consulta}
-              #{w} ;")
+              #{w} ;"
+            ActiveRecord::Base.connection.execute(c)
           end # def crea_consulta
 
           def refresca_consulta(ordenar_por = nil)
