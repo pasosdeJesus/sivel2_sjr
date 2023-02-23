@@ -18,10 +18,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 031643d3edbe0008d35ca5d3d47f23e324c4820d
+  revision: c74b40ed5531bb56bf089fe5ddcfa3e77877dc4c
   branch: main
   specs:
-    cor1440_gen (2.1a1)
+    cor1440_gen (2.2.0.beta1)
       devise
       heb412_gen
       kt-paperclip
@@ -31,10 +31,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 63e413bbf27e06d33680eb0f25e3b3a504bd58ef
+  revision: fc61bedb905e5b33d41898f041c88df9ae468fa9
   branch: main
   specs:
-    heb412_gen (2.2.0.alfa1)
+    heb412_gen (2.2.0.beta1)
       mr519_gen
       msip
       redcarpet
@@ -82,7 +82,7 @@ GIT
 PATH
   remote: .
   specs:
-    sivel2_sjr (2.2a1)
+    sivel2_sjr (2.2.0.beta1)
       rails
       sivel2_gen
 
