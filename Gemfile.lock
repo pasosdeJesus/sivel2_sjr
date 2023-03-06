@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: c74b40ed5531bb56bf089fe5ddcfa3e77877dc4c
+  revision: 9d764ed776eb37e94d9b4e93834c44721d566bfa
   branch: main
   specs:
     cor1440_gen (2.2.0.beta1)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: fc61bedb905e5b33d41898f041c88df9ae468fa9
+  revision: 81ed3f2716f31b29afeceae943b959eadff63ab0
   branch: main
   specs:
     heb412_gen (2.2.0.beta1)
@@ -42,7 +42,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: b707fab42611385b249f3474e2a219d96c263864
+  revision: bcab6b78966944b74a4bf78f1e2b9333a660a6ae
   branch: main
   specs:
     mr519_gen (2.2.0.beta1)
@@ -51,7 +51,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 5deb7f4402b33cbc0437bffa34ed4e53b0a59b44
+  revision: e568e5a3de8227e41d54e74a4aa9391a34c8326d
   branch: main
   specs:
     msip (2.2.0.beta1)
@@ -71,7 +71,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 9cd8be653f4cfc20ba861442571623ddc4e5f74e
+  revision: d38b76c31e62a1c9fd79ed7d56bec4b100c18c5b
   branch: main
   specs:
     sivel2_gen (2.2.0.beta1)
@@ -168,7 +168,7 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     camertron-eprun (1.1.1)
-    cancancan (3.4.0)
+    cancancan (3.5.0)
     capybara (3.38.0)
       addressable
       matrix
@@ -189,7 +189,7 @@ GEM
     coffee-script-source (1.12.2)
     color (1.8)
     colorize (0.8.1)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     crass (1.0.6)
     cuprite (0.14.3)
       capybara (~> 3.0)
@@ -248,8 +248,8 @@ GEM
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
-    minitest (5.17.0)
-    msgpack (1.6.0)
+    minitest (5.18.0)
+    msgpack (1.6.1)
     net-imap (0.3.4)
       date
       net-protocol
@@ -270,7 +270,7 @@ GEM
     orm_adapter (0.5.0)
     parslet (2.0.0)
     pdf-core (0.9.0)
-    pg (1.4.5)
+    pg (1.4.6)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -280,10 +280,10 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.1)
-    puma (6.1.0)
+    puma (6.1.1)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.6.2)
+    rack (2.2.6.3)
     rack-test (2.0.2)
       rack (>= 1.3)
     rails (7.0.4.2)
@@ -365,7 +365,7 @@ GEM
     tilt (2.1.0)
     timeout (0.3.2)
     ttfunk (1.7.0)
-    turbo-rails (1.3.3)
+    turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
