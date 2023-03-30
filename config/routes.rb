@@ -23,8 +23,8 @@ Sivel2Sjr::Engine.routes.draw do
 
   get '/respuestas/nuevo' => 'respuestas#nuevo'
 
-  get '/victimas' => 'victimas#index', as: :victimas
-  get '/victimas/nuevo' => 'victimas#nuevo'
+#  get '/victimas' => 'victimas#index', as: :victimas
+#  get '/victimas/nuevo' => 'victimas#nuevo'
   get '/victimascolectivas/nuevo' => 'victimascolectivas#nuevo'
  
   get "/api/sivel2sjr/poblacion_sexo_rangoedadac" => 'casos#poblacion_sexo_rangoedadac',
