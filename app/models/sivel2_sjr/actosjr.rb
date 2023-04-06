@@ -4,7 +4,7 @@ module Sivel2Sjr
     include Msip::Modelo
 
     belongs_to :acto, class_name: "Sivel2Gen::Acto", 
-      foreign_key: "id_acto", inverse_of: :actosjr,
+      foreign_key: "acto_id", inverse_of: :actosjr,
       dependent: :delete, optional: false
     belongs_to :desplazamiento, class_name: "Sivel2Sjr::Desplazamiento",
       optional: true

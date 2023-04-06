@@ -8,7 +8,7 @@ module Sivel2Sjr
 
         included do
           has_many :casosjr, class_name: "Sivel2Sjr::Casosjr", 
-            foreign_key: "id_statusmigratorio", validate: true
+            foreign_key: "estatusmigratorio_id", validate: true
         end
 
       end

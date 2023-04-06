@@ -13,7 +13,7 @@ module Sivel2Sjr
     #   totsexo ={}
     # @return true sii puede calcular poblacion por sexo y rangos de edad
     def poblacion_por_sexo_rango(caso_id, anio, mes, dia, modelorango, rangoedad, totsexo)
-      casosjr = Sivel2Sjr::Casosjr.where(id_caso: caso_id)
+      casosjr = Sivel2Sjr::Casosjr.where(caso_id: caso_id)
 
       if casosjr.count < 1 
         return false
@@ -24,10 +24,10 @@ module Sivel2Sjr
       fechaac = anio.to_s + '-' + mes.to_s + '-' + dia.to_s
       casosjr.take.caso.victima.joins(
         'JOIN msip_persona ' \
-        'ON msip_persona.id=sivel2_gen_victima.id_persona'
+        'ON msip_persona.id=sivel2_gen_victima.persona_id'
       ).joins(
         'JOIN sivel2_sjr_victimasjr ON ' \
-        'sivel2_sjr_victimasjr.id_victima=sivel2_gen_victima.id'
+        'sivel2_sjr_victimasjr.victima_id=sivel2_gen_victima.id'
       ).where('sivel2_sjr_victimasjr.fechadesagregacion IS NULL OR ' +
               'sivel2_sjr_victimasjr.fechadesagregacion > ?', fechaac).
       each do |vi|

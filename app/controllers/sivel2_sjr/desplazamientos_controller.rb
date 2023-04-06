@@ -11,24 +11,24 @@ module Sivel2Sjr
         respond_to do |format|
           format.html { render inline: 'Falta identificacion del caso' }
         end
-#      elsif Msip::Ubicacion.where(id_caso: params[:caso_id].to_i).count < 2
+#      elsif Msip::Ubicacion.where(caso_id: params[:caso_id].to_i).count < 2
 #        respond_to do |format|
 #          format.html { render inline: 'Debe tener al menos 2 ubicaciones' }
 #        end
       else
         @desplazamiento = Sivel2Sjr::Desplazamiento.new
         cid = params[:caso_id].to_i
-        @desplazamiento.id_caso = cid
+        @desplazamiento.caso_id = cid
         fex = Sivel2Gen::Caso.find(cid).fecha
-        while (Sivel2Sjr::Desplazamiento.where(id_caso: cid, 
+        while (Sivel2Sjr::Desplazamiento.where(caso_id: cid, 
             fechaexpulsion: fex.to_s).count > 0) do
           fex += 1
         end
         @desplazamiento.fechaexpulsion = fex
-        #@desplazamiento.id_expulsion = Msip::Ubicacion.where(id_caso: cid).last.id
+        #@desplazamiento.expulsion_id = Msip::Ubicacion.where(caso_id: cid).last.id
         @desplazamiento.fechallegada = fex+1
-        #@desplazamiento.id_llegada = Msip::Ubicacion.where(
-          #id_caso: cid).first.id
+        #@desplazamiento.llegada_id = Msip::Ubicacion.where(
+          #caso_id: cid).first.id
         @desplazamiento.descripcion = ''
         if @desplazamiento.save
           h=@desplazamiento.as_json

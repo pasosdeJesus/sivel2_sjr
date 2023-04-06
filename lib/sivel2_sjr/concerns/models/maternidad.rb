@@ -9,7 +9,7 @@ module Sivel2Sjr
 
         included do
           has_many :victimasjr, class_name: "Sivel2Sjr::Victimasjr", 
-            foreign_key: "id_maternidad", validate: true
+            foreign_key: "maternidad_id", validate: true
         end
 
         module ClassMethods

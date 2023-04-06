@@ -4,7 +4,7 @@ module Sivel2Sjr
   
     has_many :progestado_respuesta, 
       class_name: "Sivel2Sjr::ProgestadoRespuesta",
-      foreign_key: "id_progestado", validate: true, dependent: :destroy
+      foreign_key: "progestado_id", validate: true, dependent: :destroy
     has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
       :through => :progestado_respuesta
 

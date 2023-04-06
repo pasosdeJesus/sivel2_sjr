@@ -8,7 +8,7 @@
   as: :string, label: "Fecha de Salida"
 %>
 <%= s.association :salida,
-  collection: Msip::Ubicacion.where(:id_caso => @caso.id),
+  collection: Msip::Ubicacion.where(:caso_id => @caso.id),
   label: "Sitio de Salida",
   label_method: lambda { |t| formato_ubicacion(t) },
   value_method: :id,
@@ -28,7 +28,7 @@
   }
 %>
 <%= s.association :llegada,
-  collection: Msip::Ubicacion.where(:id_caso => @caso.id),
+  collection: Msip::Ubicacion.where(:caso_id => @caso.id),
   label: "Sitio de Llegada",
   label_method: lambda { |t| formato_ubicacion(t) },
   value_method: :id,
@@ -41,9 +41,9 @@
   collection: Sivel2Gen::Categoria.from('sivel2_gen_categoria, sivel2_gen_supracategoria').where(
     "sivel2_gen_categoria.supracategoria_id=sivel2_gen_supracategoria.id
      AND sivel2_gen_categoria.fechadeshabilitacion IS NULL 
-     AND sivel2_gen_supracategoria.id_tviolencia='R'").order(:id),
+     AND sivel2_gen_supracategoria.tviolencia_id='R'").order(:id),
   label: "Causa del Refugio",
-  label_method: lambda {|t| t.supracategoria.id_tviolencia + t.id.to_s + ' ' + t.nombre },
+  label_method: lambda {|t| t.supracategoria.tviolencia_id + t.id.to_s + ' ' + t.nombre },
   value_method: :id,
   input_html: {
     "data-toggle" => 'tooltip',

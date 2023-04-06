@@ -3,7 +3,7 @@ module Sivel2Sjr
     include Msip::Basica
   
   	has_many :ayudasjr_respuesta, class_name: "Sivel2Sjr::AyudasjrRespuesta", 
-      foreign_key: "id_ayudasjr", validate: true, dependent: :destroy
+      foreign_key: "ayudasjr_id", validate: true, dependent: :destroy
     has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
       :through => :ayudasjr_respuesta
 
@@ -19,7 +19,7 @@ module Sivel2Sjr
 
     # No ha operado
     def confirmar_ayudasjr_derecho
-      if Sivel2Sjr::AyudasjrRespuesta.where(id_ayudasjr: id).take 
+      if Sivel2Sjr::AyudasjrRespuesta.where(ayudasjr_id: id).take 
         errors.add(:base, "hay respuestas con esta ayuda humanitaria")
         return false
       end

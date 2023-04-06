@@ -43,3 +43,7 @@ test/dummy/app/javascript/controllers/heb412_gen
 test/dummy/app/javascript/controllers/cor1440_gen
 test/dummy/app/javascript/controllers/sal7711_gen
 test/dummy/app/javascript/controllers/sivel2_gen
+*cp
+cobertura-unitarias/
+test/dummy/cobertura-sistema/
+test/dummy/public/sivel2sjr/cobertura/

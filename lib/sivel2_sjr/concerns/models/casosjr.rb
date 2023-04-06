@@ -8,7 +8,7 @@ module Sivel2Sjr
 
           include Msip::Modelo
           
-          self.primary_key = :id_caso
+          self.primary_key = :caso_id
 
           # Ordenados por foreign_key para comparar con esquema en base
           belongs_to :usuario, class_name: "Usuario", 
@@ -18,22 +18,22 @@ module Sivel2Sjr
           belongs_to :contacto, class_name: "Msip::Persona",  
             foreign_key: "contacto_id", optional: false
           belongs_to :caso, class_name: "Sivel2Gen::Caso", validate: true,
-            foreign_key: "id_caso", inverse_of: :casosjr, optional: false
+            foreign_key: "caso_id", inverse_of: :casosjr, optional: false
           belongs_to :categoria, class_name: "Sivel2Gen::Categoria", 
             validate: true, foreign_key: "categoriaref", optional: true
           belongs_to :idioma, class_name: "Sivel2Sjr::Idioma", 
-            foreign_key: "id_idioma", validate: true, optional: true
+            foreign_key: "idioma_id", validate: true, optional: true
           belongs_to :llegada, class_name: "Msip::Ubicacion", validate: true,
-            foreign_key: "id_llegada", optional: true
+            foreign_key: "llegada_id", optional: true
           belongs_to :proteccion, class_name: "Sivel2Sjr::Proteccion", 
-            foreign_key: "id_proteccion", validate: true, optional: true
+            foreign_key: "proteccion_id", validate: true, optional: true
           belongs_to :oficina, class_name: "Msip::Oficina", 
             foreign_key: "oficina_id", validate: true, optional: true
           belongs_to :salida, class_name: "Msip::Ubicacion", validate: true,
-            foreign_key: "id_salida", optional: true
+            foreign_key: "salida_id", optional: true
           belongs_to :statusmigratorio, 
             class_name: "Sivel2Sjr::Statusmigratorio", 
-            foreign_key: "id_statusmigratorio", validate: true, optional: true
+            foreign_key: "estatusmigratorio_id", validate: true, optional: true
 
           has_many :actividad_casosjr, 
             class_name: 'Sivel2Sjr::ActividadCasosjr',
@@ -45,7 +45,7 @@ module Sivel2Sjr
           accepts_nested_attributes_for :actividad, reject_if: :all_blank
 
           has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
-            validate: true, foreign_key: "id_caso"#, dependent: :destroy
+            validate: true, foreign_key: "caso_id"#, dependent: :destroy
 
           has_many :victima, class_name: 'Sivel2Gen::Victima',
             through: :caso
@@ -59,7 +59,7 @@ module Sivel2Sjr
 
           validate :sitios_diferentes
           def sitios_diferentes
-            if llegada.present? && salida.present? && id_llegada == id_salida
+            if llegada.present? && salida.present? && llegada_id == salida_id
               errors.add(:llegada, " debe ser diferente al sitio de salida")
             end
           end
@@ -126,7 +126,7 @@ module Sivel2Sjr
           end
 
           def actividades_con_beneficiarios_activos_en_asistencia_ids
-            bids = beneficiarios_activos.pluck(:id_persona)
+            bids = beneficiarios_activos.pluck(:persona_id)
             Cor1440Gen::Asistencia.joins(:persona).
               where("msip_persona.id IN (?)", bids).
               pluck('actividad_id')

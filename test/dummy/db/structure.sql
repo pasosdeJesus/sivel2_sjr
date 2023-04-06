@@ -491,7 +491,7 @@ CREATE TABLE public.sivel2_gen_caso (
     grimpunidad character varying(8),
     grinformacion character varying(8),
     bienes text,
-    id_intervalo integer DEFAULT 5,
+    intervalo_id integer DEFAULT 5,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     ubicacion_id integer
@@ -515,19 +515,19 @@ CREATE SEQUENCE public.sivel2_gen_victima_id_seq
 --
 
 CREATE TABLE public.sivel2_gen_victima (
-    id_persona integer NOT NULL,
-    id_caso integer NOT NULL,
+    persona_id integer NOT NULL,
+    caso_id integer NOT NULL,
     hijos integer,
-    id_profesion integer DEFAULT 22 NOT NULL,
-    id_rangoedad integer DEFAULT 6 NOT NULL,
-    id_filiacion integer DEFAULT 10 NOT NULL,
-    id_sectorsocial integer DEFAULT 15 NOT NULL,
-    id_organizacion integer DEFAULT 16 NOT NULL,
-    id_vinculoestado integer DEFAULT 38 NOT NULL,
+    profesion_id integer DEFAULT 22 NOT NULL,
+    rangoedad_id integer DEFAULT 6 NOT NULL,
+    filiacion_id integer DEFAULT 10 NOT NULL,
+    sectorsocial_id integer DEFAULT 15 NOT NULL,
+    organizacion_id integer DEFAULT 16 NOT NULL,
+    vinculoestado_id integer DEFAULT 38 NOT NULL,
     organizacionarmada integer DEFAULT 35 NOT NULL,
     anotaciones character varying(1000),
-    id_etnia integer DEFAULT 1 NOT NULL,
-    id_iglesia integer DEFAULT 1,
+    etnia_id integer DEFAULT 1 NOT NULL,
+    iglesia_id integer DEFAULT 1,
     orientacionsexual character(1) DEFAULT 'S'::bpchar NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -542,7 +542,7 @@ CREATE TABLE public.sivel2_gen_victima (
 --
 
 CREATE TABLE public.sivel2_sjr_casosjr (
-    id_caso integer NOT NULL,
+    caso_id integer NOT NULL,
     fecharec date NOT NULL,
     asesor integer NOT NULL,
     oficina_id integer DEFAULT 1,
@@ -558,15 +558,15 @@ CREATE TABLE public.sivel2_sjr_casosjr (
     ingresomensual integer,
     gastos integer,
     estrato character(1),
-    id_statusmigratorio integer DEFAULT 0,
-    id_proteccion integer DEFAULT 0,
-    id_idioma integer DEFAULT 0,
+    estatusmigratorio_id integer DEFAULT 0,
+    proteccion_id integer DEFAULT 0,
+    idioma_id integer DEFAULT 0,
     concentimientosjr boolean,
     concentimientobd boolean,
     fechasalida date,
-    id_salida integer,
+    salida_id integer,
     fechallegada date,
-    id_llegada integer,
+    llegada_id integer,
     categoriaref integer,
     observacionesref character varying(5000),
     comosupo_id integer DEFAULT 1
@@ -579,13 +579,13 @@ CREATE TABLE public.sivel2_sjr_casosjr (
 
 CREATE VIEW public.cben1 AS
  SELECT caso.id AS id_caso,
-    victima.id_persona,
+    victima.persona_id AS id_persona,
         CASE
-            WHEN (casosjr.contacto_id = victima.id_persona) THEN 1
+            WHEN (casosjr.contacto_id = victima.persona_id) THEN 1
             ELSE 0
         END AS contacto,
         CASE
-            WHEN (casosjr.contacto_id <> victima.id_persona) THEN 1
+            WHEN (casosjr.contacto_id <> victima.persona_id) THEN 1
             ELSE 0
         END AS beneficiario,
     1 AS npersona,
@@ -593,7 +593,7 @@ CREATE VIEW public.cben1 AS
    FROM public.sivel2_gen_caso caso,
     public.sivel2_sjr_casosjr casosjr,
     public.sivel2_gen_victima victima
-  WHERE ((caso.id = victima.id_caso) AND (caso.id = casosjr.id_caso) AND (caso.id = victima.id_caso));
+  WHERE ((caso.id = victima.caso_id) AND (caso.id = casosjr.caso_id) AND (caso.id = victima.caso_id));
 
 
 --
@@ -625,16 +625,16 @@ CREATE SEQUENCE public.msip_clase_id_seq
 --
 
 CREATE TABLE public.msip_clase (
-    id_clalocal integer,
+    clalocal_cod integer,
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    id_tclase character varying(10) DEFAULT 'CP'::character varying NOT NULL,
+    tclase_id character varying(10) DEFAULT 'CP'::character varying NOT NULL,
     latitud double precision,
     longitud double precision,
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_municipio integer,
+    municipio_id integer,
     id integer DEFAULT nextval('public.msip_clase_id_seq'::regclass) NOT NULL,
     observaciones character varying(5000) COLLATE public.es_co_utf_8,
     ultvigenciaini date,
@@ -667,7 +667,7 @@ CREATE SEQUENCE public.msip_departamento_id_seq
 --
 
 CREATE TABLE public.msip_departamento (
-    id_deplocal integer,
+    deplocal_cod integer,
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
     latitud double precision,
     longitud double precision,
@@ -675,7 +675,7 @@ CREATE TABLE public.msip_departamento (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_pais integer DEFAULT 0 NOT NULL,
+    pais_id integer DEFAULT 0 NOT NULL,
     id integer DEFAULT nextval('public.msip_departamento_id_seq'::regclass) NOT NULL,
     observaciones character varying(5000) COLLATE public.es_co_utf_8,
     codiso character varying(6),
@@ -711,7 +711,7 @@ CREATE SEQUENCE public.msip_municipio_id_seq
 --
 
 CREATE TABLE public.msip_municipio (
-    id_munlocal integer,
+    munlocal_cod integer,
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
     latitud double precision,
     longitud double precision,
@@ -719,7 +719,7 @@ CREATE TABLE public.msip_municipio (
     fechadeshabilitacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_departamento integer,
+    departamento_id integer,
     id integer DEFAULT nextval('public.msip_municipio_id_seq'::regclass) NOT NULL,
     observaciones character varying(5000) COLLATE public.es_co_utf_8,
     codreg integer,
@@ -757,16 +757,15 @@ CREATE TABLE public.msip_ubicacion (
     id integer DEFAULT nextval('public.msip_ubicacion_id_seq'::regclass) NOT NULL,
     lugar character varying(500) COLLATE public.es_co_utf_8,
     sitio character varying(500) COLLATE public.es_co_utf_8,
-    id_tsitio integer DEFAULT 1 NOT NULL,
-    id_caso integer NOT NULL,
+    tsitio_id integer DEFAULT 1 NOT NULL,
     latitud double precision,
     longitud double precision,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_pais integer DEFAULT 0,
-    id_departamento integer,
-    id_municipio integer,
-    id_clase integer
+    pais_id integer DEFAULT 0,
+    departamento_id integer,
+    municipio_id integer,
+    clase_id integer
 );
 
 
@@ -775,13 +774,13 @@ CREATE TABLE public.msip_ubicacion (
 --
 
 CREATE TABLE public.sivel2_sjr_desplazamiento (
-    id_caso integer NOT NULL,
+    caso_id integer NOT NULL,
     fechaexpulsion date NOT NULL,
-    id_expulsion integer NOT NULL,
+    expulsion_id integer NOT NULL,
     fechallegada date NOT NULL,
-    id_llegada integer NOT NULL,
-    id_clasifdesp integer DEFAULT 0 NOT NULL,
-    id_tipodesp integer DEFAULT 0 NOT NULL,
+    llegada_id integer NOT NULL,
+    clasifdesp_id integer DEFAULT 0 NOT NULL,
+    tipodesp_id integer DEFAULT 0 NOT NULL,
     descripcion character varying(5000),
     otrosdatos character varying(1000),
     declaro character(1),
@@ -789,16 +788,16 @@ CREATE TABLE public.sivel2_sjr_desplazamiento (
     fechadeclaracion date,
     departamentodecl integer,
     municipiodecl integer,
-    id_declaroante integer DEFAULT 0,
-    id_inclusion integer DEFAULT 0,
-    id_acreditacion integer DEFAULT 0,
+    declaroante_id integer DEFAULT 0,
+    inclusion_id integer DEFAULT 0,
+    acreditacion_id integer DEFAULT 0,
     retornado boolean,
     reubicado boolean,
     connacionalretorno boolean,
     acompestado boolean,
     connacionaldeportado boolean,
     oficioantes character varying(5000),
-    id_modalidadtierra integer DEFAULT 0,
+    modalidadtierra_id integer DEFAULT 0,
     materialesperdidos character varying(5000),
     inmaterialesperdidos character varying(5000),
     protegiorupta boolean,
@@ -819,13 +818,13 @@ CREATE VIEW public.ultimodesplazamiento AS
  SELECT sivel2_sjr_desplazamiento.id,
     s.id_caso,
     s.fechaexpulsion,
-    sivel2_sjr_desplazamiento.id_expulsion
+    sivel2_sjr_desplazamiento.expulsion_id AS id_expulsion
    FROM public.sivel2_sjr_desplazamiento,
-    ( SELECT sivel2_sjr_desplazamiento_1.id_caso,
+    ( SELECT sivel2_sjr_desplazamiento_1.caso_id AS id_caso,
             max(sivel2_sjr_desplazamiento_1.fechaexpulsion) AS fechaexpulsion
            FROM public.sivel2_sjr_desplazamiento sivel2_sjr_desplazamiento_1
-          GROUP BY sivel2_sjr_desplazamiento_1.id_caso) s
-  WHERE ((sivel2_sjr_desplazamiento.id_caso = s.id_caso) AND (sivel2_sjr_desplazamiento.fechaexpulsion = s.fechaexpulsion));
+          GROUP BY sivel2_sjr_desplazamiento_1.caso_id) s
+  WHERE ((sivel2_sjr_desplazamiento.caso_id = s.id_caso) AND (sivel2_sjr_desplazamiento.fechaexpulsion = s.fechaexpulsion));
 
 
 --
@@ -839,19 +838,19 @@ CREATE VIEW public.cben2 AS
     cben1.beneficiario,
     cben1.npersona,
     cben1.total,
-    ubicacion.id_departamento,
+    ubicacion.departamento_id AS id_departamento,
     departamento.nombre AS departamento_nombre,
-    ubicacion.id_municipio,
+    ubicacion.municipio_id AS id_municipio,
     municipio.nombre AS municipio_nombre,
-    ubicacion.id_clase,
+    ubicacion.clase_id AS id_clase,
     clase.nombre AS clase_nombre,
     ultimodesplazamiento.fechaexpulsion
    FROM (((((public.cben1
      LEFT JOIN public.ultimodesplazamiento ON ((cben1.id_caso = ultimodesplazamiento.id_caso)))
      LEFT JOIN public.msip_ubicacion ubicacion ON ((ultimodesplazamiento.id_expulsion = ubicacion.id)))
-     LEFT JOIN public.msip_departamento departamento ON ((ubicacion.id_departamento = departamento.id)))
-     LEFT JOIN public.msip_municipio municipio ON ((ubicacion.id_municipio = municipio.id)))
-     LEFT JOIN public.msip_clase clase ON ((ubicacion.id_clase = clase.id)));
+     LEFT JOIN public.msip_departamento departamento ON ((ubicacion.departamento_id = departamento.id)))
+     LEFT JOIN public.msip_municipio municipio ON ((ubicacion.municipio_id = municipio.id)))
+     LEFT JOIN public.msip_clase clase ON ((ubicacion.clase_id = clase.id)));
 
 
 --
@@ -2385,8 +2384,8 @@ CREATE SEQUENCE public.respuesta_seq
 --
 
 CREATE TABLE public.sivel2_sjr_aslegal_respuesta (
-    id_respuesta integer NOT NULL,
-    id_aslegal integer DEFAULT 0 NOT NULL,
+    respuesta_id integer NOT NULL,
+    aslegal_id integer DEFAULT 0 NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -2397,7 +2396,7 @@ CREATE TABLE public.sivel2_sjr_aslegal_respuesta (
 --
 
 CREATE TABLE public.sivel2_sjr_respuesta (
-    id_caso integer NOT NULL,
+    caso_id integer NOT NULL,
     fechaatencion date NOT NULL,
     prorrogas boolean,
     numprorrogas integer,
@@ -2414,7 +2413,7 @@ CREATE TABLE public.sivel2_sjr_respuesta (
     orientaciones character varying(5000),
     gestionessjr character varying(5000),
     observaciones character varying(5000),
-    id_personadesea integer DEFAULT 0,
+    personadesea_id integer DEFAULT 0,
     verifcsjr character varying(5000),
     verifcper character varying(5000),
     efectividad character varying(5000),
@@ -2446,12 +2445,12 @@ CREATE VIEW public.cres1 AS
  SELECT caso.id AS id_caso,
     respuesta.fechaatencion,
     casosjr.oficina_id,
-    aslegal_respuesta.id_aslegal
+    aslegal_respuesta.aslegal_id AS id_aslegal
    FROM public.sivel2_gen_caso caso,
     public.sivel2_sjr_casosjr casosjr,
     public.sivel2_sjr_respuesta respuesta,
     public.sivel2_sjr_aslegal_respuesta aslegal_respuesta
-  WHERE ((caso.id = casosjr.id_caso) AND (caso.id = respuesta.id_caso) AND (respuesta.id = aslegal_respuesta.id_respuesta));
+  WHERE ((caso.id = casosjr.caso_id) AND (caso.id = respuesta.caso_id) AND (respuesta.id = aslegal_respuesta.respuesta_id));
 
 
 --
@@ -3151,8 +3150,8 @@ CREATE TABLE public.msip_clase_histvigencia (
     vigenciaini date,
     vigenciafin date NOT NULL,
     nombre character varying(256),
-    id_clalocal integer,
-    id_tclase character varying,
+    clalocal_cod integer,
+    tclase_id character varying,
     observaciones character varying(5000)
 );
 
@@ -3186,7 +3185,7 @@ CREATE TABLE public.msip_departamento_histvigencia (
     vigenciaini date,
     vigenciafin date NOT NULL,
     nombre character varying(256),
-    id_deplocal integer,
+    deplocal_cod integer,
     codiso integer,
     catiso integer,
     codreg integer,
@@ -3388,16 +3387,16 @@ CREATE TABLE public.msip_grupoper (
 --
 
 CREATE VIEW public.msip_mundep_sinorden AS
- SELECT ((msip_departamento.id_deplocal * 1000) + msip_municipio.id_munlocal) AS idlocal,
+ SELECT ((msip_departamento.deplocal_cod * 1000) + msip_municipio.munlocal_cod) AS idlocal,
     (((msip_municipio.nombre)::text || ' / '::text) || (msip_departamento.nombre)::text) AS nombre
    FROM (public.msip_municipio
-     JOIN public.msip_departamento ON ((msip_municipio.id_departamento = msip_departamento.id)))
-  WHERE ((msip_departamento.id_pais = 170) AND (msip_municipio.fechadeshabilitacion IS NULL) AND (msip_departamento.fechadeshabilitacion IS NULL))
+     JOIN public.msip_departamento ON ((msip_municipio.departamento_id = msip_departamento.id)))
+  WHERE ((msip_departamento.pais_id = 170) AND (msip_municipio.fechadeshabilitacion IS NULL) AND (msip_departamento.fechadeshabilitacion IS NULL))
 UNION
- SELECT msip_departamento.id_deplocal AS idlocal,
+ SELECT msip_departamento.deplocal_cod AS idlocal,
     msip_departamento.nombre
    FROM public.msip_departamento
-  WHERE ((msip_departamento.id_pais = 170) AND (msip_departamento.fechadeshabilitacion IS NULL));
+  WHERE ((msip_departamento.pais_id = 170) AND (msip_departamento.fechadeshabilitacion IS NULL));
 
 
 --
@@ -3423,7 +3422,7 @@ CREATE TABLE public.msip_municipio_histvigencia (
     vigenciaini date,
     vigenciafin date NOT NULL,
     nombre character varying(256),
-    id_munlocal integer,
+    munlocal_cod integer,
     observaciones character varying(5000),
     codreg integer
 );
@@ -3710,12 +3709,12 @@ CREATE TABLE public.msip_persona (
     numerodocumento character varying(100),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_pais integer,
+    pais_id integer,
     nacionalde integer,
     tdocumento_id integer,
-    id_departamento integer,
-    id_municipio integer,
-    id_clase integer,
+    departamento_id integer,
+    municipio_id integer,
+    clase_id integer,
     buscable tsvector,
     CONSTRAINT persona_check CHECK (((dianac IS NULL) OR (((dianac >= 1) AND (((mesnac = 1) OR (mesnac = 3) OR (mesnac = 5) OR (mesnac = 7) OR (mesnac = 8) OR (mesnac = 10) OR (mesnac = 12)) AND (dianac <= 31))) OR (((mesnac = 4) OR (mesnac = 6) OR (mesnac = 9) OR (mesnac = 11)) AND (dianac <= 30)) OR ((mesnac = 2) AND (dianac <= 29))))),
     CONSTRAINT persona_mesnac_check CHECK (((mesnac IS NULL) OR ((mesnac >= 1) AND (mesnac <= 12)))),
@@ -3742,7 +3741,7 @@ CREATE SEQUENCE public.msip_persona_trelacion_id_seq
 CREATE TABLE public.msip_persona_trelacion (
     persona1 integer NOT NULL,
     persona2 integer NOT NULL,
-    id_trelacion character(2) DEFAULT 'SI'::bpchar NOT NULL,
+    trelacion_id character(2) DEFAULT 'SI'::bpchar NOT NULL,
     observaciones character varying(5000) COLLATE public.es_co_utf_8,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -4194,10 +4193,10 @@ CREATE SEQUENCE public.sivel2_gen_acto_id_seq
 --
 
 CREATE TABLE public.sivel2_gen_acto (
-    id_presponsable integer NOT NULL,
-    id_categoria integer NOT NULL,
-    id_persona integer NOT NULL,
-    id_caso integer NOT NULL,
+    presponsable_id integer NOT NULL,
+    categoria_id integer NOT NULL,
+    persona_id integer NOT NULL,
+    caso_id integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     id integer DEFAULT nextval('public.sivel2_gen_acto_id_seq'::regclass) NOT NULL
@@ -4221,10 +4220,10 @@ CREATE SEQUENCE public.sivel2_gen_actocolectivo_id_seq
 --
 
 CREATE TABLE public.sivel2_gen_actocolectivo (
-    id_presponsable integer NOT NULL,
-    id_categoria integer NOT NULL,
-    id_grupoper integer NOT NULL,
-    id_caso integer NOT NULL,
+    presponsable_id integer NOT NULL,
+    categoria_id integer NOT NULL,
+    grupoper_id integer NOT NULL,
+    caso_id integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     id integer DEFAULT nextval('public.sivel2_gen_actocolectivo_id_seq'::regclass) NOT NULL
@@ -4237,14 +4236,14 @@ CREATE TABLE public.sivel2_gen_actocolectivo (
 
 CREATE TABLE public.sivel2_gen_anexo_caso (
     id integer DEFAULT nextval('public.anexo_seq'::regclass) NOT NULL,
-    id_caso integer NOT NULL,
+    caso_id integer NOT NULL,
     fecha date NOT NULL,
     fuenteprensa_id integer,
     fechaffrecuente date,
-    id_fotra integer,
+    fotra_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_anexo integer NOT NULL
+    anexo_id integer NOT NULL
 );
 
 
@@ -4254,8 +4253,8 @@ CREATE TABLE public.sivel2_gen_anexo_caso (
 
 CREATE TABLE public.sivel2_gen_anexo_victima (
     id bigint NOT NULL,
-    id_anexo integer,
-    id_victima integer,
+    anexo_id integer,
+    victima_id integer,
     fecha date
 );
 
@@ -4312,8 +4311,8 @@ CREATE TABLE public.sivel2_gen_antecedente (
 --
 
 CREATE TABLE public.sivel2_gen_antecedente_caso (
-    id_antecedente integer NOT NULL,
-    id_caso integer NOT NULL
+    antecedente_id integer NOT NULL,
+    caso_id integer NOT NULL
 );
 
 
@@ -4322,8 +4321,8 @@ CREATE TABLE public.sivel2_gen_antecedente_caso (
 --
 
 CREATE TABLE public.sivel2_gen_antecedente_combatiente (
-    id_antecedente integer NOT NULL,
-    id_combatiente integer NOT NULL
+    antecedente_id integer NOT NULL,
+    combatiente_id integer NOT NULL
 );
 
 
@@ -4332,8 +4331,8 @@ CREATE TABLE public.sivel2_gen_antecedente_combatiente (
 --
 
 CREATE TABLE public.sivel2_gen_antecedente_victima (
-    id_antecedente integer NOT NULL,
-    id_victima integer NOT NULL
+    antecedente_id integer NOT NULL,
+    victima_id integer NOT NULL
 );
 
 
@@ -4342,7 +4341,7 @@ CREATE TABLE public.sivel2_gen_antecedente_victima (
 --
 
 CREATE TABLE public.sivel2_gen_antecedente_victimacolectiva (
-    id_antecedente integer NOT NULL,
+    antecedente_id integer NOT NULL,
     victimacolectiva_id integer NOT NULL
 );
 
@@ -4364,10 +4363,10 @@ CREATE SEQUENCE public.sivel2_gen_caso_categoria_presponsable_id_seq
 --
 
 CREATE TABLE public.sivel2_gen_caso_categoria_presponsable (
-    id_categoria integer NOT NULL,
+    categoria_id integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_caso_presponsable integer NOT NULL,
+    caso_presponsable_id integer NOT NULL,
     id integer DEFAULT nextval('public.sivel2_gen_caso_categoria_presponsable_id_seq'::regclass) NOT NULL
 );
 
@@ -4377,8 +4376,8 @@ CREATE TABLE public.sivel2_gen_caso_categoria_presponsable (
 --
 
 CREATE TABLE public.sivel2_gen_caso_contexto (
-    id_caso integer NOT NULL,
-    id_contexto integer NOT NULL
+    caso_id integer NOT NULL,
+    contexto_id integer NOT NULL
 );
 
 
@@ -4399,9 +4398,9 @@ CREATE SEQUENCE public.sivel2_gen_caso_etiqueta_id_seq
 --
 
 CREATE TABLE public.sivel2_gen_caso_etiqueta (
-    id_caso integer NOT NULL,
-    id_etiqueta integer NOT NULL,
-    id_usuario integer NOT NULL,
+    caso_id integer NOT NULL,
+    etiqueta_id integer NOT NULL,
+    usuario_id integer NOT NULL,
     fecha date NOT NULL,
     observaciones character varying(5000),
     created_at timestamp without time zone,
@@ -4427,8 +4426,8 @@ CREATE SEQUENCE public.sivel2_gen_caso_fotra_id_seq
 --
 
 CREATE TABLE public.sivel2_gen_caso_fotra (
-    id_caso integer NOT NULL,
-    id_fotra integer,
+    caso_id integer NOT NULL,
+    fotra_id integer,
     anotacion character varying(1024),
     fecha date NOT NULL,
     ubicacionfisica character varying(1024),
@@ -4446,8 +4445,8 @@ CREATE TABLE public.sivel2_gen_caso_fotra (
 --
 
 CREATE TABLE public.sivel2_gen_caso_frontera (
-    id_frontera integer NOT NULL,
-    id_caso integer NOT NULL,
+    frontera_id integer NOT NULL,
+    caso_id integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -4475,7 +4474,7 @@ CREATE TABLE public.sivel2_gen_caso_fuenteprensa (
     clasificacion character varying(100),
     ubicacionfisica character varying(1024),
     fuenteprensa_id integer NOT NULL,
-    id_caso integer NOT NULL,
+    caso_id integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     id integer DEFAULT nextval('public.sivel2_gen_caso_fuenteprensa_id_seq'::regclass) NOT NULL,
@@ -4500,8 +4499,8 @@ CREATE SEQUENCE public.sivel2_gen_caso_presponsable_id_seq
 --
 
 CREATE TABLE public.sivel2_gen_caso_presponsable (
-    id_caso integer NOT NULL,
-    id_presponsable integer NOT NULL,
+    caso_id integer NOT NULL,
+    presponsable_id integer NOT NULL,
     tipo integer DEFAULT 0 NOT NULL,
     bloque character varying(50),
     frente character varying(50),
@@ -4518,8 +4517,8 @@ CREATE TABLE public.sivel2_gen_caso_presponsable (
 --
 
 CREATE TABLE public.sivel2_gen_caso_region (
-    id_caso integer NOT NULL,
-    id_region integer NOT NULL
+    caso_id integer NOT NULL,
+    region_id integer NOT NULL
 );
 
 
@@ -4568,8 +4567,8 @@ ALTER SEQUENCE public.sivel2_gen_caso_solicitud_id_seq OWNED BY public.sivel2_ge
 --
 
 CREATE TABLE public.sivel2_gen_caso_usuario (
-    id_usuario integer NOT NULL,
-    id_caso integer NOT NULL,
+    usuario_id integer NOT NULL,
+    caso_id integer NOT NULL,
     fechainicio date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
@@ -4585,7 +4584,7 @@ CREATE TABLE public.sivel2_gen_categoria (
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
     fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
     fechadeshabilitacion date,
-    id_pconsolidado integer,
+    pconsolidado_id integer,
     contadaen integer,
     tipocat character(1) DEFAULT 'I'::bpchar,
     created_at timestamp without time zone,
@@ -4607,14 +4606,14 @@ CREATE TABLE public.sivel2_gen_combatiente (
     alias character varying(500),
     edad integer,
     sexo character varying(1) DEFAULT 'S'::character varying NOT NULL,
-    id_resagresion integer DEFAULT 1 NOT NULL,
-    id_profesion integer DEFAULT 22,
-    id_rangoedad integer DEFAULT 6,
-    id_filiacion integer DEFAULT 10,
-    id_sectorsocial integer DEFAULT 15,
-    id_organizacion integer DEFAULT 16,
-    id_vinculoestado integer DEFAULT 38,
-    id_caso integer,
+    resagresion_id integer DEFAULT 1 NOT NULL,
+    profesion_id integer DEFAULT 22,
+    rangoedad_id integer DEFAULT 6,
+    filiacion_id integer DEFAULT 10,
+    sectorsocial_id integer DEFAULT 15,
+    organizacion_id integer DEFAULT 16,
+    vinculoestado_id integer DEFAULT 38,
+    caso_id integer,
     organizacionarmada integer DEFAULT 35,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -4724,7 +4723,7 @@ CREATE TABLE public.usuario (
 --
 
 CREATE VIEW public.sivel2_gen_conscaso1 AS
- SELECT casosjr.id_caso AS caso_id,
+ SELECT casosjr.caso_id,
     array_to_string(ARRAY( SELECT (((persona.nombres)::text || ' '::text) || (persona.apellidos)::text)
            FROM public.msip_persona persona
           WHERE (persona.id = casosjr.contacto_id)), ', '::text) AS contacto,
@@ -4735,19 +4734,19 @@ CREATE VIEW public.sivel2_gen_conscaso1 AS
     statusmigratorio.nombre AS statusmigratorio,
     array_to_string(ARRAY( SELECT respuesta.fechaatencion
            FROM public.sivel2_sjr_respuesta respuesta
-          WHERE (respuesta.id_caso = casosjr.id_caso)
+          WHERE (respuesta.caso_id = casosjr.caso_id)
           ORDER BY respuesta.fechaatencion DESC
          LIMIT 1), ', '::text) AS ultimaatencion_fecha,
     caso.memo,
     array_to_string(ARRAY( SELECT (((persona.nombres)::text || ' '::text) || (persona.apellidos)::text)
            FROM public.msip_persona persona,
             public.sivel2_gen_victima victima
-          WHERE ((persona.id = victima.id_persona) AND (victima.id_caso = caso.id))), ', '::text) AS victimas
+          WHERE ((persona.id = victima.persona_id) AND (victima.caso_id = caso.id))), ', '::text) AS victimas
    FROM ((((public.sivel2_sjr_casosjr casosjr
-     JOIN public.sivel2_gen_caso caso ON ((casosjr.id_caso = caso.id)))
+     JOIN public.sivel2_gen_caso caso ON ((casosjr.caso_id = caso.id)))
      JOIN public.msip_oficina oficina ON ((oficina.id = casosjr.oficina_id)))
      JOIN public.usuario ON ((usuario.id = casosjr.asesor)))
-     LEFT JOIN public.sivel2_sjr_statusmigratorio statusmigratorio ON ((statusmigratorio.id = casosjr.id_statusmigratorio)));
+     LEFT JOIN public.sivel2_sjr_statusmigratorio statusmigratorio ON ((statusmigratorio.id = casosjr.estatusmigratorio_id)));
 
 
 --
@@ -4980,7 +4979,7 @@ CREATE TABLE public.sivel2_gen_filiacion (
 --
 
 CREATE TABLE public.sivel2_gen_filiacion_victimacolectiva (
-    id_filiacion integer NOT NULL,
+    filiacion_id integer NOT NULL,
     victimacolectiva_id integer NOT NULL
 );
 
@@ -5176,7 +5175,7 @@ CREATE TABLE public.sivel2_gen_organizacion (
 --
 
 CREATE TABLE public.sivel2_gen_organizacion_victimacolectiva (
-    id_organizacion integer NOT NULL,
+    organizacion_id integer NOT NULL,
     victimacolectiva_id integer NOT NULL
 );
 
@@ -5284,7 +5283,7 @@ CREATE TABLE public.sivel2_gen_profesion (
 --
 
 CREATE TABLE public.sivel2_gen_profesion_victimacolectiva (
-    id_profesion integer NOT NULL,
+    profesion_id integer NOT NULL,
     victimacolectiva_id integer NOT NULL
 );
 
@@ -5324,7 +5323,7 @@ CREATE TABLE public.sivel2_gen_rangoedad (
 --
 
 CREATE TABLE public.sivel2_gen_rangoedad_victimacolectiva (
-    id_rangoedad integer NOT NULL,
+    rangoedad_id integer NOT NULL,
     victimacolectiva_id integer NOT NULL
 );
 
@@ -5424,7 +5423,7 @@ CREATE TABLE public.sivel2_gen_sectorsocial (
 --
 
 CREATE TABLE public.sivel2_gen_sectorsocial_victimacolectiva (
-    id_sectorsocial integer NOT NULL,
+    sectorsocial_id integer NOT NULL,
     victimacolectiva_id integer NOT NULL
 );
 
@@ -5460,7 +5459,7 @@ CREATE TABLE public.sivel2_gen_supracategoria (
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
-    id_tviolencia character varying(1) NOT NULL,
+    tviolencia_id character varying(1) NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     observaciones character varying(5000),
@@ -5503,8 +5502,8 @@ CREATE SEQUENCE public.sivel2_gen_victimacolectiva_id_seq
 --
 
 CREATE TABLE public.sivel2_gen_victimacolectiva (
-    id_grupoper integer NOT NULL,
-    id_caso integer NOT NULL,
+    grupoper_id integer NOT NULL,
+    caso_id integer NOT NULL,
     personasaprox integer,
     organizacionarmada integer DEFAULT 35,
     created_at timestamp without time zone,
@@ -5519,7 +5518,7 @@ CREATE TABLE public.sivel2_gen_victimacolectiva (
 
 CREATE TABLE public.sivel2_gen_victimacolectiva_vinculoestado (
     victimacolectiva_id integer NOT NULL,
-    id_vinculoestado integer NOT NULL
+    vinculoestado_id integer NOT NULL
 );
 
 
@@ -5617,7 +5616,7 @@ CREATE TABLE public.sivel2_sjr_actosjr (
     fecha date NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_acto integer NOT NULL,
+    acto_id integer NOT NULL,
     desplazamiento_id integer
 );
 
@@ -5702,8 +5701,8 @@ ALTER SEQUENCE public.sivel2_sjr_aspsicosocial_id_seq OWNED BY public.sivel2_sjr
 --
 
 CREATE TABLE public.sivel2_sjr_aspsicosocial_respuesta (
-    id_aspsicosocial bigint NOT NULL,
-    id_respuesta bigint NOT NULL
+    aspsicosocial_id bigint NOT NULL,
+    respuesta_id bigint NOT NULL
 );
 
 
@@ -5750,8 +5749,8 @@ CREATE TABLE public.sivel2_sjr_ayudaestado_derecho (
 --
 
 CREATE TABLE public.sivel2_sjr_ayudaestado_respuesta (
-    id_respuesta integer NOT NULL,
-    id_ayudaestado integer DEFAULT 0 NOT NULL,
+    respuesta_id integer NOT NULL,
+    ayudaestado_id integer DEFAULT 0 NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -5800,10 +5799,10 @@ CREATE TABLE public.sivel2_sjr_ayudasjr_derecho (
 --
 
 CREATE TABLE public.sivel2_sjr_ayudasjr_respuesta (
-    id_ayudasjr integer DEFAULT 0 NOT NULL,
+    ayudasjr_id integer DEFAULT 0 NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_respuesta integer NOT NULL
+    respuesta_id integer NOT NULL
 );
 
 
@@ -5930,8 +5929,8 @@ CREATE TABLE public.sivel2_sjr_derecho (
 --
 
 CREATE TABLE public.sivel2_sjr_derecho_respuesta (
-    id_respuesta integer NOT NULL,
-    id_derecho integer DEFAULT 9 NOT NULL,
+    respuesta_id integer NOT NULL,
+    derecho_id integer DEFAULT 9 NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -6141,8 +6140,8 @@ CREATE TABLE public.sivel2_sjr_motivosjr_derecho (
 --
 
 CREATE TABLE public.sivel2_sjr_motivosjr_respuesta (
-    id_respuesta integer NOT NULL,
-    id_motivosjr integer DEFAULT 0 NOT NULL,
+    respuesta_id integer NOT NULL,
+    motivosjr_id integer DEFAULT 0 NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -6229,8 +6228,8 @@ CREATE TABLE public.sivel2_sjr_progestado_derecho (
 --
 
 CREATE TABLE public.sivel2_sjr_progestado_respuesta (
-    id_respuesta integer NOT NULL,
-    id_progestado integer DEFAULT 0 NOT NULL,
+    respuesta_id integer NOT NULL,
+    progestado_id integer DEFAULT 0 NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -6270,12 +6269,12 @@ CREATE TABLE public.sivel2_sjr_proteccion (
 
 CREATE TABLE public.sivel2_sjr_refugio (
     id integer NOT NULL,
-    id_caso integer,
+    caso_id integer,
     fechasalida date,
-    id_salida integer,
+    salida_id integer,
     fechallegada date,
-    id_llegada integer,
-    id_causaref integer,
+    llegada_id integer,
+    causaref_id integer,
     observaciones character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone
@@ -6393,19 +6392,19 @@ CREATE TABLE public.sivel2_sjr_tipodesp (
 
 CREATE TABLE public.sivel2_sjr_victimasjr (
     sindocumento boolean,
-    id_estadocivil integer DEFAULT 0,
-    id_rolfamilia integer DEFAULT 0 NOT NULL,
+    estadocivil_id integer DEFAULT 0,
+    rolfamilia_id integer DEFAULT 0 NOT NULL,
     cabezafamilia boolean,
-    id_maternidad integer DEFAULT 0,
+    maternidad_id integer DEFAULT 0,
     discapacitado boolean,
-    id_actividadoficio integer DEFAULT 0,
-    id_escolaridad integer DEFAULT 0,
+    actividadoficio_id integer DEFAULT 0,
+    escolaridad_id integer DEFAULT 0,
     asisteescuela boolean,
     tienesisben boolean,
-    id_departamento integer,
-    id_municipio integer,
+    departamento_id integer,
+    municipio_id integer,
     nivelsisben integer,
-    id_regimensalud integer DEFAULT 0,
+    regimensalud_id integer DEFAULT 0,
     eps character varying(1000),
     libretamilitar boolean,
     distrito integer,
@@ -6413,8 +6412,8 @@ CREATE TABLE public.sivel2_sjr_victimasjr (
     fechadesagregacion date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    id_victima integer NOT NULL,
-    id_pais integer,
+    victima_id integer NOT NULL,
+    pais_id integer,
     enfermedad character varying(5000),
     ndiscapacidad character varying(100)
 );
@@ -7053,7 +7052,7 @@ ALTER TABLE ONLY public.sivel2_gen_acto
 --
 
 ALTER TABLE ONLY public.sivel2_gen_acto
-    ADD CONSTRAINT acto_id_presponsable_id_categoria_id_persona_id_caso_key UNIQUE (id_presponsable, id_categoria, id_persona, id_caso);
+    ADD CONSTRAINT acto_id_presponsable_id_categoria_id_persona_id_caso_key UNIQUE (presponsable_id, categoria_id, persona_id, caso_id);
 
 
 --
@@ -7069,7 +7068,7 @@ ALTER TABLE ONLY public.sivel2_gen_acto
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_actosjr
-    ADD CONSTRAINT actosjr_id_acto_key UNIQUE (id_acto);
+    ADD CONSTRAINT actosjr_id_acto_key UNIQUE (acto_id);
 
 
 --
@@ -7077,7 +7076,7 @@ ALTER TABLE ONLY public.sivel2_sjr_actosjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_actosjr
-    ADD CONSTRAINT actosjr_pkey PRIMARY KEY (id_acto);
+    ADD CONSTRAINT actosjr_pkey PRIMARY KEY (acto_id);
 
 
 --
@@ -7117,7 +7116,7 @@ ALTER TABLE ONLY public.sivel2_sjr_aslegal
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_aslegal_respuesta
-    ADD CONSTRAINT aslegal_respuesta_pkey PRIMARY KEY (id_respuesta, id_aslegal);
+    ADD CONSTRAINT aslegal_respuesta_pkey PRIMARY KEY (respuesta_id, aslegal_id);
 
 
 --
@@ -7133,7 +7132,7 @@ ALTER TABLE ONLY public.sivel2_sjr_ayudaestado
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_ayudaestado_respuesta
-    ADD CONSTRAINT ayudaestado_respuesta_pkey PRIMARY KEY (id_respuesta, id_ayudaestado);
+    ADD CONSTRAINT ayudaestado_respuesta_pkey PRIMARY KEY (respuesta_id, ayudaestado_id);
 
 
 --
@@ -7149,7 +7148,7 @@ ALTER TABLE ONLY public.sivel2_sjr_ayudasjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_ayudasjr_respuesta
-    ADD CONSTRAINT ayudasjr_respuesta_pkey PRIMARY KEY (id_respuesta, id_ayudasjr);
+    ADD CONSTRAINT ayudasjr_respuesta_pkey PRIMARY KEY (respuesta_id, ayudasjr_id);
 
 
 --
@@ -7197,7 +7196,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_usuario
-    ADD CONSTRAINT caso_usuario_pkey PRIMARY KEY (id_usuario, id_caso);
+    ADD CONSTRAINT caso_usuario_pkey PRIMARY KEY (usuario_id, caso_id);
 
 
 --
@@ -7205,7 +7204,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_usuario
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_casosjr
-    ADD CONSTRAINT casosjr_pkey PRIMARY KEY (id_caso);
+    ADD CONSTRAINT casosjr_pkey PRIMARY KEY (caso_id);
 
 
 --
@@ -7565,7 +7564,7 @@ ALTER TABLE ONLY public.sivel2_sjr_derecho
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_derecho_respuesta
-    ADD CONSTRAINT derecho_respuesta_pkey PRIMARY KEY (id_respuesta, id_derecho);
+    ADD CONSTRAINT derecho_respuesta_pkey PRIMARY KEY (respuesta_id, derecho_id);
 
 
 --
@@ -7573,7 +7572,7 @@ ALTER TABLE ONLY public.sivel2_sjr_derecho_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
-    ADD CONSTRAINT desplazamiento_id_caso_fechaexpulsion_key UNIQUE (id_caso, fechaexpulsion);
+    ADD CONSTRAINT desplazamiento_id_caso_fechaexpulsion_key UNIQUE (caso_id, fechaexpulsion);
 
 
 --
@@ -7805,7 +7804,7 @@ ALTER TABLE ONLY public.sivel2_sjr_motivosjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_motivosjr_respuesta
-    ADD CONSTRAINT motivosjr_respuesta_pkey PRIMARY KEY (id_respuesta, id_motivosjr);
+    ADD CONSTRAINT motivosjr_respuesta_pkey PRIMARY KEY (respuesta_id, motivosjr_id);
 
 
 --
@@ -7909,7 +7908,7 @@ ALTER TABLE ONLY public.msip_clase
 --
 
 ALTER TABLE ONLY public.msip_clase
-    ADD CONSTRAINT msip_clase_id_municipio_id_clalocal_key UNIQUE (id_municipio, id_clalocal);
+    ADD CONSTRAINT msip_clase_id_municipio_id_clalocal_key UNIQUE (municipio_id, clalocal_cod);
 
 
 --
@@ -7941,7 +7940,7 @@ ALTER TABLE ONLY public.msip_departamento
 --
 
 ALTER TABLE ONLY public.msip_departamento
-    ADD CONSTRAINT msip_departamento_id_pais_id_deplocal_unico UNIQUE (id_pais, id_deplocal);
+    ADD CONSTRAINT msip_departamento_id_pais_id_deplocal_unico UNIQUE (pais_id, deplocal_cod);
 
 
 --
@@ -8005,7 +8004,7 @@ ALTER TABLE ONLY public.msip_municipio_histvigencia
 --
 
 ALTER TABLE ONLY public.msip_municipio
-    ADD CONSTRAINT msip_municipio_id_departamento_id_munlocal_unico UNIQUE (id_departamento, id_munlocal);
+    ADD CONSTRAINT msip_municipio_id_departamento_id_munlocal_unico UNIQUE (departamento_id, munlocal_cod);
 
 
 --
@@ -8101,7 +8100,7 @@ ALTER TABLE ONLY public.msip_persona_trelacion
 --
 
 ALTER TABLE ONLY public.msip_persona_trelacion
-    ADD CONSTRAINT msip_persona_trelacion_persona1_persona2_id_trelacion_key UNIQUE (persona1, persona2, id_trelacion);
+    ADD CONSTRAINT msip_persona_trelacion_persona1_persona2_id_trelacion_key UNIQUE (persona1, persona2, trelacion_id);
 
 
 --
@@ -8261,7 +8260,7 @@ ALTER TABLE ONLY public.sivel2_sjr_progestado
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_progestado_respuesta
-    ADD CONSTRAINT progestado_respuesta_pkey PRIMARY KEY (id_respuesta, id_progestado);
+    ADD CONSTRAINT progestado_respuesta_pkey PRIMARY KEY (respuesta_id, progestado_id);
 
 
 --
@@ -8365,7 +8364,7 @@ ALTER TABLE ONLY public.sivel2_gen_actocolectivo
 --
 
 ALTER TABLE ONLY public.sivel2_gen_actocolectivo
-    ADD CONSTRAINT sivel2_gen_actocolectivo_id_presponsable_id_categoria_id_gr_key UNIQUE (id_presponsable, id_categoria, id_grupoper, id_caso);
+    ADD CONSTRAINT sivel2_gen_actocolectivo_id_presponsable_id_categoria_id_gr_key UNIQUE (presponsable_id, categoria_id, grupoper_id, caso_id);
 
 
 --
@@ -8397,7 +8396,7 @@ ALTER TABLE ONLY public.sivel2_gen_anexo_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_caso
-    ADD CONSTRAINT sivel2_gen_antecedente_caso_pkey1 PRIMARY KEY (id_antecedente, id_caso);
+    ADD CONSTRAINT sivel2_gen_antecedente_caso_pkey1 PRIMARY KEY (antecedente_id, caso_id);
 
 
 --
@@ -8405,7 +8404,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_caso
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_combatiente
-    ADD CONSTRAINT sivel2_gen_antecedente_combatiente_pkey1 PRIMARY KEY (id_antecedente, id_combatiente);
+    ADD CONSTRAINT sivel2_gen_antecedente_combatiente_pkey1 PRIMARY KEY (antecedente_id, combatiente_id);
 
 
 --
@@ -8413,7 +8412,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_combatiente
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_victima
-    ADD CONSTRAINT sivel2_gen_antecedente_victima_pkey1 PRIMARY KEY (id_antecedente, id_victima);
+    ADD CONSTRAINT sivel2_gen_antecedente_victima_pkey1 PRIMARY KEY (antecedente_id, victima_id);
 
 
 --
@@ -8421,7 +8420,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_victimacolectiva
-    ADD CONSTRAINT sivel2_gen_antecedente_victimacolectiva_pkey1 PRIMARY KEY (id_antecedente, victimacolectiva_id);
+    ADD CONSTRAINT sivel2_gen_antecedente_victimacolectiva_pkey1 PRIMARY KEY (antecedente_id, victimacolectiva_id);
 
 
 --
@@ -8429,7 +8428,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_categoria_presponsable
-    ADD CONSTRAINT sivel2_gen_caso_categoria_pre_id_caso_presponsable_id_categ_key UNIQUE (id_caso_presponsable, id_categoria);
+    ADD CONSTRAINT sivel2_gen_caso_categoria_pre_id_caso_presponsable_id_categ_key UNIQUE (caso_presponsable_id, categoria_id);
 
 
 --
@@ -8453,7 +8452,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_categoria_presponsable
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_contexto
-    ADD CONSTRAINT sivel2_gen_caso_contexto_pkey1 PRIMARY KEY (id_caso, id_contexto);
+    ADD CONSTRAINT sivel2_gen_caso_contexto_pkey1 PRIMARY KEY (caso_id, contexto_id);
 
 
 --
@@ -8461,7 +8460,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_contexto
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_fotra
-    ADD CONSTRAINT sivel2_gen_caso_fotra_id_caso_nombre_fecha_key UNIQUE (id_caso, nombre, fecha);
+    ADD CONSTRAINT sivel2_gen_caso_fotra_id_caso_nombre_fecha_key UNIQUE (caso_id, nombre, fecha);
 
 
 --
@@ -8477,7 +8476,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_fotra
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_fuenteprensa
-    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_id_caso_fecha_fuenteprensa_id_key UNIQUE (id_caso, fecha, fuenteprensa_id);
+    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_id_caso_fecha_fuenteprensa_id_key UNIQUE (caso_id, fecha, fuenteprensa_id);
 
 
 --
@@ -8493,7 +8492,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_fuenteprensa
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_region
-    ADD CONSTRAINT sivel2_gen_caso_region_pkey1 PRIMARY KEY (id_caso, id_region);
+    ADD CONSTRAINT sivel2_gen_caso_region_pkey1 PRIMARY KEY (caso_id, region_id);
 
 
 --
@@ -8549,7 +8548,7 @@ ALTER TABLE ONLY public.sivel2_gen_etnia_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_filiacion_victimacolectiva
-    ADD CONSTRAINT sivel2_gen_filiacion_victimacolectiva_pkey1 PRIMARY KEY (id_filiacion, victimacolectiva_id);
+    ADD CONSTRAINT sivel2_gen_filiacion_victimacolectiva_pkey1 PRIMARY KEY (filiacion_id, victimacolectiva_id);
 
 
 --
@@ -8557,7 +8556,7 @@ ALTER TABLE ONLY public.sivel2_gen_filiacion_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_organizacion_victimacolectiva
-    ADD CONSTRAINT sivel2_gen_organizacion_victimacolectiva_pkey1 PRIMARY KEY (id_organizacion, victimacolectiva_id);
+    ADD CONSTRAINT sivel2_gen_organizacion_victimacolectiva_pkey1 PRIMARY KEY (organizacion_id, victimacolectiva_id);
 
 
 --
@@ -8565,7 +8564,7 @@ ALTER TABLE ONLY public.sivel2_gen_organizacion_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_profesion_victimacolectiva
-    ADD CONSTRAINT sivel2_gen_profesion_victimacolectiva_pkey1 PRIMARY KEY (id_profesion, victimacolectiva_id);
+    ADD CONSTRAINT sivel2_gen_profesion_victimacolectiva_pkey1 PRIMARY KEY (profesion_id, victimacolectiva_id);
 
 
 --
@@ -8573,7 +8572,7 @@ ALTER TABLE ONLY public.sivel2_gen_profesion_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_rangoedad_victimacolectiva
-    ADD CONSTRAINT sivel2_gen_rangoedad_victimacolectiva_pkey1 PRIMARY KEY (id_rangoedad, victimacolectiva_id);
+    ADD CONSTRAINT sivel2_gen_rangoedad_victimacolectiva_pkey1 PRIMARY KEY (rangoedad_id, victimacolectiva_id);
 
 
 --
@@ -8589,7 +8588,7 @@ ALTER TABLE ONLY public.sivel2_gen_resagresion
 --
 
 ALTER TABLE ONLY public.sivel2_gen_sectorsocial_victimacolectiva
-    ADD CONSTRAINT sivel2_gen_sectorsocial_victimacolectiva_pkey1 PRIMARY KEY (id_sectorsocial, victimacolectiva_id);
+    ADD CONSTRAINT sivel2_gen_sectorsocial_victimacolectiva_pkey1 PRIMARY KEY (sectorsocial_id, victimacolectiva_id);
 
 
 --
@@ -8597,7 +8596,7 @@ ALTER TABLE ONLY public.sivel2_gen_sectorsocial_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_supracategoria
-    ADD CONSTRAINT sivel2_gen_supracategoria_id_tviolencia_codigo_key UNIQUE (id_tviolencia, codigo);
+    ADD CONSTRAINT sivel2_gen_supracategoria_id_tviolencia_codigo_key UNIQUE (tviolencia_id, codigo);
 
 
 --
@@ -8613,7 +8612,7 @@ ALTER TABLE ONLY public.sivel2_gen_supracategoria
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victimacolectiva
-    ADD CONSTRAINT sivel2_gen_victimacolectiva_id_caso_id_grupoper_key UNIQUE (id_caso, id_grupoper);
+    ADD CONSTRAINT sivel2_gen_victimacolectiva_id_caso_id_grupoper_key UNIQUE (caso_id, grupoper_id);
 
 
 --
@@ -8637,7 +8636,7 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
-    ADD CONSTRAINT sivel2_gen_victimacolectiva_vinculoestado_pkey1 PRIMARY KEY (victimacolectiva_id, id_vinculoestado);
+    ADD CONSTRAINT sivel2_gen_victimacolectiva_vinculoestado_pkey1 PRIMARY KEY (victimacolectiva_id, vinculoestado_id);
 
 
 --
@@ -8709,7 +8708,7 @@ ALTER TABLE ONLY public.usuario
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_caso_id_persona_key UNIQUE (id_caso, id_persona);
+    ADD CONSTRAINT victima_id_caso_id_persona_key UNIQUE (caso_id, persona_id);
 
 
 --
@@ -8717,7 +8716,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_caso_id_persona_key1 UNIQUE (id_caso, id_persona);
+    ADD CONSTRAINT victima_id_caso_id_persona_key1 UNIQUE (caso_id, persona_id);
 
 
 --
@@ -8725,7 +8724,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_caso_id_persona_key2 UNIQUE (id_caso, id_persona);
+    ADD CONSTRAINT victima_id_caso_id_persona_key2 UNIQUE (caso_id, persona_id);
 
 
 --
@@ -8733,7 +8732,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_caso_id_persona_key3 UNIQUE (id_caso, id_persona);
+    ADD CONSTRAINT victima_id_caso_id_persona_key3 UNIQUE (caso_id, persona_id);
 
 
 --
@@ -8741,7 +8740,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_caso_id_persona_key4 UNIQUE (id_caso, id_persona);
+    ADD CONSTRAINT victima_id_caso_id_persona_key4 UNIQUE (caso_id, persona_id);
 
 
 --
@@ -8765,7 +8764,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_pkey PRIMARY KEY (id_victima);
+    ADD CONSTRAINT victimasjr_pkey PRIMARY KEY (victima_id);
 
 
 --
@@ -8910,31 +8909,31 @@ CREATE INDEX index_msip_solicitud_usuarionotificar_on_usuarionotificar_id ON pub
 
 
 --
--- Name: index_msip_ubicacion_on_id_clase; Type: INDEX; Schema: public; Owner: -
+-- Name: index_msip_ubicacion_on_clase_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_msip_ubicacion_on_id_clase ON public.msip_ubicacion USING btree (id_clase);
-
-
---
--- Name: index_msip_ubicacion_on_id_departamento; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_msip_ubicacion_on_id_departamento ON public.msip_ubicacion USING btree (id_departamento);
+CREATE INDEX index_msip_ubicacion_on_clase_id ON public.msip_ubicacion USING btree (clase_id);
 
 
 --
--- Name: index_msip_ubicacion_on_id_municipio; Type: INDEX; Schema: public; Owner: -
+-- Name: index_msip_ubicacion_on_departamento_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_msip_ubicacion_on_id_municipio ON public.msip_ubicacion USING btree (id_municipio);
+CREATE INDEX index_msip_ubicacion_on_departamento_id ON public.msip_ubicacion USING btree (departamento_id);
 
 
 --
--- Name: index_msip_ubicacion_on_id_pais; Type: INDEX; Schema: public; Owner: -
+-- Name: index_msip_ubicacion_on_municipio_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_msip_ubicacion_on_id_pais ON public.msip_ubicacion USING btree (id_pais);
+CREATE INDEX index_msip_ubicacion_on_municipio_id ON public.msip_ubicacion USING btree (municipio_id);
+
+
+--
+-- Name: index_msip_ubicacion_on_pais_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_msip_ubicacion_on_pais_id ON public.msip_ubicacion USING btree (pais_id);
 
 
 --
@@ -9029,59 +9028,52 @@ CREATE UNIQUE INDEX index_usuario_on_reset_password_token ON public.usuario USIN
 
 
 --
--- Name: indice_msip_ubicacion_sobre_id_caso; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX indice_msip_ubicacion_sobre_id_caso ON public.msip_ubicacion USING btree (id_caso);
-
-
---
 -- Name: indice_sivel2_gen_acto_sobre_id_caso; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_gen_acto_sobre_id_caso ON public.sivel2_gen_acto USING btree (id_caso);
+CREATE INDEX indice_sivel2_gen_acto_sobre_id_caso ON public.sivel2_gen_acto USING btree (caso_id);
 
 
 --
 -- Name: indice_sivel2_gen_acto_sobre_id_categoria; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_gen_acto_sobre_id_categoria ON public.sivel2_gen_acto USING btree (id_categoria);
+CREATE INDEX indice_sivel2_gen_acto_sobre_id_categoria ON public.sivel2_gen_acto USING btree (categoria_id);
 
 
 --
 -- Name: indice_sivel2_gen_acto_sobre_id_persona; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_gen_acto_sobre_id_persona ON public.sivel2_gen_acto USING btree (id_persona);
+CREATE INDEX indice_sivel2_gen_acto_sobre_id_persona ON public.sivel2_gen_acto USING btree (persona_id);
 
 
 --
 -- Name: indice_sivel2_gen_acto_sobre_id_presponsable; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_gen_acto_sobre_id_presponsable ON public.sivel2_gen_acto USING btree (id_presponsable);
+CREATE INDEX indice_sivel2_gen_acto_sobre_id_presponsable ON public.sivel2_gen_acto USING btree (presponsable_id);
 
 
 --
 -- Name: indice_sivel2_gen_caso_presponsable_sobre_id_caso; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_gen_caso_presponsable_sobre_id_caso ON public.sivel2_gen_caso_presponsable USING btree (id_caso);
+CREATE INDEX indice_sivel2_gen_caso_presponsable_sobre_id_caso ON public.sivel2_gen_caso_presponsable USING btree (caso_id);
 
 
 --
 -- Name: indice_sivel2_gen_caso_presponsable_sobre_id_presponsable; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_gen_caso_presponsable_sobre_id_presponsable ON public.sivel2_gen_caso_presponsable USING btree (id_presponsable);
+CREATE INDEX indice_sivel2_gen_caso_presponsable_sobre_id_presponsable ON public.sivel2_gen_caso_presponsable USING btree (presponsable_id);
 
 
 --
 -- Name: indice_sivel2_gen_caso_presponsable_sobre_ids_caso_presp; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_gen_caso_presponsable_sobre_ids_caso_presp ON public.sivel2_gen_caso_presponsable USING btree (id_caso, id_presponsable);
+CREATE INDEX indice_sivel2_gen_caso_presponsable_sobre_ids_caso_presp ON public.sivel2_gen_caso_presponsable USING btree (caso_id, presponsable_id);
 
 
 --
@@ -9116,7 +9108,7 @@ CREATE INDEX indice_sivel2_sjr_casosjr_on_asesor ON public.sivel2_sjr_casosjr US
 -- Name: indice_sivel2_sjr_casosjr_on_caso_contacto; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_sjr_casosjr_on_caso_contacto ON public.sivel2_sjr_casosjr USING btree (id_caso, contacto_id);
+CREATE INDEX indice_sivel2_sjr_casosjr_on_caso_contacto ON public.sivel2_sjr_casosjr USING btree (caso_id, contacto_id);
 
 
 --
@@ -9137,14 +9129,14 @@ CREATE INDEX indice_sivel2_sjr_desplazamiento_on_fechaexpulsion ON public.sivel2
 -- Name: indice_sivel2_sjr_desplazamiento_on_id_caso; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_sjr_desplazamiento_on_id_caso ON public.sivel2_sjr_desplazamiento USING btree (id_caso);
+CREATE INDEX indice_sivel2_sjr_desplazamiento_on_id_caso ON public.sivel2_sjr_desplazamiento USING btree (caso_id);
 
 
 --
 -- Name: indice_sivel2_sjr_desplazamiento_on_id_llegada; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX indice_sivel2_sjr_desplazamiento_on_id_llegada ON public.sivel2_sjr_desplazamiento USING btree (id_llegada);
+CREATE INDEX indice_sivel2_sjr_desplazamiento_on_id_llegada ON public.sivel2_sjr_desplazamiento USING btree (llegada_id);
 
 
 --
@@ -9165,21 +9157,21 @@ CREATE INDEX msip_busca_mundep ON public.msip_mundep USING gin (mundep);
 -- Name: msip_clase_id_municipio; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX msip_clase_id_municipio ON public.msip_clase USING btree (id_municipio);
+CREATE INDEX msip_clase_id_municipio ON public.msip_clase USING btree (municipio_id);
 
 
 --
 -- Name: msip_departamento_id_pais; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX msip_departamento_id_pais ON public.msip_departamento USING btree (id_pais);
+CREATE INDEX msip_departamento_id_pais ON public.msip_departamento USING btree (pais_id);
 
 
 --
 -- Name: msip_municipio_id_departamento; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX msip_municipio_id_departamento ON public.msip_municipio USING btree (id_departamento);
+CREATE INDEX msip_municipio_id_departamento ON public.msip_municipio USING btree (departamento_id);
 
 
 --
@@ -9249,77 +9241,77 @@ CREATE INDEX sivel2_gen_obs_fildep_u_idx ON public.sivel2_gen_observador_filtrod
 -- Name: sivel2_gen_victima_id_caso; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_caso ON public.sivel2_gen_victima USING btree (id_caso);
+CREATE INDEX sivel2_gen_victima_id_caso ON public.sivel2_gen_victima USING btree (caso_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_etnia; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_etnia ON public.sivel2_gen_victima USING btree (id_etnia);
+CREATE INDEX sivel2_gen_victima_id_etnia ON public.sivel2_gen_victima USING btree (etnia_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_filiacion; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_filiacion ON public.sivel2_gen_victima USING btree (id_filiacion);
+CREATE INDEX sivel2_gen_victima_id_filiacion ON public.sivel2_gen_victima USING btree (filiacion_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_iglesia; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_iglesia ON public.sivel2_gen_victima USING btree (id_iglesia);
+CREATE INDEX sivel2_gen_victima_id_iglesia ON public.sivel2_gen_victima USING btree (iglesia_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_organizacion; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_organizacion ON public.sivel2_gen_victima USING btree (id_organizacion);
+CREATE INDEX sivel2_gen_victima_id_organizacion ON public.sivel2_gen_victima USING btree (organizacion_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_persona; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_persona ON public.sivel2_gen_victima USING btree (id_persona);
+CREATE INDEX sivel2_gen_victima_id_persona ON public.sivel2_gen_victima USING btree (persona_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_profesion; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_profesion ON public.sivel2_gen_victima USING btree (id_profesion);
+CREATE INDEX sivel2_gen_victima_id_profesion ON public.sivel2_gen_victima USING btree (profesion_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_rangoedad; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_rangoedad ON public.sivel2_gen_victima USING btree (id_rangoedad);
+CREATE INDEX sivel2_gen_victima_id_rangoedad ON public.sivel2_gen_victima USING btree (rangoedad_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_rangoedad_ind; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_rangoedad_ind ON public.sivel2_gen_victima USING btree (id_rangoedad);
+CREATE INDEX sivel2_gen_victima_id_rangoedad_ind ON public.sivel2_gen_victima USING btree (rangoedad_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_sectorsocial; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_sectorsocial ON public.sivel2_gen_victima USING btree (id_sectorsocial);
+CREATE INDEX sivel2_gen_victima_id_sectorsocial ON public.sivel2_gen_victima USING btree (sectorsocial_id);
 
 
 --
 -- Name: sivel2_gen_victima_id_vinculoestado; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX sivel2_gen_victima_id_vinculoestado ON public.sivel2_gen_victima USING btree (id_vinculoestado);
+CREATE INDEX sivel2_gen_victima_id_vinculoestado ON public.sivel2_gen_victima USING btree (vinculoestado_id);
 
 
 --
@@ -9398,7 +9390,7 @@ ALTER TABLE ONLY public.cor1440_gen_actividad
 --
 
 ALTER TABLE ONLY public.sivel2_gen_acto
-    ADD CONSTRAINT acto_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT acto_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9406,7 +9398,7 @@ ALTER TABLE ONLY public.sivel2_gen_acto
 --
 
 ALTER TABLE ONLY public.sivel2_gen_acto
-    ADD CONSTRAINT acto_id_categoria_fkey FOREIGN KEY (id_categoria) REFERENCES public.sivel2_gen_categoria(id);
+    ADD CONSTRAINT acto_id_categoria_fkey FOREIGN KEY (categoria_id) REFERENCES public.sivel2_gen_categoria(id);
 
 
 --
@@ -9414,7 +9406,7 @@ ALTER TABLE ONLY public.sivel2_gen_acto
 --
 
 ALTER TABLE ONLY public.sivel2_gen_acto
-    ADD CONSTRAINT acto_id_persona_fkey FOREIGN KEY (id_persona) REFERENCES public.msip_persona(id);
+    ADD CONSTRAINT acto_id_persona_fkey FOREIGN KEY (persona_id) REFERENCES public.msip_persona(id);
 
 
 --
@@ -9422,7 +9414,7 @@ ALTER TABLE ONLY public.sivel2_gen_acto
 --
 
 ALTER TABLE ONLY public.sivel2_gen_acto
-    ADD CONSTRAINT acto_id_presponsable_fkey FOREIGN KEY (id_presponsable) REFERENCES public.sivel2_gen_presponsable(id);
+    ADD CONSTRAINT acto_id_presponsable_fkey FOREIGN KEY (presponsable_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -9430,7 +9422,7 @@ ALTER TABLE ONLY public.sivel2_gen_acto
 --
 
 ALTER TABLE ONLY public.sivel2_gen_acto
-    ADD CONSTRAINT acto_victima_lf FOREIGN KEY (id_caso, id_persona) REFERENCES public.sivel2_gen_victima(id_caso, id_persona);
+    ADD CONSTRAINT acto_victima_lf FOREIGN KEY (caso_id, persona_id) REFERENCES public.sivel2_gen_victima(caso_id, persona_id);
 
 
 --
@@ -9438,7 +9430,7 @@ ALTER TABLE ONLY public.sivel2_gen_acto
 --
 
 ALTER TABLE ONLY public.sivel2_gen_actocolectivo
-    ADD CONSTRAINT actocolectivo_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT actocolectivo_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9446,7 +9438,7 @@ ALTER TABLE ONLY public.sivel2_gen_actocolectivo
 --
 
 ALTER TABLE ONLY public.sivel2_gen_actocolectivo
-    ADD CONSTRAINT actocolectivo_id_categoria_fkey FOREIGN KEY (id_categoria) REFERENCES public.sivel2_gen_categoria(id);
+    ADD CONSTRAINT actocolectivo_id_categoria_fkey FOREIGN KEY (categoria_id) REFERENCES public.sivel2_gen_categoria(id);
 
 
 --
@@ -9454,7 +9446,7 @@ ALTER TABLE ONLY public.sivel2_gen_actocolectivo
 --
 
 ALTER TABLE ONLY public.sivel2_gen_actocolectivo
-    ADD CONSTRAINT actocolectivo_id_grupoper_fkey FOREIGN KEY (id_grupoper) REFERENCES public.msip_grupoper(id);
+    ADD CONSTRAINT actocolectivo_id_grupoper_fkey FOREIGN KEY (grupoper_id) REFERENCES public.msip_grupoper(id);
 
 
 --
@@ -9462,7 +9454,7 @@ ALTER TABLE ONLY public.sivel2_gen_actocolectivo
 --
 
 ALTER TABLE ONLY public.sivel2_gen_actocolectivo
-    ADD CONSTRAINT actocolectivo_id_presponsable_fkey FOREIGN KEY (id_presponsable) REFERENCES public.sivel2_gen_presponsable(id);
+    ADD CONSTRAINT actocolectivo_id_presponsable_fkey FOREIGN KEY (presponsable_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -9478,7 +9470,7 @@ ALTER TABLE ONLY public.sivel2_sjr_actosjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_actosjr
-    ADD CONSTRAINT actosjr_id_acto_fkey FOREIGN KEY (id_acto) REFERENCES public.sivel2_gen_acto(id);
+    ADD CONSTRAINT actosjr_id_acto_fkey FOREIGN KEY (acto_id) REFERENCES public.sivel2_gen_acto(id);
 
 
 --
@@ -9494,7 +9486,7 @@ ALTER TABLE ONLY public.sivel2_gen_anexo_caso
 --
 
 ALTER TABLE ONLY public.sivel2_gen_anexo_caso
-    ADD CONSTRAINT anexo_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT anexo_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9502,7 +9494,7 @@ ALTER TABLE ONLY public.sivel2_gen_anexo_caso
 --
 
 ALTER TABLE ONLY public.sivel2_gen_anexo_caso
-    ADD CONSTRAINT anexo_id_fotra_fkey FOREIGN KEY (id_fotra) REFERENCES public.sivel2_gen_fotra(id);
+    ADD CONSTRAINT anexo_id_fotra_fkey FOREIGN KEY (fotra_id) REFERENCES public.sivel2_gen_fotra(id);
 
 
 --
@@ -9510,7 +9502,7 @@ ALTER TABLE ONLY public.sivel2_gen_anexo_caso
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_caso
-    ADD CONSTRAINT antecedente_caso_id_antecedente_fkey1 FOREIGN KEY (id_antecedente) REFERENCES public.sivel2_gen_antecedente(id);
+    ADD CONSTRAINT antecedente_caso_id_antecedente_fkey1 FOREIGN KEY (antecedente_id) REFERENCES public.sivel2_gen_antecedente(id);
 
 
 --
@@ -9518,7 +9510,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_caso
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_caso
-    ADD CONSTRAINT antecedente_caso_id_caso_fkey1 FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT antecedente_caso_id_caso_fkey1 FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9526,7 +9518,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_caso
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_combatiente
-    ADD CONSTRAINT antecedente_combatiente_id_antecedente_fkey FOREIGN KEY (id_antecedente) REFERENCES public.sivel2_gen_antecedente(id);
+    ADD CONSTRAINT antecedente_combatiente_id_antecedente_fkey FOREIGN KEY (antecedente_id) REFERENCES public.sivel2_gen_antecedente(id);
 
 
 --
@@ -9534,7 +9526,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_combatiente
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_combatiente
-    ADD CONSTRAINT antecedente_combatiente_id_combatiente_fkey FOREIGN KEY (id_combatiente) REFERENCES public.sivel2_gen_combatiente(id);
+    ADD CONSTRAINT antecedente_combatiente_id_combatiente_fkey FOREIGN KEY (combatiente_id) REFERENCES public.sivel2_gen_combatiente(id);
 
 
 --
@@ -9542,7 +9534,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_combatiente
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_victima
-    ADD CONSTRAINT antecedente_victima_id_antecedente_fkey1 FOREIGN KEY (id_antecedente) REFERENCES public.sivel2_gen_antecedente(id);
+    ADD CONSTRAINT antecedente_victima_id_antecedente_fkey1 FOREIGN KEY (antecedente_id) REFERENCES public.sivel2_gen_antecedente(id);
 
 
 --
@@ -9550,7 +9542,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_victima
-    ADD CONSTRAINT antecedente_victima_id_victima_fkey1 FOREIGN KEY (id_victima) REFERENCES public.sivel2_gen_victima(id);
+    ADD CONSTRAINT antecedente_victima_id_victima_fkey1 FOREIGN KEY (victima_id) REFERENCES public.sivel2_gen_victima(id);
 
 
 --
@@ -9558,7 +9550,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_antecedente_victimacolectiva
-    ADD CONSTRAINT antecedente_victimacolectiva_id_antecedente_fkey FOREIGN KEY (id_antecedente) REFERENCES public.sivel2_gen_antecedente(id);
+    ADD CONSTRAINT antecedente_victimacolectiva_id_antecedente_fkey FOREIGN KEY (antecedente_id) REFERENCES public.sivel2_gen_antecedente(id);
 
 
 --
@@ -9574,7 +9566,7 @@ ALTER TABLE ONLY public.sivel2_gen_antecedente_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_aslegal_respuesta
-    ADD CONSTRAINT aslegal_respuesta_id_aslegal_fkey FOREIGN KEY (id_aslegal) REFERENCES public.sivel2_sjr_aslegal(id);
+    ADD CONSTRAINT aslegal_respuesta_id_aslegal_fkey FOREIGN KEY (aslegal_id) REFERENCES public.sivel2_sjr_aslegal(id);
 
 
 --
@@ -9582,7 +9574,7 @@ ALTER TABLE ONLY public.sivel2_sjr_aslegal_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_aslegal_respuesta
-    ADD CONSTRAINT aslegal_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES public.sivel2_sjr_respuesta(id);
+    ADD CONSTRAINT aslegal_respuesta_id_respuesta_fkey FOREIGN KEY (respuesta_id) REFERENCES public.sivel2_sjr_respuesta(id);
 
 
 --
@@ -9590,7 +9582,7 @@ ALTER TABLE ONLY public.sivel2_sjr_aslegal_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_ayudaestado_respuesta
-    ADD CONSTRAINT ayudaestado_respuesta_id_ayudaestado_fkey FOREIGN KEY (id_ayudaestado) REFERENCES public.sivel2_sjr_ayudaestado(id);
+    ADD CONSTRAINT ayudaestado_respuesta_id_ayudaestado_fkey FOREIGN KEY (ayudaestado_id) REFERENCES public.sivel2_sjr_ayudaestado(id);
 
 
 --
@@ -9598,7 +9590,7 @@ ALTER TABLE ONLY public.sivel2_sjr_ayudaestado_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_ayudaestado_respuesta
-    ADD CONSTRAINT ayudaestado_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES public.sivel2_sjr_respuesta(id);
+    ADD CONSTRAINT ayudaestado_respuesta_id_respuesta_fkey FOREIGN KEY (respuesta_id) REFERENCES public.sivel2_sjr_respuesta(id);
 
 
 --
@@ -9606,7 +9598,7 @@ ALTER TABLE ONLY public.sivel2_sjr_ayudaestado_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_ayudasjr_respuesta
-    ADD CONSTRAINT ayudasjr_respuesta_id_ayudasjr_fkey FOREIGN KEY (id_ayudasjr) REFERENCES public.sivel2_sjr_ayudasjr(id);
+    ADD CONSTRAINT ayudasjr_respuesta_id_ayudasjr_fkey FOREIGN KEY (ayudasjr_id) REFERENCES public.sivel2_sjr_ayudasjr(id);
 
 
 --
@@ -9614,7 +9606,7 @@ ALTER TABLE ONLY public.sivel2_sjr_ayudasjr_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_ayudasjr_respuesta
-    ADD CONSTRAINT ayudasjr_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES public.sivel2_sjr_respuesta(id);
+    ADD CONSTRAINT ayudasjr_respuesta_id_respuesta_fkey FOREIGN KEY (respuesta_id) REFERENCES public.sivel2_sjr_respuesta(id);
 
 
 --
@@ -9622,7 +9614,7 @@ ALTER TABLE ONLY public.sivel2_sjr_ayudasjr_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_categoria_presponsable
-    ADD CONSTRAINT caso_categoria_presponsable_id_caso_presponsable_fkey FOREIGN KEY (id_caso_presponsable) REFERENCES public.sivel2_gen_caso_presponsable(id);
+    ADD CONSTRAINT caso_categoria_presponsable_id_caso_presponsable_fkey FOREIGN KEY (caso_presponsable_id) REFERENCES public.sivel2_gen_caso_presponsable(id);
 
 
 --
@@ -9630,7 +9622,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_categoria_presponsable
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_categoria_presponsable
-    ADD CONSTRAINT caso_categoria_presponsable_id_categoria_fkey FOREIGN KEY (id_categoria) REFERENCES public.sivel2_gen_categoria(id);
+    ADD CONSTRAINT caso_categoria_presponsable_id_categoria_fkey FOREIGN KEY (categoria_id) REFERENCES public.sivel2_gen_categoria(id);
 
 
 --
@@ -9638,7 +9630,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_categoria_presponsable
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_contexto
-    ADD CONSTRAINT caso_contexto_id_caso_fkey1 FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT caso_contexto_id_caso_fkey1 FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9646,7 +9638,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_contexto
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_contexto
-    ADD CONSTRAINT caso_contexto_id_contexto_fkey1 FOREIGN KEY (id_contexto) REFERENCES public.sivel2_gen_contexto(id);
+    ADD CONSTRAINT caso_contexto_id_contexto_fkey1 FOREIGN KEY (contexto_id) REFERENCES public.sivel2_gen_contexto(id);
 
 
 --
@@ -9654,7 +9646,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_contexto
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_etiqueta
-    ADD CONSTRAINT caso_etiqueta_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT caso_etiqueta_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9662,7 +9654,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_etiqueta
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_etiqueta
-    ADD CONSTRAINT caso_etiqueta_id_etiqueta_fkey FOREIGN KEY (id_etiqueta) REFERENCES public.msip_etiqueta(id);
+    ADD CONSTRAINT caso_etiqueta_id_etiqueta_fkey FOREIGN KEY (etiqueta_id) REFERENCES public.msip_etiqueta(id);
 
 
 --
@@ -9670,7 +9662,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_etiqueta
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_etiqueta
-    ADD CONSTRAINT caso_etiqueta_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuario(id);
+    ADD CONSTRAINT caso_etiqueta_id_usuario_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
 
 
 --
@@ -9678,7 +9670,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_etiqueta
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_fotra
-    ADD CONSTRAINT caso_fotra_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT caso_fotra_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9686,7 +9678,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_fotra
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_fotra
-    ADD CONSTRAINT caso_fotra_id_fotra_fkey FOREIGN KEY (id_fotra) REFERENCES public.sivel2_gen_fotra(id);
+    ADD CONSTRAINT caso_fotra_id_fotra_fkey FOREIGN KEY (fotra_id) REFERENCES public.sivel2_gen_fotra(id);
 
 
 --
@@ -9694,7 +9686,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_fotra
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_frontera
-    ADD CONSTRAINT caso_frontera_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT caso_frontera_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9702,7 +9694,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_frontera
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_frontera
-    ADD CONSTRAINT caso_frontera_id_frontera_fkey FOREIGN KEY (id_frontera) REFERENCES public.sivel2_gen_frontera(id);
+    ADD CONSTRAINT caso_frontera_id_frontera_fkey FOREIGN KEY (frontera_id) REFERENCES public.sivel2_gen_frontera(id);
 
 
 --
@@ -9710,7 +9702,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_frontera
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_usuario
-    ADD CONSTRAINT caso_funcionario_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT caso_funcionario_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9718,7 +9710,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_usuario
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
-    ADD CONSTRAINT caso_presponsable_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT caso_presponsable_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9726,7 +9718,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
-    ADD CONSTRAINT caso_presponsable_id_presponsable_fkey FOREIGN KEY (id_presponsable) REFERENCES public.sivel2_gen_presponsable(id);
+    ADD CONSTRAINT caso_presponsable_id_presponsable_fkey FOREIGN KEY (presponsable_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -9734,7 +9726,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_region
-    ADD CONSTRAINT caso_region_id_caso_fkey1 FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT caso_region_id_caso_fkey1 FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9742,7 +9734,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_region
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_region
-    ADD CONSTRAINT caso_region_id_region_fkey1 FOREIGN KEY (id_region) REFERENCES public.sivel2_gen_region(id);
+    ADD CONSTRAINT caso_region_id_region_fkey1 FOREIGN KEY (region_id) REFERENCES public.sivel2_gen_region(id);
 
 
 --
@@ -9766,7 +9758,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_respuestafor
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_usuario
-    ADD CONSTRAINT caso_usuario_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT caso_usuario_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9774,7 +9766,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_usuario
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_usuario
-    ADD CONSTRAINT caso_usuario_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuario(id);
+    ADD CONSTRAINT caso_usuario_id_usuario_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuario(id);
 
 
 --
@@ -9814,7 +9806,7 @@ ALTER TABLE ONLY public.sivel2_sjr_casosjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_casosjr
-    ADD CONSTRAINT casosjr_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT casosjr_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -9822,7 +9814,7 @@ ALTER TABLE ONLY public.sivel2_sjr_casosjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_casosjr
-    ADD CONSTRAINT casosjr_id_idioma_fkey FOREIGN KEY (id_idioma) REFERENCES public.sivel2_sjr_idioma(id);
+    ADD CONSTRAINT casosjr_id_idioma_fkey FOREIGN KEY (idioma_id) REFERENCES public.sivel2_sjr_idioma(id);
 
 
 --
@@ -9830,7 +9822,7 @@ ALTER TABLE ONLY public.sivel2_sjr_casosjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_casosjr
-    ADD CONSTRAINT casosjr_id_llegada_fkey FOREIGN KEY (id_llegada) REFERENCES public.msip_ubicacion(id);
+    ADD CONSTRAINT casosjr_id_llegada_fkey FOREIGN KEY (llegada_id) REFERENCES public.msip_ubicacion(id);
 
 
 --
@@ -9838,7 +9830,7 @@ ALTER TABLE ONLY public.sivel2_sjr_casosjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_casosjr
-    ADD CONSTRAINT casosjr_id_proteccion_fkey FOREIGN KEY (id_proteccion) REFERENCES public.sivel2_sjr_proteccion(id);
+    ADD CONSTRAINT casosjr_id_proteccion_fkey FOREIGN KEY (proteccion_id) REFERENCES public.sivel2_sjr_proteccion(id);
 
 
 --
@@ -9854,7 +9846,7 @@ ALTER TABLE ONLY public.sivel2_sjr_casosjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_casosjr
-    ADD CONSTRAINT casosjr_id_salida_fkey FOREIGN KEY (id_salida) REFERENCES public.msip_ubicacion(id);
+    ADD CONSTRAINT casosjr_id_salida_fkey FOREIGN KEY (salida_id) REFERENCES public.msip_ubicacion(id);
 
 
 --
@@ -9862,7 +9854,7 @@ ALTER TABLE ONLY public.sivel2_sjr_casosjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_casosjr
-    ADD CONSTRAINT casosjr_id_statusmigratorio_fkey FOREIGN KEY (id_statusmigratorio) REFERENCES public.sivel2_sjr_statusmigratorio(id);
+    ADD CONSTRAINT casosjr_id_statusmigratorio_fkey FOREIGN KEY (estatusmigratorio_id) REFERENCES public.sivel2_sjr_statusmigratorio(id);
 
 
 --
@@ -9878,7 +9870,7 @@ ALTER TABLE ONLY public.sivel2_gen_categoria
 --
 
 ALTER TABLE ONLY public.msip_clase
-    ADD CONSTRAINT clase_id_tclase_fkey FOREIGN KEY (id_tclase) REFERENCES public.msip_tclase(id);
+    ADD CONSTRAINT clase_id_tclase_fkey FOREIGN KEY (tclase_id) REFERENCES public.msip_tclase(id);
 
 
 --
@@ -9918,7 +9910,7 @@ ALTER TABLE ONLY public.cor1440_gen_actividad_actividadtipo
 --
 
 ALTER TABLE ONLY public.msip_departamento
-    ADD CONSTRAINT departamento_id_pais_fkey FOREIGN KEY (id_pais) REFERENCES public.msip_pais(id);
+    ADD CONSTRAINT departamento_id_pais_fkey FOREIGN KEY (pais_id) REFERENCES public.msip_pais(id);
 
 
 --
@@ -9926,7 +9918,7 @@ ALTER TABLE ONLY public.msip_departamento
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_derecho_respuesta
-    ADD CONSTRAINT derecho_respuesta_id_derecho_fkey FOREIGN KEY (id_derecho) REFERENCES public.sivel2_sjr_derecho(id);
+    ADD CONSTRAINT derecho_respuesta_id_derecho_fkey FOREIGN KEY (derecho_id) REFERENCES public.sivel2_sjr_derecho(id);
 
 
 --
@@ -9934,7 +9926,7 @@ ALTER TABLE ONLY public.sivel2_sjr_derecho_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_derecho_respuesta
-    ADD CONSTRAINT derecho_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES public.sivel2_sjr_respuesta(id);
+    ADD CONSTRAINT derecho_respuesta_id_respuesta_fkey FOREIGN KEY (respuesta_id) REFERENCES public.sivel2_sjr_respuesta(id);
 
 
 --
@@ -9942,7 +9934,7 @@ ALTER TABLE ONLY public.sivel2_sjr_derecho_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
-    ADD CONSTRAINT desplazamiento_expulsion_fkey FOREIGN KEY (id_expulsion) REFERENCES public.msip_ubicacion(id);
+    ADD CONSTRAINT desplazamiento_expulsion_fkey FOREIGN KEY (expulsion_id) REFERENCES public.msip_ubicacion(id);
 
 
 --
@@ -9950,7 +9942,7 @@ ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
-    ADD CONSTRAINT desplazamiento_id_expulsion_fkey FOREIGN KEY (id_expulsion) REFERENCES public.msip_ubicacion(id);
+    ADD CONSTRAINT desplazamiento_id_expulsion_fkey FOREIGN KEY (expulsion_id) REFERENCES public.msip_ubicacion(id);
 
 
 --
@@ -9958,7 +9950,7 @@ ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
-    ADD CONSTRAINT desplazamiento_id_llegada_fkey FOREIGN KEY (id_llegada) REFERENCES public.msip_ubicacion(id);
+    ADD CONSTRAINT desplazamiento_id_llegada_fkey FOREIGN KEY (llegada_id) REFERENCES public.msip_ubicacion(id);
 
 
 --
@@ -9966,7 +9958,7 @@ ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
-    ADD CONSTRAINT desplazamiento_id_tipodesp_fkey FOREIGN KEY (id_tipodesp) REFERENCES public.sivel2_sjr_tipodesp(id);
+    ADD CONSTRAINT desplazamiento_id_tipodesp_fkey FOREIGN KEY (tipodesp_id) REFERENCES public.sivel2_sjr_tipodesp(id);
 
 
 --
@@ -9974,7 +9966,7 @@ ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_desplazamiento
-    ADD CONSTRAINT desplazamiento_llegada_fkey FOREIGN KEY (id_llegada) REFERENCES public.msip_ubicacion(id);
+    ADD CONSTRAINT desplazamiento_llegada_fkey FOREIGN KEY (llegada_id) REFERENCES public.msip_ubicacion(id);
 
 
 --
@@ -10006,7 +9998,7 @@ ALTER TABLE ONLY public.sivel2_gen_etnia_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_filiacion_victimacolectiva
-    ADD CONSTRAINT filiacion_victimacolectiva_id_filiacion_fkey FOREIGN KEY (id_filiacion) REFERENCES public.sivel2_gen_filiacion(id);
+    ADD CONSTRAINT filiacion_victimacolectiva_id_filiacion_fkey FOREIGN KEY (filiacion_id) REFERENCES public.sivel2_gen_filiacion(id);
 
 
 --
@@ -10022,7 +10014,7 @@ ALTER TABLE ONLY public.sivel2_gen_filiacion_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_anexo_victima
-    ADD CONSTRAINT fk_rails_003eee651b FOREIGN KEY (id_anexo) REFERENCES public.msip_anexo(id);
+    ADD CONSTRAINT fk_rails_003eee651b FOREIGN KEY (anexo_id) REFERENCES public.msip_anexo(id);
 
 
 --
@@ -10038,7 +10030,7 @@ ALTER TABLE ONLY public.cor1440_gen_actividad_valorcampotind
 --
 
 ALTER TABLE ONLY public.sivel2_gen_anexo_victima
-    ADD CONSTRAINT fk_rails_01da62195c FOREIGN KEY (id_victima) REFERENCES public.sivel2_gen_victima(id);
+    ADD CONSTRAINT fk_rails_01da62195c FOREIGN KEY (victima_id) REFERENCES public.sivel2_gen_victima(id);
 
 
 --
@@ -10086,7 +10078,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_solicitud
 --
 
 ALTER TABLE ONLY public.msip_municipio
-    ADD CONSTRAINT fk_rails_089870a38d FOREIGN KEY (id_departamento) REFERENCES public.msip_departamento(id);
+    ADD CONSTRAINT fk_rails_089870a38d FOREIGN KEY (departamento_id) REFERENCES public.msip_departamento(id);
 
 
 --
@@ -10158,7 +10150,7 @@ ALTER TABLE ONLY public.msip_etiqueta_municipio
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
-    ADD CONSTRAINT fk_rails_118837ae4c FOREIGN KEY (id_presponsable) REFERENCES public.sivel2_gen_presponsable(id);
+    ADD CONSTRAINT fk_rails_118837ae4c FOREIGN KEY (presponsable_id) REFERENCES public.sivel2_gen_presponsable(id);
 
 
 --
@@ -10358,7 +10350,7 @@ ALTER TABLE ONLY public.cor1440_gen_proyectofinanciero
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_aspsicosocial_respuesta
-    ADD CONSTRAINT fk_rails_389ca79c21 FOREIGN KEY (id_respuesta) REFERENCES public.sivel2_sjr_respuesta(id);
+    ADD CONSTRAINT fk_rails_389ca79c21 FOREIGN KEY (respuesta_id) REFERENCES public.sivel2_sjr_respuesta(id);
 
 
 --
@@ -10414,7 +10406,7 @@ ALTER TABLE ONLY public.cor1440_gen_actividad
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_actividad_casosjr
-    ADD CONSTRAINT fk_rails_4499c9b012 FOREIGN KEY (casosjr_id) REFERENCES public.sivel2_sjr_casosjr(id_caso);
+    ADD CONSTRAINT fk_rails_4499c9b012 FOREIGN KEY (casosjr_id) REFERENCES public.sivel2_sjr_casosjr(caso_id);
 
 
 --
@@ -10454,7 +10446,7 @@ ALTER TABLE ONLY public.cor1440_gen_indicadorpf
 --
 
 ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT fk_rails_4dd7a7f238 FOREIGN KEY (id_departamento) REFERENCES public.msip_departamento(id);
+    ADD CONSTRAINT fk_rails_4dd7a7f238 FOREIGN KEY (departamento_id) REFERENCES public.msip_departamento(id);
 
 
 --
@@ -10526,7 +10518,7 @@ ALTER TABLE ONLY public.cor1440_gen_formulario_mindicadorpf
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_presponsable
-    ADD CONSTRAINT fk_rails_5a8abbdd31 FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT fk_rails_5a8abbdd31 FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -10566,7 +10558,7 @@ ALTER TABLE ONLY public.cor1440_gen_plantillahcm_proyectofinanciero
 --
 
 ALTER TABLE ONLY public.sivel2_gen_combatiente
-    ADD CONSTRAINT fk_rails_6485d06d37 FOREIGN KEY (id_vinculoestado) REFERENCES public.sivel2_gen_vinculoestado(id);
+    ADD CONSTRAINT fk_rails_6485d06d37 FOREIGN KEY (vinculoestado_id) REFERENCES public.sivel2_gen_vinculoestado(id);
 
 
 --
@@ -10630,7 +10622,7 @@ ALTER TABLE ONLY public.cor1440_gen_actividadpf_mindicadorpf
 --
 
 ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT fk_rails_6ed05ed576 FOREIGN KEY (id_pais) REFERENCES public.msip_pais(id);
+    ADD CONSTRAINT fk_rails_6ed05ed576 FOREIGN KEY (pais_id) REFERENCES public.msip_pais(id);
 
 
 --
@@ -10766,7 +10758,7 @@ ALTER TABLE ONLY public.msip_grupo_usuario
 --
 
 ALTER TABLE ONLY public.msip_departamento
-    ADD CONSTRAINT fk_rails_92093de1a1 FOREIGN KEY (id_pais) REFERENCES public.msip_pais(id);
+    ADD CONSTRAINT fk_rails_92093de1a1 FOREIGN KEY (pais_id) REFERENCES public.msip_pais(id);
 
 
 --
@@ -10798,7 +10790,7 @@ ALTER TABLE ONLY public.cor1440_gen_efecto_respuestafor
 --
 
 ALTER TABLE ONLY public.sivel2_gen_combatiente
-    ADD CONSTRAINT fk_rails_95f4a0b8f6 FOREIGN KEY (id_profesion) REFERENCES public.sivel2_gen_profesion(id);
+    ADD CONSTRAINT fk_rails_95f4a0b8f6 FOREIGN KEY (profesion_id) REFERENCES public.sivel2_gen_profesion(id);
 
 
 --
@@ -10822,7 +10814,7 @@ ALTER TABLE ONLY public.mr519_gen_campo
 --
 
 ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT fk_rails_a1d509c79a FOREIGN KEY (id_clase) REFERENCES public.msip_clase(id);
+    ADD CONSTRAINT fk_rails_a1d509c79a FOREIGN KEY (clase_id) REFERENCES public.msip_clase(id);
 
 
 --
@@ -10862,7 +10854,7 @@ ALTER TABLE ONLY public.cor1440_gen_beneficiariopf
 --
 
 ALTER TABLE ONLY public.sivel2_gen_combatiente
-    ADD CONSTRAINT fk_rails_af43e915a6 FOREIGN KEY (id_filiacion) REFERENCES public.sivel2_gen_filiacion(id);
+    ADD CONSTRAINT fk_rails_af43e915a6 FOREIGN KEY (filiacion_id) REFERENCES public.sivel2_gen_filiacion(id);
 
 
 --
@@ -10886,7 +10878,7 @@ ALTER TABLE ONLY public.cor1440_gen_indicadorpf
 --
 
 ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT fk_rails_b82283d945 FOREIGN KEY (id_municipio) REFERENCES public.msip_municipio(id);
+    ADD CONSTRAINT fk_rails_b82283d945 FOREIGN KEY (municipio_id) REFERENCES public.msip_municipio(id);
 
 
 --
@@ -11118,7 +11110,7 @@ ALTER TABLE ONLY public.heb412_gen_campoplantillahcm
 --
 
 ALTER TABLE ONLY public.sivel2_gen_combatiente
-    ADD CONSTRAINT fk_rails_e2d01a5a99 FOREIGN KEY (id_sectorsocial) REFERENCES public.sivel2_gen_sectorsocial(id);
+    ADD CONSTRAINT fk_rails_e2d01a5a99 FOREIGN KEY (sectorsocial_id) REFERENCES public.sivel2_gen_sectorsocial(id);
 
 
 --
@@ -11158,7 +11150,7 @@ ALTER TABLE ONLY public.cor1440_gen_beneficiariopf
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_aspsicosocial_respuesta
-    ADD CONSTRAINT fk_rails_e8410c8faa FOREIGN KEY (id_aspsicosocial) REFERENCES public.sivel2_sjr_aspsicosocial(id);
+    ADD CONSTRAINT fk_rails_e8410c8faa FOREIGN KEY (aspsicosocial_id) REFERENCES public.sivel2_sjr_aspsicosocial(id);
 
 
 --
@@ -11214,7 +11206,7 @@ ALTER TABLE ONLY public.msip_orgsocial_sectororgsocial
 --
 
 ALTER TABLE ONLY public.sivel2_gen_combatiente
-    ADD CONSTRAINT fk_rails_f0cf2a7bec FOREIGN KEY (id_resagresion) REFERENCES public.sivel2_gen_resagresion(id);
+    ADD CONSTRAINT fk_rails_f0cf2a7bec FOREIGN KEY (resagresion_id) REFERENCES public.sivel2_gen_resagresion(id);
 
 
 --
@@ -11238,7 +11230,7 @@ ALTER TABLE ONLY public.cor1440_gen_datointermedioti
 --
 
 ALTER TABLE ONLY public.sivel2_gen_combatiente
-    ADD CONSTRAINT fk_rails_f77dda7a40 FOREIGN KEY (id_organizacion) REFERENCES public.sivel2_gen_organizacion(id);
+    ADD CONSTRAINT fk_rails_f77dda7a40 FOREIGN KEY (organizacion_id) REFERENCES public.sivel2_gen_organizacion(id);
 
 
 --
@@ -11262,7 +11254,7 @@ ALTER TABLE ONLY public.cor1440_gen_actividadtipo_formulario
 --
 
 ALTER TABLE ONLY public.sivel2_gen_combatiente
-    ADD CONSTRAINT fk_rails_fb02819ec4 FOREIGN KEY (id_rangoedad) REFERENCES public.sivel2_gen_rangoedad(id);
+    ADD CONSTRAINT fk_rails_fb02819ec4 FOREIGN KEY (rangoedad_id) REFERENCES public.sivel2_gen_rangoedad(id);
 
 
 --
@@ -11270,7 +11262,7 @@ ALTER TABLE ONLY public.sivel2_gen_combatiente
 --
 
 ALTER TABLE ONLY public.msip_clase
-    ADD CONSTRAINT fk_rails_fb09f016e4 FOREIGN KEY (id_municipio) REFERENCES public.msip_municipio(id);
+    ADD CONSTRAINT fk_rails_fb09f016e4 FOREIGN KEY (municipio_id) REFERENCES public.msip_municipio(id);
 
 
 --
@@ -11318,7 +11310,7 @@ ALTER TABLE ONLY public.cor1440_gen_proyectofinanciero
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_motivosjr_respuesta
-    ADD CONSTRAINT motivosjr_respuesta_id_motivosjr_fkey FOREIGN KEY (id_motivosjr) REFERENCES public.sivel2_sjr_motivosjr(id);
+    ADD CONSTRAINT motivosjr_respuesta_id_motivosjr_fkey FOREIGN KEY (motivosjr_id) REFERENCES public.sivel2_sjr_motivosjr(id);
 
 
 --
@@ -11326,7 +11318,7 @@ ALTER TABLE ONLY public.sivel2_sjr_motivosjr_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_motivosjr_respuesta
-    ADD CONSTRAINT motivosjr_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES public.sivel2_sjr_respuesta(id);
+    ADD CONSTRAINT motivosjr_respuesta_id_respuesta_fkey FOREIGN KEY (respuesta_id) REFERENCES public.sivel2_sjr_respuesta(id);
 
 
 --
@@ -11334,7 +11326,7 @@ ALTER TABLE ONLY public.sivel2_sjr_motivosjr_respuesta
 --
 
 ALTER TABLE ONLY public.msip_clase
-    ADD CONSTRAINT msip_clase_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES public.msip_municipio(id);
+    ADD CONSTRAINT msip_clase_id_municipio_fkey FOREIGN KEY (municipio_id) REFERENCES public.msip_municipio(id);
 
 
 --
@@ -11342,7 +11334,7 @@ ALTER TABLE ONLY public.msip_clase
 --
 
 ALTER TABLE ONLY public.msip_municipio
-    ADD CONSTRAINT msip_municipio_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES public.msip_departamento(id);
+    ADD CONSTRAINT msip_municipio_id_departamento_fkey FOREIGN KEY (departamento_id) REFERENCES public.msip_departamento(id);
 
 
 --
@@ -11350,7 +11342,7 @@ ALTER TABLE ONLY public.msip_municipio
 --
 
 ALTER TABLE ONLY public.msip_persona
-    ADD CONSTRAINT msip_persona_id_clase_fkey FOREIGN KEY (id_clase) REFERENCES public.msip_clase(id);
+    ADD CONSTRAINT msip_persona_id_clase_fkey FOREIGN KEY (clase_id) REFERENCES public.msip_clase(id);
 
 
 --
@@ -11358,7 +11350,7 @@ ALTER TABLE ONLY public.msip_persona
 --
 
 ALTER TABLE ONLY public.msip_persona
-    ADD CONSTRAINT msip_persona_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES public.msip_departamento(id);
+    ADD CONSTRAINT msip_persona_id_departamento_fkey FOREIGN KEY (departamento_id) REFERENCES public.msip_departamento(id);
 
 
 --
@@ -11366,7 +11358,7 @@ ALTER TABLE ONLY public.msip_persona
 --
 
 ALTER TABLE ONLY public.msip_persona
-    ADD CONSTRAINT msip_persona_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES public.msip_municipio(id);
+    ADD CONSTRAINT msip_persona_id_municipio_fkey FOREIGN KEY (municipio_id) REFERENCES public.msip_municipio(id);
 
 
 --
@@ -11374,7 +11366,7 @@ ALTER TABLE ONLY public.msip_persona
 --
 
 ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT msip_ubicacion_id_clase_fkey FOREIGN KEY (id_clase) REFERENCES public.msip_clase(id);
+    ADD CONSTRAINT msip_ubicacion_id_clase_fkey FOREIGN KEY (clase_id) REFERENCES public.msip_clase(id);
 
 
 --
@@ -11382,7 +11374,7 @@ ALTER TABLE ONLY public.msip_ubicacion
 --
 
 ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT msip_ubicacion_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES public.msip_departamento(id);
+    ADD CONSTRAINT msip_ubicacion_id_departamento_fkey FOREIGN KEY (departamento_id) REFERENCES public.msip_departamento(id);
 
 
 --
@@ -11390,7 +11382,7 @@ ALTER TABLE ONLY public.msip_ubicacion
 --
 
 ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT msip_ubicacion_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES public.msip_municipio(id);
+    ADD CONSTRAINT msip_ubicacion_id_municipio_fkey FOREIGN KEY (municipio_id) REFERENCES public.msip_municipio(id);
 
 
 --
@@ -11398,7 +11390,7 @@ ALTER TABLE ONLY public.msip_ubicacion
 --
 
 ALTER TABLE ONLY public.sivel2_gen_organizacion_victimacolectiva
-    ADD CONSTRAINT organizacion_victimacolectiva_id_organizacion_fkey FOREIGN KEY (id_organizacion) REFERENCES public.sivel2_gen_organizacion(id);
+    ADD CONSTRAINT organizacion_victimacolectiva_id_organizacion_fkey FOREIGN KEY (organizacion_id) REFERENCES public.sivel2_gen_organizacion(id);
 
 
 --
@@ -11414,7 +11406,7 @@ ALTER TABLE ONLY public.sivel2_gen_organizacion_victimacolectiva
 --
 
 ALTER TABLE ONLY public.msip_persona
-    ADD CONSTRAINT persona_id_pais_fkey FOREIGN KEY (id_pais) REFERENCES public.msip_pais(id);
+    ADD CONSTRAINT persona_id_pais_fkey FOREIGN KEY (pais_id) REFERENCES public.msip_pais(id);
 
 
 --
@@ -11438,7 +11430,7 @@ ALTER TABLE ONLY public.msip_persona
 --
 
 ALTER TABLE ONLY public.msip_persona_trelacion
-    ADD CONSTRAINT persona_trelacion_id_trelacion_fkey FOREIGN KEY (id_trelacion) REFERENCES public.msip_trelacion(id);
+    ADD CONSTRAINT persona_trelacion_id_trelacion_fkey FOREIGN KEY (trelacion_id) REFERENCES public.msip_trelacion(id);
 
 
 --
@@ -11470,7 +11462,7 @@ ALTER TABLE ONLY public.sivel2_gen_presponsable
 --
 
 ALTER TABLE ONLY public.sivel2_gen_profesion_victimacolectiva
-    ADD CONSTRAINT profesion_victimacolectiva_id_profesion_fkey FOREIGN KEY (id_profesion) REFERENCES public.sivel2_gen_profesion(id);
+    ADD CONSTRAINT profesion_victimacolectiva_id_profesion_fkey FOREIGN KEY (profesion_id) REFERENCES public.sivel2_gen_profesion(id);
 
 
 --
@@ -11486,7 +11478,7 @@ ALTER TABLE ONLY public.sivel2_gen_profesion_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_progestado_respuesta
-    ADD CONSTRAINT progestado_respuesta_id_progestado_fkey FOREIGN KEY (id_progestado) REFERENCES public.sivel2_sjr_progestado(id);
+    ADD CONSTRAINT progestado_respuesta_id_progestado_fkey FOREIGN KEY (progestado_id) REFERENCES public.sivel2_sjr_progestado(id);
 
 
 --
@@ -11494,7 +11486,7 @@ ALTER TABLE ONLY public.sivel2_sjr_progestado_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_progestado_respuesta
-    ADD CONSTRAINT progestado_respuesta_id_respuesta_fkey FOREIGN KEY (id_respuesta) REFERENCES public.sivel2_sjr_respuesta(id);
+    ADD CONSTRAINT progestado_respuesta_id_respuesta_fkey FOREIGN KEY (respuesta_id) REFERENCES public.sivel2_sjr_respuesta(id);
 
 
 --
@@ -11502,7 +11494,7 @@ ALTER TABLE ONLY public.sivel2_sjr_progestado_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_gen_rangoedad_victimacolectiva
-    ADD CONSTRAINT rangoedad_victimacolectiva_id_rangoedad_fkey FOREIGN KEY (id_rangoedad) REFERENCES public.sivel2_gen_rangoedad(id);
+    ADD CONSTRAINT rangoedad_victimacolectiva_id_rangoedad_fkey FOREIGN KEY (rangoedad_id) REFERENCES public.sivel2_gen_rangoedad(id);
 
 
 --
@@ -11518,7 +11510,7 @@ ALTER TABLE ONLY public.sivel2_gen_rangoedad_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_respuesta
-    ADD CONSTRAINT respuesta_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_sjr_casosjr(id_caso);
+    ADD CONSTRAINT respuesta_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_sjr_casosjr(caso_id);
 
 
 --
@@ -11526,7 +11518,7 @@ ALTER TABLE ONLY public.sivel2_sjr_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_respuesta
-    ADD CONSTRAINT respuesta_id_personadesea_fkey FOREIGN KEY (id_personadesea) REFERENCES public.sivel2_sjr_personadesea(id);
+    ADD CONSTRAINT respuesta_id_personadesea_fkey FOREIGN KEY (personadesea_id) REFERENCES public.sivel2_sjr_personadesea(id);
 
 
 --
@@ -11534,7 +11526,7 @@ ALTER TABLE ONLY public.sivel2_sjr_respuesta
 --
 
 ALTER TABLE ONLY public.sivel2_gen_sectorsocial_victimacolectiva
-    ADD CONSTRAINT sectorsocial_victimacolectiva_id_sectorsocial_fkey FOREIGN KEY (id_sectorsocial) REFERENCES public.sivel2_gen_sectorsocial(id);
+    ADD CONSTRAINT sectorsocial_victimacolectiva_id_sectorsocial_fkey FOREIGN KEY (sectorsocial_id) REFERENCES public.sivel2_gen_sectorsocial(id);
 
 
 --
@@ -11574,7 +11566,7 @@ ALTER TABLE ONLY public.sivel2_gen_caso_fuenteprensa
 --
 
 ALTER TABLE ONLY public.sivel2_gen_caso_fuenteprensa
-    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT sivel2_gen_caso_fuenteprensa_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -11606,15 +11598,7 @@ ALTER TABLE ONLY public.sivel2_gen_observador_filtrodepartamento
 --
 
 ALTER TABLE ONLY public.sivel2_gen_supracategoria
-    ADD CONSTRAINT supracategoria_id_tviolencia_fkey FOREIGN KEY (id_tviolencia) REFERENCES public.sivel2_gen_tviolencia(id);
-
-
---
--- Name: msip_ubicacion ubicacion_id_caso_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT ubicacion_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT supracategoria_id_tviolencia_fkey FOREIGN KEY (tviolencia_id) REFERENCES public.sivel2_gen_tviolencia(id);
 
 
 --
@@ -11622,7 +11606,7 @@ ALTER TABLE ONLY public.msip_ubicacion
 --
 
 ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT ubicacion_id_pais_fkey FOREIGN KEY (id_pais) REFERENCES public.msip_pais(id);
+    ADD CONSTRAINT ubicacion_id_pais_fkey FOREIGN KEY (pais_id) REFERENCES public.msip_pais(id);
 
 
 --
@@ -11630,7 +11614,7 @@ ALTER TABLE ONLY public.msip_ubicacion
 --
 
 ALTER TABLE ONLY public.msip_ubicacion
-    ADD CONSTRAINT ubicacion_id_tsitio_fkey FOREIGN KEY (id_tsitio) REFERENCES public.msip_tsitio(id);
+    ADD CONSTRAINT ubicacion_id_tsitio_fkey FOREIGN KEY (tsitio_id) REFERENCES public.msip_tsitio(id);
 
 
 --
@@ -11638,7 +11622,7 @@ ALTER TABLE ONLY public.msip_ubicacion
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_casosjr
-    ADD CONSTRAINT vcontacto_lfor FOREIGN KEY (id_caso, contacto_id) REFERENCES public.sivel2_gen_victima(id_caso, id_persona);
+    ADD CONSTRAINT vcontacto_lfor FOREIGN KEY (caso_id, contacto_id) REFERENCES public.sivel2_gen_victima(caso_id, persona_id);
 
 
 --
@@ -11646,7 +11630,7 @@ ALTER TABLE ONLY public.sivel2_sjr_casosjr
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT victima_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -11654,7 +11638,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_etnia_fkey FOREIGN KEY (id_etnia) REFERENCES public.sivel2_gen_etnia(id);
+    ADD CONSTRAINT victima_id_etnia_fkey FOREIGN KEY (etnia_id) REFERENCES public.sivel2_gen_etnia(id);
 
 
 --
@@ -11662,7 +11646,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_iglesia_fkey FOREIGN KEY (id_iglesia) REFERENCES public.sivel2_gen_iglesia(id);
+    ADD CONSTRAINT victima_id_iglesia_fkey FOREIGN KEY (iglesia_id) REFERENCES public.sivel2_gen_iglesia(id);
 
 
 --
@@ -11670,7 +11654,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_persona_fkey FOREIGN KEY (id_persona) REFERENCES public.msip_persona(id);
+    ADD CONSTRAINT victima_id_persona_fkey FOREIGN KEY (persona_id) REFERENCES public.msip_persona(id);
 
 
 --
@@ -11678,7 +11662,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_profesion_fkey FOREIGN KEY (id_profesion) REFERENCES public.sivel2_gen_profesion(id);
+    ADD CONSTRAINT victima_id_profesion_fkey FOREIGN KEY (profesion_id) REFERENCES public.sivel2_gen_profesion(id);
 
 
 --
@@ -11686,7 +11670,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_rangoedad_fkey FOREIGN KEY (id_rangoedad) REFERENCES public.sivel2_gen_rangoedad(id);
+    ADD CONSTRAINT victima_id_rangoedad_fkey FOREIGN KEY (rangoedad_id) REFERENCES public.sivel2_gen_rangoedad(id);
 
 
 --
@@ -11694,7 +11678,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victima
-    ADD CONSTRAINT victima_id_sectorsocial_fkey FOREIGN KEY (id_sectorsocial) REFERENCES public.sivel2_gen_sectorsocial(id);
+    ADD CONSTRAINT victima_id_sectorsocial_fkey FOREIGN KEY (sectorsocial_id) REFERENCES public.sivel2_gen_sectorsocial(id);
 
 
 --
@@ -11710,7 +11694,7 @@ ALTER TABLE ONLY public.sivel2_gen_victima
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victimacolectiva
-    ADD CONSTRAINT victimacolectiva_id_caso_fkey FOREIGN KEY (id_caso) REFERENCES public.sivel2_gen_caso(id);
+    ADD CONSTRAINT victimacolectiva_id_caso_fkey FOREIGN KEY (caso_id) REFERENCES public.sivel2_gen_caso(id);
 
 
 --
@@ -11718,7 +11702,7 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victimacolectiva
-    ADD CONSTRAINT victimacolectiva_id_grupoper_fkey FOREIGN KEY (id_grupoper) REFERENCES public.msip_grupoper(id);
+    ADD CONSTRAINT victimacolectiva_id_grupoper_fkey FOREIGN KEY (grupoper_id) REFERENCES public.msip_grupoper(id);
 
 
 --
@@ -11734,7 +11718,7 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva
 --
 
 ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
-    ADD CONSTRAINT victimacolectiva_vinculoestado_id_vinculoestado_fkey FOREIGN KEY (id_vinculoestado) REFERENCES public.sivel2_gen_vinculoestado(id);
+    ADD CONSTRAINT victimacolectiva_vinculoestado_id_vinculoestado_fkey FOREIGN KEY (vinculoestado_id) REFERENCES public.sivel2_gen_vinculoestado(id);
 
 
 --
@@ -11750,7 +11734,7 @@ ALTER TABLE ONLY public.sivel2_gen_victimacolectiva_vinculoestado
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_actividadoficio_fkey FOREIGN KEY (id_actividadoficio) REFERENCES public.sivel2_gen_actividadoficio(id);
+    ADD CONSTRAINT victimasjr_id_actividadoficio_fkey FOREIGN KEY (actividadoficio_id) REFERENCES public.sivel2_gen_actividadoficio(id);
 
 
 --
@@ -11758,7 +11742,7 @@ ALTER TABLE ONLY public.sivel2_sjr_victimasjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_escolaridad_fkey FOREIGN KEY (id_escolaridad) REFERENCES public.sivel2_gen_escolaridad(id);
+    ADD CONSTRAINT victimasjr_id_escolaridad_fkey FOREIGN KEY (escolaridad_id) REFERENCES public.sivel2_gen_escolaridad(id);
 
 
 --
@@ -11766,7 +11750,7 @@ ALTER TABLE ONLY public.sivel2_sjr_victimasjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_estadocivil_fkey FOREIGN KEY (id_estadocivil) REFERENCES public.sivel2_gen_estadocivil(id);
+    ADD CONSTRAINT victimasjr_id_estadocivil_fkey FOREIGN KEY (estadocivil_id) REFERENCES public.sivel2_gen_estadocivil(id);
 
 
 --
@@ -11774,7 +11758,7 @@ ALTER TABLE ONLY public.sivel2_sjr_victimasjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_maternidad_fkey FOREIGN KEY (id_maternidad) REFERENCES public.sivel2_gen_maternidad(id);
+    ADD CONSTRAINT victimasjr_id_maternidad_fkey FOREIGN KEY (maternidad_id) REFERENCES public.sivel2_gen_maternidad(id);
 
 
 --
@@ -11782,7 +11766,7 @@ ALTER TABLE ONLY public.sivel2_sjr_victimasjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_pais_fkey FOREIGN KEY (id_pais) REFERENCES public.msip_pais(id);
+    ADD CONSTRAINT victimasjr_id_pais_fkey FOREIGN KEY (pais_id) REFERENCES public.msip_pais(id);
 
 
 --
@@ -11790,7 +11774,7 @@ ALTER TABLE ONLY public.sivel2_sjr_victimasjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_rolfamilia_fkey FOREIGN KEY (id_rolfamilia) REFERENCES public.sivel2_sjr_rolfamilia(id);
+    ADD CONSTRAINT victimasjr_id_rolfamilia_fkey FOREIGN KEY (rolfamilia_id) REFERENCES public.sivel2_sjr_rolfamilia(id);
 
 
 --
@@ -11798,7 +11782,7 @@ ALTER TABLE ONLY public.sivel2_sjr_victimasjr
 --
 
 ALTER TABLE ONLY public.sivel2_sjr_victimasjr
-    ADD CONSTRAINT victimasjr_id_victima_fkey FOREIGN KEY (id_victima) REFERENCES public.sivel2_gen_victima(id) ON DELETE CASCADE;
+    ADD CONSTRAINT victimasjr_id_victima_fkey FOREIGN KEY (victima_id) REFERENCES public.sivel2_gen_victima(id) ON DELETE CASCADE;
 
 
 --
@@ -12292,6 +12276,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230127041839'),
 ('20230127123623'),
 ('20230301145222'),
-('20230301212546');
+('20230301212546'),
+('20230404025025'),
+('20230405012229'),
+('20230405032350'),
+('20230405141724'),
+('20230406021624'),
+('20230406023817');
 
 

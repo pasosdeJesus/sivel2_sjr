@@ -65,7 +65,7 @@ module Sivel2Sjr
             @registro.save!(validate: false)
 
             if params['caso_id'] && 
-                Sivel2Sjr::Casosjr.where(id_caso: params['caso_id'].to_i).
+                Sivel2Sjr::Casosjr.where(caso_id: params['caso_id'].to_i).
                 count == 1
               @registro.casosjr_ids = [params['caso_id']]
               @registro.save!(validate: false)

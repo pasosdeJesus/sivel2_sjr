@@ -3,6 +3,6 @@ module Sivel2Sjr
     include Msip::Basica
   
     has_many :desplazamiento, class_name: "Sivel2Sjr::Desplazamiento", 
-      foreign_key: "id_acreditacion", validate: true
+      foreign_key: "acreditacion_id", validate: true
   end
 end

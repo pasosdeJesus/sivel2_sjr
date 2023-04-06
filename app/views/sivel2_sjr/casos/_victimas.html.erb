@@ -1,6 +1,6 @@
 <%= f.simple_fields_for :victima, Sivel2Gen::Victima.
-  where(id_caso: @caso.id).
-  where('id_persona <> ?', @caso.casosjr.contacto.id).
+  where(caso_id: @caso.id).
+  where('persona_id <> ?', @caso.casosjr.contacto.id).
   order(:id) do |victima| %>
     <%= render 'victima_campos', f: victima %>
 <% end %>

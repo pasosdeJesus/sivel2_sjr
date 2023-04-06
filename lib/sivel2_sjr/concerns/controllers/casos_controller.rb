@@ -80,9 +80,9 @@ module Sivel2Sjr
 #                @conscaso = @conscaso.where(FALSE)
 #              else
 #                @conscaso = @conscaso.
-#                  where("caso_id IN (SELECT id_caso FROM 
+#                  where("caso_id IN (SELECT caso_id FROM 
 #                        public.sivel2_gen_caso_etiqueta WHERE
-#                        sivel2_gen_caso_etiqueta.id_etiqueta IN 
+#                        sivel2_gen_caso_etiqueta.etiqueta_id IN 
 #                          (#{m.join(',')}))")
 #              end
 #            end
@@ -99,7 +99,7 @@ module Sivel2Sjr
 #            # En models/ability.rb agregar
 #            # can :read, Sivel2Gen::Caso,  etiqueta: { id: usuario.etiqueta.map(&:id) } 
 #            if current_usuario.rol == Ability::ROLINV
-#              ace = @caso.caso_etiqueta.map { |ce| ce.id_etiqueta }
+#              ace = @caso.caso_etiqueta.map { |ce| ce.etiqueta_id }
 #              aeu = current_usuario.etiqueta_usuario.map { |eu| eu.etiqueta_id }
 #              ie = ace & aeu
 #              if (ie.size == 0)
@@ -140,16 +140,16 @@ module Sivel2Sjr
 #            @caso.victima<<vic
 #            @caso.casosjr.contacto = per
 #            @caso.save!(validate: false)
-#            vic.id_caso = @caso.id
+#            vic.caso_id = @caso.id
 #            vic.save!(validate: false)
 #            logger.debug "Victima salvada: #{vic.inspect}"
 #            #debugger
 #            vic.victimasjr = Sivel2Sjr::Victimasjr.new
-#            vic.victimasjr.id_victima = vic.id
+#            vic.victimasjr.victima_id = vic.id
 #            vic.victimasjr.save!(validate: false)
 #            cu = Sivel2Gen::CasoUsuario.new
-#            cu.id_usuario = current_usuario.id
-#            cu.id_caso = @caso.id
+#            cu.usuario_id = current_usuario.id
+#            cu.caso_id = @caso.id
 #            cu.fechainicio = DateTime.now.strftime('%Y-%m-%d')
 #            cu.save!(validate: false)
 #          end
@@ -198,15 +198,15 @@ module Sivel2Sjr
 #            respond_to do |format|
 #              if (!params[:caso][:caso_etiqueta_attributes].nil?)
 #                params[:caso][:caso_etiqueta_attributes].each {|k,v|
-#                  if (v[:id_usuario].nil? || v[:id_usuario] == "") 
-#                    v[:id_usuario] = current_usuario.id
+#                  if (v[:usuario_id].nil? || v[:usuario_id] == "") 
+#                    v[:usuario_id] = current_usuario.id
 #                  end
 #                }
 #              end
 #              if (!params[:caso][:respuesta_attributes].nil?)
 #                params[:caso][:respuesta_attributes].each {|k,v|
-#                  if (v[:id_caso].nil?) 
-#                    v[:id_caso] = @caso.id
+#                  if (v[:caso_id].nil?) 
+#                    v[:caso_id] = @caso.id
 #                  end
 #                }
 #              end
@@ -267,28 +267,28 @@ module Sivel2Sjr
 #              # No se logró hacer ni con dependente:destroy en
 #              # las relaciones ni borrando con delete 
 #              @caso.casosjr.respuesta.each do |r|
-#                Sivel2Sjr::AslegalRespuesta.where(id_respuesta: r.id).delete_all
+#                Sivel2Sjr::AslegalRespuesta.where(respuesta_id: r.id).delete_all
 #                #r.aslegal_respuesta.delete
-#                Sivel2Sjr::AyudaestadoRespuesta.where(id_respuesta: r.id).delete_all
+#                Sivel2Sjr::AyudaestadoRespuesta.where(respuesta_id: r.id).delete_all
 #                #r.ayudaestado_respuesta.delete
-#                Sivel2Sjr::AyudasjrRespuesta.where(id_respuesta: r.id).delete_all
+#                Sivel2Sjr::AyudasjrRespuesta.where(respuesta_id: r.id).delete_all
 #                #r.ayudasjr_respuesta.delete
-#                Sivel2Sjr::DerechoRespuesta.where(id_respuesta: r.id).delete_all
+#                Sivel2Sjr::DerechoRespuesta.where(respuesta_id: r.id).delete_all
 #                #r.derecho_respuesta.delete
-#                Sivel2Sjr::MotivosjrRespuesta.where(id_respuesta: r.id).delete_all
+#                Sivel2Sjr::MotivosjrRespuesta.where(respuesta_id: r.id).delete_all
 #                #r.motivosjr_respuesta.delete
-#                Sivel2Sjr::ProgestadoRespuesta.where(id_respuesta: r.id).delete_all
+#                Sivel2Sjr::ProgestadoRespuesta.where(respuesta_id: r.id).delete_all
 #                #r.progestado_respuesta.delete
 #              end
 #              @caso.casosjr.respuesta.delete
-#              Sivel2Sjr::Respuesta.where(id_caso: @caso.id).delete_all
+#              Sivel2Sjr::Respuesta.where(caso_id: @caso.id).delete_all
 #            end
 #            Sivel2Sjr::Casosjr.connection.execute <<-SQL
 #              DELETE FROM sivel2_sjr_actosjr 
-#                WHERE id_acto IN (SELECT id FROM sivel2_gen_acto 
-#                  WHERE id_caso='#{@caso.id}');
+#                WHERE acto_id IN (SELECT id FROM sivel2_gen_acto 
+#                  WHERE caso_id='#{@caso.id}');
 #              DELETE FROM sivel2_sjr_desplazamiento 
-#                WHERE id_caso = #{@caso.id};
+#                WHERE caso_id = #{@caso.id};
 #            SQL
 #            @caso.casosjr.destroy if @caso.casosjr
 #            if @caso.casosjr && @caso.casosjr.errors.present?
@@ -309,7 +309,7 @@ module Sivel2Sjr
 #          # API, retorna población por sexo y rango de edad (sin modificar
 #          # base de datos)
 #          def poblacion_sexo_rangoedadac
-#            caso_id = params[:id_caso].to_i
+#            caso_id = params[:caso_id].to_i
 #            fecha = Msip::FormatoFechaHelper.fecha_local_estandar(
 #              params[:fecha])
 #            if !fecha
@@ -322,7 +322,7 @@ module Sivel2Sjr
 #            anio = fecha.year
 #            mes = fecha.month
 #            dia = fecha.day
-#            casosjr = Sivel2Sjr::Casosjr.where(id_caso: caso_id)
+#            casosjr = Sivel2Sjr::Casosjr.where(caso_id: caso_id)
 #            if casosjr.count == 0
 #              render json: "No se encontró caso #{caso_id}",
 #                status: :unprocessable_entity 
@@ -331,7 +331,7 @@ module Sivel2Sjr
 #            rangoedad = {'S' => {}, 'M' => {}, 'F' => {}}
 #            totsexo = {}
 #            Sivel2Sjr::RangoedadHelper.poblacion_por_sexo_rango(
-#              casosjr.take.id_caso, fecha.year, fecha.month, fecha.day,
+#              casosjr.take.caso_id, fecha.year, fecha.month, fecha.day,
 #              'Cor1440Gen::Rangoedadac', rangoedad, totsexo)
 #            render json: rangoedad, status: :ok
 #          end
@@ -351,7 +351,7 @@ module Sivel2Sjr
 #              if consNom.length > 0
 #                consNom += ":*"
 #              end
-#              where = " to_tsvector('spanish', id_caso " +
+#              where = " to_tsvector('spanish', caso_id " +
 #                " || ' ' || unaccent(persona.nombres) " +
 #                " || ' ' || unaccent(persona.apellidos) " +
 #                " || ' ' || COALESCE(msip_tdocumento.sigla, '') " +
@@ -359,14 +359,14 @@ module Sivel2Sjr
 #                "to_tsquery('spanish', '#{consNom}')";
 #
 #              partes = [
-#                'id_caso::TEXT',
+#                'caso_id::TEXT',
 #                'nombres',
 #                'apellidos',
 #                'COALESCE(msip_tdocumento.sigla, \'\')',
 #                'COALESCE(numerodocumento::TEXT, \'\')'
 #              ]
 #              s = "";
-#              l = " id_caso ";
+#              l = " caso_id ";
 #              seps = "";
 #              sepl = " || ';' || ";
 #              partes.each do |p|
@@ -397,9 +397,9 @@ module Sivel2Sjr
 ##              consc = ActiveRecord::Base.send(:sanitize_sql_array, ["
 ##                SELECT label, value FROM (
 ##                  SELECT label, value, to_tsvector('spanish', unaccent(label)) AS i
-##                  FROM (SELECT id_caso || ' ' || nombres || ' ' || 
+##                  FROM (SELECT caso_id || ' ' || nombres || ' ' || 
 ##                    apellidos || ' ' || numerodocumento as label, 
-##                    id_caso as value FROM sivel2_sjr_casosjr JOIN msip_persona ON 
+##                    caso_id as value FROM sivel2_sjr_casosjr JOIN msip_persona ON 
 ##                      msip_persona.id=sivel2_sjr_casosjr.contacto_id) AS s) as ss 
 ##                WHERE i @@ to_tsquery('spanish', ?) ORDER BY 1;",
 ##                consNom
@@ -424,7 +424,7 @@ module Sivel2Sjr
 #            @caso = Sivel2Gen::Caso.find(params[:id].to_i)
 #            @caso.current_usuario = current_usuario
 #            @registro = @caso
-#            pcs = Sivel2Sjr::Casosjr.where(id_caso: params[:id].to_i)
+#            pcs = Sivel2Sjr::Casosjr.where(caso_id: params[:id].to_i)
 #            @casosjr = nil
 #            if pcs.count > 0
 #              @casosjr = pcs.take
@@ -473,14 +473,14 @@ module Sivel2Sjr
 #                :fechallegada_localizada, 
 #                :hechosdeclarados,
 #                :id, 
-#                :id_acreditacion, 
-#                :id_clasifdesp, 
-#                :id_declaroante, 
-#                :id_expulsion, 
-#                :id_inclusion,
-#                :id_llegada, 
-#                :id_modalidadtierra,
-#                :id_tipodesp, 
+#                :acreditacion_id, 
+#                :clasifdesp_id, 
+#                :declaroante_id, 
+#                :expulsion_id, 
+#                :inclusion_id,
+#                :llegada_id, 
+#                :modalidadtierra_id,
+#                :tipodesp_id, 
 #                :inmaterialesperdidos,
 #                :materialesperdidos, 
 #                :protegiorupta, 
@@ -507,7 +507,7 @@ module Sivel2Sjr
 #              :grinformacion, 
 #              :hora, 
 #              :id, 
-#              :id_intervalo, 
+#              :intervalo_id, 
 #              :memo, 
 #              :titulo, 
 #              :casosjr_attributes => [
@@ -538,13 +538,13 @@ module Sivel2Sjr
 #                :gastos, 
 #                :ingresomensual, 
 #                :id, 
-#                :id_idioma,
-#                :id_llegada, 
-#                :id_llegadam, 
-#                :id_proteccion, 
-#                :id_salida, 
-#                :id_salidam, 
-#                :id_statusmigratorio,
+#                :idioma_id,
+#                :llegada_id, 
+#                :llegada_idm, 
+#                :proteccion_id, 
+#                :salida_id, 
+#                :salida_idm, 
+#                :estatusmigratorio_id,
 #                :leerescribir, 
 #                :memo1612,
 #                :motivom,
@@ -557,14 +557,14 @@ module Sivel2Sjr
 #              :victima_attributes => [
 #                :anotaciones,
 #                :id, 
-#                :id_etnia, 
-#                :id_filiacion, 
-#                :id_iglesia, 
-#                :id_organizacion, 
-#                :id_persona, 
-#                :id_profesion, 
-#                :id_rangoedad, 
-#                :id_vinculoestado, 
+#                :etnia_id, 
+#                :filiacion_id, 
+#                :iglesia_id, 
+#                :organizacion_id, 
+#                :persona_id, 
+#                :profesion_id, 
+#                :rangoedad_id, 
+#                :vinculoestado_id, 
 #                :orientacionsexual, 
 #                :_destroy 
 #              ] + otros_params_victima + [
@@ -573,10 +573,10 @@ module Sivel2Sjr
 #                  :anionac, 
 #                  :dianac, 
 #                  :id, 
-#                  :id_pais, 
-#                  :id_departamento, 
-#                  :id_municipio, 
-#                  :id_clase, 
+#                  :pais_id, 
+#                  :departamento_id, 
+#                  :municipio_id, 
+#                  :clase_id, 
 #                  :mesnac, 
 #                  :nacionalde, 
 #                  :numerodocumento, 
@@ -592,13 +592,13 @@ module Sivel2Sjr
 #                  :fechadesagregacion,
 #                  :fechadesagregacion_localizada,
 #                  :id, 
-#                  :id_victima, 
-#                  :id_rolfamilia,
-#                  :id_actividadoficio, 
-#                  :id_escolaridad,
-#                  :id_estadocivil, 
-#                  :id_maternidad, 
-#                  :id_regimensalud, 
+#                  :victima_id, 
+#                  :rolfamilia_id,
+#                  :actividadoficio_id, 
+#                  :escolaridad_id,
+#                  :estadocivil_id, 
+#                  :maternidad_id, 
+#                  :regimensalud_id, 
 #                  :ndiscapacidad, 
 #                  :sindocumento, 
 #                  :tienesisben
@@ -606,11 +606,11 @@ module Sivel2Sjr
 #              ], 
 #              :ubicacion_attributes => [
 #                :id, 
-#                :id_clase, 
-#                :id_departamento, 
-#                :id_municipio, 
-#                :id_pais, 
-#                :id_tsitio, 
+#                :clase_id, 
+#                :departamento_id, 
+#                :municipio_id, 
+#                :pais_id, 
+#                :tsitio_id, 
 #                :latitud, 
 #                :longitud, 
 #                :lugar, 
@@ -624,23 +624,23 @@ module Sivel2Sjr
 #                :division, 
 #                :frente, 
 #                :id, 
-#                :id_presponsable, 
+#                :presponsable_id, 
 #                :otro, 
 #                :tipo, 
 #                :_destroy
 #              ],
 #              :acto_attributes => [
 #                :id, 
-#                :id_categoria, 
-#                :id_presponsable, 
-#                :id_persona, 
+#                :categoria_id, 
+#                :presponsable_id, 
+#                :persona_id, 
 #                :_destroy,
 #                :actosjr_attributes => [
 #                  :desplazamiento_id, 
 #                  :fecha, 
 #                  :fecha_localizada, 
 #                  :id, 
-#                  :id_acto, 
+#                  :acto_id, 
 #                  :_destroy
 #                ]
 #              ],
@@ -658,7 +658,7 @@ module Sivel2Sjr
 #                :difobsprog,
 #                :efectividad, 
 #                :id,
-#                :id_personadesea, 
+#                :persona_iddesea, 
 #                :informacionder, 
 #                :institucionayes, 
 #                :fechaatencion, 
@@ -693,7 +693,7 @@ module Sivel2Sjr
 #              :anexo_caso_attributes => [
 #                :fecha_localizada,
 #                :id, 
-#                :id_caso,
+#                :caso_id,
 #                :_destroy,
 #                :msip_anexo_attributes => [
 #                  :adjunto, 
@@ -705,8 +705,8 @@ module Sivel2Sjr
 #              :caso_etiqueta_attributes => [
 #                :fecha, 
 #                :id, 
-#                :id_etiqueta, 
-#                :id_usuario, 
+#                :etiqueta_id, 
+#                :usuario_id, 
 #                :observaciones, 
 #                :_destroy
 #              ]

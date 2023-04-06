@@ -3,6 +3,6 @@ module Sivel2Sjr
     include Msip::Basica
   
   	has_many :victimasjr, class_name: "Sivel2Sjr::Victimasjr", 
-      foreign_key: "id_rolfamilia", validate: true
+      foreign_key: "rolfamilia_id", validate: true
   end
 end

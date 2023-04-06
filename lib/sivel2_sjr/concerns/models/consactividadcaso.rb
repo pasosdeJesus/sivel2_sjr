@@ -180,9 +180,9 @@ module Sivel2Sjr
               INNER JOIN msip_oficina AS oficinaac 
                 ON oficinaac.id=actividad.oficina_id
               INNER JOIN sivel2_gen_caso AS caso ON caso.id=casosjr_id
-              INNER JOIN sivel2_sjr_casosjr AS casosjr ON casosjr.id_caso=casosjr_id
-              INNER JOIN sivel2_gen_victima AS victima ON victima.id_caso=caso.id
-              INNER JOIN msip_persona AS persona ON persona.id=victima.id_persona
+              INNER JOIN sivel2_sjr_casosjr AS casosjr ON casosjr.caso_id=casosjr_id
+              INNER JOIN sivel2_gen_victima AS victima ON victima.caso_id=caso.id
+              INNER JOIN msip_persona AS persona ON persona.id=victima.persona_id
               "
           end
 

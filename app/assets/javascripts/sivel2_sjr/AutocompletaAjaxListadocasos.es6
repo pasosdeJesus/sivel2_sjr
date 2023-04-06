@@ -11,7 +11,7 @@ export default class Sivel2SjrAutocompletaAjaxListadocasos {
     }
     const cs = otrosop['data-idorig'].split(';');
     const casoId = cs[0];
-    let d = '&id_caso=' + casoId
+    let d = '&caso_id=' + casoId
     const a = root.puntomontaje + 'personas/datos'
 
     let pl = []
@@ -37,7 +37,7 @@ export default class Sivel2SjrAutocompletaAjaxListadocasos {
     root.sivel2_sjr_autocompleta_contacto_actividad_divcp = divcp
     ruta = "api/sivel2sjr/poblacion_sexo_rangoedadac"
     msip_ajax_recibe_json(root, ruta,
-      {id_caso: pl[1], fecha: $('#actividad_fecha_localizada').val() }, 
+      {caso_id: pl[1], fecha: $('#actividad_fecha_localizada').val() }, 
       sivel2_sjr_completa_rangosedadac)
     return
     window.Rails.ajax({

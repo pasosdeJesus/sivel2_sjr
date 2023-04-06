@@ -4,7 +4,7 @@ module Sivel2Sjr
 
     has_many :aspsicosocial_respuesta, 
       class_name: "Sivel2Sjr::AspsicosocialRespuesta", 
-      foreign_key: "id_aspsicosocial", validate: true, dependent: :destroy
+      foreign_key: "aspsicosocial_id", validate: true, dependent: :destroy
     has_many :respuesta, class_name: "Sivel2Sjr::Respuesta", 
       :through => :aspsicosocial_respuesta
 

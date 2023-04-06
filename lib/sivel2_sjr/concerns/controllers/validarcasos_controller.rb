@@ -47,9 +47,9 @@ module Sivel2Sjr
                 params[:validarcaso][:etiqueta_id] != '')
               eti = params[:validarcaso][:etiqueta_id].to_i
               casos = casos.where(
-                "sivel2_gen_caso.id NOT IN (SELECT id_caso " +
+                "sivel2_gen_caso.id NOT IN (SELECT caso_id " +
                 "FROM public.sivel2_gen_caso_etiqueta " +
-                "WHERE id_etiqueta = ?)", eti)
+                "WHERE etiqueta_id = ?)", eti)
             end
             return casos
           end
@@ -80,7 +80,7 @@ module Sivel2Sjr
                  ON msip_persona.id=sivel2_sjr_casosjr.contacto_id')
 #              joins(
 #                'INNER JOIN sivel2_gen_victima
-#                 ON sivel2_gen_victima.id_persona=sivel2_sjr_casosjr.contacto_id').
+#                 ON sivel2_gen_victima.persona_id=sivel2_sjr_casosjr.contacto_id').
             validacion_estandar(
               casos, 
               'Casos con contacto de nombre muy corto', 
@@ -93,9 +93,9 @@ module Sivel2Sjr
             validacion_estandar(
               casos, 
               'Casos con menos de dos ubicaciones', 
-              'id_caso NOT IN 
-               (SELECT id_caso FROM 
-                (SELECT id_caso, count(id) AS cubi
+              'caso_id NOT IN 
+               (SELECT caso_id FROM 
+                (SELECT caso_id, count(id) AS cubi
                  FROM public.msip_ubicacion GROUP BY 1) AS nubi 
                 WHERE cubi>=2)')
           end
@@ -105,13 +105,13 @@ module Sivel2Sjr
             validacion_estandar(
               casos, 
               'Casos sin desplazamiento y sin refugio', 
-              'id_caso NOT IN 
-               (SELECT id_caso FROM 
-                (SELECT id_caso, count(id) AS cdes
+              'caso_id NOT IN 
+               (SELECT caso_id FROM 
+                (SELECT caso_id, count(id) AS cdes
                  FROM public.sivel2_sjr_desplazamiento GROUP BY 1) AS ndesp
                 WHERE cdes>0)
-               AND sivel2_sjr_casosjr.id_salida IS NULL
-               AND sivel2_sjr_casosjr.id_llegada IS NULL
+               AND sivel2_sjr_casosjr.salida_id IS NULL
+               AND sivel2_sjr_casosjr.llegada_id IS NULL
               ')
           end
 
@@ -120,9 +120,9 @@ module Sivel2Sjr
             validacion_estandar(
               casos, 
               'Casos sin respuesta/seguimiento', 
-              'id_caso NOT IN 
-               (SELECT id_caso FROM 
-                (SELECT id_caso, count(id) AS cresp
+              'caso_id NOT IN 
+               (SELECT caso_id FROM 
+                (SELECT caso_id, count(id) AS cresp
                  FROM sivel2_sjr_respuesta GROUP BY 1) AS nresp
                 WHERE cresp>0)
               ')
@@ -145,7 +145,7 @@ module Sivel2Sjr
                  ON msip_persona.id=sivel2_sjr_casosjr.contacto_id').
               joins(
                 'INNER JOIN sivel2_gen_victima
-                 ON sivel2_gen_victima.id_persona=msip_persona.id')
+                 ON sivel2_gen_victima.persona_id=msip_persona.id')
             validacion_estandar(
               casos, 
               'Casos con contacto sin documento de identidad', 
@@ -158,14 +158,14 @@ module Sivel2Sjr
           def valida_sinayudasjr
             casos = ini_filtro
             casos = casos.joins('JOIN sivel2_sjr_respuesta ON
-              sivel2_sjr_respuesta.id_caso=sivel2_sjr_casosjr.id_caso')
+              sivel2_sjr_respuesta.caso_id=sivel2_sjr_casosjr.caso_id')
             validacion_estandar(
               casos, 
               'Casos con respuesta pero sin ayuda/asesoria del SJR',
               'sivel2_sjr_respuesta.id NOT IN 
-               (SELECT id_respuesta FROM public.sivel2_sjr_ayudasjr_respuesta)
+               (SELECT respuesta_id FROM public.sivel2_sjr_ayudasjr_respuesta)
                AND sivel2_sjr_respuesta.id NOT IN 
-               (SELECT id_respuesta FROM public.sivel2_sjr_aslegal_respuesta)
+               (SELECT respuesta_id FROM public.sivel2_sjr_aslegal_respuesta)
               '
             )
           end

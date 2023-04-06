@@ -201,7 +201,7 @@ module Sivel2Sjr
                 coleccion: Sivel2Gen::Actividadoficio.all.order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victimasjr.id_actividadoficio'
+                campocons: 'victimasjr.actividadoficio_id'
               },
               'AÑO DE NACIMIENTO' => f['AÑO DE NACIMIENTO'],
               'CABEZA DE HOGAR' => {
@@ -216,7 +216,7 @@ module Sivel2Sjr
                 coleccion: Sivel2Gen::Estadocivil.all.order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victimasjr.id_estadocivil'
+                campocons: 'victimasjr.estadocivil_id'
               },
               'ETNIA' => f['ETNIA'],
               'MES RECEPCIÓN' => {
@@ -233,7 +233,7 @@ module Sivel2Sjr
                 coleccion: Sivel2Gen::Escolaridad.all.order(:nombre),
                 metodo_etiqueta: :nombre,
                 metodo_id: :id,
-                campocons: 'victimasjr.id_escolaridad'
+                campocons: 'victimasjr.escolaridad_id'
               },
               'RANGO DE EDAD' => f['RANGO DE EDAD'],
               'SEXO' => f['SEXO']
@@ -272,10 +272,10 @@ module Sivel2Sjr
 
             # Validaciones todo caso es casosjr y viceversa
 
-            que1 = 'caso.id AS id_caso, victima.id_persona AS id_persona,
-            CASE WHEN (casosjr.contacto_id=victima.id_persona) THEN 1 ELSE 0 END 
+            que1 = 'caso.id AS caso_id, victima.persona_id AS persona_id,
+            CASE WHEN (casosjr.contacto_id=victima.persona_id) THEN 1 ELSE 0 END 
             AS contacto, 
-            CASE WHEN (casosjr.contacto_id<>victima.id_persona) THEN 1 ELSE 0 END
+            CASE WHEN (casosjr.contacto_id<>victima.persona_id) THEN 1 ELSE 0 END
             AS beneficiario, 
             1 as npersona'
             tablas1 = 'public.sivel2_gen_caso AS caso, ' +
@@ -291,12 +291,12 @@ module Sivel2Sjr
             where3 = ''
 
             #    consulta_and(where1, 'caso.id', GLOBALS['idbus'], '<>')
-            where1 = consulta_and_sinap(where1, "caso.id", "casosjr.id_caso")
-            where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
+            where1 = consulta_and_sinap(where1, "caso.id", "casosjr.caso_id")
+            where1 = consulta_and_sinap(where1, "caso.id", "victima.caso_id")
             where1 = consulta_and_sinap(where1, "persona.id", 
-                                        "victima.id_persona")
+                                        "victima.persona_id")
             where1 = consulta_and_sinap(where1, "victima.id", 
-                                        "victimasjr.id_victima")
+                                        "victimasjr.victima_id")
             where1 = consulta_and_sinap(where1, "victimasjr.fechadesagregacion", 
                                         "NULL", " IS ")
             puts "OJO where1=#{where1}"
@@ -319,7 +319,7 @@ module Sivel2Sjr
 #              tablas1 = agrega_tabla(
 #                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
 #              where1 = consulta_and_sinap(
-#                where1, "victima.id", "victimasjr.id_victima")
+#                where1, "victima.id", "victimasjr.victima_id")
               tablas3 = agrega_tabla(
                 tablas3, "public.sivel2_gen_#{tabla} AS #{tabla}")
               where3 = consulta_and_sinap(
@@ -348,7 +348,7 @@ module Sivel2Sjr
 #              tablas1 = agrega_tabla(
 #                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
 #              where1 = consulta_and_sinap(
-#                where1, "victima.id", "victimasjr.id_victima")
+#                where1, "victima.id", "victimasjr.victima_id")
               que3 << ["cabezafamilia", "Cabeza de Hogar"]
 
             when 'ESTADO CIVIL'
@@ -374,15 +374,15 @@ module Sivel2Sjr
 
             when 'RÉGIMEN DE SALUD'
               que1 = agrega_tabla(
-                que1, 'victimasjr.id_regimensalud AS id_regimensalud')
+                que1, 'victimasjr.regimensalud_id AS regimensalud_id')
 #              tablas1 = agrega_tabla(
 #                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
 #              where1 = consulta_and_sinap(
-#                where1, "victima.id", "victimasjr.id_victima")
+#                where1, "victima.id", "victimasjr.victima_id")
               tablas3 = agrega_tabla(
                 tablas3, 'public.sivel2_sjr_regimensalud AS regimensalud')
               where3 = consulta_and_sinap(
-                where3, "id_regimensalud", "regimensalud.id")
+                where3, "regimensalud_id", "regimensalud.id")
               que3 << ["regimensalud.nombre", "Régimen de Salud"]
 
             else
@@ -399,11 +399,11 @@ module Sivel2Sjr
 
 
           def personas_inicializa1(where1)
-            que1 = 'caso.id AS id_caso, victima.id AS id_victima, ' +
-              'victima.id_persona AS id_persona, 1 AS npersona'
+            que1 = 'caso.id AS caso_id, victima.id AS victima_id, ' +
+              'victima.persona_id AS persona_id, 1 AS npersona'
             tablas1 = 'public.sivel2_gen_caso AS caso, ' +
               'public.sivel2_gen_victima AS victima ' 
-            where1 = consulta_and_sinap(where1, "caso.id", "victima.id_caso")
+            where1 = consulta_and_sinap(where1, "caso.id", "victima.caso_id")
             return que1, tablas1, where1
           end
 
@@ -411,12 +411,12 @@ module Sivel2Sjr
           def personas_vista_geo(que3, tablas3, where3)
             ActiveRecord::Base.connection.execute(
               "CREATE OR REPLACE MATERIALIZED VIEW  ultimodesplazamiento AS 
-            (SELECT sivel2_sjr_desplazamiento.id, s.id_caso, s.fechaexpulsion, 
-              sivel2_sjr_desplazamiento.id_expulsion 
+            (SELECT sivel2_sjr_desplazamiento.id, s.caso_id, s.fechaexpulsion, 
+              sivel2_sjr_desplazamiento.expulsion_id 
               FROM public.sivel2_sjr_desplazamiento, 
-              (SELECT  id_caso, MAX(sivel2_sjr_desplazamiento.fechaexpulsion) 
+              (SELECT  caso_id, MAX(sivel2_sjr_desplazamiento.fechaexpulsion) 
                AS fechaexpulsion FROM public.sivel2_sjr_desplazamiento  GROUP BY 1) 
-               AS s WHERE sivel2_sjr_desplazamiento.id_caso=s.id_caso and 
+               AS s WHERE sivel2_sjr_desplazamiento.caso_id=s.caso_id and 
               sivel2_sjr_desplazamiento.fechaexpulsion=s.fechaexpulsion);")
 
 
@@ -428,21 +428,21 @@ module Sivel2Sjr
             end
 
             return ["CREATE OR REPLACE MATERIALIZED VIEW #{personas_cons2} AS SELECT #{personas_cons1}.*,
-            ubicacion.id_departamento, 
+            ubicacion.departamento_id, 
             departamento.nombre AS departamento_nombre, 
-            ubicacion.id_municipio, municipio.nombre AS municipio_nombre, 
-            ubicacion.id_clase, clase.nombre AS clase_nombre, 
+            ubicacion.municipio_id, municipio.nombre AS municipio_nombre, 
+            ubicacion.clase_id, clase.nombre AS clase_nombre, 
             ultimodesplazamiento.fechaexpulsion FROM
             #{personas_cons1} LEFT JOIN public.ultimodesplazamiento ON
-            (#{personas_cons1}.id_caso = ultimodesplazamiento.id_caso)
+            (#{personas_cons1}.caso_id = ultimodesplazamiento.caso_id)
             LEFT JOIN msip_ubicacion AS ubicacion ON 
-              (ultimodesplazamiento.id_expulsion = ubicacion.id) 
+              (ultimodesplazamiento.expulsion_id = ubicacion.id) 
             LEFT JOIN msip_departamento AS departamento ON 
-              (ubicacion.id_departamento=departamento.id) 
+              (ubicacion.departamento_id=departamento.id) 
             LEFT JOIN msip_municipio AS municipio ON 
-              (ubicacion.id_municipio=municipio.id)
+              (ubicacion.municipio_id=municipio.id)
             LEFT JOIN msip_clase AS clase ON 
-              (ubicacion.id_clase=clase.id)
+              (ubicacion.clase_id=clase.id)
             ", que3, tablas3, where3]
           end
 

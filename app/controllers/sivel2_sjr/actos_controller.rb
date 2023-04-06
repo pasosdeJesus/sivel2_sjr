@@ -12,17 +12,17 @@ module Sivel2Sjr
           format.html { render inline: 'Falta identificacion del caso' }
         end
         return
-      elsif !params[:caso_acto_id_presponsable]
+      elsif !params[:caso_acto_presponsable_id]
         respond_to do |format|
           format.html { render inline: 'Debe tener Presunto Responsable' }
         end
         return
-      elsif !params[:caso_acto_id_categoria]
+      elsif !params[:caso_acto_categoria_id]
         respond_to do |format|
           format.html { render inline: 'Debe tener Categoria' }
         end
         return
-      elsif !params[:caso_acto_id_persona]
+      elsif !params[:caso_acto_persona_id]
         respond_to do |format|
           format.html { render inline: 'Debe tener Víctima' }
         end
@@ -33,19 +33,19 @@ module Sivel2Sjr
         end
         return
       else
-        params[:caso_acto_id_presponsable].each do |cpresp|
+        params[:caso_acto_presponsable_id].each do |cpresp|
           presp = cpresp.to_i
-          params[:caso_acto_id_categoria].each do |ccat|
+          params[:caso_acto_categoria_id].each do |ccat|
             cat = ccat.to_i
-            params[:caso_acto_id_persona].each do |cvic|
+            params[:caso_acto_persona_id].each do |cvic|
               vic = cvic.to_i
               @caso = Sivel2Gen::Caso.find(params[:caso][:id])
               @caso.current_usuario = current_usuario
               authorize! :update, @caso
               acto = Sivel2Gen::Acto.new(
-                id_presponsable: presp,
-                id_categoria: cat,
-                id_persona: vic,
+                presponsable_id: presp,
+                categoria_id: cat,
+                persona_id: vic,
               )
               acto.caso = @caso
               acto.save
@@ -67,7 +67,7 @@ module Sivel2Sjr
 
     def eliminar
       authorize! :destroy, Sivel2Gen::Acto
-      acto = Sivel2Gen::Acto.where(id: params[:id_acto].to_i).take
+      acto = Sivel2Gen::Acto.where(id: params[:acto_id].to_i).take
       if acto && acto.actosjr
         acto.actosjr.destroy!
       end

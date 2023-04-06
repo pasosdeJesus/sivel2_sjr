@@ -16,7 +16,7 @@ module Sivel2Sjr
             else
               @respuesta = Respuesta.new
               cid = params[:caso_id].to_i
-              @respuesta.id_caso = cid
+              @respuesta.caso_id = cid
               @caso = @respuesta.caso
               @caso.current_usuario = current_usuario
               @respuesta.detallear = ''
@@ -42,11 +42,11 @@ module Sivel2Sjr
               @respuesta.detallemotivo = ''
               @respuesta.difobsprog = ''
               fex = Sivel2Sjr::Casosjr.find(cid).fecharec
-              if (Respuesta.where(id_caso: cid).count > 0) 
+              if (Respuesta.where(caso_id: cid).count > 0) 
                 fex = Date.today
               end
               # 
-              while (Respuesta.where(id_caso: cid, fechaatencion: fex.to_s).count > 0) do
+              while (Respuesta.where(caso_id: cid, fechaatencion: fex.to_s).count > 0) do
                 fex += 1
               end
               @respuesta.fechaatencion = fex

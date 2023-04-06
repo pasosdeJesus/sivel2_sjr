@@ -18,10 +18,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: 7c58fb2bacce9bff9f25e64275acd521266b79e6
-  branch: main
+  revision: c4575806725953c0d64591ba448d4d71b9b2824a
+  branch: conv2
   specs:
-    cor1440_gen (2.2.0.beta1)
+    cor1440_gen (2.2.0.beta2)
       devise
       heb412_gen
       kt-paperclip
@@ -31,10 +31,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: 15444b92ea7eb02d0eaac6c6f71eeb0332b4b2a3
-  branch: main
+  revision: 4face5f255e8cad917567cd2b1ae67f256958fe4
+  branch: conv2
   specs:
-    heb412_gen (2.2.0.beta1)
+    heb412_gen (2.2.0.beta2)
       mr519_gen
       msip
       redcarpet
@@ -42,19 +42,19 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 436096e174a2ef021fd5cb5803e091ded6bbd22f
-  branch: main
+  revision: 081cddb10db3dfbb404483e3d3a86db26ef25141
+  branch: conv2
   specs:
-    mr519_gen (2.2.0.beta1)
+    mr519_gen (2.2.0.beta2)
       msip
       rails
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 7fb23f69a665db884eeed5f7b87a07ace28309f4
-  branch: main
+  revision: c8b9c00366680f18a164d7136f3d89954b30f9dc
+  branch: conv2
   specs:
-    msip (2.2.0.beta1)
+    msip (2.2.0.beta2)
       cancancan (~> 3)
       devise (~> 4)
       devise-i18n (~> 1)
@@ -71,10 +71,10 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 0b4d9d8a736e1c424541cdf785ec19b8e5580834
-  branch: main
+  revision: 50f52b129febabafcbaf99b625caf882fe5a7c75
+  branch: conv2
   specs:
-    sivel2_gen (2.2.0.beta1)
+    sivel2_gen (2.2.0.beta2)
       color
       devise
       rails
@@ -82,7 +82,7 @@ GIT
 PATH
   remote: .
   specs:
-    sivel2_sjr (2.2.0.beta1)
+    sivel2_sjr (2.2.0.beta2)
       rails
       sivel2_gen
 
@@ -154,7 +154,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.1)
+    addressable (2.8.3)
       public_suffix (>= 2.0.2, < 6.0)
     andand (1.3.3)
     babel-source (5.8.35)
@@ -169,7 +169,7 @@ GEM
     builder (3.2.4)
     camertron-eprun (1.1.1)
     cancancan (3.5.0)
-    capybara (3.38.0)
+    capybara (3.39.0)
       addressable
       matrix
       mini_mime (>= 0.1.3)
@@ -195,10 +195,10 @@ GEM
       capybara (~> 3.0)
       ferrum (~> 0.13.0)
     date (3.3.3)
-    debug (1.7.1)
+    debug (1.7.2)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
-    devise (4.9.0)
+    devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -232,7 +232,7 @@ GEM
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
     libxml-ruby (4.0.0)
-    loofah (2.19.1)
+    loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.8.1)
@@ -249,7 +249,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
     minitest (5.18.0)
-    msgpack (1.6.1)
+    msgpack (1.7.0)
     net-imap (0.3.4)
       date
       net-protocol
@@ -259,7 +259,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.8)
+    nio4r (2.5.9)
     nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
@@ -280,7 +280,7 @@ GEM
       prawn (>= 1.0.0)
       rails (>= 3.2)
     public_suffix (5.0.1)
-    puma (6.1.1)
+    puma (6.2.1)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
@@ -318,7 +318,7 @@ GEM
     rake (13.0.6)
     redcarpet (3.6.0)
     regexp_parser (2.7.0)
-    reline (0.3.2)
+    reline (0.3.3)
       io-console (~> 0.5)
     responders (3.1.0)
       actionpack (>= 5.2)
@@ -336,7 +336,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.8.1)
+    selenium-webdriver (4.8.6)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -445,4 +445,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   2.4.9
+   2.4.10

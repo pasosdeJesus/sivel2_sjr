@@ -1,6 +1,6 @@
 <%= f.simple_fields_for :victima, Sivel2Gen::Victima.
-  where(id_caso: @caso.id).
-  where(id_persona: @caso.casosjr.contacto.id) do |fvictima| %>
+  where(caso_id: @caso.id).
+  where(persona_id: @caso.casosjr.contacto.id) do |fvictima| %>
   <%= fvictima.input :id, as: :hidden %> 
   <%= fvictima.simple_fields_for :persona do |p| %>
     <%= render 'msip/personas/persona_campos', f: p, fvictima: fvictima %>

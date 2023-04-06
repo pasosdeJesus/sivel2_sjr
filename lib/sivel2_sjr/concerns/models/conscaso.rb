@@ -11,7 +11,7 @@ module Sivel2Sjr
         included do
 
           has_one :casosjr, class_name: 'Sivel2Sjr::Casosjr',
-            foreign_key: "id_caso", primary_key: 'caso_id'
+            foreign_key: "caso_id", primary_key: 'caso_id'
 
           scope :filtro_atenciones_fechaini, lambda { |fecha|
             where('caso_id IN (SELECT casosjr_id FROM 
@@ -59,7 +59,7 @@ module Sivel2Sjr
           }
 
           scope :filtro_statusmigratorio_id, lambda { |id|
-            where('sivel2_sjr_casosjr.id_statusmigratorio = ?', id).
+            where('sivel2_sjr_casosjr.estatusmigratorio_id = ?', id).
               joins(:casosjr)
           }
 
@@ -122,7 +122,7 @@ module Sivel2Sjr
             if !ActiveRecord::Base.connection.data_source_exists? 'sivel2_gen_conscaso'
               ActiveRecord::Base.connection.execute(
                 "CREATE OR REPLACE VIEW sivel2_gen_conscaso1 
-        AS SELECT casosjr.id_caso as caso_id, 
+        AS SELECT casosjr.caso_id as caso_id, 
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
           FROM public.msip_persona AS persona
           WHERE persona.id=casosjr.contacto_id), ', ')
@@ -134,21 +134,21 @@ module Sivel2Sjr
         statusmigratorio.nombre AS statusmigratorio,
         ARRAY_TO_STRING(ARRAY(SELECT fechaatencion 
           FROM public.sivel2_sjr_respuesta AS respuesta
-          WHERE respuesta.id_caso=casosjr.id_caso 
+          WHERE respuesta.caso_id=casosjr.caso_id 
           ORDER BY fechaatencion DESC LIMIT 1), ', ')
           AS ultimaatencion_fecha,
         caso.memo AS memo,
         ARRAY_TO_STRING(ARRAY(SELECT nombres || ' ' || apellidos 
         FROM public.msip_persona AS persona, 
-        public.sivel2_gen_victima AS victima WHERE persona.id=victima.id_persona 
-        AND victima.id_caso=caso.id), ', ')
+        public.sivel2_gen_victima AS victima WHERE persona.id=victima.persona_id 
+        AND victima.caso_id=caso.id), ', ')
         AS victimas
         FROM public.sivel2_sjr_casosjr AS casosjr
-        JOIN sivel2_gen_caso AS caso ON casosjr.id_caso = caso.id
+        JOIN sivel2_gen_caso AS caso ON casosjr.caso_id = caso.id
         JOIN msip_oficina AS oficina ON oficina.id=casosjr.oficina_id
         JOIN usuario ON usuario.id = casosjr.asesor
         LEFT JOIN sivel2_sjr_statusmigratorio AS statusmigratorio ON
-          statusmigratorio.id = casosjr.id_statusmigratorio"
+          statusmigratorio.id = casosjr.estatusmigratorio_id"
               )
               ActiveRecord::Base.connection.execute(
                 "CREATE MATERIALIZED VIEW sivel2_gen_conscaso 

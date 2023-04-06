@@ -197,7 +197,7 @@
   ruta = "api/sivel2sjr/poblacion_sexo_rangoedadac"
   #debugger
   msip_ajax_recibe_json(root, ruta,
-    {id_caso: pl[1], fecha: $('#actividad_fecha_localizada').val() }, 
+    {caso_id: pl[1], fecha: $('#actividad_fecha_localizada').val() }, 
     sivel2_sjr_completa_rangosedadac)
   return
 
@@ -236,22 +236,22 @@
   )
 
   # En desplazamientos, lista de sitios de expulsión se cálcula
-  $(document).on('focusin', 'select[id^=caso_desplazamiento_attributes_][id$=id_expulsion]', (e) ->
+  $(document).on('focusin', 'select[id^=caso_desplazamiento_attributes_][id$=expulsion_id]', (e) ->
     actualiza_ubicaciones($(this))
   )
 
   # En desplazamientos, lista de sitios de llegada se cálcula
-  $(document).on('focusin', 'select[id^=caso_desplazamiento_attributes_][id$=id_llegada]', (e) ->
+  $(document).on('focusin', 'select[id^=caso_desplazamiento_attributes_][id$=llegada_id]', (e) ->
     actualiza_ubicaciones($(this))
   )
 
   # En refugios, lista de sitios de salida se cálcula
-  $(document).on('focusin', 'select[id^=caso_casosjr_attributes_][id$=id_salida]', (e) ->
+  $(document).on('focusin', 'select[id^=caso_casosjr_attributes_][id$=salida_id]', (e) ->
     actualiza_ubicaciones($(this))
   )
 
   # En refugio, lista de sitios de llegada se cálcula
-  $(document).on('focusin', 'select[id^=caso_casosjr_attributes_][id$=id_llegada]', (e) ->
+  $(document).on('focusin', 'select[id^=caso_casosjr_attributes_][id$=llegada_id]', (e) ->
     actualiza_ubicaciones($(this))
   )
 
@@ -281,11 +281,11 @@
     if (root.elempe.length>0)
       msg+=msgsep + root.elempe.length + " " + nomelempe
       msgsep=" y "
-    if ($('#caso_casosjr_attributes_id_salida').val() == id) 
+    if ($('#caso_casosjr_attributes_salida_id').val() == id) 
       msg+=msgsep + "Sitio de Salida del Refugio"; 
       root.elimrefugiosalida = true;
       msgsep=" y "
-    if ($('#caso_casosjr_attributes_id_llegada').val() == id) 
+    if ($('#caso_casosjr_attributes_llegada_id').val() == id) 
       msg+=msgsep + "Sitio de Llegada del Refugio"; 
       root.elimrefugiollegada = true;
       msgsep=" y "
@@ -306,10 +306,10 @@
     elimina_pendientes(root.elempe);
     root.elempe = []
     if (root.elimrefugiosalida) 
-      $('#caso_casosjr_attributes_id_salida').val("")
+      $('#caso_casosjr_attributes_salida_id').val("")
       root.elimrefugiosalida = false
     if (root.elimrefugiollegada) 
-      $('#caso_casosjr_attributes_id_llegada').val("")
+      $('#caso_casosjr_attributes_llegada_id').val("")
       root.elimrefugiollegada = false
   )
  
@@ -377,9 +377,9 @@
     todayHighlight: true
     language: 'es'
   }).on('changeDate', (ev) ->
-    vss=$('#caso_casosjr_attributes_id_salida').val()
+    vss=$('#caso_casosjr_attributes_salida_id').val()
     vfl=$('#caso_casosjr_attributes_fechallegada').val()
-    vsl=$('#caso_casosjr_attributes_id_llegada').val()
+    vsl=$('#caso_casosjr_attributes_llegada_id').val()
     vcr=$('#caso_casosjr_attributes_categoriaref').val()
     vob=$('#caso_casosjr_attributes_observacionesref').val()
     if (vss == "" && vfl == "" && vsl == "" && vcr == "" && vob == "") 
@@ -484,8 +484,8 @@
     if (d == -1 || d>5) 
       msip_enviarautomatico_formulario($('form'), 'POST', 'json', false)
       elimina_destruidos()
-      actualiza_presponsables($('#caso_acto_id_presponsable'))
-      actualiza_victimas($('#caso_acto_id_persona'))
+      actualiza_presponsables($('#caso_acto_presponsable_id'))
+      actualiza_victimas($('#caso_acto_persona_id'))
       actualiza_desplazamientos($('#caso_acto_desplazamiento_id'))
       root.tfichacambia = Date.now()
     return

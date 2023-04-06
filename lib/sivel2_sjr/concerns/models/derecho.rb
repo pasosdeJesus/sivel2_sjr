@@ -9,9 +9,9 @@ module Sivel2Sjr
   
           has_and_belongs_to_many :respuesta, 
             class_name: "Sivel2Sjr::Respuesta", 
-            foreign_key: "id_derecho", 
+            foreign_key: "derecho_id", 
             validate: true,
-            association_foreign_key: "id_respuesta",
+            association_foreign_key: "respuesta_id",
             join_table: 'sivel2_sjr_derecho_respuesta' 
 
           has_and_belongs_to_many :ayudaestado, 

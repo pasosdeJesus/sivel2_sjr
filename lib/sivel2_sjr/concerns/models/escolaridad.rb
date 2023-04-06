@@ -8,7 +8,7 @@ module Sivel2Sjr
         include Sivel2Gen::Concerns::Models::Escolaridad
 
         included do
-          has_many :victimasjr, foreign_key: "id_escolaridad", 
+          has_many :victimasjr, foreign_key: "escolaridad_id", 
             validate: true, class_name: 'Sivel2Sjr::Victimasjr'
         end
 

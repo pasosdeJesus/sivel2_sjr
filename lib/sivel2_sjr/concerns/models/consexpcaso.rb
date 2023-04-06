@@ -11,7 +11,7 @@ module Sivel2Sjr
         included do
 
           belongs_to :casosjr, class_name: 'Sivel2Sjr::Casosjr',
-            primary_key: 'id_caso', foreign_key: 'caso_id', optional: false
+            primary_key: 'caso_id', foreign_key: 'caso_id', optional: false
 
           has_many :victimasjr, through: :casosjr,
             class_name: 'Sivel2Sjr::Victimasjr'
