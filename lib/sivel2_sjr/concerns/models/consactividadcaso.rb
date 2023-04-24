@@ -30,9 +30,13 @@ module Sivel2Sjr
           def presenta(atr)
             puts atr
             m =/^edad_([^_]*)_r_(.*)/.match(atr.to_s)
-            if (m && ((m[1] == 'mujer' && self.persona.sexo == 'F') ||
-                (m[1] == 'hombre' && self.persona.sexo == 'M') ||
-                (m[1] == 'sin' && self.persona.sexo == 'S'))) then
+            if (m && ((m[1] == 'mujer' && 
+                self.persona.sexo == Msip::Persona::convencion_sexo[:sexo_femenino]) ||
+              (m[1] == 'hombre' && 
+               self.persona.sexo == Msip::Persona::convencion_sexo[:sexo_masculino]) ||
+            (m[1] == 'sin' && 
+             self.persona.sexo == Msip::Persona::convencion_sexo[:sexo_sininformacion]))
+               ) then
               edad = Sivel2Gen::RangoedadHelper::edad_de_fechanac_fecha(
                 self.persona.anionac,
                 self.persona.mesnac,

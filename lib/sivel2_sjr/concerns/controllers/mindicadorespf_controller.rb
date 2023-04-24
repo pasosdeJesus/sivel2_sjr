@@ -47,9 +47,15 @@ module Sivel2Sjr
           # i.e contar personas en listados de casos en actividades
           def medir_indicador_personas_casos(idacs, mind, fini, ffin, unicos)
             datosint = []
-            hombrescasos = calcula_benef_por_sexo(idacs, 'M', ffin, unicos)
-            mujerescasos = calcula_benef_por_sexo(idacs, 'F', ffin, unicos)
-            sinsexocasos = calcula_benef_por_sexo(idacs, 'S', ffin, unicos)
+            hombrescasos = calcula_benef_por_sexo(
+              idacs, Msip::Persona::convencion_sexo[:sexo_masculino], ffin, 
+              unicos)
+            mujerescasos = calcula_benef_por_sexo(
+              idacs, Msip::Persona::convencion_sexo[:sexo_femenino], ffin, 
+              unicos)
+            sinsexocasos = calcula_benef_por_sexo(
+              idacs, Msip::Persona::convencion_sexo[:sexo_sininformacion], ffin, 
+              unicos)
             contactos = hombrescasos[0] + mujerescasos[0] + sinsexocasos[0]
             familiares = hombrescasos[1] + mujerescasos[1] + sinsexocasos[1]
             resind = contactos.count + familiares.count
