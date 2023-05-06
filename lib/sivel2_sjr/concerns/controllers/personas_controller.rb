@@ -20,7 +20,6 @@ module Sivel2Sjr
               :caso_ids, 
               :proyectofinanciero_ids, 
               :actividad_ids, 
-              :actividadcasobeneficiario_ids 
             ]
             a[a.index(:anionac)] = :fechanac 
             a
@@ -40,7 +39,6 @@ module Sivel2Sjr
               :sexo,
               :municipio,
               :actividad_ids,
-              :actividadcasobeneficiario_ids
             ]
           end
 
@@ -53,7 +51,6 @@ module Sivel2Sjr
               :id, 
               :caso_ids, 
               :actividad_ids, 
-              :actividadcasobeneficiario_ids
             ] + [
               :caracterizaciones
             ]

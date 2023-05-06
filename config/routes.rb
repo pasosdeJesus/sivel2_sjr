@@ -1,8 +1,5 @@
 Sivel2Sjr::Engine.routes.draw do
 
-  get '/consactividadcaso' => 'consactividadcaso#index', 
-    as: :consactividadcaso
-
   patch '/actos/agregar' => 'actos#agregar' 
   get '/actos/eliminar' => 'actos#eliminar'
 

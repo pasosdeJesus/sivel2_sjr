@@ -32,7 +32,6 @@ es:
       "msip/persona":
         proyectofinanciero_ids: Convenios financiados que caracterizan
         proyectofinanciero: Convenios financiados que caracterizan
-        actividadcasobeneficiario_ids: Actividades en las que está por un caso beneficiario
       "msip/ubicacion":
         clase: Centro poblado
         departamento: Estado/Departamento/Provincia
@@ -86,9 +85,6 @@ es:
         telefono: Teléfono
         Ubicacion: Sitios geográficos
         usuario: Asesor JRS
-      "sivel2_sjr/consactividadcaso":
-        Consactividadcaso: Reporte actividad con caso
-        actividad_proyectofinanciero: Convenio financiado
       "sivel2_sjr/comosupo":
         Comosupo: ¿Cómo supo del JRS?
         Comosupos: ¿Cómo supo del JRS?

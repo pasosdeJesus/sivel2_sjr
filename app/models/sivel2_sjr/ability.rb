@@ -102,57 +102,7 @@ module Sivel2Sjr
         ],
         controlador: 'Sivel2Gen::CasosController',
         ruta: '/casos'
-      },
-      'Consactividadcaso' => {
-        solo_multiple: true,
-        campos: [
-          :actividad_convenios,
-          :actividad_nombre,
-          :actividad_fecha,
-          :actividad_fecha_mes,
-          :actividad_id,
-          :actividad_oficina,
-          :actividad_responsable,
-          :caso_id,
-          :caso_fecharec,
-          :caso_memo,
-          :es_contacto,
-          :edad_hombre_r_0_5,
-          :edad_hombre_r_6_12,
-          :edad_hombre_r_13_17,
-          :edad_hombre_r_18_26,
-          :edad_hombre_r_27_59,
-          :edad_hombre_r_60_,
-          :edad_hombre_r_SIN,
-          :edad_mujer_r_0_5,
-          :edad_mujer_r_6_12,
-          :edad_mujer_r_13_17,
-          :edad_mujer_r_18_26,
-          :edad_mujer_r_27_59,
-          :edad_mujer_r_60_,
-          :edad_mujer_r_SIN,
-          :edad_sin_r_0_5,
-          :edad_sin_r_6_12,
-          :edad_sin_r_13_17,
-          :edad_sin_r_18_26,
-          :edad_sin_r_27_59,
-          :edad_sin_r_60_,
-          :edad_sin_r_SIN,
-          :persona_apellidos,
-          :persona_edad_en_atencion,
-          :persona_etnia,
-          :persona_id,
-          :persona_nombres,
-          :persona_numerodocumento,
-          :persona_sexo,
-          :persona_tipodocumento,
-          :victima_id,
-          :victima_maternidad
-        ],
-        controlador: 'Sivel2Sjr::ConsactividadcasoController',
-        ruta: '/consactividadcaso'
       }
-
     }
 
     def campos_plantillas 
@@ -213,8 +163,6 @@ module Sivel2Sjr
             casosjr: { asesor: usuario.id, oficina_id:usuario.oficina_id }
           can :new, Sivel2Gen::Caso 
 
-          can :read, Sivel2Sjr::Consactividadcaso
-
         when Ability::ROLANALI
           can :read, Cor1440Gen::Actividad
           can :new, Cor1440Gen::Actividad
@@ -233,7 +181,6 @@ module Sivel2Sjr
           can [:update, :create, :destroy], Sivel2Gen::Caso, 
             casosjr: { oficina_id: usuario.oficina_id }
 
-          can :read, Sivel2Sjr::Consactividadcaso
 
         when Ability::ROLCOOR
           can [:read, :manage], Usuario, oficina: { id: usuario.oficina_id}
@@ -254,8 +201,6 @@ module Sivel2Sjr
           can [:update, :create, :destroy, :poneretcomp], Sivel2Gen::Caso, 
             casosjr: { oficina_id: usuario.oficina_id }
 
-          can :read, Sivel2Sjr::Consactividadcaso
-
         when Ability::ROLADMIN, Ability::ROLDIR
           can :manage, ::Usuario
 
@@ -274,8 +219,6 @@ module Sivel2Sjr
 
           can :manage, Sivel2Gen::Acto
           can :manage, Sivel2Gen::Caso
-
-          can :read, Sivel2Sjr::Consactividadcaso
 
           can :manage, :tablasbasicas
           tablasbasicas.each do |t|

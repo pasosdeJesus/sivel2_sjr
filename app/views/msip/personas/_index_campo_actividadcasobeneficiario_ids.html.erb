@@ -1,7 +1,0 @@
-<% cuenta = 0 %>
-<% cuenta = registro.caso.inject(0) { %>
-  <% |memo, c| memo+(
-    (c.casosjr && c.casosjr.actividad) ? c.casosjr.actividad.count : 0) 
-  %>
-<% } %>
-<%= cuenta %>
