@@ -65,7 +65,7 @@ module Sivel2Sjr
               where1 = consulta_and(where1, "sub.oficina_id", pOficina)
             end
 
-            id_basica = "id_#{pContar}"
+            id_basica = "#{pContar}_id"
             basica = "sivel2_sjr_#{pContar}"
             basica_id = "#{pContar}_id"
             tablas3 = agrega_tabla(tablas3, "public.sivel2_sjr_#{pContar} AS #{pContar}")
@@ -315,7 +315,7 @@ module Sivel2Sjr
           # @param tabla es tabla sin prefijo sivel2_gen
           def personas_segun_tipico_sjr(tabla, nomtabla, que1, tablas1, where1, que3, tablas3, where3)
               que1 = agrega_tabla(
-                que1, "victimasjr.id_#{tabla} AS id_#{tabla}")
+                que1, "victimasjr.#{tabla}_id AS #{tabla}_id")
 #              tablas1 = agrega_tabla(
 #                tablas1, 'public.sivel2_sjr_victimasjr AS victimasjr')
 #              where1 = consulta_and_sinap(
@@ -323,7 +323,7 @@ module Sivel2Sjr
               tablas3 = agrega_tabla(
                 tablas3, "public.sivel2_gen_#{tabla} AS #{tabla}")
               where3 = consulta_and_sinap(
-                where3, "id_#{tabla}", "#{tabla}.id")
+                where3, "#{tabla}_id", "#{tabla}.id")
               que3 << ["#{tabla}.nombre", nomtabla]
               return [que1, tablas1, where1, que3, tablas3, where3] 
           end
