@@ -3885,7 +3885,7 @@ CREATE TABLE public.msip_tclase (
 CREATE TABLE public.msip_tdocumento (
     id integer NOT NULL,
     nombre character varying(500) NOT NULL COLLATE public.es_co_utf_8,
-    sigla character varying(100),
+    sigla character varying(500) NOT NULL,
     formatoregex character varying(500),
     fechacreacion date NOT NULL,
     fechadeshabilitacion date,
@@ -4672,136 +4672,6 @@ CREATE SEQUENCE public.sivel2_gen_combatiente_id_seq
 --
 
 ALTER SEQUENCE public.sivel2_gen_combatiente_id_seq OWNED BY public.sivel2_gen_combatiente.id;
-
-
---
--- Name: sivel2_sjr_statusmigratorio_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sivel2_sjr_statusmigratorio_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sivel2_sjr_statusmigratorio; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sivel2_sjr_statusmigratorio (
-    id integer DEFAULT nextval('public.sivel2_sjr_statusmigratorio_id_seq'::regclass) NOT NULL,
-    nombre character varying(100) NOT NULL,
-    fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
-    fechadeshabilitacion date,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    observaciones character varying(5000),
-    CONSTRAINT statusmigratorio_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
-);
-
-
---
--- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.usuario_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: usuario; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.usuario (
-    id integer DEFAULT nextval('public.usuario_id_seq'::regclass) NOT NULL,
-    nusuario character varying(15) NOT NULL,
-    password character varying(64) DEFAULT ''::character varying NOT NULL,
-    nombre character varying(50) COLLATE public.es_co_utf_8,
-    descripcion character varying(50),
-    rol integer DEFAULT 4,
-    idioma character varying(6) DEFAULT 'es_CO'::character varying NOT NULL,
-    email character varying(255) DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
-    fechadeshabilitacion date,
-    reset_password_token character varying(255),
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying(255),
-    last_sign_in_ip character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    oficina_id integer,
-    failed_attempts integer DEFAULT 0,
-    unlock_token character varying(255),
-    locked_at timestamp without time zone,
-    tema_id integer,
-    observadorffechaini date,
-    observadorffechafin date,
-    fincontrato date,
-    CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
-    CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
-);
-
-
---
--- Name: sivel2_gen_conscaso1; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.sivel2_gen_conscaso1 AS
- SELECT casosjr.caso_id,
-    array_to_string(ARRAY( SELECT (((persona.nombres)::text || ' '::text) || (persona.apellidos)::text)
-           FROM public.msip_persona persona
-          WHERE (persona.id = casosjr.contacto_id)), ', '::text) AS contacto,
-    casosjr.fecharec,
-    oficina.nombre AS oficina,
-    usuario.nusuario,
-    caso.fecha,
-    statusmigratorio.nombre AS statusmigratorio,
-    array_to_string(ARRAY( SELECT respuesta.fechaatencion
-           FROM public.sivel2_sjr_respuesta respuesta
-          WHERE (respuesta.caso_id = casosjr.caso_id)
-          ORDER BY respuesta.fechaatencion DESC
-         LIMIT 1), ', '::text) AS ultimaatencion_fecha,
-    caso.memo,
-    array_to_string(ARRAY( SELECT (((persona.nombres)::text || ' '::text) || (persona.apellidos)::text)
-           FROM public.msip_persona persona,
-            public.sivel2_gen_victima victima
-          WHERE ((persona.id = victima.persona_id) AND (victima.caso_id = caso.id))), ', '::text) AS victimas
-   FROM ((((public.sivel2_sjr_casosjr casosjr
-     JOIN public.sivel2_gen_caso caso ON ((casosjr.caso_id = caso.id)))
-     JOIN public.msip_oficina oficina ON ((oficina.id = casosjr.oficina_id)))
-     JOIN public.usuario ON ((usuario.id = casosjr.asesor)))
-     LEFT JOIN public.sivel2_sjr_statusmigratorio statusmigratorio ON ((statusmigratorio.id = casosjr.estatusmigratorio_id)));
-
-
---
--- Name: sivel2_gen_conscaso; Type: MATERIALIZED VIEW; Schema: public; Owner: -
---
-
-CREATE MATERIALIZED VIEW public.sivel2_gen_conscaso AS
- SELECT sivel2_gen_conscaso1.caso_id,
-    sivel2_gen_conscaso1.contacto,
-    sivel2_gen_conscaso1.fecharec,
-    sivel2_gen_conscaso1.oficina,
-    sivel2_gen_conscaso1.nusuario,
-    sivel2_gen_conscaso1.fecha,
-    sivel2_gen_conscaso1.statusmigratorio,
-    sivel2_gen_conscaso1.ultimaatencion_fecha,
-    sivel2_gen_conscaso1.memo,
-    sivel2_gen_conscaso1.victimas,
-    to_tsvector('spanish'::regconfig, public.unaccent(((((((((((((((((((sivel2_gen_conscaso1.caso_id || ' '::text) || sivel2_gen_conscaso1.contacto) || ' '::text) || replace(((sivel2_gen_conscaso1.fecharec)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || (sivel2_gen_conscaso1.oficina)::text) || ' '::text) || (sivel2_gen_conscaso1.nusuario)::text) || ' '::text) || replace(((sivel2_gen_conscaso1.fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || (sivel2_gen_conscaso1.statusmigratorio)::text) || ' '::text) || replace(((sivel2_gen_conscaso1.ultimaatencion_fecha)::character varying)::text, '-'::text, ' '::text)) || ' '::text) || sivel2_gen_conscaso1.memo) || ' '::text) || sivel2_gen_conscaso1.victimas))) AS q
-   FROM public.sivel2_gen_conscaso1
-  WITH NO DATA;
 
 
 --
@@ -6394,6 +6264,34 @@ CREATE TABLE public.sivel2_sjr_rolfamilia (
 
 
 --
+-- Name: sivel2_sjr_statusmigratorio_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sivel2_sjr_statusmigratorio_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sivel2_sjr_statusmigratorio; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sivel2_sjr_statusmigratorio (
+    id integer DEFAULT nextval('public.sivel2_sjr_statusmigratorio_id_seq'::regclass) NOT NULL,
+    nombre character varying(100) NOT NULL,
+    fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
+    fechadeshabilitacion date,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    observaciones character varying(5000),
+    CONSTRAINT statusmigratorio_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion)))
+);
+
+
+--
 -- Name: sivel2_sjr_tipodesp_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -6451,6 +6349,57 @@ CREATE TABLE public.sivel2_sjr_victimasjr (
     pais_id integer,
     enfermedad character varying(5000),
     ndiscapacidad character varying(100)
+);
+
+
+--
+-- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.usuario_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: usuario; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.usuario (
+    id integer DEFAULT nextval('public.usuario_id_seq'::regclass) NOT NULL,
+    nusuario character varying(15) NOT NULL,
+    password character varying(64) DEFAULT ''::character varying NOT NULL,
+    nombre character varying(50) COLLATE public.es_co_utf_8,
+    descripcion character varying(50),
+    rol integer DEFAULT 4,
+    idioma character varying(6) DEFAULT 'es_CO'::character varying NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    fechacreacion date DEFAULT ('now'::text)::date NOT NULL,
+    fechadeshabilitacion date,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    oficina_id integer,
+    failed_attempts integer DEFAULT 0,
+    unlock_token character varying(255),
+    locked_at timestamp without time zone,
+    tema_id integer,
+    observadorffechaini date,
+    observadorffechafin date,
+    fincontrato date,
+    CONSTRAINT usuario_check CHECK (((fechadeshabilitacion IS NULL) OR (fechadeshabilitacion >= fechacreacion))),
+    CONSTRAINT usuario_rol_check CHECK ((rol >= 1))
 );
 
 
@@ -8823,13 +8772,6 @@ ALTER TABLE ONLY public.sivel2_sjr_victimasjr
 
 ALTER TABLE ONLY public.sivel2_gen_vinculoestado
     ADD CONSTRAINT vinculoestado_pkey PRIMARY KEY (id);
-
-
---
--- Name: busca_conscaso; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX busca_conscaso ON public.sivel2_gen_conscaso USING gin (q);
 
 
 --
@@ -12361,6 +12303,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230406092509'),
 ('20230418194845'),
 ('20230504084246'),
-('20230613111532');
+('20230613111532'),
+('20230622205529'),
+('20230622205530');
 
 

@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: ac146b82b2d3c84cec297a8c5aae1deea17cfaa7
+  revision: d7d279394b951dce6b3368e234cf6e227fc7ae2d
   branch: main
   specs:
     cor1440_gen (2.2.0.beta4)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: c2ecf333866d34b275e0eea9364e8cdbd961bee5
+  revision: d486825414b8f9b5acbb70f42195de7c07b3c66b
   branch: main
   specs:
     heb412_gen (2.2.0.beta4)
@@ -42,7 +42,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 13ab9a3e7762c6e893debb504b0983a97d25b27d
+  revision: c98b47dc091eda3afa5efcc6e01842ee64155d0c
   branch: main
   specs:
     mr519_gen (2.2.0.beta4)
@@ -51,7 +51,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: b3813de4742a5a907c89232806c8df484f1f8948
+  revision: 642fcc4740a734e40b682a059b3e39f0338cb010
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -71,7 +71,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: b686eed93eed8089e83eed1c6b3444f80eb34bbd
+  revision: 64878484b6d5e48cc323b160733b491a0ef280a2
   branch: main
   specs:
     sivel2_gen (2.2.0.beta4)
@@ -161,7 +161,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
-    bcrypt (3.1.18)
+    bcrypt (3.1.19)
     bigdecimal (3.1.4)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -188,7 +188,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     color (1.8)
-    colorize (1.0.1)
+    colorize (1.1.0)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     cuprite (0.14.3)
@@ -364,7 +364,7 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.2)
     tilt (2.2.0)
-    timeout (0.3.2)
+    timeout (0.4.0)
     ttfunk (1.7.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
