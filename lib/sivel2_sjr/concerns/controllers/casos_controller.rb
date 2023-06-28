@@ -155,7 +155,7 @@ module Sivel2Sjr
 #          end
 #
           def self.asegura_camposdinamicos(
-            registro, currente_usuario_id)
+            registro, current_usuario_id, pestanas)
           end
 
 #          def edit_sivel2_sjr
