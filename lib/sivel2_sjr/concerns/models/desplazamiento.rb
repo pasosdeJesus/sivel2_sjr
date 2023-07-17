@@ -11,11 +11,15 @@ module Sivel2Sjr
           has_many :actosjr, class_name: "Sivel2Sjr::Actosjr", 
             validate: true
 
-          if Sivel2Sjr::Desplazamiento.has_attribute?(:expulsion_id)
+          if ActiveRecord::Base.connection.data_source_exists?(
+              'sivel2_sjr_desplazamiento') && 
+             Sivel2Sjr::Desplazamiento.has_attribute?(:expulsion_id)
             belongs_to :expulsion, class_name: "Msip::Ubicacion", 
               foreign_key: "expulsion_id", validate: true, optional: true
           end
-          if Sivel2Sjr::Desplazamiento.has_attribute?(:llegada_id)
+          if ActiveRecord::Base.connection.data_source_exists?(
+              'sivel2_sjr_desplazamiento') && 
+              Sivel2Sjr::Desplazamiento.has_attribute?(:llegada_id)
             belongs_to :llegada, class_name: "Msip::Ubicacion", 
               foreign_key: "llegada_id", validate: true, optional: true
           end
@@ -45,7 +49,8 @@ module Sivel2Sjr
           validates_presence_of :fechaexpulsion, :fechallegada
           validates :fechaexpulsion, uniqueness: 
             { scope: :caso_id,
-              message: " ya existe otro desplazamiento con la misma fecha de expulsión" 
+              message: " ya existe otro desplazamiento "\
+              "con la misma fecha de expulsión"
           }
 
           validate :llegada_posterior_a_expulsion
@@ -57,8 +62,10 @@ module Sivel2Sjr
             end
           end
 
-          validate :sitios_diferentes
-          if Sivel2Sjr::Desplazamiento.has_attribute?(:expulsion_id)
+          if ActiveRecord::Base.connection.data_source_exists?(
+              'sivel2_sjr_desplazamiento') && 
+              Sivel2Sjr::Desplazamiento.has_attribute?(:expulsion_id)
+            validate :sitios_diferentes
             def sitios_diferentes
               if llegada.present? && expulsion.present? && 
                   llegada_id == expulsion_id
