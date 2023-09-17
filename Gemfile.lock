@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/cor1440_gen.git
-  revision: b31b37b629a153967554632e528bff41d6991215
+  revision: e54a0ce7fccecbe020aa99d607a69badd9a9c9f5
   branch: main
   specs:
     cor1440_gen (2.2.0.beta4)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/heb412_gen.git
-  revision: c5e293d535502a8f0f174d8bfadb0bf4c9fcd2fe
+  revision: 3508d31bc0af92a43137f03cace09a142a1d511a
   branch: main
   specs:
     heb412_gen (2.2.0.beta4)
@@ -42,7 +42,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/mr519_gen.git
-  revision: 7113d81bb3806cf17eee69a9cddfb94c5d896390
+  revision: a6270706b5f6019c34ad7e40fa31377e4e251cbc
   branch: main
   specs:
     mr519_gen (2.2.0.beta4)
@@ -51,7 +51,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/msip.git
-  revision: 99626c5eb40dcf06be418f95759bd39c5cc626d1
+  revision: cd8649fd776db25e83c771a03f1172e72465b1c5
   branch: main
   specs:
     msip (2.2.0.beta4)
@@ -71,7 +71,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/pasosdeJesus/sivel2_gen.git
-  revision: 14a0c7e231c5bd4402ca90499c25c08a873a227a
+  revision: 2ff20852fd34c1d36d25c4449fa0b0d053f80c80
   branch: main
   specs:
     sivel2_gen (2.2.0.beta4)
@@ -212,7 +212,7 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
-    execjs (2.9.0)
+    execjs (2.9.1)
     ferrum (0.13)
       addressable (~> 2.5)
       concurrent-ruby (~> 1.1)
@@ -230,7 +230,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jsbundling-rails (1.1.2)
+    jsbundling-rails (1.2.1)
       railties (>= 6.0.0)
     libxml-ruby (4.1.1)
     loofah (2.21.3)
@@ -370,7 +370,7 @@ GEM
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.2)
-    tilt (2.2.0)
+    tilt (2.3.0)
     timeout (0.4.0)
     ttfunk (1.7.0)
     turbo-rails (1.4.0)
