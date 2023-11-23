@@ -33,7 +33,7 @@ es:
         proyectofinanciero_ids: Convenios financiados que caracterizan
         proyectofinanciero: Convenios financiados que caracterizan
       "msip/ubicacion":
-        clase: Centro poblado
+        centropoblado: Centro poblado
         departamento: Estado/Departamento/Provincia
         latitud: Latitud
         longitud: Longitud

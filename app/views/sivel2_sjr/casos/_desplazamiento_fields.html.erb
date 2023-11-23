@@ -19,8 +19,8 @@
 #             Msip::Departamento.where(id: t.departamento_id).take.nombre) + 
 #          (t.municipio_id.nil? ? "" : " / " + 
 #           Msip::Municipio.where(id: t.municipio_id).take.nombre) + 
-#          (t.clase_id.nil? ? "" : " / " + 
-#           Msip::Clase.where(id: t.clase_id).take.nombre)
+#          (t.centropoblado_id.nil? ? "" : " / " + 
+#           Msip::Centropoblado.where(id: t.centropoblado_id).take.nombre)
 #    },
         value_method: :id,
         input_html: {

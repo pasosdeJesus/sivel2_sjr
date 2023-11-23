@@ -10,7 +10,7 @@ json.caso do
     if @caso.ubicacion
       json.departamento ub.departamento.nombre if ub.departamento
       json.municipio ub.municipio.nombre if ub.municipio
-      json.centro_poblado ub.clase.nombre if ub.clase
+      json.centro_poblado ub.centropoblado.nombre if ub.centropoblado
     end
   end
   json.presponsables do

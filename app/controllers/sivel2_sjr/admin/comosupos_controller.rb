@@ -18,7 +18,7 @@ module Sivel2Sjr
         params.require(:comosupo).permit( *(atributos_index - ["id"]))
       end
 
-      helper_method :clase, :atributos_index
+      helper_method :centropoblado, :atributos_index
     end
   end
 end

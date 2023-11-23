@@ -431,7 +431,7 @@ module Sivel2Sjr
             ubicacion.departamento_id, 
             departamento.nombre AS departamento_nombre, 
             ubicacion.municipio_id, municipio.nombre AS municipio_nombre, 
-            ubicacion.clase_id, clase.nombre AS clase_nombre, 
+            ubicacion.centropoblado_id, centropoblado.nombre AS centropoblado_nombre, 
             ultimodesplazamiento.fechaexpulsion FROM
             #{personas_cons1} LEFT JOIN public.ultimodesplazamiento ON
             (#{personas_cons1}.caso_id = ultimodesplazamiento.caso_id)
@@ -441,8 +441,8 @@ module Sivel2Sjr
               (ubicacion.departamento_id=departamento.id) 
             LEFT JOIN msip_municipio AS municipio ON 
               (ubicacion.municipio_id=municipio.id)
-            LEFT JOIN msip_clase AS clase ON 
-              (ubicacion.clase_id=clase.id)
+            LEFT JOIN msip_centropoblado AS centropoblado ON 
+              (ubicacion.centropoblado_id=centropoblado.id)
             ", que3, tablas3, where3]
           end
 

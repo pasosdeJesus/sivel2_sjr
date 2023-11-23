@@ -576,7 +576,7 @@ module Sivel2Sjr
 #                  :pais_id, 
 #                  :departamento_id, 
 #                  :municipio_id, 
-#                  :clase_id, 
+#                  :centropoblado_id, 
 #                  :mesnac, 
 #                  :nacionalde, 
 #                  :numerodocumento, 
@@ -606,7 +606,7 @@ module Sivel2Sjr
 #              ], 
 #              :ubicacion_attributes => [
 #                :id, 
-#                :clase_id, 
+#                :centropoblado_id, 
 #                :departamento_id, 
 #                :municipio_id, 
 #                :pais_id, 

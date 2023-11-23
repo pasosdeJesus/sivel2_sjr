@@ -48,9 +48,9 @@
         idm = $(v).find('.caso_ubicacion_municipio select').val()
         if (idm > 0)
           tx = tx + " / " + $(v).find('.caso_ubicacion_municipio select option[value=' + idm + ']').text()
-          idc = $(v).find('.caso_ubicacion_clase select').val()
+          idc = $(v).find('.caso_ubicacion_centropoblado select').val()
           if (idc > 0)
-            tx = tx + " / " + $(v).find('.caso_ubicacion_clase select option[value=' + idc + ']').text()
+            tx = tx + " / " + $(v).find('.caso_ubicacion_centropoblado select option[value=' + idc + ']').text()
       nh = nh + ">" + tx + "</option>" )
     s.html(nh)
 

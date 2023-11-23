@@ -183,7 +183,7 @@ module Sivel2Sjr
               :pais_id,
               :departamento_id,
               :municipio_id,
-              :clase_id,
+              :centropoblado_id,
               :tdocumento_id 
             ] + [
               "caracterizacionpersona_attributes" =>
